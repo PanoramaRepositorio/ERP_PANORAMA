@@ -31,3 +31,6 @@
 
 # Archivos .txt en obj/x86/Release
 **/obj/x86/Release/*.txt
+
+slnErpPanorama/ErpPanorama.Presentation/obj/x86/Release/ErpPanorama.Presentation.csproj.ResolveComReference.cache
+slnErpPanorama/ErpPanorama.Presentation/obj/x86/Release/ErpPanorama.Presentation.csproj.CoreCompileInputs.cache
