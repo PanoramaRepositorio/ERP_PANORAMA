@@ -24,3 +24,10 @@
 
 # Archivos de análisis de código
 *.opencover.xml
+
+# Carpetas específicas de salida de compilación
+**/obj/Debug/
+**/obj/Release/
+
+# Archivos .txt en obj/x86/Release
+**/obj/x86/Release/*.txt
