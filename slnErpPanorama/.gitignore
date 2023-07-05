@@ -1,0 +1,26 @@
+# Archivos de compilación
+*.exe
+*.dll
+*.pdb
+
+# Archivos generados por Visual Studio
+*.obj
+*.cache
+*.csproj.user
+*.suo
+*.userprefs
+*.vs
+
+# Carpeta bin y obj generada por la compilación
+**/bin/
+**/obj/
+
+# Archivos de respaldo de código
+*~
+*#
+
+# Archivos de registro
+*.log
+
+# Archivos de análisis de código
+*.opencover.xml
