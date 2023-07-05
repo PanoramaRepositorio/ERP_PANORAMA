@@ -26,8 +26,8 @@
 *.opencover.xml
 
 # Carpetas específicas de salida de compilación
-**/obj/Debug/
-**/obj/Release/
+**/obj/Debug/*cache
+**/obj/Release/*cache
 
 # Archivos .txt en obj/x86/Release
 **/obj/x86/Release/*.txt
