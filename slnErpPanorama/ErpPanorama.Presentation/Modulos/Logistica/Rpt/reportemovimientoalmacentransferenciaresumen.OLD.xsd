@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportemovimientoalmacentransferenciaresumen"
+    targetNamespace="http://tempuri.org/reportemovimientoalmacentransferenciaresumen.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportemovimientoalmacentransferenciaresumen.xsd"
+    xmlns:mstns="http://tempuri.org/reportemovimientoalmacentransferenciaresumen.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reportemovimientoalmacentransferenciaresumen">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="DescAlmacen" type="xs:string" />
+      <xs:attribute name="DescMotivo" type="xs:string" />
+      <xs:attribute name="DescAlmacenDestino" type="xs:string" />
+      <xs:attribute name="FlagRecibido" type="xs:boolean" />
+      <xs:attribute name="CodigoProveedor" type="xs:string" />
+      <xs:attribute name="NombreProducto" type="xs:string" />
+      <xs:attribute name="Abreviatura" type="xs:string" />
+      <xs:attribute name="Cantidad" type="xs:int" />
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

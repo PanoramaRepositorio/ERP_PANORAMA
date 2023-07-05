@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reporteestadocuentacuentabanco"
+    targetNamespace="http://tempuri.org/reporteestadocuentacuentabanco.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reporteestadocuentacuentabanco.xsd"
+    xmlns:mstns="http://tempuri.org/reporteestadocuentacuentabanco.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reporteestadocuentacuentabanco">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdCliente" type="xs:int" />
+      <xs:attribute name="Numero" type="xs:string" />
+      <xs:attribute name="NumeroDocumento" type="xs:string" />
+      <xs:attribute name="DescCliente" type="xs:int" />
+      <xs:attribute name="Direccion" type="xs:string" />
+      <xs:attribute name="Importe" type="xs:decimal" />
+      <xs:attribute name="FechaCredito" type="xs:dateTime"/>
+      <xs:attribute name="FechaDeposito" type="xs:dateTime"/>
+      <xs:attribute name="Observacion" type="xs:string" />
+      <xs:attribute name="DescBanco" type="xs:string" />
+      <xs:attribute name="DescMoneda" type="xs:string" />
+      <xs:attribute name="NumeroPedido" type="xs:string" />
+      <xs:attribute name="TipoCambio" type="xs:decimal" />
+      <xs:attribute name="DescFormaPago" type="xs:string" />
+      <xs:attribute name="DescMotivo" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

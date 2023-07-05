@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reporteclienteregistrovendedor"
+    targetNamespace="http://tempuri.org/reporteclienteregistrovendedor.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reporteclienteregistrovendedor.xsd"
+    xmlns:mstns="http://tempuri.org/reporteclienteregistrovendedor.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reporteclienteregistrovendedor">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="ApeNom" type="xs:string" />
+      <xs:attribute name="Numero" type="xs:int" />
+    </xs:complexType>
+  </xs:element>
+  
+  
+</xs:schema>

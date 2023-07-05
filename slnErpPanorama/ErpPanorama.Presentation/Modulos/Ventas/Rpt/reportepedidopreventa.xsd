@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportepedidopreventa"
+    targetNamespace="http://tempuri.org/reportepedidopreventa.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportepedidopreventa.xsd"
+    xmlns:mstns="http://tempuri.org/reportepedidopreventa.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name="reportepedidopreventa">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="Fecha" type="xs:date"/>
+      <xs:attribute name="Numero" type="xs:string" />
+      <xs:attribute name="DescTienda" type="xs:string" />
+      <xs:attribute name="DescCliente" type="xs:string" />
+      <xs:attribute name="DescFormaPago" type="xs:string" />
+      <xs:attribute name="CodMoneda" type="xs:string" />
+      <xs:attribute name="Total" type="xs:decimal" />        
+      <xs:attribute name="DescVendedor" type="xs:string" />
+      <xs:attribute name="DescSituacion" type="xs:string" />
+      <xs:attribute name="DescRuta" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+  
+  
+</xs:schema>

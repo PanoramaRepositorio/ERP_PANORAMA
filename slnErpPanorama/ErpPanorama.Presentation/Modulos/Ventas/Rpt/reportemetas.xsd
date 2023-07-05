@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportemetas"
+    targetNamespace="http://tempuri.org/reportemetas.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportemetas.xsd"
+    xmlns:mstns="http://tempuri.org/reportemetas.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reportemetas">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="idempresa" type="xs:int" />
+      <xs:attribute name="IdMeta" type="xs:int" />
+      <xs:attribute name="IdTienda" type="xs:int" />
+      <xs:attribute name="DescTienda" type="xs:string" />
+      <xs:attribute name="IdCargo" type="xs:int" />
+      <xs:attribute name="Cargo" type="xs:string" />
+      <xs:attribute name="Periodo" type="xs:int" />
+      <xs:attribute name="Mes" type="xs:int" />
+      <xs:attribute name="NombreMes" type="xs:string" />
+      <xs:attribute name="Importe" type="xs:decimal" />
+      <xs:attribute name="flagestado" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>  
+  
+</xs:schema>

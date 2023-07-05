@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportepedidogestion"
+    targetNamespace="http://tempuri.org/reportepedidogestion.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportepedidogestion.xsd"
+    xmlns:mstns="http://tempuri.org/reportepedidogestion.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reportepedidogestion">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="Fecha" type="xs:dateTime" />
+      <xs:attribute name="Numero" type="xs:string" />
+      <xs:attribute name="DescTienda" type="xs:string" />
+      <xs:attribute name="DescCliente" type="xs:string" />
+      <xs:attribute name="DescVendedor" type="xs:string" />
+      <xs:attribute name="DescSituacion" type="xs:string" />
+      <xs:attribute name="CodMoneda" type="xs:string" />
+      <xs:attribute name="Total" type="xs:decimal" />
+      <xs:attribute name="DescFormaPago" type="xs:string" />
+      <xs:attribute name="Destino" type="xs:string" />
+      <xs:attribute name="Aprobado" type="xs:boolean" />
+      <xs:attribute name="FechaAprobado" type="xs:string" />
+      <xs:attribute name="Recibido" type="xs:boolean" />
+      <xs:attribute name="FechaRecibido" type="xs:string" />
+      <xs:attribute name="Preparacion" type="xs:boolean" />
+      <xs:attribute name="FechaPreparacion" type="xs:string" />
+      <xs:attribute name="Chequeo" type="xs:boolean" />
+      <xs:attribute name="FechaChequeo" type="xs:string" />
+      <xs:attribute name="EnPT" type="xs:boolean" />
+      <xs:attribute name="FechaPT" type="xs:string" />
+      <xs:attribute name="RecepcionDocumento" type="xs:boolean" />
+      <xs:attribute name="FechaRD" type="xs:string" />
+      <xs:attribute name="Despachado" type="xs:boolean" />
+      <xs:attribute name="FechaDespachado" type="xs:string" />
+      <xs:attribute name="FechaAnulado" type="xs:string" />
+      <xs:attribute name="Observacion" type="xs:string" />
+      <xs:attribute name="Conductor" type="xs:string" />
+      <xs:attribute name="TotalCantidadInicial" type="xs:int" />
+      <xs:attribute name="TotalItemsInicial" type="xs:int" />      
+      <xs:attribute name="TotalCantidad" type="xs:int" />
+      <xs:attribute name="TotalItems" type="xs:int" />
+    </xs:complexType>
+  </xs:element>  
+  
+</xs:schema>

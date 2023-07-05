@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportepedidovendedorformapago"
+    targetNamespace="http://tempuri.org/reportepedidovendedorformapago.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportepedidovendedorformapago.xsd"
+    xmlns:mstns="http://tempuri.org/reportepedidovendedorformapago.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reportepedidovendedorformapago">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="Item" type="xs:string" />
+      <xs:attribute name="ApeNom" type="xs:string" />
+      <xs:attribute name="TipoVendedor" type="xs:string" />
+      <xs:attribute name="TipoVenta" type="xs:string" />
+      <xs:attribute name="TipoCliente" type="xs:string" />
+      <xs:attribute name="Contado" type="xs:decimal" />
+      <xs:attribute name="Credito" type="xs:decimal" />
+      <xs:attribute name="Obsequio" type="xs:decimal" />
+      <xs:attribute name="Consignacion" type="xs:decimal" />
+      <xs:attribute name="Devolucion" type="xs:decimal" />
+      <xs:attribute name="Separacion" type="xs:decimal" />
+      <xs:attribute name="Contraentrega" type="xs:decimal" />
+      <xs:attribute name="Copagan" type="xs:decimal" />
+      <xs:attribute name="Asaf" type="xs:decimal" />
+      <xs:attribute name="Total" type="xs:decimal" />
+    </xs:complexType>
+  </xs:element>
+
+
+</xs:schema>

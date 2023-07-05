@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportepedidotiendasupervisor"
+    targetNamespace="http://tempuri.org/reportepedidotiendasupervisor.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportepedidotiendasupervisor.xsd"
+    xmlns:mstns="http://tempuri.org/reportepedidotiendasupervisor.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name="reportepedidotiendasupervisor">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdVendedor" type="xs:int" />
+      <xs:attribute name="ApeNom" type="xs:string" />
+      <xs:attribute name="IdCargo" type="xs:int" />
+      <xs:attribute name="Cargo" type="xs:string" />
+      <xs:attribute name="IdTienda" type="xs:int" />
+      <xs:attribute name="DescTienda" type="xs:string" />
+      <xs:attribute name="Meta" type="xs:decimal" />
+      <xs:attribute name="TotalClienteFinal" type="xs:decimal" />
+      <xs:attribute name="TotalClienteMayorista" type="xs:decimal" />
+      <xs:attribute name="TotalVentaSupervisor" type="xs:decimal" />
+      <xs:attribute name="TotalVentaIncentivado" type="xs:decimal" />
+      <xs:attribute name="TotalCompraPerfecta" type="xs:decimal" />
+      <xs:attribute name="TotalVenta" type="xs:decimal" />
+      <xs:attribute name="TotalVentaSinIGV" type="xs:decimal" />
+      <xs:attribute name="PorMeta" type="xs:decimal" />
+      <xs:attribute name="TasaConversion" type="xs:decimal" />
+      <xs:attribute name="MetaConversion" type="xs:decimal" />
+      <xs:attribute name="PorConversion" type="xs:decimal" />
+      <xs:attribute name="BonoConversion" type="xs:decimal" />
+      <xs:attribute name="BonoMeta" type="xs:decimal" />
+      <xs:attribute name="Basico" type="xs:decimal" />
+      <xs:attribute name="AlcanceMaster" type="xs:decimal" />
+      <xs:attribute name="AlcanceSenior" type="xs:decimal" />
+      <xs:attribute name="AlcanceJunior" type="xs:decimal" />
+      <xs:attribute name="ComisionMaster" type="xs:decimal" />
+      <xs:attribute name="ComisionSenior" type="xs:decimal" />
+      <xs:attribute name="ComisionJunior" type="xs:decimal" />
+      <xs:attribute name="ComisionSupervisor" type="xs:decimal" />
+      <xs:attribute name="ComisionIncentivado" type="xs:decimal" />
+      <xs:attribute name="ComisionCompraPerfecta" type="xs:decimal" />
+      <xs:attribute name="Sueldo" type="xs:decimal" />
+      <xs:attribute name="CanRegCliente" type="xs:decimal" />
+      <xs:attribute name="RegCliSueldo" type="xs:decimal" />
+      <xs:attribute name="ComisionTotal" type="xs:decimal" />
+      <xs:attribute name="Faltas" type="xs:int" />
+      <xs:attribute name="Tardanzas" type="xs:int" />
+      <xs:attribute name="FlagIndicisplina" type="xs:decimal" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportedis_disenoestetico"
+    targetNamespace="http://tempuri.org/reportedis_disenoestetico.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportedis_disenoestetico.xsd"
+    xmlns:mstns="http://tempuri.org/reportedis_disenoestetico.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reportedis_disenoestetico">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdDis_DisenoEstetico" type="xs:int" />
+      <xs:attribute name="IdDis_ProyectoServicio" type="xs:int" />
+      <xs:attribute name="Objetivos" type="xs:string" />
+      <xs:attribute name="IdDis_Estilo" type="xs:int" />
+      <xs:attribute name="DescDis_Estilo" type="xs:string" />
+      <xs:attribute name="IdDis_Forma" type="xs:int" />
+      <xs:attribute name="DescDis_Forma" type="xs:string" />      
+      <xs:attribute name="DescVolumen" type="xs:string" />
+      <xs:attribute name="DescTextura" type="xs:string" />
+      <xs:attribute name="IdMaterial" type="xs:int" />
+      <xs:attribute name="DescMaterial" type="xs:string" />
+      <xs:attribute name="IdDis_TipoColor" type="xs:int" />
+      <xs:attribute name="DescDis_TipoColor" type="xs:string" />
+      <xs:attribute name="FlagEstado" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

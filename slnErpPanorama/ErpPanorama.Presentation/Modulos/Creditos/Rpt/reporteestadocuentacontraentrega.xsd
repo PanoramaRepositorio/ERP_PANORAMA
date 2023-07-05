@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reporteestadocuentacontraentrega"
+    targetNamespace="http://tempuri.org/reporteestadocuentacontraentrega.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reporteestadocuentacontraentrega.xsd"
+    xmlns:mstns="http://tempuri.org/reporteestadocuentacontraentrega.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reporteestadocuentacontraentrega">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdCliente" type="xs:int" />
+      <xs:attribute name="NumeroDocumento" type="xs:string" />
+      <xs:attribute name="DescCliente" type="xs:string" />
+      <xs:attribute name="CreditoCargo" type="xs:decimal" />
+      <xs:attribute name="PagoAbono" type="xs:decimal" />
+      <xs:attribute name="Saldo" type="xs:decimal" />
+    </xs:complexType>
+  </xs:element>
+  
+  
+</xs:schema>

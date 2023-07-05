@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reporteventaproductodiasresumen"
+    targetNamespace="http://tempuri.org/reporteventaproductodiasresumen.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reporteventaproductodiasresumen.xsd"
+    xmlns:mstns="http://tempuri.org/reporteventaproductodiasresumen.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reporteventaproductodiasresumen">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="DescLineaProducto" type="xs:string" />
+      <xs:attribute name="Mes" type="xs:string" />
+      <xs:attribute name="Cantidad" type="xs:int" />
+      <xs:attribute name="TotalSoles" type="xs:decimal" />
+      <xs:attribute name="TotalCostoSoles" type="xs:decimal" />
+      <xs:attribute name="UtilidadBruta" type="xs:decimal" />
+      <xs:attribute name="MargenBruto" type="xs:decimal" />
+      <xs:attribute name="FlagNacional" type="xs:boolean" />
+      <xs:attribute name="Nacionalidad" type="xs:string" />
+      
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

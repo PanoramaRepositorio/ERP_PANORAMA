@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reporteaccesousuario" targetNamespace="http://tempuri.org/reporteaccesousuario.xsd" elementFormDefault="qualified" xmlns="http://tempuri.org/reporteaccesousuario.xsd" xmlns:mstns="http://tempuri.org/reporteaccesousuario.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="reporteaccesousuario">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdUser" type="xs:int" />
+      <xs:attribute name="Usuario" type="xs:string" />
+      <xs:attribute name="Descripcion" type="xs:string" />
+      <xs:attribute name="IdPerfil" type="xs:int" />
+      <xs:attribute name="DescPerfil" type="xs:string" />
+      <xs:attribute name="IdMenu" type="xs:int" />
+      <xs:attribute name="MenuDescripcion" type="xs:string" />
+      <xs:attribute name="FlagLectura" type="xs:boolean" />
+      <xs:attribute name="FlagAdicion" type="xs:boolean" />
+      <xs:attribute name="FlagActualizacion" type="xs:boolean" />
+      <xs:attribute name="FlagEliminacion" type="xs:boolean" />
+      <xs:attribute name="FlagImpresion" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

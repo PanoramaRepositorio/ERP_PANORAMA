@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportecaja"
+    targetNamespace="http://tempuri.org/reportecaja.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportecaja.xsd"
+    xmlns:mstns="http://tempuri.org/reportecaja.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reportecaja">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="IdCaja" type="xs:int" />
+      <xs:attribute name="DescCaja" type="xs:string" />
+      <xs:attribute name="IdTienda" type="xs:int" />
+      <xs:attribute name="DescTienda" type="xs:string" />
+      <xs:attribute name="RazonSocial" type="xs:string" />
+      <xs:attribute name="FlagEstado" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

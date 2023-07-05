@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportetipocambio"
+    targetNamespace="http://tempuri.org/reportetipocambio.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportetipocambio.xsd"
+    xmlns:mstns="http://tempuri.org/reportetipocambio.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reportetipocambio">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="IdTipoCambio" type="xs:int" />
+      <xs:attribute name="IdMoneda" type="xs:int" />
+      <xs:attribute name="Moneda" type="xs:string" />
+      <xs:attribute name="Fecha" type="xs:date" />
+      <xs:attribute name="Compra" type="xs:decimal" />
+      <xs:attribute name="Venta" type="xs:decimal" />
+      <xs:attribute name="FlagEstado" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

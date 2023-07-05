@@ -1,0 +1,566 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+using System.Linq;
+using System.Security.Principal;
+using DevExpress.XtraEditors;
+using DevExpress.XtraBars;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using ErpPanorama.Presentation.Utils;
+using ErpPanorama.Presentation.Funciones;
+using ErpPanorama.BusinessLogic;
+using ErpPanorama.BusinessEntity;
+using ErpPanorama.Presentation.Modulos.Ventas.Otros;
+using ErpPanorama.Presentation.Modulos.Creditos.Otros;
+using ErpPanorama.Presentation.Modulos.Ventas.Registros;
+
+namespace ErpPanorama.Presentation.Modulos.Creditos.Registros
+{
+    public partial class frmRegEstadoCuenta : DevExpress.XtraEditors.XtraForm
+    {
+        #region "Propiedades"
+
+        private List<EstadoCuentaBE> mLista = new List<EstadoCuentaBE>();
+
+        int IdCliente = 0;
+        
+        #endregion
+
+        #region "Eventos"
+
+        public frmRegEstadoCuenta()
+        {
+            InitializeComponent();
+        }
+
+        private void frmRegEstadoCuenta_Load(object sender, EventArgs e)
+        {
+            tlbMenu.Ensamblado = this.Tag.ToString();
+            BSUtils.LoaderLook(cboMotivo, new TablaElementoBL().ListaTodosActivoPorTabla(Parametros.intEmpresaId, Parametros.intTblMotivoVenta), "DescTablaElemento", "IdTablaElemento", true);
+            cboMotivo.EditValue = Parametros.intMotivoVenta;
+            Cargar();
+        }
+
+        private void tlbMenu_NewClick()
+        {
+            //try
+            //{
+            //    if (IdCliente == 0)
+            //    {
+            //        XtraMessageBox.Show("Seleccione un Cliente", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //        return;
+            //    }
+
+            //    frmRegEstadoCuentaEdit objManEstadoCuenta = new frmRegEstadoCuentaEdit();
+            //    objManEstadoCuenta.IdCliente = IdCliente;
+            //    objManEstadoCuenta.Numero = txtNumeroDocumento.Text;
+            //    objManEstadoCuenta.DescCliente = txtDescCliente.Text;
+            //    objManEstadoCuenta.TipoCliente = txtTipoCliente.Text;
+            //    objManEstadoCuenta.pOperacion = frmRegEstadoCuentaEdit.Operacion.Nuevo;
+            //    objManEstadoCuenta.IdEstadoCuenta = 0;
+            //    objManEstadoCuenta.StartPosition = FormStartPosition.CenterParent;
+            //    objManEstadoCuenta.ShowDialog();
+            //    Cargar();
+
+            //    btnBuscar.Focus();
+            //}
+            //catch (Exception ex)
+            //{
+            //    XtraMessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+        }
+
+        private void tlbMenu_EditClick()
+        {
+            if (IdCliente == 0)
+            {
+                XtraMessageBox.Show("Seleccione un Cliente", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            InicializarModificar();
+
+            txtDescCliente.Focus();
+        }
+
+        private void tlbMenu_DeleteClick()
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                if (XtraMessageBox.Show("Esta seguro de eliminar el registro?", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    if (!ValidarIngreso())
+                    {
+                        #region "Pedido Auditado"
+                        var Pedido = gvEstadoCuenta.GetFocusedRowCellValue("IdPedido");
+
+                        if (Pedido != null)
+                        {
+                            int IdPedido = 0;
+                            IdPedido = int.Parse(gvEstadoCuenta.GetFocusedRowCellValue("IdPedido").ToString());
+                            PedidoBE objE_Pedido = null;
+                            objE_Pedido = new PedidoBL().Selecciona(Convert.ToInt32(IdPedido));
+
+                            if (objE_Pedido != null)
+                            {
+                                if (objE_Pedido.FlagAuditado)
+                                {
+                                    XtraMessageBox.Show("No se puede eliminar, el pedido está auditado.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                                    return;
+                                }
+                            }
+                        }
+                        #endregion
+
+                        frmAutorizacionUsuario frmAutoriza = new frmAutorizacionUsuario();
+                        frmAutoriza.StartPosition = FormStartPosition.CenterParent;
+                        frmAutoriza.ShowDialog();
+
+                        if (frmAutoriza.Edita)
+                        {
+                            if (frmAutoriza.Usuario == "dhuaman" || frmAutoriza.Usuario == "master" || frmAutoriza.Usuario == "mmurrugarra" || frmAutoriza.Usuario == "ygomez")
+                            {
+                                string Observacion = "";
+                                frmObservacion frmObserva = new frmObservacion();
+                                if (frmObserva.ShowDialog() == DialogResult.OK)
+                                {
+                                    Observacion = frmObserva.strObservacion;
+                                }
+                                
+
+                                EstadoCuentaBE objE_EstadoCuenta = new EstadoCuentaBE();
+                                objE_EstadoCuenta = new EstadoCuentaBL().Selecciona(Parametros.intEmpresaId, int.Parse(gvEstadoCuenta.GetFocusedRowCellValue("IdEstadoCuenta").ToString()));
+
+                                objE_EstadoCuenta.Usuario = Parametros.strUsuarioLogin;
+                                objE_EstadoCuenta.Maquina = WindowsIdentity.GetCurrent().Name.ToString();
+
+
+                                //Insertamos en la auditoria - Estado de cuenta
+                                #region "auditoria Eliminacion"
+                                
+                                EstadoCuentaHistorialBE objE_EstadoCuentaHistorial = new EstadoCuentaHistorialBE();
+                                objE_EstadoCuentaHistorial.IdEstadoCuentaHistorial = 0;
+                                objE_EstadoCuentaHistorial.IdEmpresa = objE_EstadoCuenta.IdEmpresa;
+                                objE_EstadoCuentaHistorial.Periodo = objE_EstadoCuenta.Periodo;
+                                objE_EstadoCuentaHistorial.IdCliente = objE_EstadoCuenta.IdCliente;
+                                objE_EstadoCuentaHistorial.NumeroDocumento = objE_EstadoCuenta.NumeroDocumento;
+                                objE_EstadoCuentaHistorial.FechaCredito = objE_EstadoCuenta.FechaCredito;
+                                objE_EstadoCuentaHistorial.FechaDeposito = objE_EstadoCuenta.FechaDeposito;
+                                objE_EstadoCuentaHistorial.Concepto = objE_EstadoCuenta.Concepto;
+                                objE_EstadoCuentaHistorial.FechaVencimiento = objE_EstadoCuenta.FechaVencimiento;
+                                objE_EstadoCuentaHistorial.Importe = objE_EstadoCuenta.Importe;
+                                objE_EstadoCuentaHistorial.TipoMovimiento = objE_EstadoCuenta.TipoMovimiento;
+                                objE_EstadoCuentaHistorial.IdMotivo = objE_EstadoCuenta.IdMotivo;
+                                objE_EstadoCuentaHistorial.IdDocumentoVenta = objE_EstadoCuenta.IdDocumentoVenta;
+                                objE_EstadoCuentaHistorial.IdCotizacion = objE_EstadoCuenta.IdCotizacion;
+                                objE_EstadoCuentaHistorial.IdPedido = objE_EstadoCuenta.IdPedido;
+                                objE_EstadoCuentaHistorial.IdMovimientoCaja = objE_EstadoCuenta.IdMovimientoCaja;
+                                objE_EstadoCuentaHistorial.Observacion = objE_EstadoCuenta.Observacion;
+                                objE_EstadoCuentaHistorial.ObservacionElimina = Observacion;
+                                objE_EstadoCuentaHistorial.ObservacionOrigen = "E.C. DOLARES";
+                                objE_EstadoCuentaHistorial.TipoRegistro = "E";
+                                objE_EstadoCuentaHistorial.FlagEstado = objE_EstadoCuenta.FlagEstado;
+                                objE_EstadoCuentaHistorial.Usuario = Parametros.strUsuarioLogin;
+                                objE_EstadoCuentaHistorial.Maquina = WindowsIdentity.GetCurrent().Name.ToString();
+
+                                EstadoCuentaHistorialBL objBL_EstadoCuentaHistorial = new EstadoCuentaHistorialBL();
+                                objBL_EstadoCuentaHistorial.Inserta(objE_EstadoCuentaHistorial);
+                                #endregion
+
+                                EstadoCuentaBL objBL_EstadoCuenta = new EstadoCuentaBL();
+                                objBL_EstadoCuenta.Elimina(objE_EstadoCuenta);
+
+                                XtraMessageBox.Show("El registro se eliminó correctamente", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                Cargar();
+                            }
+                            else
+                            {
+                                XtraMessageBox.Show("Ud. no esta autorizado para realizar esta operación", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                        }
+                    }
+                }
+                Cursor = Cursors.Default;
+            }
+            catch (Exception ex)
+            {
+                Cursor = Cursors.Default;
+                XtraMessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void tlbMenu_RefreshClick()
+        {
+            Cargar();
+        }
+
+        private void tlbMenu_PrintClick()
+        {
+            
+        }
+
+        private void tlbMenu_ExportClick()
+        {
+            string _msg = "Se genero el archivo excel de forma satisfactoria en la siguiente ubicación.\n{0}";
+            string _fileName = "ListadoEstadoCuentales";
+            FolderBrowserDialog f = new FolderBrowserDialog();
+            f.ShowDialog(this);
+            if (f.SelectedPath != "")
+            {
+                Cursor = Cursors.AppStarting;
+                gvEstadoCuenta.ExportToXls(f.SelectedPath + @"\" + _fileName + ".xls");
+                string _nM = string.Format(_msg, f.SelectedPath + @"\" + _fileName + ".xls");
+                XtraMessageBox.Show(_nM, "Exportar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private void tlbMenu_ExitClick()
+        {
+            this.Close();
+        }
+
+        private void gvEstadoCuenta_DoubleClick(object sender, EventArgs e)
+        {
+            GridView view = (GridView)sender;
+            Point pt = view.GridControl.PointToClient(Control.MousePosition);
+            FilaDoubleClick(view, pt);
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmBusCliente frm = new frmBusCliente();
+                frm.pFlagMultiSelect = false;
+                frm.pNumeroDescCliente = txtNumeroDocumento.Text.Trim();
+                frm.ShowDialog();
+                if (frm.pClienteBE != null)
+                {
+                    ClienteCreditoBE objE_ClienteCredito = new ClienteCreditoBE();
+                    IdCliente = frm.pClienteBE.IdCliente;
+                    txtNumeroDocumento.Text = frm.pClienteBE.NumeroDocumento;
+                    txtDescCliente.Text = frm.pClienteBE.DescCliente;
+                    txtTipoCliente.Text = frm.pClienteBE.DescTipoCliente;
+                    Cargar();
+                    cboMotivo.Focus();
+                    //txtDescCliente.Focus();
+                }
+
+                if (frm.pClienteBE.IdTipoCliente == Parametros.intTipClienteFinal && frm.pClienteBE.IdClasificacionCliente != Parametros.intBlack) 
+                {
+                    XtraMessageBox.Show("Atención! El cliente es MINORISTA se recomienda registrar en el estado de cuenta Soles", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnConsultar_Click(object sender, EventArgs e)
+        {
+            if (IdCliente == 0)
+            {
+                XtraMessageBox.Show("Seleccione un Cliente", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            Cargar();
+        }
+
+        private void txtDescCliente_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.tlbMenu_NewClick();
+            }
+        }
+
+        private void txtNumeroDocumento_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                //btnBuscar_Click(sender, e);
+
+                //numero o cadena
+                if (char.IsNumber(Convert.ToChar(txtNumeroDocumento.Text.Trim().Substring(0, 1))) == true)
+                {
+                    ClienteBE objE_Cliente = null;
+                    objE_Cliente = new ClienteBL().SeleccionaNumero(Parametros.intEmpresaId, txtNumeroDocumento.Text.Trim());
+                    if (objE_Cliente != null)
+                    {
+                        IdCliente = objE_Cliente.IdCliente;
+                        txtNumeroDocumento.Text = objE_Cliente.NumeroDocumento;
+                        txtDescCliente.Text = objE_Cliente.DescCliente;
+                        txtTipoCliente.Text = objE_Cliente.DescTipoCliente;
+                        Cargar();
+                        cboMotivo.Focus();
+
+                        //Verificar TipoCliente
+                        if (objE_Cliente.IdTipoCliente == Parametros.intTipClienteFinal && objE_Cliente.IdClasificacionCliente != Parametros.intBlack)
+                        {
+                            XtraMessageBox.Show("Atención! El cliente es MINORISTA se recomienda registrar en el estado de cuenta Soles", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
+                else
+                {
+                    btnBuscar_Click(sender, e);
+                }
+            }
+        }
+
+        #endregion
+
+        #region "Metodos"
+
+        private void Cargar()
+        {
+            mLista = new EstadoCuentaBL().ListaTodosActivo(Parametros.intEmpresaId, IdCliente, Convert.ToInt32(cboMotivo.EditValue));
+            gcEstadoCuenta.DataSource = mLista;
+        }
+
+        public void InicializarModificar()
+        {
+            if (gvEstadoCuenta.RowCount > 0)
+            {
+                EstadoCuentaBE objEstadoCuenta = new EstadoCuentaBE();
+                
+                objEstadoCuenta.IdEstadoCuenta = int.Parse(gvEstadoCuenta.GetFocusedRowCellValue("IdEstadoCuenta").ToString());
+
+                frmRegEstadoCuentaEdit objManEstadoCuentaEdit = new frmRegEstadoCuentaEdit();
+                objManEstadoCuentaEdit.IdCliente = IdCliente;
+                objManEstadoCuentaEdit.Numero = txtNumeroDocumento.Text;
+                objManEstadoCuentaEdit.DescCliente = txtDescCliente.Text;
+                objManEstadoCuentaEdit.TipoCliente = txtTipoCliente.Text;
+                objManEstadoCuentaEdit.pOperacion = frmRegEstadoCuentaEdit.Operacion.Modificar;
+                objManEstadoCuentaEdit.IdEstadoCuenta = objEstadoCuenta.IdEstadoCuenta;
+                objManEstadoCuentaEdit.StartPosition = FormStartPosition.CenterParent;
+                objManEstadoCuentaEdit.ShowDialog();
+
+                Cargar();
+            }
+            else
+            {
+                MessageBox.Show("No se pudo editar");
+            }
+        }
+
+        private void FilaDoubleClick(GridView view, Point pt)
+        {
+            GridHitInfo info = view.CalcHitInfo(pt);
+            if (info.InRow || info.InRowCell)
+            {
+                InicializarModificar();
+            }
+        }
+
+        private bool ValidarIngreso()
+        {
+            bool flag = false;
+
+            if (gvEstadoCuenta.GetFocusedRowCellValue("IdEstadoCuenta").ToString() == "")
+            {
+                XtraMessageBox.Show("Seleccione una Cliente Credito", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                flag = true;
+            }
+
+            Cursor = Cursors.Default;
+            return flag;
+        }
+
+        #endregion
+
+        private void btnPago_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (IdCliente == 0)
+                {
+                    XtraMessageBox.Show("Seleccione un Cliente", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    txtNumeroDocumento.Focus();
+                    return;
+                }
+
+                frmRegEstadoCuentaPago objManEstadoCuenta = new frmRegEstadoCuentaPago();
+                objManEstadoCuenta.IdCliente = IdCliente;
+                objManEstadoCuenta.Numero = txtNumeroDocumento.Text;
+                objManEstadoCuenta.DescCliente = txtDescCliente.Text;
+                objManEstadoCuenta.TipoCliente = txtTipoCliente.Text;
+                objManEstadoCuenta.IdMotivo = Convert.ToInt32(cboMotivo.EditValue);
+                objManEstadoCuenta.pOperacion = frmRegEstadoCuentaPago.Operacion.Nuevo;
+                objManEstadoCuenta.IdEstadoCuenta = 0;
+                objManEstadoCuenta.StartPosition = FormStartPosition.CenterParent;
+                objManEstadoCuenta.ShowDialog();
+                Cargar();
+
+                btnPago.Focus();
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnCredito_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (IdCliente == 0)
+                {
+                    XtraMessageBox.Show("Seleccione un Cliente", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                frmRegEstadoCuentaEdit objManEstadoCuenta = new frmRegEstadoCuentaEdit();
+                objManEstadoCuenta.lstEstadoCuenta = mLista;
+                objManEstadoCuenta.IdCliente = IdCliente;
+                objManEstadoCuenta.Numero = txtNumeroDocumento.Text;
+                objManEstadoCuenta.DescCliente = txtDescCliente.Text;
+                objManEstadoCuenta.TipoCliente = txtTipoCliente.Text;
+                objManEstadoCuenta.IdMotivo = Convert.ToInt32(cboMotivo.EditValue);
+                objManEstadoCuenta.pOperacion = frmRegEstadoCuentaEdit.Operacion.Nuevo;
+                objManEstadoCuenta.IdEstadoCuenta = 0;
+                objManEstadoCuenta.StartPosition = FormStartPosition.CenterParent;
+                objManEstadoCuenta.ShowDialog();
+                Cargar();
+
+//                btnBuscar.Focus();
+                btnCredito.Focus();
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+        }
+
+        private void cboMotivo_EditValueChanged(object sender, EventArgs e)
+        {
+            Cargar();
+        }
+
+        private void VerDocumentoVentatoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (gvEstadoCuenta.RowCount > 0)
+                {
+                    int IdPedido = 0;
+                    int IdSituacion = 0;
+                    string Numero = "";
+
+                    IdPedido = int.Parse(gvEstadoCuenta.GetFocusedRowCellValue("IdPedido").ToString());
+                    //IdSituacion = int.Parse(gvEstadoCuenta.GetFocusedRowCellValue("IdSituacion").ToString());
+                    //Numero = gvEstadoCuenta.GetFocusedRowCellValue("Numero").ToString();
+
+                    //if (IdSituacion == Parametros.intFacturado || IdSituacion == Parametros.intPVDespachado)
+                    //{
+                        frmRegVentaPedido objVentaPedido = new frmRegVentaPedido();
+                        objVentaPedido.IdPedido = IdPedido;
+                        objVentaPedido.NumeroPedido = Numero;
+                        objVentaPedido.StartPosition = FormStartPosition.CenterParent;
+                        objVentaPedido.Show();
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+                Cursor = Cursors.Default;
+                XtraMessageBox.Show(ex.Message + "\nNo tiene asociado un pedido.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void gvEstadoCuenta_RowCellStyle(object sender, RowCellStyleEventArgs e)
+        {
+
+        }
+
+        private void gvEstadoCuenta_RowStyle(object sender, RowStyleEventArgs e)
+        {
+            try
+            {
+                object obj = gvEstadoCuenta.GetRow(e.RowHandle);
+
+                GridView View = sender as GridView;
+                if (e.RowHandle >= 0)
+                {
+                    object objDocRetiro = View.GetRowCellValue(e.RowHandle, View.Columns["IdPedido"]);
+                    if (objDocRetiro != null)
+                    {
+                        e.Appearance.BackColor = Color.LightGreen;
+                        e.Appearance.BackColor2 = Color.SeaShell;
+                    }
+
+                    object objDocRetiro2 = View.GetRowCellValue(e.RowHandle, View.Columns["IdCuentaBancoDetalle"]);
+                    if (objDocRetiro2 != null)
+                    {
+                        e.Appearance.BackColor = Color.SkyBlue;
+                        e.Appearance.BackColor2 = Color.SeaShell;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void imprimircomprobantetoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+
+                int IdCuentaBancoDetalle = 0;
+                IdCuentaBancoDetalle = int.Parse(gvEstadoCuenta.GetFocusedRowCellValue("IdCuentaBancoDetalle").ToString());
+
+                if (IdCuentaBancoDetalle == 0)
+                {
+                    XtraMessageBox.Show("Seleccionar un Comprobante Válido.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (gvEstadoCuenta.RowCount > 0)
+                {
+                    List<ReporteEstadoCuentaCuentaBancoBE> lstReporte = null;
+                    lstReporte = new ReporteEstadoCuentaCuentaBancoBL().Listado(Parametros.intEmpresaId, IdCuentaBancoDetalle);
+
+
+                    if (lstReporte != null)
+                    {
+                        if (lstReporte.Count > 0)
+                        {
+                            RptVistaReportes objReporte = new RptVistaReportes();
+                            objReporte.VerRptEstadoCuentaCuentaBanco(lstReporte);
+                            objReporte.ShowDialog();
+                        }
+                        else
+                            XtraMessageBox.Show("No hay información para el periodo seleccionado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+
+
+                    Cursor = Cursors.Default;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                Cursor = Cursors.Default;
+                XtraMessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+       
+    }
+}

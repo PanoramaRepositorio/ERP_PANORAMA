@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportedocumentoventaempresaserie"
+    targetNamespace="http://tempuri.org/reportedocumentoventaempresaserie.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportedocumentoventaempresaserie.xsd"
+    xmlns:mstns="http://tempuri.org/reportedocumentoventaempresaserie.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reportedocumentoventaempresaserie">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="RazonSocial" type="xs:string" />
+      <xs:attribute name="Fecha" type="xs:date" />
+      <xs:attribute name="CodTipoDocumento" type="xs:string" />
+      <xs:attribute name="Serie" type="xs:string" />
+      <xs:attribute name="Inicio" type="xs:string" />
+      <xs:attribute name="Fin" type="xs:string" />
+      <xs:attribute name="TotalSoles" type="xs:decimal" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

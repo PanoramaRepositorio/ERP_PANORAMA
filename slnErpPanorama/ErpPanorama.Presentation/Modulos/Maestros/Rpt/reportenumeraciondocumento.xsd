@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportenumeraciondocumento"
+    targetNamespace="http://tempuri.org/reportenumeraciondocumento.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportenumeraciondocumento.xsd"
+    xmlns:mstns="http://tempuri.org/reportenumeraciondocumento.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reportenumeraciondocumento">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="IdNumeracionDocumento" type="xs:int" />
+      <xs:attribute name="Periodo" type="xs:int" />
+      <xs:attribute name="IdTipoDocumento" type="xs:int" />
+      <xs:attribute name="Numero" type="xs:int" />
+      <xs:attribute name="Serie" type="xs:int" />
+      <xs:attribute name="CodTipoDocumento" type="xs:string" />
+      <xs:attribute name="FlagEstado" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

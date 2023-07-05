@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportemovimientoalmacenChequeo"
+    targetNamespace="http://tempuri.org/reportemovimientoalmacenChequeo.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportemovimientoalmacenChequeo.xsd"
+    xmlns:mstns="http://tempuri.org/reportemovimientoalmacenChequeo.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reportemovimientoalmacenChequeo">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="Periodo" type="xs:string" />
+      <xs:attribute name="Numero" type="xs:string" />
+      <xs:attribute name="Fecha" type="xs:dateTime"/>
+      <xs:attribute name="DescAlmacen" type="xs:string" />
+      <xs:attribute name="DescMotivo" type="xs:string" />
+      <xs:attribute name="CodTipoDocumento" type="xs:string" />
+      <xs:attribute name="NumeroDocumento" type="xs:string" />
+      <xs:attribute name="Referencia" type="xs:string" />
+      <xs:attribute name="Observaciones" type="xs:string" />
+      <xs:attribute name="DescAlmacenDestino" type="xs:string" />
+      <xs:attribute name="FlagRecibido" type="xs:boolean" />
+      <xs:attribute name="Usuario" type="xs:string" />
+      <xs:attribute name="FechaChequeo" type="xs:dateTime"/>
+      <xs:attribute name="TotalCantidad" type="xs:int" />
+      <xs:attribute name="DescPicking" type="xs:string" />
+      <xs:attribute name="DescChequeador" type="xs:string" />
+      <xs:attribute name="DescEmbalador" type="xs:string" />
+      <xs:attribute name="CantidadBulto" type="xs:int" />
+      <xs:attribute name="Item" type="xs:int" />
+      <xs:attribute name="CodigoProveedor" type="xs:string" />
+      <xs:attribute name="NombreProducto" type="xs:string" />
+      <xs:attribute name="Abreviatura" type="xs:string" />
+      <xs:attribute name="Cantidad" type="xs:int" />
+      <xs:attribute name="CantidadChequeo" type="xs:int" />
+      <xs:attribute name="CodigoBarraNumero" type="xs:base64Binary" />
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

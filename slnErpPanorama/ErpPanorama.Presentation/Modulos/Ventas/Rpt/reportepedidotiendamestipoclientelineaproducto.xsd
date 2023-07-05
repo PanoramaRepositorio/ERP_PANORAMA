@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportepedidotiendamestipoclientelineaproducto"
+    targetNamespace="http://tempuri.org/reportepedidotiendamestipoclientelineaproducto.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportepedidotiendamestipoclientelineaproducto.xsd"
+    xmlns:mstns="http://tempuri.org/reportepedidotiendamestipoclientelineaproducto.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reportepedidotiendamestipoclientelineaproducto">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="RazonSocial" type="xs:string" />
+      <xs:attribute name="Mes" type="xs:string" />
+      <xs:attribute name="DescMes" type="xs:string" />
+      <xs:attribute name="DescTienda" type="xs:string" />
+      <xs:attribute name="DescLineaProducto" type="xs:string" />
+      <xs:attribute name="TotalSoles" type="xs:decimal" />
+      <xs:attribute name="TipoCliente" type="xs:string" />
+      
+    </xs:complexType>
+  </xs:element>  
+  
+</xs:schema>

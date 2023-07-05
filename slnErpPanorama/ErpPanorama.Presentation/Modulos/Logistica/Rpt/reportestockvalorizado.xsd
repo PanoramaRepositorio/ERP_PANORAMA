@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportestockvalorizado"
+    targetNamespace="http://tempuri.org/reportestockvalorizado.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportestockvalorizado.xsd"
+    xmlns:mstns="http://tempuri.org/reportestockvalorizado.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reportestockvalorizado">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="Tipo" type="xs:string" />
+      <xs:attribute name="DescAlmacen" type="xs:string" />
+      <xs:attribute name="TotalCostoPromedio" type="xs:decimal" />
+      <xs:attribute name="TotalCostoUltimo" type="xs:decimal" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

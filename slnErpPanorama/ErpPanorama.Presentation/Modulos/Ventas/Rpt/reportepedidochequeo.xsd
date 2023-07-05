@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportepedidochequeo"
+    targetNamespace="http://tempuri.org/reportepedidochequeo.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportepedidochequeo.xsd"
+    xmlns:mstns="http://tempuri.org/reportepedidochequeo.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reportepedidochequeo">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="Ruc" type="xs:string" />
+      <xs:attribute name="RazonSocial" type="xs:string" />
+      <xs:attribute name="IdPedido" type="xs:int" />
+      <xs:attribute name="DescTienda" type="xs:string" />
+      <xs:attribute name="DescCampana" type="xs:string" />
+      <xs:attribute name="Serie" type="xs:string" />
+      <xs:attribute name="Numero" type="xs:string" />
+      <xs:attribute name="Fecha" type="xs:date" />
+      <xs:attribute name="NumeroDocumento" type="xs:string" />
+      <xs:attribute name="DescCliente" type="xs:string" />
+      <xs:attribute name="Direccion" type="xs:string" />
+      <xs:attribute name="NumeroDocumentoAsociado" type="xs:string" />
+      <xs:attribute name="DescClienteAsociado" type="xs:string" />
+      <xs:attribute name="DireccionAsociado" type="xs:string" />
+      <xs:attribute name="DescFormaPago" type="xs:string" />
+      <xs:attribute name="DescVendedor" type="xs:string" />
+      <xs:attribute name="DescMotivo" type="xs:string" />
+      <xs:attribute name="TotalCantidad" type="xs:int" />
+      <xs:attribute name="Despachar" type="xs:string" />
+      <xs:attribute name="Observaciones" type="xs:string" />
+      <xs:attribute name="Item" type="xs:int" />
+      <xs:attribute name="IdProducto" type="xs:int" />
+      <xs:attribute name="CodigoProveedor" type="xs:string" />
+      <xs:attribute name="NombreProducto" type="xs:string" />
+      <xs:attribute name="Cantidad" type="xs:int" />
+      <xs:attribute name="CantidadAnterior" type="xs:int" />
+      <xs:attribute name="CantidadChequeo" type="xs:int" />
+      <xs:attribute name="Abreviatura" type="xs:string" />
+      <xs:attribute name="UbicacionUcayali" type="xs:string" />
+      <xs:attribute name="UbicacionAndahuaylas" type="xs:string" />
+      <xs:attribute name="Observacion" type="xs:string" />
+      <xs:attribute name="DescTipoVenta" type="xs:string" />
+      <xs:attribute name="DescTipoCliente" type="xs:string" />
+      <xs:attribute name="DescPersonaAprueba" type="xs:string" />
+      <xs:attribute name="DescPersonaPicking" type="xs:string" />
+      <xs:attribute name="DescPersonaChequeo" type="xs:string" />
+      <xs:attribute name="DescPersonaEmabalaje" type="xs:string" />
+      <xs:attribute name="CantidadBulto" type="xs:int" />
+      <xs:attribute name="CodigoBarraNumero" type="xs:base64Binary" />
+    </xs:complexType>
+  </xs:element>
+
+
+</xs:schema>

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="repoortevacacionesvendidas"
+    targetNamespace="http://tempuri.org/repoortevacacionesvendidas.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/repoortevacacionesvendidas.xsd"
+    xmlns:mstns="http://tempuri.org/repoortevacacionesvendidas.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  
+
+  <xs:element name="repoortevacacionesvendidas">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="Dni" type="xs:string" />
+      <xs:attribute name="ApeNom" type="xs:string" />
+      <xs:attribute name="Periodo" type="xs:string" />
+      <xs:attribute name="FechaDesde" type = "xs:dateTime" />
+      <xs:attribute name="FechaHasta" type="xs:dateTime" />
+      <xs:attribute name="Dias" type="xs:int" />
+      <xs:attribute name="DescMoneda" type="xs:string" />
+      <xs:attribute name="Importe" type="xs:decimal" />
+      <xs:attribute name="Autorizado" type="xs:string" />
+      <xs:attribute name="FechaInicio" type="xs:dateTime" />
+      <xs:attribute name="FechaFin" type="xs:dateTime" />
+      <xs:attribute name="FlagGozo" type="xs:boolean" />
+      <xs:attribute name="DescSituacion" type="xs:string" />
+      <xs:attribute name="Observacion" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

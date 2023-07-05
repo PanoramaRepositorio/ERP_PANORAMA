@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportecontratopersona"
+    targetNamespace="http://tempuri.org/reportecontratopersona.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportecontratopersona.xsd"
+    xmlns:mstns="http://tempuri.org/reportecontratopersona.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reportecontratopersona">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="DescTipoContrato" type="xs:string" />
+      <xs:attribute name="Descripcion" type="xs:string" />
+      <xs:attribute name="Titulo" type="xs:string" />
+      <xs:attribute name="Cuerpo" type="xs:string" />
+      <xs:attribute name="Firma" type="xs:string" />
+      <xs:attribute name="Ruc" type="xs:string" />
+      <xs:attribute name="RazonSocial" type="xs:string" />
+      <xs:attribute name="NombreGerente" type="xs:string" />
+      <xs:attribute name="DniGerente" type="xs:string" />
+      <xs:attribute name="DireccionEmpresa" type="xs:string" />
+      <xs:attribute name="Dni" type="xs:string" />
+      <xs:attribute name="ApeNom" type="xs:string" />
+      <xs:attribute name="Direccion" type="xs:string" />
+      <xs:attribute name="Sueldo" type="xs:decimal" />
+      <xs:attribute name="HoraExtra" type="xs:decimal" />
+      <xs:attribute name="BonSueldo" type="xs:decimal" />
+      <xs:attribute name="SueldoNeto" type="xs:decimal"/>
+      <xs:attribute name="Dias" type="xs:int" />
+      <xs:attribute name="Meses" type="xs:int" />
+      <xs:attribute name="FechaIni" type="xs:date" />
+      <xs:attribute name="FechaVen" type="xs:date" />
+      <xs:attribute name="DescCargo" type="xs:string" />
+      <xs:attribute name="DescArea" type="xs:string" />
+      <xs:attribute name="Horario" type="xs:string" />
+      <xs:attribute name="Discapacidad" type="xs:string" />
+      <xs:attribute name="SituacionEspecial" type="xs:string" />
+      <xs:attribute name="ClasificacionPuesto" type="xs:string" />
+      <xs:attribute name="EstadoCivil" type="xs:string" />
+	  <xs:attribute name="FechaContratoIni" type="xs:string" />
+	  <xs:attribute name="FechaContratoFin" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+  
+  
+</xs:schema>

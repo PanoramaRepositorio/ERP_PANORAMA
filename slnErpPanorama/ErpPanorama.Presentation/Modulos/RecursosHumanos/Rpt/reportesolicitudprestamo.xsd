@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportesolicitudprestamo"
+    targetNamespace="http://tempuri.org/reportesolicitudprestamo.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportesolicitudprestamo.xsd"
+    xmlns:mstns="http://tempuri.org/reportesolicitudprestamo.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name="reportesolicitudprestamo">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="CodTipoDocumento" type="xs:string" />
+      <xs:attribute name="Numero" type="xs:string" />
+      <xs:attribute name="FechaSolicitud" type="xs:dateTime" />
+      <xs:attribute name="Dni" type="xs:string" />
+      <xs:attribute name="DescPersona" type="xs:string" />
+      <xs:attribute name="DescArea" type="xs:string" />
+      <xs:attribute name="FechaIngreso" type="xs:dateTime" />
+      <xs:attribute name="ImportePrestamo" type="xs:decimal" />
+      <xs:attribute name="TotalPago" type="xs:decimal" />
+      <xs:attribute name="NumeroCuotas" type="xs:int" />
+      <xs:attribute name="TipoCuota" type="xs:int" />
+      <xs:attribute name="DescTipoCuota" type="xs:string" />
+      <xs:attribute name="Cuota" type="xs:decimal" />
+      <xs:attribute name="Metodo" type="xs:int" />
+      <xs:attribute name="Observacion" type="xs:string" />
+      <xs:attribute name="Motivo" type="xs:string" />
+      <xs:attribute name="DescPersonaAprueba" type="xs:string" />
+      <xs:attribute name="NumeroCuota" type="xs:int" />
+      <xs:attribute name="Concepto" type="xs:string" />
+      <xs:attribute name="FechaVencimiento" type="xs:dateTime" />
+      <xs:attribute name="Capital" type="xs:decimal" />
+      <xs:attribute name="Interes" type="xs:decimal" />
+      <xs:attribute name="Importe" type="xs:decimal" />
+      <xs:attribute name="SaldoAnterior" type="xs:decimal" />
+      <xs:attribute name="DescSituacion" type="xs:string" />
+      <xs:attribute name="TipoMovimiento" type="xs:date" />
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportetipodocumento"
+    targetNamespace="http://tempuri.org/reportetipodocumento.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportetipodocumento.xsd"
+    xmlns:mstns="http://tempuri.org/reportetipodocumento.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reportetipodocumento">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="IdTipoDocumento" type="xs:int" />
+      <xs:attribute name="CodTipoDocumento" type="xs:string" />
+      <xs:attribute name="DescTipoDocumento" type="xs:string" />
+      <xs:attribute name="FlagEstado" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

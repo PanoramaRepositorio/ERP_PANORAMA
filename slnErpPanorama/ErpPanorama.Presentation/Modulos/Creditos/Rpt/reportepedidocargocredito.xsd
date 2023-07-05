@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportepedidocargocredito"
+    targetNamespace="http://tempuri.org/reportepedidocargocredito.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportepedidocargocredito.xsd"
+    xmlns:mstns="http://tempuri.org/reportepedidocargocredito.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reportepedidocargocredito">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdEstadoCuenta" type="xs:int" />
+      <xs:attribute name="NumeroPedido" type="xs:string" />
+      <xs:attribute name="DescFormaPago" type="xs:string" />
+      <xs:attribute name="NumeroDocumento" type="xs:string" />
+      <xs:attribute name="DescCliente" type="xs:string" />
+      <xs:attribute name="Direccion" type="xs:string" />
+      <xs:attribute name="NumeroCredito" type="xs:string" />
+      <xs:attribute name="CodMoneda" type="xs:string" />
+      <xs:attribute name="TipoCambio" type="xs:decimal" />
+      <xs:attribute name="Total" type="xs:decimal" />
+      <xs:attribute name="Descripcion" type="xs:string" />
+      <xs:attribute name="FechaCredito" type="xs:date" />
+      <xs:attribute name="FechaVencimiento" type="xs:date" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

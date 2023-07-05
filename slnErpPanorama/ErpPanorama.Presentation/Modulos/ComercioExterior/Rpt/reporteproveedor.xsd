@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reporteproveedor"
+    targetNamespace="http://tempuri.org/reporteproveedor.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reporteproveedor.xsd"
+    xmlns:mstns="http://tempuri.org/reporteproveedor.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reporteproveedor">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="IdProveedor" type="xs:int" />
+      <xs:attribute name="DescProveedor" type="xs:string" />
+      <xs:attribute name="FlagEstado" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportetransferenciabulto"
+    targetNamespace="http://tempuri.org/reportetransferenciabulto.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportetransferenciabulto.xsd"
+    xmlns:mstns="http://tempuri.org/reportetransferenciabulto.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reportetransferenciabulto">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="CodigoProveedor" type="xs:string" />
+      <xs:attribute name="NombreProducto" type="xs:string" />
+      <xs:attribute name="Abreviatura" type="xs:string" />
+      <xs:attribute name="NumeroBulto" type="xs:string" />
+      <xs:attribute name="Cantidad" type="xs:int" />
+      <xs:attribute name="DescSector" type="xs:string" />
+      <xs:attribute name="DescBloque" type="xs:string" />
+      <xs:attribute name="FechaIngreso" type="xs:date" />
+      <xs:attribute name="FechaSalida" type="xs:date" />
+      
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

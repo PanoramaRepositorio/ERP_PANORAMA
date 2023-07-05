@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reporteGuiaRemision"
+    targetNamespace="http://tempuri.org/reporteGuiaRemision.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reporteGuiaRemision.xsd"
+    xmlns:mstns="http://tempuri.org/reporteGuiaRemision.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reporteGuiaRemision">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdGuiaRemision" type="xs:int" />
+      <xs:attribute name="RazonSocialRemitente" type="xs:string" />
+      <xs:attribute name="Periodo" type="xs:int" />
+      <xs:attribute name="CodTipoDocumento" type="xs:string" />
+      <xs:attribute name="Serie" type="xs:string" />
+      <xs:attribute name="Numero" type="xs:string" />
+      <xs:attribute name="Fecha" type="xs:date" />
+      <xs:attribute name="TiendaRemitente" type="xs:string" />
+      <xs:attribute name="DireccionRemitente" type="xs:string" />
+      <xs:attribute name="RazonSocialDestinatario" type="xs:string" />
+      <xs:attribute name="TiendaDestinatario" type="xs:string" />
+      <xs:attribute name="DireccionDestinatario" type="xs:string" />
+      <xs:attribute name="DescTransportista" type="xs:string" />
+      <xs:attribute name="RucTransportista" type="xs:string" />
+      <xs:attribute name="NumeroLicencia" type="xs:string" />
+      <xs:attribute name="DescVehiculo" type="xs:string" />
+      <xs:attribute name="NumeroPlaca" type="xs:string" />
+      <xs:attribute name="CodTipoDocumentoReferencia" type="xs:string" />
+      <xs:attribute name="NumeroDocumento" type="xs:string" />
+      <xs:attribute name="DescMotivo" type="xs:string" />
+      <xs:attribute name="Observacion" type="xs:string" />
+      <xs:attribute name="Item" type="xs:int" />
+      <xs:attribute name="CodigoProveedor" type="xs:string" />
+      <xs:attribute name="NombreProducto" type="xs:string" />
+      <xs:attribute name="Abreviatura" type="xs:string" />
+      <xs:attribute name="Cantidad" type="xs:int" />
+      <xs:attribute name="CostoUnitario" type="xs:decimal" />
+      <xs:attribute name="MontoTotal" type="xs:decimal" />
+      </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

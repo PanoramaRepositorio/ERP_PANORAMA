@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportemovimientopedido"
+    targetNamespace="http://tempuri.org/reportemovimientopedido.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportemovimientopedido.xsd"
+    xmlns:mstns="http://tempuri.org/reportemovimientopedido.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reportemovimientopedido">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="NumeroPedido" type="xs:string" />
+      <xs:attribute name="Fecha" type="xs:dateTime" />
+      <xs:attribute name="DescFormaPago" type="xs:string" />
+      <xs:attribute name="DescTipoCliente" type="xs:string" />
+      <xs:attribute name="NumeroCliente" type="xs:string" />
+      <xs:attribute name="DescCliente" type="xs:string" />
+      <xs:attribute name="DireccionCliente" type="xs:string" />
+      <xs:attribute name="DescAgencia" type="xs:string" />
+      <xs:attribute name="Direccion" type="xs:string" />
+      <xs:attribute name="Referencia" type="xs:string" />
+      <xs:attribute name="NomDpto" type="xs:string" />
+      <xs:attribute name="NomProv" type="xs:string" />
+      <xs:attribute name="NomDist" type="xs:string" />
+      <xs:attribute name="Telefono" type="xs:string" />
+      <xs:attribute name="CantidadBulto" type="xs:int"/>
+      <xs:attribute name="DescPrioridad" type="xs:string" />
+      <xs:attribute name="DescDestino" type="xs:string" />
+      <xs:attribute name="DescPagoFlete" type="xs:string" />
+      <xs:attribute name="NumeroDespacho" type="xs:string" />
+      <xs:attribute name="FechaDespacho2" type="xs:dateTime" />
+      <xs:attribute name="NumeroPiso" type="xs:string" />
+      <xs:attribute name="Observacion2" type="xs:string" />
+      <xs:attribute name="DescMoneeda" type="xs:string" />
+      <xs:attribute name="TipoCambio" type="xs:decimal" />
+      <xs:attribute name="Total" type="xs:decimal" />
+      <xs:attribute name="NumeroDocumento" type="xs:string" />
+      <xs:attribute name="Importe" type="xs:decimal" />
+      <xs:attribute name="DescVendedor" type="xs:string" />
+      <xs:attribute name="DescEmbalador" type="xs:string" />
+      <xs:attribute name="FechaEmbalado" type="xs:dateTime" />
+      <xs:attribute name="DescTienda" type="xs:string" />
+      <xs:attribute name="DescCaja" type="xs:string" />
+      <xs:attribute name="NumeroComprobante" type="xs:string" />
+      <xs:attribute name="DeliveryDep" type="xs:string" />
+      <xs:attribute name="DeliveryProv" type="xs:string" />
+      <xs:attribute name="DeliveryDist" type="xs:string" />
+      <xs:attribute name="PersonaRecoge" type="xs:string" />
+      <xs:attribute name="Conductor" type="xs:string" />
+      <xs:attribute name="Copiloto" type="xs:string" />
+      <xs:attribute name="Placa" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

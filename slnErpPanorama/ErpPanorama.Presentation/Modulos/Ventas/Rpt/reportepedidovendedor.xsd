@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportepedidovendedor"
+    targetNamespace="http://tempuri.org/reportepedidovendedor.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportepedidovendedor.xsd"
+    xmlns:mstns="http://tempuri.org/reportepedidovendedor.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reportepedidovendedor">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="ApeNom" type="xs:string" />
+      <xs:attribute name="TotalSoles" type="xs:decimal" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportepedidovendedortipocliente"
+    targetNamespace="http://tempuri.org/reportepedidovendedortipocliente.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportepedidovendedortipocliente.xsd"
+    xmlns:mstns="http://tempuri.org/reportepedidovendedortipocliente.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reportepedidovendedortipocliente">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="ApeNom" type="xs:string" />
+
+      <xs:attribute name="TipoDoc" type="xs:string" />
+      <xs:attribute name="Serie" type="xs:string" />
+      <xs:attribute name="Numero" type="xs:string" />
+      <xs:attribute name="FecDoc" type="xs:date" />
+      <xs:attribute name="IdCliente" type="xs:int" />
+      <xs:attribute name="NumeroDocumento" type="xs:string" />
+      <xs:attribute name="DescCliente" type="xs:string" />
+      <xs:attribute name="IdUbigeoDom" type="xs:int" />
+      <xs:attribute name="NomDpto" type="xs:string" />
+      <xs:attribute name="NomProv" type="xs:string" />
+      <xs:attribute name="NomDist" type="xs:string" />
+      <xs:attribute name="IdMoneda" type="xs:int" />
+      <xs:attribute name="TotalSoles" type="xs:decimal" />
+      <xs:attribute name="NumeroServicio" type="xs:string" />
+      <xs:attribute name="NumeroCFabricacion" type="xs:string" />      
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

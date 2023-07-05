@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportedis_proyectoserviciocontrato"
+    targetNamespace="http://tempuri.org/reportedis_proyectoserviciocontrato.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportedis_proyectoserviciocontrato.xsd"
+    xmlns:mstns="http://tempuri.org/reportedis_proyectoserviciocontrato.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reportedis_proyectoserviciocontrato">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="Periodo" type="xs:int" />
+      <xs:attribute name="Numero" type="xs:int" />
+      <xs:attribute name="Fecha" type="xs:date" />
+      <xs:attribute name="FechaVencimiento" type="xs:date" />
+      <xs:attribute name="NumeroDocumento" type="xs:string" />
+      <xs:attribute name="DescCliente" type="xs:string" />
+      <xs:attribute name="Direccion" type="xs:string" />
+      <xs:attribute name="DniAsesor" type="xs:string" />
+      <xs:attribute name="DescAsesor" type="xs:string" />
+      <xs:attribute name="DescMoneda" type="xs:string" />
+      <xs:attribute name="TipoCambio" type="xs:decimal" />
+      <xs:attribute name="Importe" type="xs:decimal" />
+      <xs:attribute name="RutaArchivo" type="xs:string" />
+      <xs:attribute name="Observacion" type="xs:string" />
+
+      <xs:attribute name="DescAmbiente" type="xs:string" />
+      <xs:attribute name="Telefono" type="xs:string" />
+      
+      <xs:attribute name="DescSituacion" type="xs:string" />
+      <xs:attribute name="FechaVisita" type="xs:date" />
+      <xs:attribute name="RazonSocial" type="xs:string" />
+      <xs:attribute name="Descripcion" type="xs:string" />
+      <xs:attribute name="Titulo" type="xs:string" />
+      <xs:attribute name="CuerpoSustantivo" type="xs:string" />
+      <xs:attribute name="Procedimiento" type="xs:string" />
+      <xs:attribute name="PlazoCosto" type="xs:string" />
+      <xs:attribute name="Publicidad" type="xs:string" />
+      <xs:attribute name="Version" type="xs:string" />
+      <xs:attribute name="PagoAsesoria" type="xs:decimal" />
+      
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

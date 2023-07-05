@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportemermas"
+    targetNamespace="http://tempuri.org/reportemermas.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportemermas.xsd"
+    xmlns:mstns="http://tempuri.org/reportemermas.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reportemermas">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="Numero" type="xs:string" />
+      <xs:attribute name="Fecha" type="xs:dateTime" />
+      <xs:attribute name="CodigoProveedor" type="xs:string" />
+      <xs:attribute name="NombreProducto" type="xs:string" />
+      <xs:attribute name="Abreviatura" type="xs:string" />
+      <xs:attribute name="Cantidad" type="xs:decimal" />
+      <xs:attribute name="CostoUnitario" type="xs:decimal" />
+      <xs:attribute name="PrecioAB" type="xs:decimal" />
+      <xs:attribute name="DescLineaProducto" type="xs:string" />
+      <xs:attribute name="DescProveedor" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+
+
+
+</xs:schema>

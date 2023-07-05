@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DtsComisionJefeProduccion" targetNamespace="http://tempuri.org/DtsComisionJefeProduccion.xsd" xmlns:mstns="http://tempuri.org/DtsComisionJefeProduccion.xsd" xmlns="http://tempuri.org/DtsComisionJefeProduccion.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DtsComisionJefeProduccion" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DtsComisionJefeProduccion" msprop:Generator_UserDSName="DtsComisionJefeProduccion">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ComisionJProduccion" msprop:Generator_TableClassName="ComisionJProduccionDataTable" msprop:Generator_TableVarName="tableComisionJProduccion" msprop:Generator_TablePropName="ComisionJProduccion" msprop:Generator_RowDeletingName="ComisionJProduccionRowDeleting" msprop:Generator_RowChangingName="ComisionJProduccionRowChanging" msprop:Generator_RowEvHandlerName="ComisionJProduccionRowChangeEventHandler" msprop:Generator_RowDeletedName="ComisionJProduccionRowDeleted" msprop:Generator_UserTableName="ComisionJProduccion" msprop:Generator_RowChangedName="ComisionJProduccionRowChanged" msprop:Generator_RowEvArgName="ComisionJProduccionRowChangeEvent" msprop:Generator_RowClassName="ComisionJProduccionRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IDVENDEDOR" msprop:Generator_ColumnVarNameInTable="columnIDVENDEDOR" msprop:Generator_ColumnPropNameInRow="IDVENDEDOR" msprop:Generator_ColumnPropNameInTable="IDVENDEDORColumn" msprop:Generator_UserColumnName="IDVENDEDOR" type="xs:string" minOccurs="0" />
+              <xs:element name="NOMBRES" msprop:Generator_ColumnVarNameInTable="columnNOMBRES" msprop:Generator_ColumnPropNameInRow="NOMBRES" msprop:Generator_ColumnPropNameInTable="NOMBRESColumn" msprop:Generator_UserColumnName="NOMBRES" type="xs:string" minOccurs="0" />
+              <xs:element name="CARGO" msprop:Generator_ColumnVarNameInTable="columnCARGO" msprop:Generator_ColumnPropNameInRow="CARGO" msprop:Generator_ColumnPropNameInTable="CARGOColumn" msprop:Generator_UserColumnName="CARGO" type="xs:string" minOccurs="0" />
+              <xs:element name="SUELDO" msprop:Generator_ColumnVarNameInTable="columnSUELDO" msprop:Generator_ColumnPropNameInRow="SUELDO" msprop:Generator_ColumnPropNameInTable="SUELDOColumn" msprop:Generator_UserColumnName="SUELDO" type="xs:string" minOccurs="0" />
+              <xs:element name="VALORVENTA005" msprop:Generator_ColumnVarNameInTable="columnVALORVENTA005" msprop:Generator_ColumnPropNameInRow="VALORVENTA005" msprop:Generator_ColumnPropNameInTable="VALORVENTA005Column" msprop:Generator_UserColumnName="VALORVENTA005" type="xs:string" minOccurs="0" />
+              <xs:element name="VALORVENTA0015" msprop:Generator_ColumnVarNameInTable="columnVALORVENTA0015" msprop:Generator_ColumnPropNameInRow="VALORVENTA0015" msprop:Generator_ColumnPropNameInTable="VALORVENTA0015Column" msprop:Generator_UserColumnName="VALORVENTA0015" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

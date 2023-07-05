@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reporteventaproductodias"
+    targetNamespace="http://tempuri.org/reporteventaproductodias.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reporteventaproductodias.xsd"
+    xmlns:mstns="http://tempuri.org/reporteventaproductodias.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reporteventaproductodias">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="CodigoProveedor" type="xs:string" />
+      <xs:attribute name="NombreProducto" type="xs:string" />
+      <xs:attribute name="Abreviatura" type="xs:int" />
+      <xs:attribute name="DescLineaProducto" type="xs:string" />
+      <xs:attribute name="DescModeloProducto" type="xs:string" />
+      <xs:attribute name="FechaRecepcion" type="xs:date" />
+      <xs:attribute name="CantidadComprada" type="xs:int" />
+      <xs:attribute name="CostoUnitario" type="xs:decimal" />
+      <xs:attribute name="PrecioAB" type="xs:decimal" />
+      <xs:attribute name="PrecioCD" type="xs:decimal" />
+      <xs:attribute name="DescProveedor" type="xs:string" />
+      <xs:attribute name="Cantidad" type="xs:int" />
+      <xs:attribute name="Stock" type="xs:int" />
+      <xs:attribute name="StockPedido" type="xs:int" />
+      <xs:attribute name="StockNotaSalida" type="xs:int" />
+      <xs:attribute name="Ratio" type="xs:decimal" />
+      <xs:attribute name="Dias" type="xs:int" />
+      <xs:attribute name="DiasVendidos" type="xs:int" />
+      <xs:attribute name="Descuento" type="xs:decimal" />
+      <xs:attribute name="DescuentoSugerido" type="xs:decimal" />
+      <xs:attribute name="NumeroFactura" type="xs:decimal" />
+      <xs:attribute name="DescSubLineaProducto" type="xs:decimal" />
+      <xs:attribute name="FechaVenta" type="xs:date" />
+
+    </xs:complexType>
+  </xs:element>  
+  
+</xs:schema>

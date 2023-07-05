@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportepedidotiendacomparativo"
+    targetNamespace="http://tempuri.org/reportepedidotiendacomparativo.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportepedidotiendacomparativo.xsd"
+    xmlns:mstns="http://tempuri.org/reportepedidotiendacomparativo.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+
+
+  <xs:element name="reportepedidotiendacomparativo">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="DescTienda" type="xs:string" />
+      <xs:attribute name="TotalSoles" type="xs:decimal" />
+      <xs:attribute name="Id" type="xs:int" />
+      <xs:attribute name="Anio" type="xs:int" />
+      <xs:attribute name="CF" type="xs:decimal" />
+      <xs:attribute name="CM" type="xs:decimal" />
+      <xs:attribute name="CD" type="xs:decimal" />
+      <xs:attribute name="CE" type="xs:decimal" />
+      <xs:attribute name="DiferenciaCF" type="xs:decimal" />
+      <xs:attribute name="DiferenciaCM" type="xs:decimal" />
+      <xs:attribute name="DiferenciaCD" type="xs:decimal" />
+      <xs:attribute name="DiferenciaCE" type="xs:decimal" />
+      <xs:attribute name="DifValCF" type="xs:decimal" />
+      <xs:attribute name="DifValCM" type="xs:decimal" />
+      <xs:attribute name="DifValCD" type="xs:decimal" />
+      <xs:attribute name="DifValCE" type="xs:decimal" />
+      <xs:attribute name="TotalC" type="xs:decimal" />
+      <xs:attribute name="TotalDif" type="xs:decimal" />
+      <xs:attribute name="TotalDifVal" type="xs:decimal" />
+      <xs:attribute name="Visitas" type="xs:decimal" />
+      <xs:attribute name="Transaccion" type="xs:decimal" />
+      <xs:attribute name="Conversion" type="xs:decimal" />
+      <xs:attribute name="TicketPromedio" type="xs:decimal" />
+      <xs:attribute name="VentaTienda" type="xs:decimal" />
+      <xs:attribute name="TotalVisitas" type="xs:decimal" />
+      <xs:attribute name="TotalTransaccion" type="xs:decimal" />
+      <xs:attribute name="TotalConversion" type="xs:decimal" />
+      <xs:attribute name="TotalTicketPromedio" type="xs:decimal" />      
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>
+

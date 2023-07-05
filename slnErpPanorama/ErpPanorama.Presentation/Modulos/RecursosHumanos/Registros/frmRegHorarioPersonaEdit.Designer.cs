@@ -1,0 +1,529 @@
+﻿namespace ErpPanorama.Presentation.Modulos.RecursosHumanos.Registros
+{
+    partial class frmRegHorarioPersonaEdit
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRegHorarioPersonaEdit));
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.deHasta = new DevExpress.XtraEditors.DateEdit();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.deDesde = new DevExpress.XtraEditors.DateEdit();
+            this.btnCrearHorario = new DevExpress.XtraEditors.SimpleButton();
+            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.btnBuscar = new DevExpress.XtraEditors.SimpleButton();
+            this.txtPersona = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
+            this.cboEmpresa = new DevExpress.XtraEditors.LookUpEdit();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.btnCancelar = new DevExpress.XtraEditors.SimpleButton();
+            this.btnGrabar = new DevExpress.XtraEditors.SimpleButton();
+            this.gcHorarioPersona = new DevExpress.XtraGrid.GridControl();
+            this.mnuContextual = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.asignardescansotoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eliminardescansotoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gvHorarioPersona = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bsListado = new System.Windows.Forms.BindingSource(this.components);
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.cboTurno = new DevExpress.XtraEditors.LookUpEdit();
+            ((System.ComponentModel.ISupportInitialize)(this.deHasta.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deHasta.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deDesde.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deDesde.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
+            this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPersona.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboEmpresa.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcHorarioPersona)).BeginInit();
+            this.mnuContextual.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvHorarioPersona)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsListado)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboTurno.Properties)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Location = new System.Drawing.Point(41, 110);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(34, 13);
+            this.labelControl2.TabIndex = 50;
+            this.labelControl2.Text = "Desde:";
+            // 
+            // deHasta
+            // 
+            this.deHasta.EditValue = null;
+            this.deHasta.Location = new System.Drawing.Point(220, 107);
+            this.deHasta.Name = "deHasta";
+            this.deHasta.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
+            this.deHasta.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deHasta.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.deHasta.Properties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Simple;
+            this.deHasta.Properties.ShowPopupShadow = false;
+            this.deHasta.Properties.ShowToday = false;
+            this.deHasta.Size = new System.Drawing.Size(80, 20);
+            this.deHasta.TabIndex = 53;
+            this.deHasta.EditValueChanged += new System.EventHandler(this.deHasta_EditValueChanged);
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Location = new System.Drawing.Point(182, 110);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(32, 13);
+            this.labelControl3.TabIndex = 52;
+            this.labelControl3.Text = "Hasta:";
+            // 
+            // deDesde
+            // 
+            this.deDesde.EditValue = null;
+            this.deDesde.Location = new System.Drawing.Point(82, 107);
+            this.deDesde.Name = "deDesde";
+            this.deDesde.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
+            this.deDesde.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deDesde.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.deDesde.Properties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Simple;
+            this.deDesde.Properties.ShowPopupShadow = false;
+            this.deDesde.Properties.ShowToday = false;
+            this.deDesde.Size = new System.Drawing.Size(80, 20);
+            this.deDesde.TabIndex = 51;
+            this.deDesde.EditValueChanged += new System.EventHandler(this.deDesde_EditValueChanged);
+            // 
+            // btnCrearHorario
+            // 
+            this.btnCrearHorario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCrearHorario.ImageOptions.Image = global::ErpPanorama.Presentation.Properties.Resources.Fecha_16x16;
+            this.btnCrearHorario.Location = new System.Drawing.Point(850, 106);
+            this.btnCrearHorario.Name = "btnCrearHorario";
+            this.btnCrearHorario.Size = new System.Drawing.Size(102, 21);
+            this.btnCrearHorario.TabIndex = 49;
+            this.btnCrearHorario.Text = "&Crear Horario";
+            this.btnCrearHorario.Click += new System.EventHandler(this.btnCrearHorario_Click);
+            // 
+            // groupControl1
+            // 
+            this.groupControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupControl1.Controls.Add(this.btnBuscar);
+            this.groupControl1.Controls.Add(this.txtPersona);
+            this.groupControl1.Controls.Add(this.labelControl8);
+            this.groupControl1.Controls.Add(this.cboEmpresa);
+            this.groupControl1.Controls.Add(this.labelControl5);
+            this.groupControl1.Location = new System.Drawing.Point(12, 12);
+            this.groupControl1.Name = "groupControl1";
+            this.groupControl1.Size = new System.Drawing.Size(940, 88);
+            this.groupControl1.TabIndex = 55;
+            this.groupControl1.Text = "Datos";
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.ImageOptions.Image")));
+            this.btnBuscar.Location = new System.Drawing.Point(567, 48);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(26, 20);
+            this.btnBuscar.TabIndex = 59;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            // 
+            // txtPersona
+            // 
+            this.txtPersona.Location = new System.Drawing.Point(70, 48);
+            this.txtPersona.Name = "txtPersona";
+            this.txtPersona.Properties.ReadOnly = true;
+            this.txtPersona.Size = new System.Drawing.Size(491, 20);
+            this.txtPersona.TabIndex = 58;
+            // 
+            // labelControl8
+            // 
+            this.labelControl8.Location = new System.Drawing.Point(19, 51);
+            this.labelControl8.Name = "labelControl8";
+            this.labelControl8.Size = new System.Drawing.Size(43, 13);
+            this.labelControl8.TabIndex = 57;
+            this.labelControl8.Text = "Persona:";
+            // 
+            // cboEmpresa
+            // 
+            this.cboEmpresa.Location = new System.Drawing.Point(70, 26);
+            this.cboEmpresa.Name = "cboEmpresa";
+            this.cboEmpresa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboEmpresa.Properties.NullText = "";
+            this.cboEmpresa.Properties.ReadOnly = true;
+            this.cboEmpresa.Size = new System.Drawing.Size(491, 20);
+            this.cboEmpresa.TabIndex = 56;
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.Location = new System.Drawing.Point(19, 29);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(45, 13);
+            this.labelControl5.TabIndex = 55;
+            this.labelControl5.Text = "Empresa:";
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.ImageOptions.Image")));
+            this.btnCancelar.ImageOptions.ImageIndex = 0;
+            this.btnCancelar.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.btnCancelar.Location = new System.Drawing.Point(877, 445);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 57;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnGrabar
+            // 
+            this.btnGrabar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGrabar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGrabar.ImageOptions.Image")));
+            this.btnGrabar.ImageOptions.ImageIndex = 1;
+            this.btnGrabar.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.btnGrabar.Location = new System.Drawing.Point(796, 445);
+            this.btnGrabar.Name = "btnGrabar";
+            this.btnGrabar.Size = new System.Drawing.Size(75, 23);
+            this.btnGrabar.TabIndex = 56;
+            this.btnGrabar.Text = "Grabar";
+            this.btnGrabar.Click += new System.EventHandler(this.btnGrabar_Click);
+            // 
+            // gcHorarioPersona
+            // 
+            this.gcHorarioPersona.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gcHorarioPersona.ContextMenuStrip = this.mnuContextual;
+            this.gcHorarioPersona.Location = new System.Drawing.Point(12, 133);
+            this.gcHorarioPersona.MainView = this.gvHorarioPersona;
+            this.gcHorarioPersona.Name = "gcHorarioPersona";
+            this.gcHorarioPersona.Size = new System.Drawing.Size(940, 306);
+            this.gcHorarioPersona.TabIndex = 58;
+            this.gcHorarioPersona.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvHorarioPersona});
+            // 
+            // mnuContextual
+            // 
+            this.mnuContextual.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.asignardescansotoolStripMenuItem,
+            this.eliminardescansotoolStripMenuItem});
+            this.mnuContextual.Name = "contextMenuStrip1";
+            this.mnuContextual.Size = new System.Drawing.Size(187, 70);
+            // 
+            // asignardescansotoolStripMenuItem
+            // 
+            this.asignardescansotoolStripMenuItem.Image = global::ErpPanorama.Presentation.Properties.Resources.Horario_32x32;
+            this.asignardescansotoolStripMenuItem.Name = "asignardescansotoolStripMenuItem";
+            this.asignardescansotoolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.asignardescansotoolStripMenuItem.Text = "Asignar Día descanso";
+            this.asignardescansotoolStripMenuItem.Click += new System.EventHandler(this.asignardescansotoolStripMenuItem_Click);
+            // 
+            // eliminardescansotoolStripMenuItem
+            // 
+            this.eliminardescansotoolStripMenuItem.Image = global::ErpPanorama.Presentation.Properties.Resources.Elementos_16x16;
+            this.eliminardescansotoolStripMenuItem.Name = "eliminardescansotoolStripMenuItem";
+            this.eliminardescansotoolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.eliminardescansotoolStripMenuItem.Text = "Actualizar horario";
+            this.eliminardescansotoolStripMenuItem.Click += new System.EventHandler(this.eliminardescansotoolStripMenuItem_Click);
+            // 
+            // gvHorarioPersona
+            // 
+            this.gvHorarioPersona.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn4,
+            this.gridColumn5,
+            this.gridColumn7,
+            this.gridColumn8,
+            this.gridColumn9,
+            this.gridColumn10,
+            this.gridColumn1,
+            this.gridColumn12,
+            this.gridColumn13,
+            this.gridColumn14,
+            this.gridColumn6,
+            this.gridColumn2,
+            this.gridColumn3});
+            this.gvHorarioPersona.GridControl = this.gcHorarioPersona;
+            this.gvHorarioPersona.Name = "gvHorarioPersona";
+            this.gvHorarioPersona.OptionsSelection.MultiSelect = true;
+            this.gvHorarioPersona.OptionsView.ColumnAutoWidth = false;
+            this.gvHorarioPersona.OptionsView.ShowGroupPanel = false;
+            this.gvHorarioPersona.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gvHorarioPersona_RowStyle);
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "IdHorarioPersona";
+            this.gridColumn4.FieldName = "IdHorarioPersona";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.OptionsColumn.AllowEdit = false;
+            this.gridColumn4.OptionsColumn.AllowFocus = false;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "IdTurno";
+            this.gridColumn5.FieldName = "IdTurno";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.OptionsColumn.AllowEdit = false;
+            this.gridColumn5.OptionsColumn.AllowFocus = false;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "H. Ingreso";
+            this.gridColumn7.DisplayFormat.FormatString = "t";
+            this.gridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.gridColumn7.FieldName = "FechaIngreso";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.OptionsColumn.AllowEdit = false;
+            this.gridColumn7.OptionsColumn.AllowFocus = false;
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 2;
+            this.gridColumn7.Width = 79;
+            // 
+            // gridColumn8
+            // 
+            this.gridColumn8.Caption = "H. Sal Ref";
+            this.gridColumn8.DisplayFormat.FormatString = "t";
+            this.gridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.gridColumn8.FieldName = "FechaSalidaRef";
+            this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.OptionsColumn.AllowEdit = false;
+            this.gridColumn8.OptionsColumn.AllowFocus = false;
+            this.gridColumn8.Visible = true;
+            this.gridColumn8.VisibleIndex = 3;
+            this.gridColumn8.Width = 81;
+            // 
+            // gridColumn9
+            // 
+            this.gridColumn9.Caption = "H. Ing Ref";
+            this.gridColumn9.DisplayFormat.FormatString = "t";
+            this.gridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.gridColumn9.FieldName = "FechaIngresoRef";
+            this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.OptionsColumn.AllowEdit = false;
+            this.gridColumn9.OptionsColumn.AllowFocus = false;
+            this.gridColumn9.Visible = true;
+            this.gridColumn9.VisibleIndex = 4;
+            this.gridColumn9.Width = 82;
+            // 
+            // gridColumn10
+            // 
+            this.gridColumn10.Caption = "H. Salida";
+            this.gridColumn10.DisplayFormat.FormatString = "t";
+            this.gridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.gridColumn10.FieldName = "FechaSalida";
+            this.gridColumn10.Name = "gridColumn10";
+            this.gridColumn10.OptionsColumn.AllowEdit = false;
+            this.gridColumn10.OptionsColumn.AllowFocus = false;
+            this.gridColumn10.Visible = true;
+            this.gridColumn10.VisibleIndex = 5;
+            this.gridColumn10.Width = 81;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "H. Refrigerio";
+            this.gridColumn1.FieldName = "TotalHorasRef";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.AllowEdit = false;
+            this.gridColumn1.OptionsColumn.AllowFocus = false;
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 6;
+            // 
+            // gridColumn12
+            // 
+            this.gridColumn12.Caption = "H. Trabajo";
+            this.gridColumn12.FieldName = "TotalHorasTrab";
+            this.gridColumn12.Name = "gridColumn12";
+            this.gridColumn12.OptionsColumn.AllowEdit = false;
+            this.gridColumn12.OptionsColumn.AllowFocus = false;
+            this.gridColumn12.Visible = true;
+            this.gridColumn12.VisibleIndex = 7;
+            // 
+            // gridColumn13
+            // 
+            this.gridColumn13.Caption = "FlagEstado";
+            this.gridColumn13.FieldName = "FlagEstado";
+            this.gridColumn13.Name = "gridColumn13";
+            this.gridColumn13.OptionsColumn.AllowEdit = false;
+            this.gridColumn13.OptionsColumn.AllowFocus = false;
+            this.gridColumn13.Width = 32;
+            // 
+            // gridColumn14
+            // 
+            this.gridColumn14.Caption = "Día";
+            this.gridColumn14.FieldName = "DiaSemanaName";
+            this.gridColumn14.Name = "gridColumn14";
+            this.gridColumn14.OptionsColumn.AllowEdit = false;
+            this.gridColumn14.OptionsColumn.AllowFocus = false;
+            this.gridColumn14.Visible = true;
+            this.gridColumn14.VisibleIndex = 0;
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "Fecha";
+            this.gridColumn6.FieldName = "Fecha";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.OptionsColumn.AllowEdit = false;
+            this.gridColumn6.OptionsColumn.AllowFocus = false;
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 1;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "IdHorarioTipoIncidencia";
+            this.gridColumn2.FieldName = "IdHorarioTipoIncidencia";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.OptionsColumn.AllowEdit = false;
+            this.gridColumn2.OptionsColumn.AllowFocus = false;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.AppearanceCell.ForeColor = System.Drawing.Color.Gray;
+            this.gridColumn3.AppearanceCell.Options.UseForeColor = true;
+            this.gridColumn3.Caption = "Turno";
+            this.gridColumn3.FieldName = "DescTurno";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowEdit = false;
+            this.gridColumn3.OptionsColumn.AllowFocus = false;
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 8;
+            this.gridColumn3.Width = 258;
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(327, 110);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(32, 13);
+            this.labelControl1.TabIndex = 61;
+            this.labelControl1.Text = "Turno:";
+            // 
+            // cboTurno
+            // 
+            this.cboTurno.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboTurno.Location = new System.Drawing.Point(365, 107);
+            this.cboTurno.Name = "cboTurno";
+            this.cboTurno.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboTurno.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("IdTurno", "Id", 5, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DescTurno", "Turno", 60, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TotalHorasRef", "H. Refrigerio", 20, DevExpress.Utils.FormatType.Numeric, "#,0.00", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TotalHorasTrab", "H. Trabajo")});
+            this.cboTurno.Properties.DropDownRows = 10;
+            this.cboTurno.Properties.NullText = "";
+            this.cboTurno.Size = new System.Drawing.Size(479, 20);
+            this.cboTurno.TabIndex = 60;
+            this.cboTurno.EditValueChanged += new System.EventHandler(this.cboTurno_EditValueChanged);
+            // 
+            // frmRegHorarioPersonaEdit
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(964, 484);
+            this.Controls.Add(this.cboTurno);
+            this.Controls.Add(this.labelControl1);
+            this.Controls.Add(this.gcHorarioPersona);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnGrabar);
+            this.Controls.Add(this.groupControl1);
+            this.Controls.Add(this.deHasta);
+            this.Controls.Add(this.btnCrearHorario);
+            this.Controls.Add(this.labelControl3);
+            this.Controls.Add(this.deDesde);
+            this.Controls.Add(this.labelControl2);
+            this.Name = "frmRegHorarioPersonaEdit";
+            this.Text = "Horario Persona Edit";
+            this.Load += new System.EventHandler(this.frmRegHorarioPersonaEdit_Load);
+            this.Shown += new System.EventHandler(this.frmRegHorarioPersonaEdit_Shown);
+            ((System.ComponentModel.ISupportInitialize)(this.deHasta.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deHasta.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deDesde.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deDesde.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
+            this.groupControl1.ResumeLayout(false);
+            this.groupControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPersona.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboEmpresa.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcHorarioPersona)).EndInit();
+            this.mnuContextual.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gvHorarioPersona)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsListado)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboTurno.Properties)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.DateEdit deHasta;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.DateEdit deDesde;
+        private DevExpress.XtraEditors.SimpleButton btnCrearHorario;
+        private DevExpress.XtraEditors.GroupControl groupControl1;
+        private DevExpress.XtraEditors.SimpleButton btnCancelar;
+        private DevExpress.XtraEditors.SimpleButton btnGrabar;
+        public DevExpress.XtraEditors.LookUpEdit cboEmpresa;
+        private DevExpress.XtraEditors.LabelControl labelControl5;
+        private DevExpress.XtraGrid.GridControl gcHorarioPersona;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvHorarioPersona;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraEditors.SimpleButton btnBuscar;
+        private DevExpress.XtraEditors.TextEdit txtPersona;
+        private DevExpress.XtraEditors.LabelControl labelControl8;
+        public System.Windows.Forms.ContextMenuStrip mnuContextual;
+        private System.Windows.Forms.BindingSource bsListado;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private System.Windows.Forms.ToolStripMenuItem asignardescansotoolStripMenuItem;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        public DevExpress.XtraEditors.LookUpEdit cboTurno;
+        private System.Windows.Forms.ToolStripMenuItem eliminardescansotoolStripMenuItem;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+    }
+}

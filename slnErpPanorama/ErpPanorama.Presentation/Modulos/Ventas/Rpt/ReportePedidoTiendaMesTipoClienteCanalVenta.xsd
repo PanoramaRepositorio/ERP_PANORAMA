@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ReportePedidoTiendaMesTipoClienteCanalVenta"
+    targetNamespace="http://tempuri.org/ReportePedidoTiendaMesTipoClienteCanalVenta.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/ReportePedidoTiendaMesTipoClienteCanalVenta.xsd"
+    xmlns:mstns="http://tempuri.org/ReportePedidoTiendaMesTipoClienteCanalVenta.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="ReportePedidoTiendaMesTipoClienteCanalVenta">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="RazonSocial" type="xs:string" />
+      <xs:attribute name="DescTienda" type="xs:string" />
+      <xs:attribute name="TotalSoles" type="xs:decimal" />
+      <xs:attribute name="Anio" type="xs:int" />
+      <xs:attribute name="Mes" type="xs:string" />
+      <xs:attribute name="TipoCliente" type="xs:string" />
+      <xs:attribute name="DescTipoVendedor" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

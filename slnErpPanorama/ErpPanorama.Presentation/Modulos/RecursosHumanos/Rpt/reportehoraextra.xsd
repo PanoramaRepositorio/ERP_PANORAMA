@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportehoraextra"
+    targetNamespace="http://tempuri.org/reportehoraextra.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportehoraextra.xsd"
+    xmlns:mstns="http://tempuri.org/reportehoraextra.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reportehoraextra">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="Dni" type="xs:string" />
+      <xs:attribute name="ApeNom" type="xs:string" />
+      <xs:attribute name="FechaDesde" type="xs:date" />
+      <xs:attribute name="FechaHasta" type="xs:date" />
+      <xs:attribute name="TotalHoras" type="xs:decimal" />
+      <xs:attribute name="TotalHorasFormato" type="xs:string" />
+      <xs:attribute name="TotalHorasContadas" type="xs:decimal" />
+      <xs:attribute name="TotalExtraNormal" type="xs:decimal" />
+      <xs:attribute name="TotalExtraNocturno" type="xs:decimal" />
+      <xs:attribute name="SueldoExtraNocturno" type="xs:decimal" />
+      <xs:attribute name="SueldoBruto" type="xs:decimal" />
+      <xs:attribute name="SueldoHora" type="xs:decimal" />
+      <xs:attribute name="SueldoHoraNocturna" type="xs:decimal" />
+      <xs:attribute name="MontoPagar" type="xs:decimal" />
+      <xs:attribute name="Autorizado" type="xs:string" />
+      <xs:attribute name="Importe" type="xs:decimal" />
+      <xs:attribute name="DescTienda" type="xs:string" />
+      <xs:attribute name="DescCaja" type="xs:string" />
+      <xs:attribute name="FechaMovimientoCaja" type="xs:date" />
+      <xs:attribute name="NumeroEgreso" type="xs:string" />
+      <xs:attribute name="FlagCena" type="xs:boolean" />
+      <xs:attribute name="FlagCompensacion" type="xs:boolean" />
+      <xs:attribute name="FlagAprobado" type="xs:boolean" />
+      <xs:attribute name="FechaCompensacion" type="xs:date" />
+      <xs:attribute name="Motivo" type="xs:string" />
+      <xs:attribute name="Observacion" type="xs:string" />
+      <xs:attribute name="DescCargo" type="xs:string" />
+      <xs:attribute name="FechaRegistro" type="xs:date" />
+      
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

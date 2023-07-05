@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reporteunidadmedida"
+    targetNamespace="http://tempuri.org/reporteunidadmedida.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reporteunidadmedida.xsd"
+    xmlns:mstns="http://tempuri.org/reporteunidadmedida.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reporteunidadmedida">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="IdUnidadMedida" type="xs:int" />
+      <xs:attribute name="Abreviatura" type="xs:string" />
+      <xs:attribute name="DescUnidadMedida" type="xs:string" />
+      <xs:attribute name="FlagEstado" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

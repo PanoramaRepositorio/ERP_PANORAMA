@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportepedidovendedorcarterameta"
+    targetNamespace="http://tempuri.org/reportepedidovendedorcarterameta.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportepedidovendedorcarterameta.xsd"
+    xmlns:mstns="http://tempuri.org/reportepedidovendedorcarterameta.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reportepedidovendedorcarterameta">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="ApeNom" type="xs:string" />
+      <xs:attribute name="DescRuta" type="xs:string" />
+      <xs:attribute name="TotalSoles" type="xs:decimal" />
+      <xs:attribute name="Meta" type="xs:decimal" />
+      <xs:attribute name="AlcanceMeta" type="xs:decimal" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

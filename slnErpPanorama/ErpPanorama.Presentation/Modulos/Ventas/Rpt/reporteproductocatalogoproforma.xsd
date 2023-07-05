@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reporteproductocatalogoproforma"
+    targetNamespace="http://tempuri.org/reporteproductocatalogoproforma.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reporteproductocatalogoproforma.xsd"
+    xmlns:mstns="http://tempuri.org/reporteproductocatalogoproforma.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reporteproductocatalogoproforma">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdProducto" type="xs:int" />
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="CodigoProveedor" type="xs:string" />
+      <xs:attribute name="CodigoPanorama" type="xs:string" />
+      <xs:attribute name="NombreProducto" type="xs:string" />
+      <xs:attribute name="Descripcion" type="xs:string" />
+      <xs:attribute name="Peso" type="xs:decimal" />
+      <xs:attribute name="Medida" type="xs:string" />
+      <xs:attribute name="CodigoBarra" type="xs:string" />
+      <xs:attribute name="Imagen" type="xs:base64Binary" />
+      <xs:attribute name="PrecioAB" type="xs:decimal" />
+      <xs:attribute name="PrecioCD" type="xs:decimal" />
+      <xs:attribute name="Descuento" type="xs:decimal" />
+      <xs:attribute name="StockBultos" type="xs:int" />
+      <xs:attribute name="FlagCompuesto" type="xs:boolean" />
+      <xs:attribute name="FlagObsequio" type="xs:boolean" />
+      <xs:attribute name="FlagEscala" type="xs:boolean" />
+      <xs:attribute name="Abreviatura" type="xs:string" />
+      <xs:attribute name="Observacion" type="xs:string" />
+      <xs:attribute name="Fecha" type="xs:date" />
+      <xs:attribute name="DescLineaProducto" type="xs:string" />
+      <xs:attribute name="DescModeloProducto" type="xs:string" />
+      <xs:attribute name="DescMaterial" type="xs:string" />
+      <xs:attribute name="DescMarca" type="xs:string" />
+      <xs:attribute name="DescProcedencia" type="xs:string" />
+      <xs:attribute name="IdTipoCliente" type="xs:int" />
+      <xs:attribute name="TipoCambioMinorista" type="xs:decimal" />
+      <xs:attribute name="Cantidad" type="xs:int" />
+      <xs:attribute name="FlagEstado" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

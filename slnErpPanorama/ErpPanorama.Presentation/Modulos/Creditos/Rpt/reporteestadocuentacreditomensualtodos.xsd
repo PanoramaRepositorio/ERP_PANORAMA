@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reporteestadocuentacreditomensualtodos"
+    targetNamespace="http://tempuri.org/reporteestadocuentacreditomensualtodos.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reporteestadocuentacreditomensualtodos.xsd"
+    xmlns:mstns="http://tempuri.org/reporteestadocuentacreditomensualtodos.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reporteestadocuentacreditomensualtodos">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdCliente" type="xs:int" />
+      <xs:attribute name="AbrevDocumento" type="xs:string" />
+      <xs:attribute name="NumeroDocumento" type="xs:string" />
+      <xs:attribute name="DescCliente" type="xs:string" />
+      <xs:attribute name="Concepto" type="xs:string" />
+      <xs:attribute name="FechaCredito" type="xs:date" />
+      <xs:attribute name="FechaVencimiento" type="xs:date" />
+      <xs:attribute name="CreditoCargo" type="xs:decimal" />
+      <xs:attribute name="NumeroDias" type="xs:int" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

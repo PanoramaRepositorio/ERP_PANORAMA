@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportepersonal"
+    targetNamespace="http://tempuri.org/reportepersonal.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportepersonal.xsd"
+    xmlns:mstns="http://tempuri.org/reportepersonal.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reportepersonal">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="IdPersona" type="xs:int" />
+      <xs:attribute name="IdSexo" type="xs:int" />
+      <xs:attribute name="Dni" type="xs:string" />
+      <xs:attribute name="Nombres" type="xs:string" />
+      <xs:attribute name="Apellidos" type="xs:string" />
+      <xs:attribute name="ApeNom" type="xs:string" />
+      <xs:attribute name="IdCargo" type="xs:int" />
+      <xs:attribute name="Essalud" type="xs:string" />
+      <xs:attribute name="FlagEps" type="xs:boolean" />
+      <xs:attribute name="FlagSctr" type="xs:boolean" />
+      <xs:attribute name="Brevete" type="xs:string" />
+      <xs:attribute name="IdEstadoCivil" type="xs:int" />
+      <xs:attribute name="FechaNac" type="xs:date" />
+      <xs:attribute name="IdUbigeo" type="xs:string" />
+      <xs:attribute name="Direccion" type="xs:string" />
+      <xs:attribute name="Telefono" type="xs:string" />
+      <xs:attribute name="Celular" type="xs:string" />
+      <xs:attribute name="TelefonoOtro" type="xs:string" />
+      <xs:attribute name="Email" type="xs:string" />
+      <xs:attribute name="Observacion" type="xs:string" />
+      <xs:attribute name="DescSexo" type="xs:string" />
+      <xs:attribute name="NomDpto" type="xs:string" />
+      <xs:attribute name="NomProv" type="xs:string" />
+      <xs:attribute name="NomDist" type="xs:string" />
+      <xs:attribute name="DescEstadoCivil" type="xs:string" />
+      <xs:attribute name="DescCargo" type="xs:string" />
+      <xs:attribute name="DescArea" type="xs:string" />
+      <xs:attribute name="FlagEstado" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

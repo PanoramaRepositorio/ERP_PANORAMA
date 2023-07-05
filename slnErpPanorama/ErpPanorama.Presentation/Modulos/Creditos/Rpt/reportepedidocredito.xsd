@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportepedidocredito"
+    targetNamespace="http://tempuri.org/reportepedidocredito.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportepedidocredito.xsd"
+    xmlns:mstns="http://tempuri.org/reportepedidocredito.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reportepedidocredito">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="NumeroDocumento" type="xs:string" />
+      <xs:attribute name="DescCliente" type="xs:string" />
+      <xs:attribute name="Total" type="xs:decimal" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

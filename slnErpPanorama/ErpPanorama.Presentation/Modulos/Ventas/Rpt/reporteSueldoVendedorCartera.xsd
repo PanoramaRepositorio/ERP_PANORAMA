@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reporteSueldoVendedorCartera"
+    targetNamespace="http://tempuri.org/reporteSueldoVendedorCartera.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reporteSueldoVendedorCartera.xsd"
+    xmlns:mstns="http://tempuri.org/reporteSueldoVendedorCartera.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reporteSueldoVendedorCartera">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdVendedor" type="xs:int" />
+      <xs:attribute name="DescVendedor" type="xs:string" />
+      <xs:attribute name="IdCargo" type="xs:int" />
+      <xs:attribute name="Cargo" type="xs:string" />
+      <xs:attribute name="IdTienda" type="xs:int" />
+      <xs:attribute name="DescTienda" type="xs:string" />
+      <xs:attribute name="Cliente_Final" type="xs:decimal" />
+      <xs:attribute name="Cliente_Mayorista" type="xs:decimal" />
+      <xs:attribute name="Cliente_Diseño" type="xs:decimal" />
+      <xs:attribute name="VentaTotalPagada" type="xs:decimal" />
+      <xs:attribute name="Meta" type="xs:decimal" />
+      <xs:attribute name="BonificacionBasica" type="xs:decimal" />
+      <xs:attribute name="PorcBonificacionBasica" type="xs:decimal" />
+      <xs:attribute name="ExtraBonificacion" type="xs:decimal" />
+      <xs:attribute name="CantidadExtra" type="xs:decimal" />
+      <xs:attribute name="BonoMeta" type="xs:decimal" />
+      <xs:attribute name="TotalCreditos" type="xs:decimal" />
+      <xs:attribute name="RutaPropiag" type="xs:decimal" />
+      <xs:attribute name="RutaTercerosg" type="xs:decimal" />
+      <xs:attribute name="RutaPropiap" type="xs:decimal" />
+      <xs:attribute name="RutaTercerosp" type="xs:decimal" />      
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

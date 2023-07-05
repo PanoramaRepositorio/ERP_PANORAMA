@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reporteinventariobulto"
+    targetNamespace="http://tempuri.org/reporteinventariobulto.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reporteinventariobulto.xsd"
+    xmlns:mstns="http://tempuri.org/reporteinventariobulto.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reporteinventariobulto">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="DescSector" type="xs:string" />
+      <xs:attribute name="CodigoProveedor" type="xs:string" />
+      <xs:attribute name="NombreProducto" type="xs:string" />
+      <xs:attribute name="Abreviatura" type="xs:string" />
+      <xs:attribute name="DescLineaProducto" type="xs:string" />
+      <xs:attribute name="DescSubLineaProducto" type="xs:string" />
+      <xs:attribute name="DescModeloProducto" type="xs:string" />
+      <xs:attribute name="StockBultos" type="xs:int" />
+      <xs:attribute name="Cantidad" type="xs:int" />
+      <xs:attribute name="StockCantidades" type="xs:int" />
+      <xs:attribute name="CostoUnitario" type="xs:decimal" />
+      <xs:attribute name="PrecioAB" type="xs:decimal" />
+      <xs:attribute name="Descuento" type="xs:decimal" />
+      <xs:attribute name="DescProveedor" type="xs:string" />
+      <xs:attribute name="Fecha" type="xs:dateTime"/>
+    </xs:complexType>
+  </xs:element>
+  
+  
+</xs:schema>

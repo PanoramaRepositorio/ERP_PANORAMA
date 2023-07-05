@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reporteSueldoAdmUcayali"
+    targetNamespace="http://tempuri.org/reporteSueldoAdmUcayali.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reporteSueldoAdmUcayali.xsd"
+    xmlns:mstns="http://tempuri.org/reporteSueldoAdmUcayali.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reporteSueldoAdmUcayali">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="Tienda" type="xs:string" />
+      <xs:attribute name="ApeNom" type="xs:string" />
+      <xs:attribute name="Cargo" type="xs:string" />
+      <xs:attribute name="Meta" type="xs:decimal" />
+      <xs:attribute name="SueldoBasico" type="xs:decimal" />
+      <xs:attribute name="VentaTotal" type="xs:decimal" />
+      <xs:attribute name="CMayorista" type="xs:decimal" />
+      <xs:attribute name="CDiseño" type="xs:decimal" />
+      <xs:attribute name="VentaTotalPagada" type="xs:decimal" />
+      <xs:attribute name="BonificacionBasica" type="xs:decimal" />
+      <xs:attribute name="PorcBonificacionBasica" type="xs:decimal" />
+      <xs:attribute name="ExtraBonificacion" type="xs:decimal" />
+      <xs:attribute name="TasaConversion" type="xs:int" />
+      <xs:attribute name="CantidadExtra" type="xs:int" />
+      <xs:attribute name="BonoMeta" type="xs:decimal" />
+      <xs:attribute name="FechaIngreso" type="xs:date" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

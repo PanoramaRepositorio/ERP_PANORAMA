@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportepedidopreventadetalle"
+    targetNamespace="http://tempuri.org/reportepedidopreventadetalle.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportepedidopreventadetalle.xsd"
+    xmlns:mstns="http://tempuri.org/reportepedidopreventadetalle.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name="reportepedidopreventadetalle">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="CodigoProveedor" type="xs:string" />
+      <xs:attribute name="NombreProducto" type="xs:string" />
+      <xs:attribute name="Abreviatura" type="xs:string" />
+      <xs:attribute name="Cantidad" type="xs:int" />
+      <xs:attribute name="PrecioAB" type="xs:decimal" />
+    </xs:complexType>
+  </xs:element>  
+  
+</xs:schema>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportemovimientocajadiferencia"
+    targetNamespace="http://tempuri.org/reportemovimientocajadiferencia.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportemovimientocajadiferencia.xsd"
+    xmlns:mstns="http://tempuri.org/reportemovimientocajadiferencia.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reportemovimientocajadiferencia">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="DescTienda" type="xs:string" />
+      <xs:attribute name="DescCaja" type="xs:string" />
+      <xs:attribute name="Fecha" type="xs:date"/>
+      <xs:attribute name="Total" type="xs:decimal" />
+      <xs:attribute name="Diferencia" type="xs:decimal" />
+      <xs:attribute name="TotalAnulados" type="xs:decimal" />
+      <xs:attribute name="TotalVisa" type="xs:decimal" />
+      <xs:attribute name="TotalMastercard" type="xs:decimal" />
+      <xs:attribute name="TotalCheques" type="xs:decimal" />
+      <xs:attribute name="TotalNotaCredito" type="xs:decimal" />
+      <xs:attribute name="TotalCajaFinal" type="xs:decimal" />
+      <xs:attribute name="TotalCajaFinalSoles" type="xs:decimal" />
+      <xs:attribute name="TotalCajaFinalDolaresaSoles" type="xs:decimal" />
+      <xs:attribute name="TotalGeneral" type="xs:decimal" />
+      <xs:attribute name="TotalEgresosSoles" type="xs:decimal" />
+      <xs:attribute name="TotalEgresosDolares" type="xs:decimal" />
+      
+      <xs:attribute name="Usuario" type="xs:string" />
+      
+    </xs:complexType>
+  </xs:element>  
+  
+</xs:schema>
+

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reporteproforma"
+    targetNamespace="http://tempuri.org/reporteproforma.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reporteproforma.xsd"
+    xmlns:mstns="http://tempuri.org/reporteproforma.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reporteproforma">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="Ruc" type="xs:string" />
+      <xs:attribute name="RazonSocial" type="xs:string" />
+      <xs:attribute name="CodTipoDocumento" type="xs:string" />
+      <xs:attribute name="Numero" type="xs:string" />
+      <xs:attribute name="Fecha" type="xs:date" />
+      <xs:attribute name="NumeroDocumento" type="xs:string" />
+      <xs:attribute name="DescCliente" type="xs:string" />
+      <xs:attribute name="Direccion" type="xs:string" />
+      <xs:attribute name="CodMoneda" type="xs:string" />
+      <xs:attribute name="DescMoneda" type="xs:string" />
+      <xs:attribute name="TipoCambio" type="xs:decimal" />
+      <xs:attribute name="DescFormaPago" type="xs:string" />
+      <xs:attribute name="DescVendedor" type="xs:string" />
+      <xs:attribute name="TotalCantidad" type="xs:decimal" />
+      <xs:attribute name="SubTotal" type="xs:decimal" />
+      <xs:attribute name="PorcentajeImpuesto" type="xs:decimal" />
+      <xs:attribute name="Igv" type="xs:decimal" />
+      <xs:attribute name="Total" type="xs:decimal" />
+      <xs:attribute name="Observacion" type="xs:string" />
+      <xs:attribute name="DescSituacion" type="xs:string" />
+      <xs:attribute name="Item" type="xs:int" />
+      <xs:attribute name="IdProducto" type="xs:int" />
+      <xs:attribute name="CodigoProveedor" type="xs:string" />
+      <xs:attribute name="NombreProducto" type="xs:string" />
+      <xs:attribute name="Abreviatura" type="xs:string" />
+      <xs:attribute name="Cantidad" type="xs:int" />
+      <xs:attribute name="PrecioUnitario" type="xs:decimal" />
+      <xs:attribute name="PorcentajeDescuento" type="xs:decimal" />
+      <xs:attribute name="Descuento" type="xs:decimal" />
+      <xs:attribute name="PrecioVenta" type="xs:decimal" />
+      <xs:attribute name="ValorVenta" type="xs:decimal" />
+      <xs:attribute name="ObservacionDetalle" type="xs:string" />
+      <xs:attribute name="FlagAprobacion" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+  
+  
+</xs:schema>

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reporteclientecredito"
+    targetNamespace="http://tempuri.org/reporteclientecredito.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reporteclientecredito.xsd"
+    xmlns:mstns="http://tempuri.org/reporteclientecredito.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reporteclientecredito">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="AbrevDocumento" type="xs:string" />
+      <xs:attribute name="NumeroDocumento" type="xs:string" />
+      <xs:attribute name="DescCliente" type="xs:int" />
+      <xs:attribute name="Direccion" type="xs:string" />
+      <xs:attribute name="AbrevClasifica" type="xs:string" />
+      <xs:attribute name="DescMotivo" type="xs:string" />
+      <xs:attribute name="FechaAprobacion" type="xs:date" />
+      <xs:attribute name="LineaCredito" type="xs:decimal" />
+      <xs:attribute name="LineaCreditoUtilizada" type="xs:decimal" />
+      <xs:attribute name="LineaCreditoDisponible" type="xs:decimal" />
+      <xs:attribute name="NumeroDias" type="xs:int" />
+      <xs:attribute name="Garantia" type="xs:decimal" />
+      <xs:attribute name="Observacion" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

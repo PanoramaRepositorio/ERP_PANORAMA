@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reporteclientemayoristavendedor"
+    targetNamespace="http://tempuri.org/reporteclientemayoristavendedor.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reporteclientemayoristavendedor.xsd"
+    xmlns:mstns="http://tempuri.org/reporteclientemayoristavendedor.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reporteclientemayoristavendedor">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="DescCliente" type="xs:string" />
+      <xs:attribute name="Direccion" type="xs:string" />
+      <xs:attribute name="NomDpto" type="xs:string" />
+      <xs:attribute name="NomProv" type="xs:string" />
+      <xs:attribute name="NomDist" type="xs:string" />
+      <xs:attribute name="Telefono" type="xs:string" />
+      <xs:attribute name="Celular" type="xs:string" />
+      <xs:attribute name="OtroTelefono" type="xs:string" />
+      <xs:attribute name="Email" type="xs:string" />
+      <xs:attribute name="IdRuta" type="xs:int" />
+      <xs:attribute name="DescRuta" type="xs:string" />
+      <xs:attribute name="Categoria" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportekardexsalidas"
+    targetNamespace="http://tempuri.org/reportekardexsalidas.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportekardexsalidas.xsd"
+    xmlns:mstns="http://tempuri.org/reportekardexsalidas.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reportekardexsalidas">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="IdTienda" type="xs:int" />
+      <xs:attribute name="DescTienda" type="xs:string" />
+      <xs:attribute name="IdProducto" type="xs:int" />
+      <xs:attribute name="CodigoProveedor" type="xs:string" />
+      <xs:attribute name="NombreProducto" type="xs:string" />
+      <xs:attribute name="Abreviatura" type="xs:string" />
+      <xs:attribute name="DescLineaProducto" type="xs:string" />
+      <xs:attribute name="DescSubLinea" type="xs:string" />
+      <xs:attribute name="Cantidad" type="xs:int" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

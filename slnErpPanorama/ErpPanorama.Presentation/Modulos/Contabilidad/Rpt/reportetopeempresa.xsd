@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportetopeempresa"
+    targetNamespace="http://tempuri.org/reportetopeempresa.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportetopeempresa.xsd"
+    xmlns:mstns="http://tempuri.org/reportetopeempresa.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reportetopeempresa">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="RazonSocial" type="xs:string" />
+      <xs:attribute name="Tope" type="xs:decimal" />
+      <xs:attribute name="flagestado" type="xs:boolean" />      
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

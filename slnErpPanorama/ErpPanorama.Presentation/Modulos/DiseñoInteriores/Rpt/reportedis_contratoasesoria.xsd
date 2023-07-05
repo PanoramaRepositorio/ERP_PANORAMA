@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportedis_contratoasesoria"
+    targetNamespace="http://tempuri.org/reportedis_contratoasesoria.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportedis_contratoasesoria.xsd"
+    xmlns:mstns="http://tempuri.org/reportedis_contratoasesoria.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reportedis_contratoasesoria">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdDis_ContratoAsesoria" type="xs:int" />
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="RazonSocial" type="xs:string" />
+      <xs:attribute name="Descripcion" type="xs:string" />
+      <xs:attribute name="Titulo" type="xs:string" />
+      <xs:attribute name="CuerpoSustantivo" type="xs:string" />
+      <xs:attribute name="Procedimiento" type="xs:string" />
+      <xs:attribute name="PlazoCosto" type="xs:string" />
+      <xs:attribute name="Publicidad" type="xs:string" />
+      <xs:attribute name="Version" type="xs:string" />
+      <xs:attribute name="FlagEstado" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>  
+  
+</xs:schema>

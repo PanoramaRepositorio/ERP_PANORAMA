@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportecuentabanco"
+    targetNamespace="http://tempuri.org/reportecuentabanco.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportecuentabanco.xsd"
+    xmlns:mstns="http://tempuri.org/reportecuentabanco.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reportecuentabanco">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="IdCuentaBanco" type="xs:int" />
+      <xs:attribute name="IdBanco" type="xs:int" />
+      <xs:attribute name="DescBanco" type="xs:string" />
+      <xs:attribute name="RazonSocial" type="xs:string" />
+      <xs:attribute name="NumeroCuenta" type="xs:string" />
+      <xs:attribute name="IdMoneda" type="xs:int" />
+      <xs:attribute name="Moneda" type="xs:string" />
+      <xs:attribute name="FlagEstado" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

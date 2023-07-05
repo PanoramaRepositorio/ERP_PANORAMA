@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportepedidovendedorcarterametasueldo"
+    targetNamespace="http://tempuri.org/reportepedidovendedorcarterametasueldo.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportepedidovendedorcarterametasueldo.xsd"
+    xmlns:mstns="http://tempuri.org/reportepedidovendedorcarterametasueldo.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reportepedidovendedorcarterametasueldo">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="ApeNom" type="xs:string" />
+      <xs:attribute name="DescRuta" type="xs:string" />
+      <xs:attribute name="TotalSoles" type="xs:decimal" />
+      <xs:attribute name="TotalPiso" type="xs:decimal" />
+      <xs:attribute name="TotalPisoSinIGV" type="xs:decimal" />
+      <xs:attribute name="TotalCartera" type="xs:decimal" />
+      <xs:attribute name="TotalCarteraSinIGV" type="xs:decimal" />
+      <xs:attribute name="TotalCarteraPersona" type="xs:decimal" />
+      <xs:attribute name="TotalCarteraPersonaSinIGV" type="xs:decimal" />
+      <xs:attribute name="TotalSinMatch" type="xs:decimal" />
+      <xs:attribute name="TotalPisoAntes" type="xs:decimal" />
+      <xs:attribute name="TotalPisoAntesSinIGV" type="xs:decimal" />
+      <xs:attribute name="TotalCarteraAntes" type="xs:decimal" />
+      <xs:attribute name="TotalCarteraAntesSinIGV" type="xs:decimal" />
+      <xs:attribute name="TotalFinal" type="xs:decimal" />
+      <xs:attribute name="TotalFinalSinIGV" type="xs:decimal" />
+      <xs:attribute name="ComisionFinal" type="xs:decimal" />
+      <xs:attribute name="Meta" type="xs:decimal" />
+      <xs:attribute name="AlcanceMeta" type="xs:decimal" />
+      <xs:attribute name="SueldoBase" type="xs:decimal" />
+      <xs:attribute name="Comision" type="xs:decimal" />
+      <xs:attribute name="ComisionCliente" type="xs:decimal" />
+      <xs:attribute name="Prospecto" type="xs:decimal" />
+      <xs:attribute name="ComisionDM5" type="xs:decimal" />
+      <xs:attribute name="ComisionPiso" type="xs:decimal" />
+      <xs:attribute name="ComisionCartera" type="xs:decimal" />
+      <xs:attribute name="ComisionPersona" type="xs:decimal" />
+      <xs:attribute name="ComisionaPersonaAntes" type="xs:decimal" />
+      <xs:attribute name="ComisionMixtaAntes" type="xs:decimal" />
+      <xs:attribute name="SueldoBruto" type="xs:decimal" />
+      
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

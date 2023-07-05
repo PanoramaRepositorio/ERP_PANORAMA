@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportepedidovendedorjuniorsenior"
+    targetNamespace="http://tempuri.org/reportepedidovendedorjuniorsenior.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportepedidovendedorjuniorsenior.xsd"
+    xmlns:mstns="http://tempuri.org/reportepedidovendedorjuniorsenior.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reportepedidovendedorjuniorsenior">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdVendedor" type="xs:int" />
+      <xs:attribute name="ApeNom" type="xs:string" />
+      <xs:attribute name="TotalCliMin" type="xs:decimal" />
+      <xs:attribute name="TotalCliMay" type="xs:decimal" />
+      <xs:attribute name="TotalRusMin" type="xs:decimal" />
+      <xs:attribute name="TotalRusMay" type="xs:decimal" />
+      <xs:attribute name="TotalRus" type="xs:decimal" />
+      <xs:attribute name="TotalFacEsp" type="xs:decimal" />
+      <xs:attribute name="TotalNotaCre" type="xs:decimal" />
+      <xs:attribute name="CanRegCliente" type="xs:int" />
+      <xs:attribute name="CanVentaIntermediaria" type="xs:int" />
+      <xs:attribute name="Total" type="xs:decimal" />
+      <xs:attribute name="IdCargo" type="xs:int" />
+      <xs:attribute name="Cargo" type="xs:string" />
+      <xs:attribute name="IdTienda" type="xs:int" />
+      <xs:attribute name="DescTienda" type="xs:string" />
+      <xs:attribute name="Meta" type="xs:decimal" />
+      <xs:attribute name="TotalCliMinSIGV" type="xs:decimal" />
+      <xs:attribute name="TotalCliMaySIGV" type="xs:decimal" />
+      <xs:attribute name="TotalRusSIGV" type="xs:decimal" />
+      <xs:attribute name="TotalFacEspSIGV" type="xs:decimal" />
+      <xs:attribute name="TotalVentaNeta" type="xs:decimal" />
+      <xs:attribute name="TotalVenta" type="xs:decimal" />
+      <xs:attribute name="TotalVentaIncentivado" type="xs:decimal" />
+      <xs:attribute name="TotalCompraPerfecta" type="xs:decimal" />
+      <xs:attribute name="PorMeta" type="xs:decimal" />
+      <xs:attribute name="Basico" type="xs:decimal" />
+      <xs:attribute name="RusSueldo" type="xs:decimal" />
+      <!--<xs:attribute name="BonoVenta" type="xs:decimal" />-->
+      <xs:attribute name="BonoVentaIntermediaria" type="xs:decimal" />
+      <xs:attribute name="RegCliSueldo" type="xs:decimal" />
+      <xs:attribute name="BonoMeta" type="xs:decimal" />
+      <xs:attribute name="Sbruto" type="xs:decimal" />
+      <xs:attribute name="SubVencion" type="xs:decimal" />
+      <xs:attribute name="Promocion" type="xs:decimal" />
+      <xs:attribute name="Asesoria" type="xs:decimal" />
+      <xs:attribute name="ComisionVentaNeta" type="xs:decimal" />
+      <xs:attribute name="ComisionPromocion" type="xs:decimal" />
+      <xs:attribute name="ComisionAsesoria" type="xs:decimal" />
+     <xs:attribute name="ComisionIncentivado" type="xs:decimal" />
+      <xs:attribute name="ComisionCompraPerfecta" type="xs:decimal" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

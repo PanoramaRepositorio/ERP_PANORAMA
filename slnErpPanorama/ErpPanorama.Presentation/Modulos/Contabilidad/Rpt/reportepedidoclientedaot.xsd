@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportepedidoclientedaot"
+    targetNamespace="http://tempuri.org/reportepedidoclientedaot.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportepedidoclientedaot.xsd"
+    xmlns:mstns="http://tempuri.org/reportepedidoclientedaot.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reportepedidoclientedaot">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="NumeroDocumento" type="xs:string" />
+      <xs:attribute name="DescCliente" type="xs:string" />
+      <xs:attribute name="TotalSoles" type="xs:decimal" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

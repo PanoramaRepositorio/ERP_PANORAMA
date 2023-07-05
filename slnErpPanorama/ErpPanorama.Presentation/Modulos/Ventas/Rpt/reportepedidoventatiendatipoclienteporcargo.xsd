@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportepedidoventatiendatipoclienteporcargo"
+    targetNamespace="http://tempuri.org/reportepedidoventatiendatipoclienteporcargo.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportepedidoventatiendatipoclienteporcargo.xsd"
+    xmlns:mstns="http://tempuri.org/reportepedidoventatiendatipoclienteporcargo.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name="reportepedidoventatiendatipoclienteporcargo">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="Fecha" type="xs:dateTime" />
+      <xs:attribute name="DescTienda" type="xs:string" />
+      <xs:attribute name="DescVendedor" type="xs:decimal" />
+      <xs:attribute name="DescCargo" type="xs:decimal" />
+      <xs:attribute name="ClienteFinal" type="xs:decimal" />
+      <xs:attribute name="ClienteMayorista" type="xs:decimal" />
+      <xs:attribute name="CantidadClienteFinal" type="xs:decimal" />
+      <xs:attribute name="CantidadClienteMayorista" type="xs:decimal" />
+      <xs:attribute name="CuotaDiario" type="xs:decimal" />
+      <xs:attribute name="CuotaMensual" type="xs:decimal" />
+      <xs:attribute name="CantidadPorCargo" type="xs:int" />
+      
+      <xs:attribute name="Porcentaje" type="xs:decimal" />
+      <xs:attribute name="Total" type="xs:decimal" />
+      <xs:attribute name="Diferencia" type="xs:decimal" />
+      
+      </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

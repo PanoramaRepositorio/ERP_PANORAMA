@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportehoraextra"
+    targetNamespace="http://tempuri.org/reporteComisionJP.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reporteComisionJP.xsd"
+    xmlns:mstns="http://tempuri.org/reporteComisionJP.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reporteComisionJP">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="Dni" type="xs:string" />
+      <xs:attribute name="ApeNom" type="xs:string" />
+      <xs:attribute name="Cargo" type="xs:string" />
+      <xs:attribute name="Sueldo" type="xs:decimal" />
+      <xs:attribute name="ValorVenta005" type="xs:decimal" />
+      <xs:attribute name="ValorVenta0015" type="xs:decimal" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportedis_disenofuncional"
+    targetNamespace="http://tempuri.org/reportedis_disenofuncional.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportedis_disenofuncional.xsd"
+    xmlns:mstns="http://tempuri.org/reportedis_disenofuncional.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reportedis_disenofuncional">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdDis_DisenoFuncional" type="xs:int" />
+      <xs:attribute name="IdDis_ProyectoServicio" type="xs:int" />
+      <xs:attribute name="IdDis_Ambiente" type="xs:int" />
+      <xs:attribute name="DescDis_Ambiente" type="xs:string" />
+      <xs:attribute name="DescActividad" type="xs:string" />
+      <xs:attribute name="IdDis_Pieza" type="xs:int" />
+      <xs:attribute name="DescDis_Pieza" type="xs:string" />
+      <xs:attribute name="Cantidad" type="xs:int" />
+      <xs:attribute name="IdMaterial" type="xs:int" />
+      <xs:attribute name="DescMaterial" type="xs:string" />
+      <xs:attribute name="IdDis_Estilo" type="xs:int" />
+      <xs:attribute name="DescDis_Estilo" type="xs:string" />
+      <xs:attribute name="IdDis_Forma" type="xs:int" />
+      <xs:attribute name="DescDis_Forma" type="xs:string" />
+      <xs:attribute name="DescVolumen" type="xs:string" />
+      <xs:attribute name="DescTextura" type="xs:string" />
+      <xs:attribute name="Observacion" type="xs:string" />
+      <xs:attribute name="FlagEstado" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+
+
+</xs:schema>

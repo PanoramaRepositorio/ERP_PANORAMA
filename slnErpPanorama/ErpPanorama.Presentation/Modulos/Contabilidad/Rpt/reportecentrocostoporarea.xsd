@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportecentrocostoporarea"
+    targetNamespace="http://tempuri.org/reportecentrocostoporarea.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportecentrocostoporarea.xsd"
+    xmlns:mstns="http://tempuri.org/reportecentrocostoporarea.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name="reportecentrocostoporarea">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="CodGrupo" type="xs:string" />
+      <xs:attribute name="DescGrupo" type="xs:string" />
+      <xs:attribute name="CodCentroCosto" type="xs:string" />
+      <xs:attribute name="DescCentroCosto" type="xs:string" />
+      <xs:attribute name="CodCuenta" type="xs:string" />
+      <xs:attribute name="DescCuenta" type="xs:string" />
+      <xs:attribute name="DebeUS" type="xs:string" />
+      <xs:attribute name="HaberUS" type="xs:string" />
+      <xs:attribute name="DebeMN" type="xs:string" />
+      <xs:attribute name="HaberMN" type="xs:string" />
+      <xs:attribute name="Mes" type="xs:string" />
+      <xs:attribute name="NombreMes" type="xs:string" />
+      <xs:attribute name="Periodo" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

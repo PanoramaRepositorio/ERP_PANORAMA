@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportecumpleanios"
+    targetNamespace="http://tempuri.org/reportecumpleanios.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportecumpleanios.xsd"
+    xmlns:mstns="http://tempuri.org/reportecumpleanios.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reportecumpleanios">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="RazonSocial" type="xs:string" />
+      <xs:attribute name="ApeNom" type="xs:string" />
+      <xs:attribute name="FechaNac" type="xs:date" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportepedidorutames"
+    targetNamespace="http://tempuri.org/reportepedidorutames.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportepedidorutames.xsd"
+    xmlns:mstns="http://tempuri.org/reportepedidorutames.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  
+  <xs:element name="reportepedidorutames">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="Periodo" type="xs:int" />
+      <xs:attribute name="Mes" type="xs:string" />
+      <xs:attribute name="Ruta10" type="xs:decimal" />
+      <xs:attribute name="Ruta20" type="xs:decimal" />
+      <xs:attribute name="Ruta30" type="xs:decimal" />
+      <xs:attribute name="Ruta40" type="xs:decimal" />
+      <xs:attribute name="Ruta50" type="xs:decimal" />
+      <xs:attribute name="Ruta60" type="xs:decimal" />
+      <xs:attribute name="Ruta70" type="xs:decimal" />
+      <xs:attribute name="Ruta80" type="xs:decimal" />
+      <xs:attribute name="Ruta90" type="xs:decimal" />
+      <xs:attribute name="Ruta100" type="xs:decimal" />
+      <xs:attribute name="Total" type="xs:decimal" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

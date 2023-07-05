@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reporteSueldoJefeCartera"
+    targetNamespace="http://tempuri.org/reporteSueldoJefeCartera.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reporteSueldoJefeCartera.xsd"
+    xmlns:mstns="http://tempuri.org/reporteSueldoJefeCartera.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reporteSueldoJefeCartera">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="DescTienda" type="xs:string" />
+      <xs:attribute name="DescVendedor" type="xs:string" />
+      <xs:attribute name="Cargo" type="xs:string" />
+      <xs:attribute name="Meta" type="xs:decimal" />
+      <xs:attribute name="Cliente_Mayorista" type="xs:decimal" />
+      <xs:attribute name="VentaTotalPagada" type="xs:decimal" />
+      <xs:attribute name="BonificacionBasica" type="xs:decimal" />
+      <xs:attribute name="PorcBonificacionBasica" type="xs:decimal" />
+      <xs:attribute name="ExtraBonificacion" type="xs:decimal" />
+      <xs:attribute name="CantidadExtra" type="xs:int" />
+      <xs:attribute name="TotalNC" type="xs:decimal" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

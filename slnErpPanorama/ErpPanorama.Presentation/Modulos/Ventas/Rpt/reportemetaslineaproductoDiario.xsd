@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportemetaslineaproductoDiario"
+    targetNamespace="http://tempuri.org/reportemetaslineaproductoDiario.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportemetaslineaproductoDiario.xsd"
+    xmlns:mstns="http://tempuri.org/reportemetaslineaproductoDiario.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reportemetaslineaproductoDiario">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="Item" type="xs:int" />
+      <xs:attribute name="Dia" type="xs:int" />
+      <xs:attribute name="DescMes" type="xs:string" />
+      <xs:attribute name="DescLineaProducto" type="xs:string" />
+      <xs:attribute name="DescVendedor" type="xs:string" />
+      <xs:attribute name="ImporteMeta" type="xs:decimal" />
+      <xs:attribute name="TotalSoles" type="xs:decimal" />
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

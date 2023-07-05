@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reporteempresa"
+    targetNamespace="http://tempuri.org/reporteempresa.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reporteempresa.xsd"
+    xmlns:mstns="http://tempuri.org/reporteempresa.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reporteempresa">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="CodEmpresa" type="xs:string" />
+      <xs:attribute name="IdNivel" type="xs:int" />
+      <xs:attribute name="IdRegimenTributario" type="xs:int" />
+      <xs:attribute name="Ruc" type="xs:string" />
+      <xs:attribute name="RazonSocial" type="xs:string" />
+      <xs:attribute name="Direccion" type="xs:string" />
+      <xs:attribute name="Telefono" type="xs:string" />
+      <xs:attribute name="DescNivel" type="xs:string" />
+      <xs:attribute name="RegimenTributario" type="xs:string" />
+      <xs:attribute name="FlagEstado" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

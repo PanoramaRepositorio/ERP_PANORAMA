@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportelineaproducto"
+    targetNamespace="http://tempuri.org/reportelineaproducto.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportelineaproducto.xsd"
+    xmlns:mstns="http://tempuri.org/reportelineaproducto.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reportelineaproducto">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdLineaProducto" type="xs:int" />
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="DescLineaProducto" type="xs:string" />
+      <xs:attribute name="FlagEstado" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

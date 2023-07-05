@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportecreditoporcobrar"
+    targetNamespace="http://tempuri.org/reportecreditoporcobrar.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportecreditoporcobrar.xsd"
+    xmlns:mstns="http://tempuri.org/reportecreditoporcobrar.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reportecreditoporcobrar">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdCliente" type="xs:int" />
+      <xs:attribute name="NumeroDocumento" type="xs:string" />
+      <xs:attribute name="DescCliente" type="xs:string" />
+      <xs:attribute name="DescRuta" type="xs:string" />
+      <xs:attribute name="Importe" type="xs:decimal" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

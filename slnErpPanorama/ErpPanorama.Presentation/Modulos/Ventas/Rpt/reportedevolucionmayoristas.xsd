@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportedevolucionmayoristas"
+    targetNamespace="http://tempuri.org/reportedevolucionmayoristas.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportedevolucionmayoristas.xsd"
+    xmlns:mstns="http://tempuri.org/reportedevolucionmayoristas.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reportedevolucionmayoristas">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdCambio" type="xs:int" />
+      <xs:attribute name="NumeroPedido" type="xs:string" />
+      <xs:attribute name="NumeroDocumentoVenta" type="xs:string" />
+      <xs:attribute name="FechaVenta" type="xs:date" />
+      <xs:attribute name="DescCliente" type="xs:string" />
+      <xs:attribute name="NumeroDevolucion" type="xs:string" />
+      <xs:attribute name="FechaDevolucion" type="xs:date" />
+      <xs:attribute name="CodMoneda" type="xs:string" />
+      <xs:attribute name="Total" type="xs:decimal"/>
+      <xs:attribute name="DescVendedor" type="xs:string" />
+      <xs:attribute name="DescRuta" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reporteproductividadoperadorV"
+    targetNamespace="http://tempuri.org/reporteproductividadoperadorV.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reporteproductividadoperadorV.xsd"
+    xmlns:mstns="http://tempuri.org/reporteproductividadoperadorV.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reporteproductividadoperadorV">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="NumeroPedido" type="xs:string" />
+      <xs:attribute name="Items" type="xs:int" />
+      <xs:attribute name="TotalCantidad" type="xs:int" />
+      <xs:attribute name="FechaInicio" type="xs:date" />
+      <xs:attribute name="Tiempo" type="xs:string" />
+      <xs:attribute name="DescPersona" type="xs:string" />
+      <xs:attribute name="Tipo" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

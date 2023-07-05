@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportepedidovendedorcarterametadetalle"
+    targetNamespace="http://tempuri.org/reportepedidovendedorcarterametadetalle.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportepedidovendedorcarterametadetalle.xsd"
+    xmlns:mstns="http://tempuri.org/reportepedidovendedorcarterametadetalle.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name="reportepedidovendedorcarterametadetalle">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="ApeNom" type="xs:string" />
+      <xs:attribute name="DescRuta" type="xs:string" />
+      <xs:attribute name="Numero" type="xs:string" />
+      <xs:attribute name="DescCliente" type="xs:string" />
+      <xs:attribute name="DescFormaPago" type="xs:string" />
+      <xs:attribute name="FechaPedido" type="xs:dateTime"/>
+      <xs:attribute name="CodMoneda" type="xs:string" />
+      <xs:attribute name="Total" type="xs:decimal" />
+      <xs:attribute name="FechaFacturacion" type="xs:dateTime"/>
+      <xs:attribute name="TotalSoles" type="xs:decimal" />
+    </xs:complexType>
+  </xs:element>  
+  
+</xs:schema>

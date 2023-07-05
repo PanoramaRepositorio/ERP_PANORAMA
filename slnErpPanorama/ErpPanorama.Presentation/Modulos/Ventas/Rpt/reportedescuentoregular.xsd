@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportedescuentoregular"
+    targetNamespace="http://tempuri.org/reportedescuentoregular.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportedescuentoregular.xsd"
+    xmlns:mstns="http://tempuri.org/reportedescuentoregular.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reportedescuentoregular">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="IdDescuentoRegular" type="xs:int" />
+      <xs:attribute name="IdCampana" type="xs:int" />
+      <xs:attribute name="DescCampana" type="xs:string" />
+      <xs:attribute name="IdTipoCliente" type="xs:int" />
+      <xs:attribute name="TipoCliente" type="xs:string" />
+      <xs:attribute name="IdFormaPago" type="xs:int" />
+      <xs:attribute name="FormaPago" type="xs:string" />
+      <xs:attribute name="MontoInicio" type="xs:string" />
+      <xs:attribute name="MontoFin" type="xs:string" />
+      <xs:attribute name="Descuento" type="xs:string" />
+      <xs:attribute name="FlagEstado" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

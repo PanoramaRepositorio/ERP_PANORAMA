@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reporteubicacionproducto"
+    targetNamespace="http://tempuri.org/reporteubicacionproducto.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reporteubicacionproducto.xsd"
+    xmlns:mstns="http://tempuri.org/reporteubicacionproducto.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reporteubicacionproducto">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="IdUbicacionProducto" type="xs:int" />
+      <xs:attribute name="DescUbicacion" type="xs:string" />
+      <xs:attribute name="IdAlmacen" type="xs:int" />
+      <xs:attribute name="DescAlmacen" type="xs:string" />
+      <xs:attribute name="IdProducto" type="xs:int" />
+      <xs:attribute name="CodigoProveedor" type="xs:string" />
+      <xs:attribute name="NombreProducto" type="xs:string" />
+      <xs:attribute name="Abreviatura" type="xs:string" />
+      <xs:attribute name="FlagEstado" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

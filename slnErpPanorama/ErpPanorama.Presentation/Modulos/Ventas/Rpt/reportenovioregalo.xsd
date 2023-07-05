@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportenovioregalo"
+    targetNamespace="http://tempuri.org/reportenovioregalo.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportenovioregalo.xsd"
+    xmlns:mstns="http://tempuri.org/reportenovioregalo.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reportenovioregalo">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="RazonSocial" type="xs:string" />
+      <xs:attribute name="DescTienda" type="xs:string" />
+      <xs:attribute name="CodigoNovio" type="xs:string" />
+      <xs:attribute name="Fecha" type="xs:dateTime" />
+      <xs:attribute name="DniNovio" type="xs:string" />
+      <xs:attribute name="DescNovio" type="xs:string" />
+      <xs:attribute name="DniNovia" type="xs:string" />
+      <xs:attribute name="DescNovia" type="xs:string" />
+      <xs:attribute name="Telefono" type="xs:string" />
+      <xs:attribute name="Celular" type="xs:string" />
+      <xs:attribute name="Email" type="xs:string" />
+      <xs:attribute name="Email2" type="xs:string" />
+      <xs:attribute name="Direccion" type="xs:string" />
+      <xs:attribute name="FechaBoda" type="xs:dateTime" />
+      <xs:attribute name="DescAsesor" type="xs:string" />
+      <xs:attribute name="DescVendedor" type="xs:string" />
+      <xs:attribute name="Observacion" type="xs:string" />
+      <xs:attribute name="Item" type="xs:string" />
+      <xs:attribute name="IdProducto" type="xs:int" />
+      <xs:attribute name="CodigoProveedor" type="xs:string" />
+      <xs:attribute name="NombreProducto" type="xs:string" />
+      <xs:attribute name="Abreviatura" type="xs:string" />
+      <xs:attribute name="Cantidad" type="xs:int" />
+      <xs:attribute name="PrecioUnitario" type="xs:decimal" />
+      <xs:attribute name="PorcentajeDescuento" type="xs:decimal" />
+      <xs:attribute name="Descuento" type="xs:decimal" />
+      <xs:attribute name="PrecioVenta" type="xs:decimal" />
+      <xs:attribute name="ValorVenta" type="xs:decimal" />
+      <xs:attribute name="ObservacionDetalle" type="xs:string" />
+      <xs:attribute name="Comprado" type="xs:string" />
+      <xs:attribute name="FlagComprado" type="xs:boolean" />
+      <xs:attribute name="FlagEstado" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

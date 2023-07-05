@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportecambio"
+    targetNamespace="http://tempuri.org/reportecambio.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportecambio.xsd"
+    xmlns:mstns="http://tempuri.org/reportecambio.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reportecambio">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="RazonSocial" type="xs:string" />
+      <xs:attribute name="DescTienda" type="xs:string" />
+      <xs:attribute name="Periodo" type="xs:int" />
+      <xs:attribute name="Numero" type="xs:string" />
+      <xs:attribute name="Fecha" type="xs:date" />
+      <xs:attribute name="DescTipoCambio" type="xs:string" />
+      <xs:attribute name="NumeroPedido" type="xs:string" />
+      <xs:attribute name="NumeroDocumentoVenta" type="xs:string" />
+      <xs:attribute name="FechaVenta" type="xs:date" />
+      <xs:attribute name="CodMoneda" type="xs:string" />
+      <xs:attribute name="Total" type="xs:decimal" />
+      <xs:attribute name="NumeroCliente" type="xs:string" />
+      <xs:attribute name="DescCliente" type="xs:string" />
+      <xs:attribute name="DescSupervisor" type="xs:string" />
+      <xs:attribute name="DescMotivo" type="xs:string" />
+      <xs:attribute name="Observacion" type="xs:string" />
+      <xs:attribute name="NumeroNotaCredito" type="xs:string" />
+      <xs:attribute name="CodigoProveedor" type="xs:string" />
+      <xs:attribute name="NombreProducto" type="xs:string" />
+      <xs:attribute name="Abreviatura" type="xs:string" />
+      <xs:attribute name="Cantidad" type="xs:int" />
+      <xs:attribute name="ValorVenta" type="xs:decimal" />
+      <xs:attribute name="TipoCambio" type="xs:decimal" />
+      <xs:attribute name="ValorVentaSoles" type="xs:decimal" />
+      <xs:attribute name="ValorVentaDolares" type="xs:decimal" />
+      <xs:attribute name="TotalDolares" type="xs:decimal" />
+      <xs:attribute name="ObservacionDetalle" type="xs:string" />
+		<xs:attribute name="FlagCumpleanios" type="xs:boolean" />
+		<xs:attribute name="TotalDscCumpleanios" type="xs:decimal" />
+	</xs:complexType>
+  </xs:element>
+  
+</xs:schema>

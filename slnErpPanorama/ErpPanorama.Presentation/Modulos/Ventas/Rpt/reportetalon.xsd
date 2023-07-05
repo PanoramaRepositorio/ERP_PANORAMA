@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="rptTalon"
+    targetNamespace="http://tempuri.org/rptTalon.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/rptTalon.xsd"
+    xmlns:mstns="http://tempuri.org/rptTalon.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reportetalon">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="IdTalon" type="xs:int" />
+      <xs:attribute name="IdCaja" type="xs:int" />
+      <xs:attribute name="DesCaja" type="xs:string" />
+      <xs:attribute name="IdTienda" type="xs:int" />
+      <xs:attribute name="DescTienda" type="xs:string" />
+      <xs:attribute name="IdTipoDocumento" type="xs:int" />
+      <xs:attribute name="CodTipoDocumento" type="xs:string" />
+      <xs:attribute name="IdTipoFormato" type="xs:int" />
+      <xs:attribute name="DescTipoFormato" type="xs:string" />
+      <xs:attribute name="NumeroSerie" type="xs:string" />
+      <xs:attribute name="NumeroAutoriza" type="xs:string" />
+      <xs:attribute name="SerieImpresora" type="xs:string" />
+      <xs:attribute name="FlagEstado" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+  
+  
+</xs:schema>

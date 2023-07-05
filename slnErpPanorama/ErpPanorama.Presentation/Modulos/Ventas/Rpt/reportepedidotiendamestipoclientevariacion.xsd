@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportepedidotiendamestipoclientevariacion"
+    targetNamespace="http://tempuri.org/reportepedidotiendamestipoclientevariacion.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportepedidotiendamestipoclientevariacion.xsd"
+    xmlns:mstns="http://tempuri.org/reportepedidotiendamestipoclientevariacion.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reportepedidotiendamestipoclientevariacion">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="DescTienda" type="xs:string" />
+      <xs:attribute name="DescTipoCliente" type="xs:string" />
+      <xs:attribute name="DescTiendaAnterior" type="xs:string" />
+      <xs:attribute name="PeriodoAnterior" type="xs:decimal" />
+      <xs:attribute name="PeriodoActual" type="xs:decimal" />
+      <xs:attribute name="VariacionRelativa" type="xs:decimal" />
+      <xs:attribute name="VariacionPorcentual" type="xs:decimal" />
+      <xs:attribute name="Meta" type="xs:decimal" />
+      <xs:attribute name="VariacionRelativaMeta" type="xs:decimal" />
+      <xs:attribute name="VariacionPorcentualMeta" type="xs:decimal" />
+      <xs:attribute name="PorcentajeCrecimiento" type="xs:decimal" />
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

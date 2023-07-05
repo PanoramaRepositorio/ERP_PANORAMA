@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportedis_proyectoservicio"
+    targetNamespace="http://tempuri.org/reportedis_proyectoservicio.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportedis_proyectoservicio.xsd"
+    xmlns:mstns="http://tempuri.org/reportedis_proyectoservicio.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reportedis_proyectoservicio">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdDis_ProyectoServicio" type="xs:int" />
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="Periodo" type="xs:int" />
+      <xs:attribute name="Numero" type="xs:int" />
+      <xs:attribute name="Fecha" type="xs:date" />
+      <xs:attribute name="FechaVencimiento" type="xs:date" />
+      <xs:attribute name="IdCliente" type="xs:int" />
+      <xs:attribute name="NumeroDocumento" type="xs:string" />
+      <xs:attribute name="DescCliente" type="xs:string" />
+      <xs:attribute name="Direccion" type="xs:string" />
+      <xs:attribute name="IdAsesor" type="xs:int" />
+      <xs:attribute name="DescAsesor" type="xs:string" />
+      <xs:attribute name="IdMoneda" type="xs:int" />
+      <xs:attribute name="DescMoneda" type="xs:string" />
+      <xs:attribute name="TipoCambio" type="xs:decimal" />
+      <xs:attribute name="Importe" type="xs:decimal" />
+      <xs:attribute name="RutaArchivo" type="xs:string" />
+      <xs:attribute name="Observacion" type="xs:string" />
+      <xs:attribute name="IdSituacion" type="xs:int" />
+      <xs:attribute name="DescSituacion" type="xs:string" />
+      <xs:attribute name="DescTipoCasa" type="xs:string" />
+      <xs:attribute name="DescAmbiente" type="xs:string" />
+      <xs:attribute name="Objetivos" type="xs:string" />
+      <xs:attribute name="Iluminacion" type="xs:string" />
+      <xs:attribute name="Acustica" type="xs:string" />
+      <xs:attribute name="Area" type="xs:string" />
+      <xs:attribute name="IdDis_Forma" type="xs:int" />
+      <xs:attribute name="DescDis_Forma" type="xs:string" />
+      <xs:attribute name="IdDis_Estilo" type="xs:int" />
+      <xs:attribute name="DescDis_Estilo" type="xs:string" />
+      <xs:attribute name="FlagEstado" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

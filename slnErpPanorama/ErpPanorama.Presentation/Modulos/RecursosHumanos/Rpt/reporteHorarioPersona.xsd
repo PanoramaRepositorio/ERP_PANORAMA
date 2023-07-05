@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reporteHorarioPersona"
+    targetNamespace="http://tempuri.org/reporteHorarioPersona.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reporteHorarioPersona.xsd"
+    xmlns:mstns="http://tempuri.org/reporteHorarioPersona.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name="reportehorariopersona">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdPersona" type="xs:int" />
+      <xs:attribute name="ApeNom" type="xs:string" />
+      <xs:attribute name="DiaSemanaName" type="xs:string" />
+      <xs:attribute name="Fecha" type="xs:date" />
+      <xs:attribute name="FechaIngreso" type="xs:string" />
+      <xs:attribute name="FechaSalidaRef" type="xs:string" />
+      <xs:attribute name="FechaIngresoRef" type="xs:string" />
+      <xs:attribute name="FechaSalida" type="xs:string" />
+      <xs:attribute name="TotalHorasRef" type="xs:decimal" />
+      <xs:attribute name="TotalHorasTrab" type="xs:decimal" />
+      <xs:attribute name="Observacion" type="xs:string" />
+      <xs:attribute name="DescTurno" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportesolicitudprestamoresumen"
+    targetNamespace="http://tempuri.org/reportesolicitudprestamoresumen.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportesolicitudprestamoresumen.xsd"
+    xmlns:mstns="http://tempuri.org/reportesolicitudprestamoresumen.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reportesolicitudprestamoresumen">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="Dni" type="xs:string" />
+      <xs:attribute name="DescPersona" type="xs:string" />
+      <xs:attribute name="ImportePrestamo" type="xs:decimal" />
+      <xs:attribute name="Concepto" type="xs:string" />
+      <xs:attribute name="Capital" type="xs:decimal" />
+      <xs:attribute name="Interes" type="xs:decimal" />
+      <xs:attribute name="Importe" type="xs:decimal" />
+    </xs:complexType>
+  </xs:element>
+
+
+</xs:schema>

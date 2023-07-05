@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reporteclienteminorista"
+    targetNamespace="http://tempuri.org/reporteclienteminorista.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reporteclienteminorista.xsd"
+    xmlns:mstns="http://tempuri.org/reporteclienteminorista.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reporteclienteminorista">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdCliente" type="xs:int" />
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="IdTipoDocumento" type="xs:int" />
+      <xs:attribute name="NumeroDocumento" type="xs:string" />
+      <xs:attribute name="DescCliente" type="xs:string" />
+      <xs:attribute name="IdTipoDireccion" type="xs:int" />
+      <xs:attribute name="Direccion" type="xs:string" />
+      <xs:attribute name="NumDireccion" type="xs:string" />
+      <xs:attribute name="Urbanizacion" type="xs:string" />
+      <xs:attribute name="IdUbigeoDom" type="xs:string" />
+      <xs:attribute name="Telefono" type="xs:string" />
+      <xs:attribute name="Celular" type="xs:string" />
+      <xs:attribute name="OtroTelefono" type="xs:string" />
+      <xs:attribute name="Email" type="xs:string" />
+      <xs:attribute name="FechaNac" type="xs:date" />
+      <xs:attribute name="FechaAniv" type="xs:date" />
+      <xs:attribute name="NomDist" type="xs:string" />
+      <xs:attribute name="FlagEstado" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

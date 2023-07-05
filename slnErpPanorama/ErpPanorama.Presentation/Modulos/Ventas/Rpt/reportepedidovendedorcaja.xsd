@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportepedidovendedorcaja"
+    targetNamespace="http://tempuri.org/reportepedidovendedorcaja.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportepedidovendedorcaja.xsd"
+    xmlns:mstns="http://tempuri.org/reportepedidovendedorcaja.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  
+  <xs:element name="reportepedidovendedorcaja">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdVendedor" type="xs:int" />
+      <xs:attribute name="ApeNom" type="xs:string" />
+      <xs:attribute name="CanRegCliente" type="xs:int" />
+      <xs:attribute name="IdCargo" type="xs:int" />
+      <xs:attribute name="Cargo" type="xs:string" />
+      <xs:attribute name="IdTienda" type="xs:int" />
+      <xs:attribute name="DescTienda" type="xs:string" />
+      <xs:attribute name="TotalVenta" type="xs:decimal" />
+      <xs:attribute name="TotalVentaSinIGV" type="xs:decimal" />
+      <xs:attribute name="TotalRus" type="xs:decimal" />
+      <xs:attribute name="TotalRusSinIGV" type="xs:decimal" />
+      <xs:attribute name="TotalRusOtros" type="xs:decimal" />
+      <xs:attribute name="TotalRusOtrosSinIGV" type="xs:decimal" />
+      <xs:attribute name="Meta" type="xs:decimal" />
+      <xs:attribute name="AlcanceMeta" type="xs:decimal" />
+      <xs:attribute name="Basico" type="xs:decimal" />
+      <xs:attribute name="ComisionRegCliente" type="xs:decimal" />
+      <xs:attribute name="ComisionVenta" type="xs:decimal" />
+      <xs:attribute name="ComisionRus" type="xs:decimal" />
+      <xs:attribute name="ComisionRusOtros" type="xs:decimal" />
+      <xs:attribute name="BonoMeta" type="xs:decimal" />
+      <xs:attribute name="Sueldo" type="xs:decimal" />
+    </xs:complexType>
+  </xs:element>
+    
+  
+</xs:schema>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reporteprocedencia"
+    targetNamespace="http://tempuri.org/reporteprocedencia.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reporteprocedencia.xsd"
+    xmlns:mstns="http://tempuri.org/reporteprocedencia.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reporteprocedencia">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdProcedencia" type="xs:int" />
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="DescProcedencia" type="xs:string" />
+      <xs:attribute name="FlagEstado" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

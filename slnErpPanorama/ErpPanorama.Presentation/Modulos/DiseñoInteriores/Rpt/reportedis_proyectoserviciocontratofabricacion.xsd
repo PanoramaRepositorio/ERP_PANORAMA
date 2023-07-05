@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportedis_proyectoserviciocontratofabricacion"
+    targetNamespace="http://tempuri.org/reportedis_proyectoserviciocontratofabricacion.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportedis_proyectoserviciocontratofabricacion.xsd"
+    xmlns:mstns="http://tempuri.org/reportedis_proyectoserviciocontratofabricacion.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reportedis_proyectoserviciocontratofabricacion">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdDis_ContratoFabricacion" type="xs:int" />
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="Periodo" type="xs:int" />
+      <xs:attribute name="Numero" type="xs:int" />
+      <xs:attribute name="Fecha" type="xs:date" />
+      <xs:attribute name="NumeroDocumento" type="xs:string" />
+      <xs:attribute name="DescCliente" type="xs:string" />
+      <xs:attribute name="Direccion" type="xs:string" />
+      <xs:attribute name="Referencia" type="xs:string" />
+      <xs:attribute name="Email" type="xs:string" />
+      <xs:attribute name="Telefono" type="xs:string" />
+      <xs:attribute name="DniVendedor" type="xs:string" />
+      <xs:attribute name="DescVendedor" type="xs:string" />
+      <xs:attribute name="FechaEntrega" type="xs:date" />
+      <xs:attribute name="NumeroProyecto" type="xs:string" />
+      <xs:attribute name="RazonSocial" type="xs:string" />
+      <xs:attribute name="Ruc" type="xs:string" />
+
+      <xs:attribute name="IdProducto" type="xs:int" />
+      <xs:attribute name="CodigoProveedor" type="xs:string" />
+      <xs:attribute name="NombreProducto" type="xs:string" />
+      <xs:attribute name="Abreviatura" type="xs:string" />
+      <xs:attribute name="Modelo" type="xs:string" />
+      <xs:attribute name="Medida" type="xs:string" />
+      <xs:attribute name="Material" type="xs:string" />
+      <xs:attribute name="Cantidad" type="xs:string" />
+      <xs:attribute name="Precio" type="xs:decimal"/>
+      <xs:attribute name="ValorVenta" type="xs:decimal" />
+      <xs:attribute name="Imagen" type="xs:base64Binary" />
+      <xs:attribute name="FlagModificado" type="xs:boolean" />
+      <xs:attribute name="Observacion" type="xs:string" />
+      <xs:attribute name="FlagEstado" type="xs:boolean" />
+      <xs:attribute name="Tienda" type="xs:string" />
+
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

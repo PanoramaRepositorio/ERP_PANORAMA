@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportebulto"
+    targetNamespace="http://tempuri.org/reportebulto.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportebulto.xsd"
+    xmlns:mstns="http://tempuri.org/reportebulto.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reportebulto">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="IdBulto" type="xs:int" />
+      <xs:attribute name="NumeroBulto" type="xs:string" />
+      <xs:attribute name="Periodo" type="xs:int" />
+      <xs:attribute name="IdAlmacen" type="xs:int" />
+      <xs:attribute name="DescAlmacen" type="xs:string" />
+      <xs:attribute name="IdSector" type="xs:int" />
+      <xs:attribute name="DescSector" type="xs:string" />
+      <xs:attribute name="IdBloque" type="xs:int" />
+      <xs:attribute name="DescBloque" type="xs:string" />
+      <xs:attribute name="IdProducto" type="xs:int" />
+      <xs:attribute name="NombreProducto" type="xs:string" />
+      <xs:attribute name="IdFacturaCompra" type="xs:int" />
+      <xs:attribute name="PrecioUnitario" type="xs:decimal" />
+      <xs:attribute name="Cantidad" type="xs:int" />
+      <xs:attribute name="CostoUnitario" type="xs:decimal" />
+      <xs:attribute name="FechaIngreso" type="xs:string" />
+      <xs:attribute name="IdSituacion" type="xs:int" />
+      <xs:attribute name="Situacion" type="xs:string" />
+      <xs:attribute name="IdKardexBulto" type="xs:int" />
+      <xs:attribute name="CodigoProveedor" type="xs:string" />
+      <xs:attribute name="Abreviatura" type="xs:string" />
+      <xs:attribute name="IdTipoDocumento" type="xs:int" />
+      <xs:attribute name="NumeroDocumento" type="xs:string" />
+      <xs:attribute name="FlagTransferencia" type="xs:boolean" />
+      <xs:attribute name="FlagEstado" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reporteruta"
+    targetNamespace="http://tempuri.org/reporteruta.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reporteruta.xsd"
+    xmlns:mstns="http://tempuri.org/reporteruta.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reporteruta">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="IdRuta" type="xs:int" />
+      <xs:attribute name="DescRuta" type="xs:string" />
+      <xs:attribute name="IdUbigeo" type="xs:int" />
+      <xs:attribute name="NomDpto" type="xs:string" />
+      <xs:attribute name="NomProv" type="xs:string" />
+      <xs:attribute name="NomDist" type="xs:string" />
+      <xs:attribute name="Dia" type="xs:string" />
+      <xs:attribute name="FlagEstado" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

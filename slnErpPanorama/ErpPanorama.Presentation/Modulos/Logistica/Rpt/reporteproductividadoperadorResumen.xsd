@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reporteproductividadoperadorResumen"
+    targetNamespace="http://tempuri.org/reporteproductividadoperadorResumen.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reporteproductividadoperadorResumen.xsd"
+    xmlns:mstns="http://tempuri.org/reporteproductividadoperadorResumen.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reporteproductividadoperadorResumen">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdPersona" type="xs:int" />
+      <xs:attribute name="ApeNom" type="xs:string" />
+      <xs:attribute name="Tipo" type="xs:string" />
+      <xs:attribute name="CantidadPedidoPicking" type="xs:decimal" />
+      <xs:attribute name="CantidadPedidoChequeo" type="xs:decimal" />
+      <xs:attribute name="CantidadPedidoEmbalaje" type="xs:decimal" />
+      <xs:attribute name="PromedioItemsPicking" type="xs:decimal" />
+      <xs:attribute name="PromedioItemsChequeo" type="xs:decimal" />
+      <xs:attribute name="PromedioItemsEmbalaje" type="xs:decimal" />
+      <xs:attribute name="CantidadDetallePicking" type="xs:decimal" />
+      <xs:attribute name="CantidadDetalleChequeo" type="xs:decimal" />
+      <xs:attribute name="CantidadDetalleEmbalaje" type="xs:decimal" />
+      <xs:attribute name="CantidadBulto" type="xs:decimal" />
+      <xs:attribute name="PromedioMinutosPicking" type="xs:string" />
+      <xs:attribute name="PromedioMinutosChequeo" type="xs:string" />
+      <xs:attribute name="PromedioMinutosEmbalaje" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+
+  
+</xs:schema>

@@ -1,0 +1,1555 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="ws_intfac_add_clienteDacta">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="as_ruccli" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ws_intfac_add_clienteDactaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ws_intfac_add_clienteDactaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sendBill_retper">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="as_xmlcab" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="as_xmldet" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="as_xmlley" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="as_xmldes" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="as_xmlmsg" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="as_flgprc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sendBill_retperResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sendBill_retperResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="consulta_estpro_retper">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="as_xmlcab" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="consulta_estpro_retperResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="consulta_estpro_retperResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ws_intfac_checkestpro_ComEle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ai_nroact" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="as_fecemi" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ws_intfac_checkestpro_ComEleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ws_intfac_checkestpro_ComEleResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ws_intfac_checkfecanu_ComEle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ai_nroact" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="as_fecemi" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ws_intfac_checkfecanu_ComEleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ws_intfac_checkfecanu_ComEleResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ws_intfac_returnestpro_ComEle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="as_xmlcon" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ws_intfac_returnestpro_ComEleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ws_intfac_returnestpro_ComEleResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sendBill">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="as_xmlcab" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="as_xmldet" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="as_xmldes" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="as_xmladi" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="as_flgprc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sendBillResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sendBillResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ws_intfac_checkestpro_DocEle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="as_numruc" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ai_nroact" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="as_fecemi" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ws_intfac_checkestpro_DocEleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ws_intfac_checkestpro_DocEleResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ws_intfac_returnestpro_DocEle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="as_xmlcon" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ws_intfac_returnestpro_DocEleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ws_intfac_returnestpro_DocEleResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="uf_facele_cn_documentos_procesados">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="as_xmldoc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="uf_facele_cn_documentos_procesadosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="uf_facele_cn_documentos_procesadosResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="uf_facele_cn_documento_fisico">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="as_numruc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="as_altido" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="as_sersun" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="as_numsun" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="as_format" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="as_tamfrm" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="uf_facele_cn_documento_fisicoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="uf_facele_cn_documento_fisicoResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="uf_facele_upd_datosvendedor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="as_xmldat" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="as_param1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="as_param2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="as_param3" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="uf_facele_upd_datosvendedorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="uf_facele_upd_datosvendedorResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ws_reppro_docele">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="as_numruc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="as_altido" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="as_sersun" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="as_numsun" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="as_flgprc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ws_reppro_doceleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ws_reppro_doceleResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ws_reppro_comele">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="as_numruc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="as_altido" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="as_sersun" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="as_numsun" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="as_flgprc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ws_reppro_comeleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ws_reppro_comeleResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ws_get_licenc">
+        <s:complexType />
+      </s:element>
+      <s:element name="ws_get_licencResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ws_get_licencResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ws_gen_licencia">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="as_regist" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ws_gen_licenciaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ws_gen_licenciaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="uf_GetMacAddress">
+        <s:complexType />
+      </s:element>
+      <s:element name="uf_GetMacAddressResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="uf_GetMacAddressResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="uf_get_maeemifac_syscncele">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="as_nudoid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="as_estreg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="uf_get_maeemifac_syscnceleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="uf_get_maeemifac_syscnceleResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="base64Binary" nillable="true" type="s:base64Binary" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ws_intfac_add_clienteDactaSoapIn">
+    <wsdl:part name="parameters" element="tns:ws_intfac_add_clienteDacta" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_add_clienteDactaSoapOut">
+    <wsdl:part name="parameters" element="tns:ws_intfac_add_clienteDactaResponse" />
+  </wsdl:message>
+  <wsdl:message name="sendBill_retperSoapIn">
+    <wsdl:part name="parameters" element="tns:sendBill_retper" />
+  </wsdl:message>
+  <wsdl:message name="sendBill_retperSoapOut">
+    <wsdl:part name="parameters" element="tns:sendBill_retperResponse" />
+  </wsdl:message>
+  <wsdl:message name="consulta_estpro_retperSoapIn">
+    <wsdl:part name="parameters" element="tns:consulta_estpro_retper" />
+  </wsdl:message>
+  <wsdl:message name="consulta_estpro_retperSoapOut">
+    <wsdl:part name="parameters" element="tns:consulta_estpro_retperResponse" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_checkestpro_ComEleSoapIn">
+    <wsdl:part name="parameters" element="tns:ws_intfac_checkestpro_ComEle" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_checkestpro_ComEleSoapOut">
+    <wsdl:part name="parameters" element="tns:ws_intfac_checkestpro_ComEleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_checkfecanu_ComEleSoapIn">
+    <wsdl:part name="parameters" element="tns:ws_intfac_checkfecanu_ComEle" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_checkfecanu_ComEleSoapOut">
+    <wsdl:part name="parameters" element="tns:ws_intfac_checkfecanu_ComEleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_returnestpro_ComEleSoapIn">
+    <wsdl:part name="parameters" element="tns:ws_intfac_returnestpro_ComEle" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_returnestpro_ComEleSoapOut">
+    <wsdl:part name="parameters" element="tns:ws_intfac_returnestpro_ComEleResponse" />
+  </wsdl:message>
+  <wsdl:message name="sendBillSoapIn">
+    <wsdl:part name="parameters" element="tns:sendBill" />
+  </wsdl:message>
+  <wsdl:message name="sendBillSoapOut">
+    <wsdl:part name="parameters" element="tns:sendBillResponse" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_checkestpro_DocEleSoapIn">
+    <wsdl:part name="parameters" element="tns:ws_intfac_checkestpro_DocEle" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_checkestpro_DocEleSoapOut">
+    <wsdl:part name="parameters" element="tns:ws_intfac_checkestpro_DocEleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_returnestpro_DocEleSoapIn">
+    <wsdl:part name="parameters" element="tns:ws_intfac_returnestpro_DocEle" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_returnestpro_DocEleSoapOut">
+    <wsdl:part name="parameters" element="tns:ws_intfac_returnestpro_DocEleResponse" />
+  </wsdl:message>
+  <wsdl:message name="uf_facele_cn_documentos_procesadosSoapIn">
+    <wsdl:part name="parameters" element="tns:uf_facele_cn_documentos_procesados" />
+  </wsdl:message>
+  <wsdl:message name="uf_facele_cn_documentos_procesadosSoapOut">
+    <wsdl:part name="parameters" element="tns:uf_facele_cn_documentos_procesadosResponse" />
+  </wsdl:message>
+  <wsdl:message name="uf_facele_cn_documento_fisicoSoapIn">
+    <wsdl:part name="parameters" element="tns:uf_facele_cn_documento_fisico" />
+  </wsdl:message>
+  <wsdl:message name="uf_facele_cn_documento_fisicoSoapOut">
+    <wsdl:part name="parameters" element="tns:uf_facele_cn_documento_fisicoResponse" />
+  </wsdl:message>
+  <wsdl:message name="uf_facele_upd_datosvendedorSoapIn">
+    <wsdl:part name="parameters" element="tns:uf_facele_upd_datosvendedor" />
+  </wsdl:message>
+  <wsdl:message name="uf_facele_upd_datosvendedorSoapOut">
+    <wsdl:part name="parameters" element="tns:uf_facele_upd_datosvendedorResponse" />
+  </wsdl:message>
+  <wsdl:message name="ws_reppro_doceleSoapIn">
+    <wsdl:part name="parameters" element="tns:ws_reppro_docele" />
+  </wsdl:message>
+  <wsdl:message name="ws_reppro_doceleSoapOut">
+    <wsdl:part name="parameters" element="tns:ws_reppro_doceleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ws_reppro_comeleSoapIn">
+    <wsdl:part name="parameters" element="tns:ws_reppro_comele" />
+  </wsdl:message>
+  <wsdl:message name="ws_reppro_comeleSoapOut">
+    <wsdl:part name="parameters" element="tns:ws_reppro_comeleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ws_get_licencSoapIn">
+    <wsdl:part name="parameters" element="tns:ws_get_licenc" />
+  </wsdl:message>
+  <wsdl:message name="ws_get_licencSoapOut">
+    <wsdl:part name="parameters" element="tns:ws_get_licencResponse" />
+  </wsdl:message>
+  <wsdl:message name="ws_gen_licenciaSoapIn">
+    <wsdl:part name="parameters" element="tns:ws_gen_licencia" />
+  </wsdl:message>
+  <wsdl:message name="ws_gen_licenciaSoapOut">
+    <wsdl:part name="parameters" element="tns:ws_gen_licenciaResponse" />
+  </wsdl:message>
+  <wsdl:message name="uf_GetMacAddressSoapIn">
+    <wsdl:part name="parameters" element="tns:uf_GetMacAddress" />
+  </wsdl:message>
+  <wsdl:message name="uf_GetMacAddressSoapOut">
+    <wsdl:part name="parameters" element="tns:uf_GetMacAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="uf_get_maeemifac_syscnceleSoapIn">
+    <wsdl:part name="parameters" element="tns:uf_get_maeemifac_syscncele" />
+  </wsdl:message>
+  <wsdl:message name="uf_get_maeemifac_syscnceleSoapOut">
+    <wsdl:part name="parameters" element="tns:uf_get_maeemifac_syscnceleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_add_clienteDactaHttpGetIn">
+    <wsdl:part name="as_ruccli" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_add_clienteDactaHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="sendBill_retperHttpGetIn">
+    <wsdl:part name="as_xmlcab" type="s:string" />
+    <wsdl:part name="as_xmldet" type="s:string" />
+    <wsdl:part name="as_xmlley" type="s:string" />
+    <wsdl:part name="as_xmldes" type="s:string" />
+    <wsdl:part name="as_xmlmsg" type="s:string" />
+    <wsdl:part name="as_flgprc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="sendBill_retperHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="consulta_estpro_retperHttpGetIn">
+    <wsdl:part name="as_xmlcab" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="consulta_estpro_retperHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_checkestpro_ComEleHttpGetIn">
+    <wsdl:part name="ai_nroact" type="s:string" />
+    <wsdl:part name="as_fecemi" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_checkestpro_ComEleHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_checkfecanu_ComEleHttpGetIn">
+    <wsdl:part name="ai_nroact" type="s:string" />
+    <wsdl:part name="as_fecemi" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_checkfecanu_ComEleHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_returnestpro_ComEleHttpGetIn">
+    <wsdl:part name="as_xmlcon" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_returnestpro_ComEleHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="sendBillHttpGetIn">
+    <wsdl:part name="as_xmlcab" type="s:string" />
+    <wsdl:part name="as_xmldet" type="s:string" />
+    <wsdl:part name="as_xmldes" type="s:string" />
+    <wsdl:part name="as_xmladi" type="s:string" />
+    <wsdl:part name="as_flgprc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="sendBillHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_checkestpro_DocEleHttpGetIn">
+    <wsdl:part name="as_numruc" type="s:string" />
+    <wsdl:part name="ai_nroact" type="s:string" />
+    <wsdl:part name="as_fecemi" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_checkestpro_DocEleHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_returnestpro_DocEleHttpGetIn">
+    <wsdl:part name="as_xmlcon" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_returnestpro_DocEleHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="uf_facele_cn_documentos_procesadosHttpGetIn">
+    <wsdl:part name="as_xmldoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="uf_facele_cn_documentos_procesadosHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="uf_facele_cn_documento_fisicoHttpGetIn">
+    <wsdl:part name="as_numruc" type="s:string" />
+    <wsdl:part name="as_altido" type="s:string" />
+    <wsdl:part name="as_sersun" type="s:string" />
+    <wsdl:part name="as_numsun" type="s:string" />
+    <wsdl:part name="as_format" type="s:string" />
+    <wsdl:part name="as_tamfrm" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="uf_facele_cn_documento_fisicoHttpGetOut">
+    <wsdl:part name="Body" element="tns:base64Binary" />
+  </wsdl:message>
+  <wsdl:message name="uf_facele_upd_datosvendedorHttpGetIn">
+    <wsdl:part name="as_xmldat" type="s:string" />
+    <wsdl:part name="as_param1" type="s:string" />
+    <wsdl:part name="as_param2" type="s:string" />
+    <wsdl:part name="as_param3" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="uf_facele_upd_datosvendedorHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_reppro_doceleHttpGetIn">
+    <wsdl:part name="as_numruc" type="s:string" />
+    <wsdl:part name="as_altido" type="s:string" />
+    <wsdl:part name="as_sersun" type="s:string" />
+    <wsdl:part name="as_numsun" type="s:string" />
+    <wsdl:part name="as_flgprc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_reppro_doceleHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_reppro_comeleHttpGetIn">
+    <wsdl:part name="as_numruc" type="s:string" />
+    <wsdl:part name="as_altido" type="s:string" />
+    <wsdl:part name="as_sersun" type="s:string" />
+    <wsdl:part name="as_numsun" type="s:string" />
+    <wsdl:part name="as_flgprc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_reppro_comeleHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_get_licencHttpGetIn" />
+  <wsdl:message name="ws_get_licencHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_gen_licenciaHttpGetIn">
+    <wsdl:part name="as_regist" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_gen_licenciaHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="uf_GetMacAddressHttpGetIn" />
+  <wsdl:message name="uf_GetMacAddressHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="uf_get_maeemifac_syscnceleHttpGetIn">
+    <wsdl:part name="as_nudoid" type="s:string" />
+    <wsdl:part name="as_estreg" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="uf_get_maeemifac_syscnceleHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_add_clienteDactaHttpPostIn">
+    <wsdl:part name="as_ruccli" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_add_clienteDactaHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="sendBill_retperHttpPostIn">
+    <wsdl:part name="as_xmlcab" type="s:string" />
+    <wsdl:part name="as_xmldet" type="s:string" />
+    <wsdl:part name="as_xmlley" type="s:string" />
+    <wsdl:part name="as_xmldes" type="s:string" />
+    <wsdl:part name="as_xmlmsg" type="s:string" />
+    <wsdl:part name="as_flgprc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="sendBill_retperHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="consulta_estpro_retperHttpPostIn">
+    <wsdl:part name="as_xmlcab" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="consulta_estpro_retperHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_checkestpro_ComEleHttpPostIn">
+    <wsdl:part name="ai_nroact" type="s:string" />
+    <wsdl:part name="as_fecemi" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_checkestpro_ComEleHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_checkfecanu_ComEleHttpPostIn">
+    <wsdl:part name="ai_nroact" type="s:string" />
+    <wsdl:part name="as_fecemi" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_checkfecanu_ComEleHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_returnestpro_ComEleHttpPostIn">
+    <wsdl:part name="as_xmlcon" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_returnestpro_ComEleHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="sendBillHttpPostIn">
+    <wsdl:part name="as_xmlcab" type="s:string" />
+    <wsdl:part name="as_xmldet" type="s:string" />
+    <wsdl:part name="as_xmldes" type="s:string" />
+    <wsdl:part name="as_xmladi" type="s:string" />
+    <wsdl:part name="as_flgprc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="sendBillHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_checkestpro_DocEleHttpPostIn">
+    <wsdl:part name="as_numruc" type="s:string" />
+    <wsdl:part name="ai_nroact" type="s:string" />
+    <wsdl:part name="as_fecemi" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_checkestpro_DocEleHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_returnestpro_DocEleHttpPostIn">
+    <wsdl:part name="as_xmlcon" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_intfac_returnestpro_DocEleHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="uf_facele_cn_documentos_procesadosHttpPostIn">
+    <wsdl:part name="as_xmldoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="uf_facele_cn_documentos_procesadosHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="uf_facele_cn_documento_fisicoHttpPostIn">
+    <wsdl:part name="as_numruc" type="s:string" />
+    <wsdl:part name="as_altido" type="s:string" />
+    <wsdl:part name="as_sersun" type="s:string" />
+    <wsdl:part name="as_numsun" type="s:string" />
+    <wsdl:part name="as_format" type="s:string" />
+    <wsdl:part name="as_tamfrm" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="uf_facele_cn_documento_fisicoHttpPostOut">
+    <wsdl:part name="Body" element="tns:base64Binary" />
+  </wsdl:message>
+  <wsdl:message name="uf_facele_upd_datosvendedorHttpPostIn">
+    <wsdl:part name="as_xmldat" type="s:string" />
+    <wsdl:part name="as_param1" type="s:string" />
+    <wsdl:part name="as_param2" type="s:string" />
+    <wsdl:part name="as_param3" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="uf_facele_upd_datosvendedorHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_reppro_doceleHttpPostIn">
+    <wsdl:part name="as_numruc" type="s:string" />
+    <wsdl:part name="as_altido" type="s:string" />
+    <wsdl:part name="as_sersun" type="s:string" />
+    <wsdl:part name="as_numsun" type="s:string" />
+    <wsdl:part name="as_flgprc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_reppro_doceleHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_reppro_comeleHttpPostIn">
+    <wsdl:part name="as_numruc" type="s:string" />
+    <wsdl:part name="as_altido" type="s:string" />
+    <wsdl:part name="as_sersun" type="s:string" />
+    <wsdl:part name="as_numsun" type="s:string" />
+    <wsdl:part name="as_flgprc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_reppro_comeleHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_get_licencHttpPostIn" />
+  <wsdl:message name="ws_get_licencHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_gen_licenciaHttpPostIn">
+    <wsdl:part name="as_regist" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ws_gen_licenciaHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="uf_GetMacAddressHttpPostIn" />
+  <wsdl:message name="uf_GetMacAddressHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="uf_get_maeemifac_syscnceleHttpPostIn">
+    <wsdl:part name="as_nudoid" type="s:string" />
+    <wsdl:part name="as_estreg" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="uf_get_maeemifac_syscnceleHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="ws_integrensSoap">
+    <wsdl:operation name="ws_intfac_add_clienteDacta">
+      <wsdl:input message="tns:ws_intfac_add_clienteDactaSoapIn" />
+      <wsdl:output message="tns:ws_intfac_add_clienteDactaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="sendBill_retper">
+      <wsdl:input message="tns:sendBill_retperSoapIn" />
+      <wsdl:output message="tns:sendBill_retperSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="consulta_estpro_retper">
+      <wsdl:input message="tns:consulta_estpro_retperSoapIn" />
+      <wsdl:output message="tns:consulta_estpro_retperSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_checkestpro_ComEle">
+      <wsdl:input message="tns:ws_intfac_checkestpro_ComEleSoapIn" />
+      <wsdl:output message="tns:ws_intfac_checkestpro_ComEleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_checkfecanu_ComEle">
+      <wsdl:input message="tns:ws_intfac_checkfecanu_ComEleSoapIn" />
+      <wsdl:output message="tns:ws_intfac_checkfecanu_ComEleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_returnestpro_ComEle">
+      <wsdl:input message="tns:ws_intfac_returnestpro_ComEleSoapIn" />
+      <wsdl:output message="tns:ws_intfac_returnestpro_ComEleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="sendBill">
+      <wsdl:input message="tns:sendBillSoapIn" />
+      <wsdl:output message="tns:sendBillSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_checkestpro_DocEle">
+      <wsdl:input message="tns:ws_intfac_checkestpro_DocEleSoapIn" />
+      <wsdl:output message="tns:ws_intfac_checkestpro_DocEleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_returnestpro_DocEle">
+      <wsdl:input message="tns:ws_intfac_returnestpro_DocEleSoapIn" />
+      <wsdl:output message="tns:ws_intfac_returnestpro_DocEleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="uf_facele_cn_documentos_procesados">
+      <wsdl:input message="tns:uf_facele_cn_documentos_procesadosSoapIn" />
+      <wsdl:output message="tns:uf_facele_cn_documentos_procesadosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="uf_facele_cn_documento_fisico">
+      <wsdl:input message="tns:uf_facele_cn_documento_fisicoSoapIn" />
+      <wsdl:output message="tns:uf_facele_cn_documento_fisicoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="uf_facele_upd_datosvendedor">
+      <wsdl:input message="tns:uf_facele_upd_datosvendedorSoapIn" />
+      <wsdl:output message="tns:uf_facele_upd_datosvendedorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ws_reppro_docele">
+      <wsdl:input message="tns:ws_reppro_doceleSoapIn" />
+      <wsdl:output message="tns:ws_reppro_doceleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ws_reppro_comele">
+      <wsdl:input message="tns:ws_reppro_comeleSoapIn" />
+      <wsdl:output message="tns:ws_reppro_comeleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ws_get_licenc">
+      <wsdl:input message="tns:ws_get_licencSoapIn" />
+      <wsdl:output message="tns:ws_get_licencSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ws_gen_licencia">
+      <wsdl:input message="tns:ws_gen_licenciaSoapIn" />
+      <wsdl:output message="tns:ws_gen_licenciaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="uf_GetMacAddress">
+      <wsdl:input message="tns:uf_GetMacAddressSoapIn" />
+      <wsdl:output message="tns:uf_GetMacAddressSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="uf_get_maeemifac_syscncele">
+      <wsdl:input message="tns:uf_get_maeemifac_syscnceleSoapIn" />
+      <wsdl:output message="tns:uf_get_maeemifac_syscnceleSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ws_integrensHttpGet">
+    <wsdl:operation name="ws_intfac_add_clienteDacta">
+      <wsdl:input message="tns:ws_intfac_add_clienteDactaHttpGetIn" />
+      <wsdl:output message="tns:ws_intfac_add_clienteDactaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="sendBill_retper">
+      <wsdl:input message="tns:sendBill_retperHttpGetIn" />
+      <wsdl:output message="tns:sendBill_retperHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="consulta_estpro_retper">
+      <wsdl:input message="tns:consulta_estpro_retperHttpGetIn" />
+      <wsdl:output message="tns:consulta_estpro_retperHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_checkestpro_ComEle">
+      <wsdl:input message="tns:ws_intfac_checkestpro_ComEleHttpGetIn" />
+      <wsdl:output message="tns:ws_intfac_checkestpro_ComEleHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_checkfecanu_ComEle">
+      <wsdl:input message="tns:ws_intfac_checkfecanu_ComEleHttpGetIn" />
+      <wsdl:output message="tns:ws_intfac_checkfecanu_ComEleHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_returnestpro_ComEle">
+      <wsdl:input message="tns:ws_intfac_returnestpro_ComEleHttpGetIn" />
+      <wsdl:output message="tns:ws_intfac_returnestpro_ComEleHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="sendBill">
+      <wsdl:input message="tns:sendBillHttpGetIn" />
+      <wsdl:output message="tns:sendBillHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_checkestpro_DocEle">
+      <wsdl:input message="tns:ws_intfac_checkestpro_DocEleHttpGetIn" />
+      <wsdl:output message="tns:ws_intfac_checkestpro_DocEleHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_returnestpro_DocEle">
+      <wsdl:input message="tns:ws_intfac_returnestpro_DocEleHttpGetIn" />
+      <wsdl:output message="tns:ws_intfac_returnestpro_DocEleHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="uf_facele_cn_documentos_procesados">
+      <wsdl:input message="tns:uf_facele_cn_documentos_procesadosHttpGetIn" />
+      <wsdl:output message="tns:uf_facele_cn_documentos_procesadosHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="uf_facele_cn_documento_fisico">
+      <wsdl:input message="tns:uf_facele_cn_documento_fisicoHttpGetIn" />
+      <wsdl:output message="tns:uf_facele_cn_documento_fisicoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="uf_facele_upd_datosvendedor">
+      <wsdl:input message="tns:uf_facele_upd_datosvendedorHttpGetIn" />
+      <wsdl:output message="tns:uf_facele_upd_datosvendedorHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ws_reppro_docele">
+      <wsdl:input message="tns:ws_reppro_doceleHttpGetIn" />
+      <wsdl:output message="tns:ws_reppro_doceleHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ws_reppro_comele">
+      <wsdl:input message="tns:ws_reppro_comeleHttpGetIn" />
+      <wsdl:output message="tns:ws_reppro_comeleHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ws_get_licenc">
+      <wsdl:input message="tns:ws_get_licencHttpGetIn" />
+      <wsdl:output message="tns:ws_get_licencHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ws_gen_licencia">
+      <wsdl:input message="tns:ws_gen_licenciaHttpGetIn" />
+      <wsdl:output message="tns:ws_gen_licenciaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="uf_GetMacAddress">
+      <wsdl:input message="tns:uf_GetMacAddressHttpGetIn" />
+      <wsdl:output message="tns:uf_GetMacAddressHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="uf_get_maeemifac_syscncele">
+      <wsdl:input message="tns:uf_get_maeemifac_syscnceleHttpGetIn" />
+      <wsdl:output message="tns:uf_get_maeemifac_syscnceleHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ws_integrensHttpPost">
+    <wsdl:operation name="ws_intfac_add_clienteDacta">
+      <wsdl:input message="tns:ws_intfac_add_clienteDactaHttpPostIn" />
+      <wsdl:output message="tns:ws_intfac_add_clienteDactaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="sendBill_retper">
+      <wsdl:input message="tns:sendBill_retperHttpPostIn" />
+      <wsdl:output message="tns:sendBill_retperHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="consulta_estpro_retper">
+      <wsdl:input message="tns:consulta_estpro_retperHttpPostIn" />
+      <wsdl:output message="tns:consulta_estpro_retperHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_checkestpro_ComEle">
+      <wsdl:input message="tns:ws_intfac_checkestpro_ComEleHttpPostIn" />
+      <wsdl:output message="tns:ws_intfac_checkestpro_ComEleHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_checkfecanu_ComEle">
+      <wsdl:input message="tns:ws_intfac_checkfecanu_ComEleHttpPostIn" />
+      <wsdl:output message="tns:ws_intfac_checkfecanu_ComEleHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_returnestpro_ComEle">
+      <wsdl:input message="tns:ws_intfac_returnestpro_ComEleHttpPostIn" />
+      <wsdl:output message="tns:ws_intfac_returnestpro_ComEleHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="sendBill">
+      <wsdl:input message="tns:sendBillHttpPostIn" />
+      <wsdl:output message="tns:sendBillHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_checkestpro_DocEle">
+      <wsdl:input message="tns:ws_intfac_checkestpro_DocEleHttpPostIn" />
+      <wsdl:output message="tns:ws_intfac_checkestpro_DocEleHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_returnestpro_DocEle">
+      <wsdl:input message="tns:ws_intfac_returnestpro_DocEleHttpPostIn" />
+      <wsdl:output message="tns:ws_intfac_returnestpro_DocEleHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="uf_facele_cn_documentos_procesados">
+      <wsdl:input message="tns:uf_facele_cn_documentos_procesadosHttpPostIn" />
+      <wsdl:output message="tns:uf_facele_cn_documentos_procesadosHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="uf_facele_cn_documento_fisico">
+      <wsdl:input message="tns:uf_facele_cn_documento_fisicoHttpPostIn" />
+      <wsdl:output message="tns:uf_facele_cn_documento_fisicoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="uf_facele_upd_datosvendedor">
+      <wsdl:input message="tns:uf_facele_upd_datosvendedorHttpPostIn" />
+      <wsdl:output message="tns:uf_facele_upd_datosvendedorHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ws_reppro_docele">
+      <wsdl:input message="tns:ws_reppro_doceleHttpPostIn" />
+      <wsdl:output message="tns:ws_reppro_doceleHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ws_reppro_comele">
+      <wsdl:input message="tns:ws_reppro_comeleHttpPostIn" />
+      <wsdl:output message="tns:ws_reppro_comeleHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ws_get_licenc">
+      <wsdl:input message="tns:ws_get_licencHttpPostIn" />
+      <wsdl:output message="tns:ws_get_licencHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ws_gen_licencia">
+      <wsdl:input message="tns:ws_gen_licenciaHttpPostIn" />
+      <wsdl:output message="tns:ws_gen_licenciaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="uf_GetMacAddress">
+      <wsdl:input message="tns:uf_GetMacAddressHttpPostIn" />
+      <wsdl:output message="tns:uf_GetMacAddressHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="uf_get_maeemifac_syscncele">
+      <wsdl:input message="tns:uf_get_maeemifac_syscnceleHttpPostIn" />
+      <wsdl:output message="tns:uf_get_maeemifac_syscnceleHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ws_integrensSoap" type="tns:ws_integrensSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ws_intfac_add_clienteDacta">
+      <soap:operation soapAction="http://tempuri.org/ws_intfac_add_clienteDacta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendBill_retper">
+      <soap:operation soapAction="http://tempuri.org/sendBill_retper" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consulta_estpro_retper">
+      <soap:operation soapAction="http://tempuri.org/consulta_estpro_retper" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_checkestpro_ComEle">
+      <soap:operation soapAction="http://tempuri.org/ws_intfac_checkestpro_ComEle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_checkfecanu_ComEle">
+      <soap:operation soapAction="http://tempuri.org/ws_intfac_checkfecanu_ComEle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_returnestpro_ComEle">
+      <soap:operation soapAction="http://tempuri.org/ws_intfac_returnestpro_ComEle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendBill">
+      <soap:operation soapAction="http://tempuri.org/sendBill" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_checkestpro_DocEle">
+      <soap:operation soapAction="http://tempuri.org/ws_intfac_checkestpro_DocEle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_returnestpro_DocEle">
+      <soap:operation soapAction="http://tempuri.org/ws_intfac_returnestpro_DocEle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uf_facele_cn_documentos_procesados">
+      <soap:operation soapAction="http://tempuri.org/uf_facele_cn_documentos_procesados" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uf_facele_cn_documento_fisico">
+      <soap:operation soapAction="http://tempuri.org/uf_facele_cn_documento_fisico" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uf_facele_upd_datosvendedor">
+      <soap:operation soapAction="http://tempuri.org/uf_facele_upd_datosvendedor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_reppro_docele">
+      <soap:operation soapAction="http://tempuri.org/ws_reppro_docele" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_reppro_comele">
+      <soap:operation soapAction="http://tempuri.org/ws_reppro_comele" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_get_licenc">
+      <soap:operation soapAction="http://tempuri.org/ws_get_licenc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_gen_licencia">
+      <soap:operation soapAction="http://tempuri.org/ws_gen_licencia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uf_GetMacAddress">
+      <soap:operation soapAction="http://tempuri.org/uf_GetMacAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uf_get_maeemifac_syscncele">
+      <soap:operation soapAction="http://tempuri.org/uf_get_maeemifac_syscncele" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ws_integrensSoap12" type="tns:ws_integrensSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ws_intfac_add_clienteDacta">
+      <soap12:operation soapAction="http://tempuri.org/ws_intfac_add_clienteDacta" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendBill_retper">
+      <soap12:operation soapAction="http://tempuri.org/sendBill_retper" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consulta_estpro_retper">
+      <soap12:operation soapAction="http://tempuri.org/consulta_estpro_retper" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_checkestpro_ComEle">
+      <soap12:operation soapAction="http://tempuri.org/ws_intfac_checkestpro_ComEle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_checkfecanu_ComEle">
+      <soap12:operation soapAction="http://tempuri.org/ws_intfac_checkfecanu_ComEle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_returnestpro_ComEle">
+      <soap12:operation soapAction="http://tempuri.org/ws_intfac_returnestpro_ComEle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendBill">
+      <soap12:operation soapAction="http://tempuri.org/sendBill" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_checkestpro_DocEle">
+      <soap12:operation soapAction="http://tempuri.org/ws_intfac_checkestpro_DocEle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_returnestpro_DocEle">
+      <soap12:operation soapAction="http://tempuri.org/ws_intfac_returnestpro_DocEle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uf_facele_cn_documentos_procesados">
+      <soap12:operation soapAction="http://tempuri.org/uf_facele_cn_documentos_procesados" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uf_facele_cn_documento_fisico">
+      <soap12:operation soapAction="http://tempuri.org/uf_facele_cn_documento_fisico" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uf_facele_upd_datosvendedor">
+      <soap12:operation soapAction="http://tempuri.org/uf_facele_upd_datosvendedor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_reppro_docele">
+      <soap12:operation soapAction="http://tempuri.org/ws_reppro_docele" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_reppro_comele">
+      <soap12:operation soapAction="http://tempuri.org/ws_reppro_comele" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_get_licenc">
+      <soap12:operation soapAction="http://tempuri.org/ws_get_licenc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_gen_licencia">
+      <soap12:operation soapAction="http://tempuri.org/ws_gen_licencia" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uf_GetMacAddress">
+      <soap12:operation soapAction="http://tempuri.org/uf_GetMacAddress" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uf_get_maeemifac_syscncele">
+      <soap12:operation soapAction="http://tempuri.org/uf_get_maeemifac_syscncele" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ws_integrensHttpGet" type="tns:ws_integrensHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ws_intfac_add_clienteDacta">
+      <http:operation location="/ws_intfac_add_clienteDacta" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendBill_retper">
+      <http:operation location="/sendBill_retper" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consulta_estpro_retper">
+      <http:operation location="/consulta_estpro_retper" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_checkestpro_ComEle">
+      <http:operation location="/ws_intfac_checkestpro_ComEle" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_checkfecanu_ComEle">
+      <http:operation location="/ws_intfac_checkfecanu_ComEle" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_returnestpro_ComEle">
+      <http:operation location="/ws_intfac_returnestpro_ComEle" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendBill">
+      <http:operation location="/sendBill" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_checkestpro_DocEle">
+      <http:operation location="/ws_intfac_checkestpro_DocEle" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_returnestpro_DocEle">
+      <http:operation location="/ws_intfac_returnestpro_DocEle" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uf_facele_cn_documentos_procesados">
+      <http:operation location="/uf_facele_cn_documentos_procesados" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uf_facele_cn_documento_fisico">
+      <http:operation location="/uf_facele_cn_documento_fisico" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uf_facele_upd_datosvendedor">
+      <http:operation location="/uf_facele_upd_datosvendedor" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_reppro_docele">
+      <http:operation location="/ws_reppro_docele" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_reppro_comele">
+      <http:operation location="/ws_reppro_comele" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_get_licenc">
+      <http:operation location="/ws_get_licenc" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_gen_licencia">
+      <http:operation location="/ws_gen_licencia" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uf_GetMacAddress">
+      <http:operation location="/uf_GetMacAddress" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uf_get_maeemifac_syscncele">
+      <http:operation location="/uf_get_maeemifac_syscncele" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ws_integrensHttpPost" type="tns:ws_integrensHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ws_intfac_add_clienteDacta">
+      <http:operation location="/ws_intfac_add_clienteDacta" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendBill_retper">
+      <http:operation location="/sendBill_retper" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consulta_estpro_retper">
+      <http:operation location="/consulta_estpro_retper" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_checkestpro_ComEle">
+      <http:operation location="/ws_intfac_checkestpro_ComEle" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_checkfecanu_ComEle">
+      <http:operation location="/ws_intfac_checkfecanu_ComEle" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_returnestpro_ComEle">
+      <http:operation location="/ws_intfac_returnestpro_ComEle" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendBill">
+      <http:operation location="/sendBill" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_checkestpro_DocEle">
+      <http:operation location="/ws_intfac_checkestpro_DocEle" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_intfac_returnestpro_DocEle">
+      <http:operation location="/ws_intfac_returnestpro_DocEle" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uf_facele_cn_documentos_procesados">
+      <http:operation location="/uf_facele_cn_documentos_procesados" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uf_facele_cn_documento_fisico">
+      <http:operation location="/uf_facele_cn_documento_fisico" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uf_facele_upd_datosvendedor">
+      <http:operation location="/uf_facele_upd_datosvendedor" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_reppro_docele">
+      <http:operation location="/ws_reppro_docele" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_reppro_comele">
+      <http:operation location="/ws_reppro_comele" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_get_licenc">
+      <http:operation location="/ws_get_licenc" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ws_gen_licencia">
+      <http:operation location="/ws_gen_licencia" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uf_GetMacAddress">
+      <http:operation location="/uf_GetMacAddress" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uf_get_maeemifac_syscncele">
+      <http:operation location="/uf_get_maeemifac_syscncele" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ws_integrens">
+    <wsdl:port name="ws_integrensSoap" binding="tns:ws_integrensSoap">
+      <soap:address location="http://172.16.0.151/Panorama_Interface_ws/ws_integrens.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ws_integrensSoap12" binding="tns:ws_integrensSoap12">
+      <soap12:address location="http://172.16.0.151/Panorama_Interface_ws/ws_integrens.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ws_integrensHttpGet" binding="tns:ws_integrensHttpGet">
+      <http:address location="http://172.16.0.151/Panorama_Interface_ws/ws_integrens.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ws_integrensHttpPost" binding="tns:ws_integrensHttpPost">
+      <http:address location="http://172.16.0.151/Panorama_Interface_ws/ws_integrens.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

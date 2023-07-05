@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportefacturacompra"
+    targetNamespace="http://tempuri.org/reportefacturacompra.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportefacturacompra.xsd"
+    xmlns:mstns="http://tempuri.org/reportefacturacompra.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reportefacturacompra">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="IdFacturaCompra" type="xs:int" />
+      <xs:attribute name="IdTipoDocumento" type="xs:int" />
+      <xs:attribute name="CodTipoDocumento" type="xs:string" />
+      <xs:attribute name="NumeroDocumento" type="xs:string" />
+      <xs:attribute name="IdProveedor" type="xs:int" />
+      <xs:attribute name="DescProveedor" type="xs:string" />
+      <xs:attribute name="IdFormaPago" type="xs:int" />
+      <xs:attribute name="FechaCompra" type="xs:date" />
+      <xs:attribute name="Importe" type="xs:decimal" />
+      <xs:attribute name="IdMoneda" type="xs:int" />
+      <xs:attribute name="TipoCambio" type="xs:decimal" />
+      <xs:attribute name="Cantidad" type="xs:int" />
+      <xs:attribute name="CantidadTotal" type="xs:int" />
+      <xs:attribute name="IdFacturaCompraDetalle" type="xs:int" />
+      <xs:attribute name="IdProducto" type="xs:int" />
+      <xs:attribute name="CodigoProveedor" type="xs:string" />
+      <xs:attribute name="NombreProducto" type="xs:string" />
+      <xs:attribute name="NumeroBultos" type="xs:int" />
+      <xs:attribute name="PrecioUnitario" type="xs:decimal" />
+      <xs:attribute name="SubTotal" type="xs:decimal" />
+      <xs:attribute name="FormaPago" type="xs:string" />
+      <xs:attribute name="Moneda" type="xs:string" />
+      <xs:attribute name="Observacion" type="xs:string" />
+      <xs:attribute name="Stock" type="xs:int" />
+      <xs:attribute name="FlagEstado" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

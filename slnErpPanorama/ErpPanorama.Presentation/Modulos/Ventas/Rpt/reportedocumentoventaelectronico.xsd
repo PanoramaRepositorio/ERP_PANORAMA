@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportedocumentoventaelectronico"
+    targetNamespace="http://tempuri.org/reportedocumentoventaelectronico.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportedocumentoventaelectronico.xsd"
+    xmlns:mstns="http://tempuri.org/reportedocumentoventaelectronico.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reportedocumentoventaelectronico">
+    <xs:complexType>
+      <xs:sequence />
+      
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="Ruc" type="xs:string" />
+      <xs:attribute name="RazonSocial" type="xs:string" />
+      <xs:attribute name="DireccionEmpresa" type="xs:string" />
+
+      <!--
+       *** LISTA CUENTAS EN SUBREPORT ***
+      <xs:attribute name="Banco1" type="xs:string" />
+      <xs:attribute name="BancoMoneda1" type="xs:string" />
+      <xs:attribute name="CuentaBanco1" type="xs:string" />
+      <xs:attribute name="TipoCuenta1" type="xs:string" />
+      <xs:attribute name="CuentaCCI1" type="xs:string" />
+      <xs:attribute name="Banco2" type="xs:string" />
+      <xs:attribute name="BancoMoneda2" type="xs:string" />
+      <xs:attribute name="CuentaBanco2" type="xs:string" />
+      <xs:attribute name="TipoCuenta2" type="xs:string" />
+      <xs:attribute name="CuentaCCI2" type="xs:string" />-->      
+
+      <xs:attribute name="NumeroPedido" type="xs:string" />
+      <xs:attribute name="IdFormaPago" type="xs:int" />
+      <xs:attribute name="DescFormaPago" type="xs:string" />
+      <xs:attribute name="TipoDocumento" type="xs:string" />
+      <xs:attribute name="CodTipoDocumento" type="xs:string" />
+      <xs:attribute name="IdConTipoComprobantePago" type="xs:string" />
+      
+      <xs:attribute name="Serie" type="xs:string" />
+      <xs:attribute name="Numero" type="xs:string" />
+      <xs:attribute name="Fecha" type="xs:date" />
+      <xs:attribute name="FechaRegistro" type="xs:date" />
+      <xs:attribute name="Hora" type="xs:string" />
+      <xs:attribute name="FechaVencimiento" type="xs:date" />
+      <xs:attribute name="TipoIdentidad" type="xs:int" />
+      <xs:attribute name="NumeroDocumento" type="xs:string" />
+      <xs:attribute name="DescCliente" type="xs:string" />
+      <xs:attribute name="Direccion" type="xs:string" />
+      <xs:attribute name="IdMoneda" type="xs:string" />
+      <xs:attribute name="CodMoneda" type="xs:string" />
+      <xs:attribute name="DescMoneda" type="xs:string" />
+      <xs:attribute name="PorcentajeImpuesto" type="xs:decimal" />
+      <xs:attribute name="TotalDescuento" type="xs:decimal" />
+      <xs:attribute name="TotalDescuentoIncIGV" type="xs:decimal" />
+      <xs:attribute name="OperacionGratuita" type="xs:decimal" />
+      <xs:attribute name="SubTotal" type="xs:decimal" />
+      <xs:attribute name="Igv" type="xs:decimal" />
+      <xs:attribute name="Icbper" type="xs:decimal" />
+      <xs:attribute name="Total" type="xs:decimal" />
+      <xs:attribute name="TotalBruto" type="xs:decimal" />
+      <xs:attribute name="Item" type="xs:int" />
+      <xs:attribute name="IdProducto" type="xs:int" />
+      <xs:attribute name="CodigoProveedor" type="xs:string" />
+      <xs:attribute name="NombreProducto" type="xs:string" />
+      <xs:attribute name="Medida" type="xs:string" />
+      <xs:attribute name="Abreviatura" type="xs:string" />
+      <xs:attribute name="Cantidad" type="xs:int" />
+      <xs:attribute name="PrecioUnitario" type="xs:decimal" />
+      <xs:attribute name="PrecioVenta" type="xs:decimal" />
+      <xs:attribute name="PorcentajeDescuento" type="xs:decimal" />
+      <xs:attribute name="Descuento" type="xs:decimal" />
+      <xs:attribute name="ValorVenta" type="xs:decimal" />
+      <xs:attribute name="CodAfeIGV" type="xs:string" />
+      <xs:attribute name="DescVendedor" type="xs:string" />
+      <xs:attribute name="DescTienda" type="xs:string" />
+      <xs:attribute name="DireccionTienda" type="xs:string" />
+      <xs:attribute name="DescCaja" type="xs:string" />
+      <xs:attribute name="PagoEfectivo" type="xs:string" />
+      <xs:attribute name="PagoTarjeta" type="xs:string" />
+      <xs:attribute name="PagoNotaCredito" type="xs:string" />
+      <xs:attribute name="CodigoNC" type="xs:string" />
+      <xs:attribute name="DescCodigoNC" type="xs:string" />
+      <xs:attribute name="TipoCambio" type="xs:decimal" />
+      <xs:attribute name="TipoCambioSunat" type="xs:decimal" />
+      <xs:attribute name="Autorizacion" type="xs:string" />
+      <xs:attribute name="CodigoQR" type="xs:base64Binary"/>
+      <xs:attribute name="IdConTipoComprobantePagoRef" type="xs:string" />
+      <xs:attribute name="TipoDocumentoRef" type="xs:string" />
+      <xs:attribute name="SerieReferencia" type="xs:string" />
+      <xs:attribute name="NumeroReferencia" type="xs:string" />
+      <xs:attribute name="FechaReferencia" type="xs:string" />
+      <xs:attribute name="TotalDscCumpleanios" type="xs:decimal" />
+      <xs:attribute name="DescPromocion" type="xs:string" />
+	  <xs:attribute name="FlagCumpleanios" type="xs:boolean" />
+	</xs:complexType>
+  </xs:element>
+
+</xs:schema>

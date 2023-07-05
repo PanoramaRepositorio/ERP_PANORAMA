@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportetiendaautoservicioDetalle"
+    targetNamespace="http://tempuri.org/reportetiendaautoservicioDetalle.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportetiendaautoservicioDetalle.xsd"
+    xmlns:mstns="http://tempuri.org/reportetiendaautoservicioDetalle.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reportetiendaautoservicioDetalle">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="DescTienda" type="xs:string" />
+      <xs:attribute name="TotalSoles" type="xs:decimal" />
+      <xs:attribute name="CodigoProveedor" type="xs:string" />
+      <xs:attribute name="NombreProducto" type="xs:string" />
+      <xs:attribute name="Abreviatura" type="xs:string" />
+      <xs:attribute name="Cantidad" type="xs:decimal" />
+      <xs:attribute name="DescLineaProducto" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+
+
+</xs:schema>

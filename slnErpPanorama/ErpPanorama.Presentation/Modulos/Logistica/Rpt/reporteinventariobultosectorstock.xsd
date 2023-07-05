@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reporteinventariobultosectorstock"
+    targetNamespace="http://tempuri.org/reporteinventariobultosectorstock.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reporteinventariobultosectorstock.xsd"
+    xmlns:mstns="http://tempuri.org/reporteinventariobultosectorstock.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reporteinventariobultosectorstock">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="DescSector" type="xs:string" />
+      <xs:attribute name="CodigoProveedor" type="xs:string" />
+      <xs:attribute name="NombreProducto" type="xs:string" />
+      <xs:attribute name="Abreviatura" type="xs:string" />
+      <xs:attribute name="FechaRecepcion" type="xs:date" />
+      <xs:attribute name="StockInicial" type="xs:int" />
+      <xs:attribute name="StockActual" type="xs:int" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

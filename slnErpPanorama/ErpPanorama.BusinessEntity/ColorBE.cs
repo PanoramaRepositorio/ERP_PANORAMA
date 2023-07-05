@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Text;
+using System.Runtime.Serialization;
+
+namespace ErpPanorama.BusinessEntity
+{
+    [DataContract]
+    public class ColorBE
+    {
+        #region "Atributos"
+        [DataMember]
+        public Int32 IdColor { get; set; }
+        [DataMember]
+        public String DescColor { get; set; }
+        [DataMember]
+        public Boolean FlagEstado { get; set; }
+        #endregion
+    }
+}

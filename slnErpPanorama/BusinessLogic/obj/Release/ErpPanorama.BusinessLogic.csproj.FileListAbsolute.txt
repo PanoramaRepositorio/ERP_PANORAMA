@@ -1,0 +1,154 @@
+D:\Sistemas\slnErpPanorama\BusinessLogic\bin\Release\ErpPanorama.BusinessLogic.dll
+D:\Sistemas\slnErpPanorama\BusinessLogic\bin\Release\ErpPanorama.BusinessLogic.pdb
+D:\Sistemas\slnErpPanorama\BusinessLogic\bin\Release\ErpPanorama.BusinessEntity.dll
+D:\Sistemas\slnErpPanorama\BusinessLogic\bin\Release\ErpPanorama.DataLogic.dll
+D:\Sistemas\slnErpPanorama\BusinessLogic\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\Sistemas\slnErpPanorama\BusinessLogic\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\Sistemas\slnErpPanorama\BusinessLogic\bin\Release\Microsoft.Practices.ObjectBuilder.dll
+D:\Sistemas\slnErpPanorama\BusinessLogic\bin\Release\ErpPanorama.BusinessEntity.pdb
+D:\Sistemas\slnErpPanorama\BusinessLogic\bin\Release\ErpPanorama.DataLogic.pdb
+D:\Sistemas\slnErpPanorama\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csprojAssemblyReference.cache
+D:\Sistemas\slnErpPanorama\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csproj.CoreCompileInputs.cache
+D:\Sistemas\slnErpPanorama\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csproj.CopyComplete
+D:\Sistemas\slnErpPanorama\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.dll
+D:\Sistemas\slnErpPanorama\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.pdb
+D:\Sistemas\slnErpPanorama-RUS\BusinessLogic\bin\Release\ErpPanorama.BusinessLogic.dll
+D:\Sistemas\slnErpPanorama-RUS\BusinessLogic\bin\Release\ErpPanorama.BusinessLogic.pdb
+D:\Sistemas\slnErpPanorama-RUS\BusinessLogic\bin\Release\ErpPanorama.BusinessEntity.dll
+D:\Sistemas\slnErpPanorama-RUS\BusinessLogic\bin\Release\ErpPanorama.DataLogic.dll
+D:\Sistemas\slnErpPanorama-RUS\BusinessLogic\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\Sistemas\slnErpPanorama-RUS\BusinessLogic\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\Sistemas\slnErpPanorama-RUS\BusinessLogic\bin\Release\Microsoft.Practices.ObjectBuilder.dll
+D:\Sistemas\slnErpPanorama-RUS\BusinessLogic\bin\Release\ErpPanorama.BusinessEntity.pdb
+D:\Sistemas\slnErpPanorama-RUS\BusinessLogic\bin\Release\ErpPanorama.DataLogic.pdb
+D:\Sistemas\slnErpPanorama-RUS\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csprojAssemblyReference.cache
+D:\Sistemas\slnErpPanorama-RUS\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csproj.CoreCompileInputs.cache
+D:\Sistemas\slnErpPanorama-RUS\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csproj.CopyComplete
+D:\Sistemas\slnErpPanorama-RUS\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.dll
+D:\Sistemas\slnErpPanorama-RUS\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.pdb
+D:\Sistemas\slnErpPanorama-RUS-23-03-21\BusinessLogic\bin\Release\ErpPanorama.BusinessLogic.dll
+D:\Sistemas\slnErpPanorama-RUS-23-03-21\BusinessLogic\bin\Release\ErpPanorama.BusinessLogic.pdb
+D:\Sistemas\slnErpPanorama-RUS-23-03-21\BusinessLogic\bin\Release\ErpPanorama.BusinessEntity.dll
+D:\Sistemas\slnErpPanorama-RUS-23-03-21\BusinessLogic\bin\Release\ErpPanorama.DataLogic.dll
+D:\Sistemas\slnErpPanorama-RUS-23-03-21\BusinessLogic\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\Sistemas\slnErpPanorama-RUS-23-03-21\BusinessLogic\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\Sistemas\slnErpPanorama-RUS-23-03-21\BusinessLogic\bin\Release\Microsoft.Practices.ObjectBuilder.dll
+D:\Sistemas\slnErpPanorama-RUS-23-03-21\BusinessLogic\bin\Release\ErpPanorama.BusinessEntity.pdb
+D:\Sistemas\slnErpPanorama-RUS-23-03-21\BusinessLogic\bin\Release\ErpPanorama.DataLogic.pdb
+D:\Sistemas\slnErpPanorama-RUS-23-03-21\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csprojAssemblyReference.cache
+D:\Sistemas\slnErpPanorama-RUS-23-03-21\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csproj.CoreCompileInputs.cache
+D:\Sistemas\slnErpPanorama-RUS-23-03-21\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csproj.CopyComplete
+D:\Sistemas\slnErpPanorama-RUS-23-03-21\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.dll
+D:\Sistemas\slnErpPanorama-RUS-23-03-21\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.pdb
+D:\Sistemas\slnErpPanorama-RUS-23-03-21-02\BusinessLogic\bin\Release\ErpPanorama.BusinessLogic.dll
+D:\Sistemas\slnErpPanorama-RUS-23-03-21-02\BusinessLogic\bin\Release\ErpPanorama.BusinessLogic.pdb
+D:\Sistemas\slnErpPanorama-RUS-23-03-21-02\BusinessLogic\bin\Release\ErpPanorama.BusinessEntity.dll
+D:\Sistemas\slnErpPanorama-RUS-23-03-21-02\BusinessLogic\bin\Release\ErpPanorama.DataLogic.dll
+D:\Sistemas\slnErpPanorama-RUS-23-03-21-02\BusinessLogic\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\Sistemas\slnErpPanorama-RUS-23-03-21-02\BusinessLogic\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\Sistemas\slnErpPanorama-RUS-23-03-21-02\BusinessLogic\bin\Release\Microsoft.Practices.ObjectBuilder.dll
+D:\Sistemas\slnErpPanorama-RUS-23-03-21-02\BusinessLogic\bin\Release\ErpPanorama.BusinessEntity.pdb
+D:\Sistemas\slnErpPanorama-RUS-23-03-21-02\BusinessLogic\bin\Release\ErpPanorama.DataLogic.pdb
+D:\Sistemas\slnErpPanorama-RUS-23-03-21-02\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csprojAssemblyReference.cache
+D:\Sistemas\slnErpPanorama-RUS-23-03-21-02\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csproj.CoreCompileInputs.cache
+D:\Sistemas\slnErpPanorama-RUS-23-03-21-02\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csproj.CopyComplete
+D:\Sistemas\slnErpPanorama-RUS-23-03-21-02\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.dll
+D:\Sistemas\slnErpPanorama-RUS-23-03-21-02\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.pdb
+D:\Fuentes_sistemas\slnErpPanorama_ComercioAmigo\BusinessLogic\bin\Release\ErpPanorama.BusinessLogic.dll
+D:\Fuentes_sistemas\slnErpPanorama_ComercioAmigo\BusinessLogic\bin\Release\ErpPanorama.BusinessLogic.pdb
+D:\Fuentes_sistemas\slnErpPanorama_ComercioAmigo\BusinessLogic\bin\Release\ErpPanorama.BusinessEntity.dll
+D:\Fuentes_sistemas\slnErpPanorama_ComercioAmigo\BusinessLogic\bin\Release\ErpPanorama.DataLogic.dll
+D:\Fuentes_sistemas\slnErpPanorama_ComercioAmigo\BusinessLogic\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\Fuentes_sistemas\slnErpPanorama_ComercioAmigo\BusinessLogic\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\Fuentes_sistemas\slnErpPanorama_ComercioAmigo\BusinessLogic\bin\Release\Microsoft.Practices.ObjectBuilder.dll
+D:\Fuentes_sistemas\slnErpPanorama_ComercioAmigo\BusinessLogic\bin\Release\ErpPanorama.BusinessEntity.pdb
+D:\Fuentes_sistemas\slnErpPanorama_ComercioAmigo\BusinessLogic\bin\Release\ErpPanorama.DataLogic.pdb
+D:\Fuentes_sistemas\slnErpPanorama_ComercioAmigo\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csprojAssemblyReference.cache
+D:\Fuentes_sistemas\slnErpPanorama_ComercioAmigo\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csproj.CoreCompileInputs.cache
+D:\Fuentes_sistemas\slnErpPanorama_ComercioAmigo\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csproj.CopyComplete
+D:\Fuentes_sistemas\slnErpPanorama_ComercioAmigo\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.dll
+D:\Fuentes_sistemas\slnErpPanorama_ComercioAmigo\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.pdb
+D:\Fuentes_sistemas\slnErpPanorama-12-06-2022\BusinessLogic\bin\Release\ErpPanorama.BusinessLogic.dll
+D:\Fuentes_sistemas\slnErpPanorama-12-06-2022\BusinessLogic\bin\Release\ErpPanorama.BusinessLogic.pdb
+D:\Fuentes_sistemas\slnErpPanorama-12-06-2022\BusinessLogic\bin\Release\ErpPanorama.BusinessEntity.dll
+D:\Fuentes_sistemas\slnErpPanorama-12-06-2022\BusinessLogic\bin\Release\ErpPanorama.DataLogic.dll
+D:\Fuentes_sistemas\slnErpPanorama-12-06-2022\BusinessLogic\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\Fuentes_sistemas\slnErpPanorama-12-06-2022\BusinessLogic\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\Fuentes_sistemas\slnErpPanorama-12-06-2022\BusinessLogic\bin\Release\Microsoft.Practices.ObjectBuilder.dll
+D:\Fuentes_sistemas\slnErpPanorama-12-06-2022\BusinessLogic\bin\Release\ErpPanorama.BusinessEntity.pdb
+D:\Fuentes_sistemas\slnErpPanorama-12-06-2022\BusinessLogic\bin\Release\ErpPanorama.DataLogic.pdb
+D:\Fuentes_sistemas\slnErpPanorama-12-06-2022\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csprojAssemblyReference.cache
+D:\Fuentes_sistemas\slnErpPanorama-12-06-2022\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csproj.CoreCompileInputs.cache
+D:\Fuentes_sistemas\slnErpPanorama-12-06-2022\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csproj.CopyComplete
+D:\Fuentes_sistemas\slnErpPanorama-12-06-2022\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.dll
+D:\Fuentes_sistemas\slnErpPanorama-12-06-2022\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.pdb
+D:\Fuentes_sistemas\slnErpPanorama-ICBPER\BusinessLogic\bin\Release\ErpPanorama.BusinessLogic.dll
+D:\Fuentes_sistemas\slnErpPanorama-ICBPER\BusinessLogic\bin\Release\ErpPanorama.BusinessLogic.pdb
+D:\Fuentes_sistemas\slnErpPanorama-ICBPER\BusinessLogic\bin\Release\ErpPanorama.BusinessEntity.dll
+D:\Fuentes_sistemas\slnErpPanorama-ICBPER\BusinessLogic\bin\Release\ErpPanorama.DataLogic.dll
+D:\Fuentes_sistemas\slnErpPanorama-ICBPER\BusinessLogic\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\Fuentes_sistemas\slnErpPanorama-ICBPER\BusinessLogic\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\Fuentes_sistemas\slnErpPanorama-ICBPER\BusinessLogic\bin\Release\Microsoft.Practices.ObjectBuilder.dll
+D:\Fuentes_sistemas\slnErpPanorama-ICBPER\BusinessLogic\bin\Release\ErpPanorama.BusinessEntity.pdb
+D:\Fuentes_sistemas\slnErpPanorama-ICBPER\BusinessLogic\bin\Release\ErpPanorama.DataLogic.pdb
+D:\Fuentes_sistemas\slnErpPanorama-ICBPER\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csproj.AssemblyReference.cache
+D:\Fuentes_sistemas\slnErpPanorama-ICBPER\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csproj.CoreCompileInputs.cache
+D:\Fuentes_sistemas\slnErpPanorama-ICBPER\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csproj.CopyComplete
+D:\Fuentes_sistemas\slnErpPanorama-ICBPER\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.dll
+D:\Fuentes_sistemas\slnErpPanorama-ICBPER\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.pdb
+D:\Fuentes_sistemas\slnErpPanorama\BusinessLogic\bin\Release\ErpPanorama.BusinessLogic.dll
+D:\Fuentes_sistemas\slnErpPanorama\BusinessLogic\bin\Release\ErpPanorama.BusinessLogic.pdb
+D:\Fuentes_sistemas\slnErpPanorama\BusinessLogic\bin\Release\ErpPanorama.BusinessEntity.dll
+D:\Fuentes_sistemas\slnErpPanorama\BusinessLogic\bin\Release\ErpPanorama.DataLogic.dll
+D:\Fuentes_sistemas\slnErpPanorama\BusinessLogic\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\Fuentes_sistemas\slnErpPanorama\BusinessLogic\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\Fuentes_sistemas\slnErpPanorama\BusinessLogic\bin\Release\Microsoft.Practices.ObjectBuilder.dll
+D:\Fuentes_sistemas\slnErpPanorama\BusinessLogic\bin\Release\ErpPanorama.BusinessEntity.pdb
+D:\Fuentes_sistemas\slnErpPanorama\BusinessLogic\bin\Release\ErpPanorama.DataLogic.pdb
+D:\Fuentes_sistemas\slnErpPanorama\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csproj.AssemblyReference.cache
+D:\Fuentes_sistemas\slnErpPanorama\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csproj.CoreCompileInputs.cache
+D:\Fuentes_sistemas\slnErpPanorama\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csproj.CopyComplete
+D:\Fuentes_sistemas\slnErpPanorama\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.dll
+D:\Fuentes_sistemas\slnErpPanorama\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.pdb
+D:\slnErpPanorama\BusinessLogic\bin\Release\ErpPanorama.BusinessLogic.dll
+D:\slnErpPanorama\BusinessLogic\bin\Release\ErpPanorama.BusinessLogic.pdb
+D:\slnErpPanorama\BusinessLogic\bin\Release\ErpPanorama.BusinessEntity.dll
+D:\slnErpPanorama\BusinessLogic\bin\Release\ErpPanorama.DataLogic.dll
+D:\slnErpPanorama\BusinessLogic\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\slnErpPanorama\BusinessLogic\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\slnErpPanorama\BusinessLogic\bin\Release\Microsoft.Practices.ObjectBuilder.dll
+D:\slnErpPanorama\BusinessLogic\bin\Release\ErpPanorama.BusinessEntity.pdb
+D:\slnErpPanorama\BusinessLogic\bin\Release\ErpPanorama.DataLogic.pdb
+D:\slnErpPanorama\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csproj.AssemblyReference.cache
+D:\slnErpPanorama\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csproj.CoreCompileInputs.cache
+D:\slnErpPanorama\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csproj.CopyComplete
+D:\slnErpPanorama\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.dll
+D:\slnErpPanorama\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.pdb
+D:\Fuentes\slnErpPanorama\BusinessLogic\bin\Release\ErpPanorama.BusinessLogic.dll
+D:\Fuentes\slnErpPanorama\BusinessLogic\bin\Release\ErpPanorama.BusinessLogic.pdb
+D:\Fuentes\slnErpPanorama\BusinessLogic\bin\Release\ErpPanorama.BusinessEntity.dll
+D:\Fuentes\slnErpPanorama\BusinessLogic\bin\Release\ErpPanorama.DataLogic.dll
+D:\Fuentes\slnErpPanorama\BusinessLogic\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\Fuentes\slnErpPanorama\BusinessLogic\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\Fuentes\slnErpPanorama\BusinessLogic\bin\Release\Microsoft.Practices.ObjectBuilder.dll
+D:\Fuentes\slnErpPanorama\BusinessLogic\bin\Release\ErpPanorama.BusinessEntity.pdb
+D:\Fuentes\slnErpPanorama\BusinessLogic\bin\Release\ErpPanorama.DataLogic.pdb
+D:\Fuentes\slnErpPanorama\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csproj.AssemblyReference.cache
+D:\Fuentes\slnErpPanorama\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csproj.CoreCompileInputs.cache
+D:\Fuentes\slnErpPanorama\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csproj.CopyComplete
+D:\Fuentes\slnErpPanorama\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.dll
+D:\Fuentes\slnErpPanorama\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.pdb
+D:\Fuentes\Nueva carpeta\slnErpPanorama\BusinessLogic\bin\Release\ErpPanorama.BusinessLogic.dll
+D:\Fuentes\Nueva carpeta\slnErpPanorama\BusinessLogic\bin\Release\ErpPanorama.BusinessLogic.pdb
+D:\Fuentes\Nueva carpeta\slnErpPanorama\BusinessLogic\bin\Release\ErpPanorama.BusinessEntity.dll
+D:\Fuentes\Nueva carpeta\slnErpPanorama\BusinessLogic\bin\Release\ErpPanorama.DataLogic.dll
+D:\Fuentes\Nueva carpeta\slnErpPanorama\BusinessLogic\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\Fuentes\Nueva carpeta\slnErpPanorama\BusinessLogic\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\Fuentes\Nueva carpeta\slnErpPanorama\BusinessLogic\bin\Release\Microsoft.Practices.ObjectBuilder.dll
+D:\Fuentes\Nueva carpeta\slnErpPanorama\BusinessLogic\bin\Release\ErpPanorama.BusinessEntity.pdb
+D:\Fuentes\Nueva carpeta\slnErpPanorama\BusinessLogic\bin\Release\ErpPanorama.DataLogic.pdb
+D:\Fuentes\Nueva carpeta\slnErpPanorama\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csproj.AssemblyReference.cache
+D:\Fuentes\Nueva carpeta\slnErpPanorama\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csproj.CoreCompileInputs.cache
+D:\Fuentes\Nueva carpeta\slnErpPanorama\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.csproj.CopyComplete
+D:\Fuentes\Nueva carpeta\slnErpPanorama\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.dll
+D:\Fuentes\Nueva carpeta\slnErpPanorama\BusinessLogic\obj\Release\ErpPanorama.BusinessLogic.pdb

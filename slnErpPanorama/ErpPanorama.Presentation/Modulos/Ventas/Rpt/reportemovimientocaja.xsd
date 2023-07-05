@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportemovimientocaja"
+    targetNamespace="http://tempuri.org/reportemovimientocaja.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportemovimientocaja.xsd"
+    xmlns:mstns="http://tempuri.org/reportemovimientocaja.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reportemovimientocaja">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="DescCaja" type="xs:string" />
+      <xs:attribute name="DescTienda" type="xs:string" />
+      <xs:attribute name="Fecha" type="xs:date" />
+      <xs:attribute name="IdTipoDocumento" type="xs:int" />
+      <xs:attribute name="CodTipoDocumento" type="xs:string" />
+      <xs:attribute name="NumeroDocumento" type="xs:string" />
+      <xs:attribute name="DescFormaPago" type="xs:string" />
+      <xs:attribute name="IdCondicionPago" type="xs:int" />
+      <xs:attribute name="DescCondicionPago" type="xs:string" />
+      <xs:attribute name="TipoMovimiento" type="xs:string" />
+      <xs:attribute name="CodMoneda" type="xs:string" />
+      <xs:attribute name="TipoCambio" type="xs:decimal" />
+      <xs:attribute name="CajaInicial" type="xs:decimal" />
+      <xs:attribute name="ImporteSoles" type="xs:decimal" />
+      <xs:attribute name="ImporteDolares" type="xs:decimal" />
+      <xs:attribute name="TotalVisa" type="xs:decimal" />
+      <xs:attribute name="TotalMastercard" type="xs:decimal" />
+      <xs:attribute name="TotalVisaPuntosVida" type="xs:decimal" />
+      <xs:attribute name="TotalDrinerclubPromocion" type="xs:decimal" />
+      <xs:attribute name="TotalTarjetasForaneas" type="xs:decimal" />
+      <xs:attribute name="TotalMastercardPuntosVida" type="xs:decimal" />
+      <xs:attribute name="TotalNotaCredito" type="xs:decimal" />
+      <xs:attribute name="TotalAnulados" type="xs:decimal" />
+      <xs:attribute name="TotalCheques" type="xs:decimal" />
+      <xs:attribute name="TotalCupon" type="xs:decimal" />
+      <xs:attribute name="TotalPagos" type="xs:decimal" />
+      <xs:attribute name="TotalIngresos" type="xs:decimal" />
+      <xs:attribute name="TotalEgresos" type="xs:decimal" />
+      <xs:attribute name="Total" type="xs:decimal" />
+      <xs:attribute name="TotalVisaAgente" type="xs:decimal" />
+      <xs:attribute name="TotalMastercardAgente" type="xs:decimal" />      
+      <xs:attribute name="TotalIngresosAgente" type="xs:decimal" />
+      <xs:attribute name="TotalEgresosAgente" type="xs:decimal" />      
+      <xs:attribute name="Estado" type="xs:string" />
+      <xs:attribute name="Doscientos" type="xs:decimal" />
+      <xs:attribute name="Cien" type="xs:decimal" />
+      <xs:attribute name="Cincuenta" type="xs:decimal" />
+      <xs:attribute name="Veinte" type="xs:decimal" />
+      <xs:attribute name="Diez" type="xs:decimal" />
+      <xs:attribute name="Cinco" type="xs:decimal" />
+      <xs:attribute name="Dos" type="xs:decimal" />
+      <xs:attribute name="Un" type="xs:decimal" />
+      <xs:attribute name="CincuentaCentimos" type="xs:decimal" />
+      <xs:attribute name="VeinteCentimos" type="xs:decimal" />
+      <xs:attribute name="DiezCentimos" type="xs:decimal" />
+      <xs:attribute name="TipoCambioVenta" type="xs:decimal" />      
+      <xs:attribute name="CienDolar" type="xs:decimal" />
+      <xs:attribute name="CincuentaDolar" type="xs:decimal" />
+      <xs:attribute name="VeinteDolar" type="xs:decimal" />
+      <xs:attribute name="DiezDolar" type="xs:decimal" />
+      <xs:attribute name="CincoDolar" type="xs:decimal" />
+      <xs:attribute name="UnDolar" type="xs:decimal" />
+      <xs:attribute name="TotalVisaCredito" type="xs:decimal" />
+      <xs:attribute name="TotalVisaDebito" type="xs:decimal" />
+      <xs:attribute name="TotalMastercardCredito" type="xs:decimal" />
+      <xs:attribute name="TotalMastercardDebito" type="xs:decimal" />      
+      <xs:attribute name="TotalDinnersPromocionCredito" type="xs:decimal" />
+      <xs:attribute name="TotalDinnersPromocionDebito" type="xs:decimal" />
+      <xs:attribute name="TotalDinnersPromocion" type="xs:decimal" />
+      <xs:attribute name="TotalTarjForaneasCredito" type="xs:decimal" />
+      <xs:attribute name="TotalTarjForaneasDebito" type="xs:decimal" />
+      <xs:attribute name="TotalTarjForaneas" type="xs:decimal" />
+    </xs:complexType>
+  </xs:element>
+
+
+
+</xs:schema>

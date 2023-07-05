@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportebultooperador"
+    targetNamespace="http://tempuri.org/reportebultooperador.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportebultooperador.xsd"
+    xmlns:mstns="http://tempuri.org/reportebultooperador.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+
+  <xs:element name="reportebultooperador">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="UsuarioSalida" type="xs:string" />
+      <xs:attribute name="Cantidad" type="xs:int" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

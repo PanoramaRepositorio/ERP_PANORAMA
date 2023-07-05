@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportepiso"
+    targetNamespace="http://tempuri.org/reportepiso.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportepiso.xsd"
+    xmlns:mstns="http://tempuri.org/reportepiso.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reportepiso">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="IdPiso" type="xs:int" />
+      <xs:attribute name="DescPiso" type="xs:string" />
+      <xs:attribute name="IdUbicacion" type="xs:int" />
+      <xs:attribute name="DescUbicacion" type="xs:string" />
+      <xs:attribute name="FlagEstado" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

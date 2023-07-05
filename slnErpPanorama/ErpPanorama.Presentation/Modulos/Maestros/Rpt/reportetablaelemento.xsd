@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportetablaelemento"
+    targetNamespace="http://tempuri.org/reportetablaelemento.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportetablaelemento.xsd"
+    xmlns:mstns="http://tempuri.org/reportetablaelemento.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reportetablaelemento">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="IdTablaElemento" type="xs:int" />
+      <xs:attribute name="DescTablaElemento" type="xs:string" />
+      <xs:attribute name="IdTabla" type="xs:int" />
+      <xs:attribute name="DescTabla" type="xs:string" />
+      <xs:attribute name="Abreviatura" type="xs:string" />
+      <xs:attribute name="FlagEstado" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

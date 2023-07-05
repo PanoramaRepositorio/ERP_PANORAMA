@@ -1,0 +1,458 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AE520332-8F5B-462A-A15A-D3E9455C071C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ErpPanorama.BusinessLogic</RootNamespace>
+    <AssemblyName>ErpPanorama.BusinessLogic</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Pdf.v16.2.Core, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v16.2.Core, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccesoBL.cs" />
+    <Compile Include="AccesoUsuarioBL.cs" />
+    <Compile Include="AgenciaBL.cs" />
+    <Compile Include="AgenciaOficinaBL.cs" />
+    <Compile Include="AlertaContratoBL.cs" />
+    <Compile Include="AlmacenBL.cs" />
+    <Compile Include="AlmacenMotivoMovimientoBL.cs" />
+    <Compile Include="AlmacenPisoBL.cs" />
+    <Compile Include="AnuncioBL.cs" />
+    <Compile Include="AreaBL.cs" />
+    <Compile Include="AsesoriaBL.cs" />
+    <Compile Include="CajaChicaBL.cs" />
+    <Compile Include="ConConsumoBL.cs" />
+    <Compile Include="ConPlanContableBL.cs" />
+    <Compile Include="ConTipoComprobantePagoBL.cs" />
+    <Compile Include="ContratoFormatoBL.cs" />
+    <Compile Include="CuentaBancoDetalleBL.cs" />
+    <Compile Include="CuentaBancoDetalleCausalBL.cs" />
+    <Compile Include="CuentaBancoDetalleConceptoBL.cs" />
+    <Compile Include="DescuentoClienteMayoristaFeriaBL.cs" />
+    <Compile Include="DescuentoClientePromocionBL.cs" />
+    <Compile Include="DescuentoClientePromocionDetalleBL.cs" />
+    <Compile Include="Dis_ContratoAsesoriaBL.cs" />
+    <Compile Include="Dis_ContratoFabricacionBL.cs" />
+    <Compile Include="Dis_ContratoFabricacionDetalleBL.cs" />
+    <Compile Include="EliminaHistorialBL.cs" />
+    <Compile Include="EquipoBL.cs" />
+    <Compile Include="EquipoConexionBL.cs" />
+    <Compile Include="EstadoCuentaComisionBL.cs" />
+    <Compile Include="FacturaCompraInsumoBL.cs" />
+    <Compile Include="FacturaCompraInsumoDetalleBL.cs" />
+    <Compile Include="HojaInstalacionBL.cs" />
+    <Compile Include="HojaInstalacionDetalleBL.cs" />
+    <Compile Include="InsumoAlmacenBL.cs" />
+    <Compile Include="InsumoBL.cs" />
+    <Compile Include="InsumoClasificacionBL.cs" />
+    <Compile Include="MetaTiendaMesBL.cs" />
+    <Compile Include="MovimientoCajaChicaBL.cs" />
+    <Compile Include="MovimientoInsumoBL.cs" />
+    <Compile Include="MovimientoInsumoDetalleBL.cs" />
+    <Compile Include="NovioRegaloBL.cs" />
+    <Compile Include="NovioRegaloDetalleBL.cs" />
+    <Compile Include="PagoServicioBL.cs" />
+    <Compile Include="PagoServicioDetalleBL.cs" />
+    <Compile Include="PersonaDescansoBL.cs" />
+    <Compile Include="PersonaTrabajoBL.cs" />
+    <Compile Include="PersonaTrabajoDetalleBL.cs" />
+    <Compile Include="PromocionProximaBL.cs" />
+    <Compile Include="PromocionValeDescuentoBL.cs" />
+    <Compile Include="Reportes\ReporteBultoTranferidoOperadorBL.cs" />
+    <Compile Include="Reportes\ReporteContratoPersonaBL.cs" />
+    <Compile Include="Reportes\ReporteHojaInstalacionBL.cs" />
+    <Compile Include="Reportes\ReporteHoraExtraBL.cs" />
+    <Compile Include="Reportes\ReporteNovioRegaloBL.cs" />
+    <Compile Include="Reportes\ReportePedidoTiendaMesTipoClienteVariacionBL.cs" />
+    <Compile Include="Reportes\ReportePersonaTrabajoBL.cs" />
+    <Compile Include="Reportes\ReporteProductividadOperadorResumenBL.cs" />
+    <Compile Include="Reportes\ReporteProductividadOperadorBL.cs" />
+    <Compile Include="Reportes\ReporteProductoCatalogoNovioRegaloBL.cs" />
+    <Compile Include="Reportes\ReporteTarjetaVisaMasterCajaBL.cs" />
+    <Compile Include="Reportes\ReporteTiendaTipoClienteMetaBL.cs" />
+    <Compile Include="SolicitudCompraDetalleBL.cs" />
+    <Compile Include="SolicitudCompraBL.cs" />
+    <Compile Include="HistorialBL.cs" />
+    <Compile Include="IdPersonaBL.cs" />
+    <Compile Include="IncidenciaBL.cs" />
+    <Compile Include="InventarioAnaquelesBL.cs" />
+    <Compile Include="InventarioPersonaBL.cs" />
+    <Compile Include="ListaPrecioDeliveryBL.cs" />
+    <Compile Include="Marcacione4BL.cs" />
+    <Compile Include="MarcacioneGeneralBL.cs" />
+    <Compile Include="MarcacioneBL.cs" />
+    <Compile Include="PersonaCalendarioLaboralBL.cs" />
+    <Compile Include="PersonaCuentaBancariaBL.cs" />
+    <Compile Include="PlanillaRHBL.cs" />
+    <Compile Include="PreventaBL.cs" />
+    <Compile Include="PreventaDetalleBL.cs" />
+    <Compile Include="ProductoIncentivadoBL.cs" />
+    <Compile Include="ProductoIncentivadoCargoBL.cs" />
+    <Compile Include="ProductoIncentivadoDetalleBL.cs" />
+    <Compile Include="Promocion2x1BL.cs" />
+    <Compile Include="Promocion2x1DetalleBL.cs" />
+    <Compile Include="PromocionBultoBL.cs" />
+    <Compile Include="PromocionBultoDetalleBL.cs" />
+    <Compile Include="PromocionTemporalBL.cs" />
+    <Compile Include="PromocionTemporalDetalleBL.cs" />
+    <Compile Include="RecursosBL.cs" />
+    <Compile Include="AsistenciaBL.cs" />
+    <Compile Include="AsistenciaHoraBL.cs" />
+    <Compile Include="AusenciaBL.cs" />
+    <Compile Include="BancoBL.cs" />
+    <Compile Include="BloqueBL.cs" />
+    <Compile Include="BultoBL.cs" />
+    <Compile Include="CajaBL.cs" />
+    <Compile Include="CajaCajeroBL.cs" />
+    <Compile Include="CajaCierreBL.cs" />
+    <Compile Include="CajaEmpresaBL.cs" />
+    <Compile Include="CajaVaciaBL.cs" />
+    <Compile Include="CajaValorFijoBL.cs" />
+    <Compile Include="CambioBL.cs" />
+    <Compile Include="CambioDetalleBL.cs" />
+    <Compile Include="CampanaBL.cs" />
+    <Compile Include="ClockingBL.cs" />
+    <Compile Include="CheckinoutBL.cs" />
+    <Compile Include="ClienteAgendaBL.cs" />
+    <Compile Include="ClienteAsociadoBL.cs" />
+    <Compile Include="ClienteBL.cs" />
+    <Compile Include="ClienteCorreoBL.cs" />
+    <Compile Include="ClienteCreditoBL.cs" />
+    <Compile Include="ClienteCreditoDocumentoBL.cs" />
+    <Compile Include="ClienteLineaProductoBL.cs" />
+    <Compile Include="ClienteTrackingBL.cs" />
+    <Compile Include="ComboBL.cs" />
+    <Compile Include="ComboDetalleBL.cs" />
+    <Compile Include="ContratoBL.cs" />
+    <Compile Include="CotizacionBL.cs" />
+    <Compile Include="CreditoPeriodoBL.cs" />
+    <Compile Include="CuentaBancoBL.cs" />
+    <Compile Include="DerechoHabienteBL.cs" />
+    <Compile Include="DescuentoClienteFechaCompraBL.cs" />
+    <Compile Include="DescuentoClienteFinalBL.cs" />
+    <Compile Include="DescuentoClienteMayoristaBL.cs" />
+    <Compile Include="DescuentoFechaCompraBL.cs" />
+    <Compile Include="Dis_AmbienteBL.cs" />
+    <Compile Include="Dis_DisenoEsteticoBL.cs" />
+    <Compile Include="Dis_DisenoFuncionalBL.cs" />
+    <Compile Include="Dis_EstiloBL.cs" />
+    <Compile Include="Dis_FormaBL.cs" />
+    <Compile Include="Dis_PiezaBL.cs" />
+    <Compile Include="Dis_ProyectoServicioBL.cs" />
+    <Compile Include="Dis_TipoColorBL.cs" />
+    <Compile Include="DocumentoBultoBL.cs" />
+    <Compile Include="DocumentoVentaBL.cs" />
+    <Compile Include="DocumentoVentaDetalleBL.cs" />
+    <Compile Include="DocumentoVentaPagoBL.cs" />
+    <Compile Include="EmpresaBL.cs" />
+    <Compile Include="EncuestaBL.cs" />
+    <Compile Include="EstadoCuentaBL.cs" />
+    <Compile Include="EstadoCuentaHistorialBL.cs" />
+    <Compile Include="EstudioRealizadoBL.cs" />
+    <Compile Include="FacturaCompraBL.cs" />
+    <Compile Include="FacturaCompraDetalleBL.cs" />
+    <Compile Include="FamiliaProductoBL.cs" />
+    <Compile Include="GuiaRemisionBL.cs" />
+    <Compile Include="GuiaRemisionDetalleBL.cs" />
+    <Compile Include="HoraExtraBL.cs" />
+    <Compile Include="HorarioBL.cs" />
+    <Compile Include="InmuebleAlquilerBL.cs" />
+    <Compile Include="InmuebleBL.cs" />
+    <Compile Include="InmueblePagoBL.cs" />
+    <Compile Include="InventarioBL.cs" />
+    <Compile Include="InventarioVisualBL.cs" />
+    <Compile Include="InventarioVisualBloqueBL.cs" />
+    <Compile Include="InventarioVisualModuloBL.cs" />
+    <Compile Include="KardexBL.cs" />
+    <Compile Include="KardexBultoBL.cs" />
+    <Compile Include="LineaProductoBL.cs" />
+    <Compile Include="LiquidacionProductoBL.cs" />
+    <Compile Include="ListaPrecioBL.cs" />
+    <Compile Include="ListaPrecioDetalleBL.cs" />
+    <Compile Include="MarcaBL.cs" />
+    <Compile Include="MaterialBL.cs" />
+    <Compile Include="MenuBL.cs" />
+    <Compile Include="MetasBL.cs" />
+    <Compile Include="MetasCarteraBL.cs" />
+    <Compile Include="MetasComisionBL.cs" />
+    <Compile Include="MetasLineaProductoBL.cs" />
+    <Compile Include="ModeloProductoBL.cs" />
+    <Compile Include="ModuloBL.cs" />
+    <Compile Include="ModuloDocumentoBL.cs" />
+    <Compile Include="MotivoAusenciaBL.cs" />
+    <Compile Include="MovimientoAlmacenBL.cs" />
+    <Compile Include="MovimientoAlmacenDetalleBL.cs" />
+    <Compile Include="MovimientoCajaBL.cs" />
+    <Compile Include="MovimientoPedidoBL.cs" />
+    <Compile Include="MovimientoPedidoDespachobl.cs" />
+    <Compile Include="MuestraBL.cs" />
+    <Compile Include="NivelBL.cs" />
+    <Compile Include="NumeracionDocumentoBL.cs" />
+    <Compile Include="PagosBL.cs" />
+    <Compile Include="ParametroBL.cs" />
+    <Compile Include="Parametros.cs" />
+    <Compile Include="PedidoBL.cs" />
+    <Compile Include="PedidoDetalleBL.cs" />
+    <Compile Include="PerfilBL.cs" />
+    <Compile Include="PeriodoBL.cs" />
+    <Compile Include="PersonaBL.cs" />
+    <Compile Include="PisoBL.cs" />
+    <Compile Include="PlaAfpBL.cs" />
+    <Compile Include="PlanillaBL.cs" />
+    <Compile Include="PlanillaDetalleBL.cs" />
+    <Compile Include="ProcedenciaBL.cs" />
+    <Compile Include="ProductoAsociadoBL.cs" />
+    <Compile Include="ProductoBL.cs" />
+    <Compile Include="ProductoFotoBL.cs" />
+    <Compile Include="ProductoNavidadImportadoB33L.cs" />
+    <Compile Include="ProductoTransformacionBL.cs" />
+    <Compile Include="ProductoTransformacionDetalleBL.cs" />
+    <Compile Include="ProformaBL.cs" />
+    <Compile Include="ProformaDetalleBL.cs" />
+    <Compile Include="PromocionBL.cs" />
+    <Compile Include="PromocionDetalleBL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProveedorBL.cs" />
+    <Compile Include="Reportes\ReporteConexionSQLBL.cs" />
+    <Compile Include="Reportes\ReporteCreditoPorCobrarBL.cs" />
+    <Compile Include="Reportes\ReporteCreditoTotalBL.cs" />
+    <Compile Include="Reportes\ReporteCumpleaniosBL.cs" />
+    <Compile Include="Reportes\ReporteDerechoHabienteBL.cs" />
+    <Compile Include="Reportes\ReporteDevolucionesMayoristasBL.cs" />
+    <Compile Include="Reportes\ReporteDevolucionesMayoristasRutaBL.cs" />
+    <Compile Include="Reportes\ReporteDis_ContratoAsesoriaBL.cs" />
+    <Compile Include="Reportes\ReporteDis_ContratoFabricacionBL.cs" />
+    <Compile Include="Reportes\ReporteDis_DisenoEsteticoBL.cs" />
+    <Compile Include="Reportes\ReporteDis_DisenoFuncionalBL.cs" />
+    <Compile Include="Reportes\ReporteDis_ProyectoServicioBL.cs" />
+    <Compile Include="Reportes\ReporteDis_ProyectoServicioContratoBL.cs" />
+    <Compile Include="Reportes\ReporteDis_ProyectoServicioContratoFabricacionBL.cs" />
+    <Compile Include="Reportes\ReporteDocumentoVentaEmpresaSerieBL.cs" />
+    <Compile Include="Reportes\ReporteEstadoCuentaCuentaBancoBL.cs" />
+    <Compile Include="Reportes\ReporteEstudioRealizadoBL.cs" />
+    <Compile Include="Reportes\ReporteInventarioBL.cs" />
+    <Compile Include="Reportes\ReporteInventarioBultoSectorBL.cs" />
+    <Compile Include="Reportes\ReporteInventarioBultoSectorStockBL.cs" />
+    <Compile Include="Reportes\ReporteKardexAlmacenBL.cs" />
+    <Compile Include="Reportes\ReporteMetasLineaProductoBL.cs" />
+    <Compile Include="Reportes\ReporteMovimientoAlmacenChequeoBL.cs" />
+    <Compile Include="Reportes\ReporteMovimientoAlmacenGuiaRemisionBL.cs" />
+    <Compile Include="Reportes\ReporteMovimientoAlmacenTransferenciaBL.cs" />
+    <Compile Include="Reportes\ReporteMovimientoPedidoBL.cs" />
+    <Compile Include="Reportes\ReportePedidoCambioFechaBL.cs" />
+    <Compile Include="Reportes\ReportePedidoClientesMayoristasFechaBL.cs" />
+    <Compile Include="Reportes\ReporteAccesoUsuarioBL.cs" />
+    <Compile Include="Reportes\ReporteAlmacenBL.cs" />
+    <Compile Include="Reportes\ReporteAreaBL.cs" />
+    <Compile Include="Reportes\ReporteBancoBL.cs" />
+    <Compile Include="Reportes\ReporteBloqueBL.cs" />
+    <Compile Include="Reportes\ReporteBultoBL.cs" />
+    <Compile Include="Reportes\ReporteBultosTransferidosBL.cs" />
+    <Compile Include="Reportes\ReporteCajaBL.cs" />
+    <Compile Include="Reportes\ReporteCajaCajeroBL.cs" />
+    <Compile Include="Reportes\ReporteCajaVaciaBL.cs" />
+    <Compile Include="Reportes\ReporteCambioBL.cs" />
+    <Compile Include="Reportes\ReporteCampanaBL.cs" />
+    <Compile Include="Reportes\ReporteClienteCumpleanosBL.cs" />
+    <Compile Include="Reportes\ReporteClienteListaGeneralBL.cs" />
+    <Compile Include="Reportes\ReporteClienteMayoristaBL.cs" />
+    <Compile Include="Reportes\ReporteClienteCreditoBL.cs" />
+    <Compile Include="Reportes\ReporteClienteMayoristaRutaBL.cs" />
+    <Compile Include="Reportes\ReporteClienteMayoristaVendedorBL.cs" />
+    <Compile Include="Reportes\ReporteClienteMinoristaBL.cs" />
+    <Compile Include="Reportes\ReporteClienteRegistroVendedorBL.cs" />
+    <Compile Include="Reportes\ReporteClienteRegistroVendedorDetalleBL.cs" />
+    <Compile Include="Reportes\ReporteCotizacionBL.cs" />
+    <Compile Include="Reportes\ReporteCreditoBL.cs" />
+    <Compile Include="Reportes\ReporteCuentaBancoBL.cs" />
+    <Compile Include="Reportes\ReporteDocumentoReferenciaBL.cs" />
+    <Compile Include="Reportes\ReporteDocumentoVentaBL.cs" />
+    <Compile Include="Reportes\ReporteEmpresaBL.cs" />
+    <Compile Include="Reportes\ReporteEstadoCuentaCabeceraBL.cs" />
+    <Compile Include="Reportes\ReporteEstadoCuentaContraEntregaBL.cs" />
+    <Compile Include="Reportes\ReporteEstadoCuentaDetalleBL.cs" />
+    <Compile Include="Reportes\ReporteEstadoCuentaNumeroDiasBL.cs" />
+    <Compile Include="Reportes\ReporteFacturaCompraBL.cs" />
+    <Compile Include="Reportes\ReporteGuiaRemisionBL.cs" />
+    <Compile Include="Reportes\ReporteInventarioBultoBL.cs" />
+    <Compile Include="Reportes\ReporteKardexBultoBL.cs" />
+    <Compile Include="Reportes\ReporteKardexSalidasBL.cs" />
+    <Compile Include="Reportes\ReporteLineaProductoBL.cs" />
+    <Compile Include="Reportes\ReporteListadoCompraBL.cs" />
+    <Compile Include="Reportes\ReporteMarcaBL.cs" />
+    <Compile Include="Reportes\ReporteMaterialBL.cs" />
+    <Compile Include="Reportes\ReporteMetasBL.cs" />
+    <Compile Include="Reportes\ReporteModeloProductoBL.cs" />
+    <Compile Include="Reportes\ReporteMovimientoAlmacenBL.cs" />
+    <Compile Include="Reportes\ReporteMovimientoAlmacenFaltanteOrigenBL.cs" />
+    <Compile Include="Reportes\ReporteMovimientoAlmacenMermasBL.cs" />
+    <Compile Include="Reportes\ReporteMovimientoCajaBL.cs" />
+    <Compile Include="Reportes\ReporteMuestraBL.cs" />
+    <Compile Include="Reportes\ReporteNotaSalidaBL.cs" />
+    <Compile Include="Reportes\ReporteNumeracionDocumentoBL.cs" />
+    <Compile Include="Reportes\ReportePedidoCargoCreditoBL.cs" />
+    <Compile Include="Reportes\ReportePedidoClienteDaotBL.cs" />
+    <Compile Include="Reportes\ReportePedidoClienteDaotDetalleBL.cs" />
+    <Compile Include="Reportes\ReportePedidoClienteLineaBL.cs" />
+    <Compile Include="Reportes\ReportePedidoContadoBL.cs" />
+    <Compile Include="Reportes\ReportePedidoContadoOperadorBL.cs" />
+    <Compile Include="Reportes\ReportePedidoCreditoBL.cs" />
+    <Compile Include="Reportes\ReportePedidoCreditoSituacionBL.cs" />
+    <Compile Include="Reportes\ReportePedidoDolaresBL.cs" />
+    <Compile Include="Reportes\ReportePedidoMayoristasBL.cs" />
+    <Compile Include="Reportes\ReportePedidoMuestraBL.cs" />
+    <Compile Include="Reportes\ReportePedidoPreventaBL.cs" />
+    <Compile Include="Reportes\ReportePedidoPreventaDetalleBL.cs" />
+    <Compile Include="Reportes\ReportePedidoPreventaVendedorBL.cs" />
+    <Compile Include="Reportes\ReportePedidoRutaAnioBL.cs" />
+    <Compile Include="Reportes\ReportePedidoRutaDiaBL.cs" />
+    <Compile Include="Reportes\ReportePedidoRutaMesBL.cs" />
+    <Compile Include="Reportes\ReportePedidoRutaSemanaBL.cs" />
+    <Compile Include="Reportes\ReportePedidoSolesBL.cs" />
+    <Compile Include="Reportes\ReportePedidoTiendaBL.cs" />
+    <Compile Include="Reportes\ReportePedidoTiendaMesTipoClienteBL.cs" />
+    <Compile Include="Reportes\ReportePedidoTiendaSupervisorBL.cs" />
+    <Compile Include="Reportes\ReportePedidoTipoClienteOperadorBL.cs" />
+    <Compile Include="Reportes\ReportePedidoTipoVentaBL.cs" />
+    <Compile Include="Reportes\ReportePedidoVendedorAsesoriaBL.cs" />
+    <Compile Include="Reportes\ReportePedidoVendedorBL.cs" />
+    <Compile Include="Reportes\ReportePedidoVendedorCajaBL.cs" />
+    <Compile Include="Reportes\ReportePedidoVendedorCarteraBL.cs" />
+    <Compile Include="Reportes\ReportePedidoVendedorCarteraMetaBL.cs" />
+    <Compile Include="Reportes\ReportePedidoVendedorFormaPagoBL.cs" />
+    <Compile Include="Reportes\ReportePedidoVendedorJuniorSeniorBL.cs" />
+    <Compile Include="Reportes\ReportePedidoVendedorTipoClienteBL.cs" />
+    <Compile Include="Reportes\ReportePedidoVentaTiendaTipoClientePorCargoBL.cs" />
+    <Compile Include="Reportes\ReportePersonaBL.cs" />
+    <Compile Include="Reportes\ReportePisoBL.cs" />
+    <Compile Include="Reportes\ReporteProcedenciaBL.cs" />
+    <Compile Include="Reportes\ReporteProductoBL.cs" />
+    <Compile Include="Reportes\ReporteProductoCatalogoBL.cs" />
+    <Compile Include="Reportes\ReporteProductoCatalogoFacturaBL.cs" />
+    <Compile Include="Reportes\ReporteProductoCatalogoPedidoBL.cs" />
+    <Compile Include="Reportes\ReporteProductoCatalogoProformaBL.cs" />
+    <Compile Include="Reportes\ReporteProductoCatalogoPromocion2x1BL.cs" />
+    <Compile Include="Reportes\ReporteProductoCatalogoPromocionTemporalBL.cs" />
+    <Compile Include="Reportes\ReporteProductoCatologoInvBultoBL.cs" />
+    <Compile Include="Reportes\ReporteProformaBL.cs" />
+    <Compile Include="Reportes\ReporteProveedorBL.cs" />
+    <Compile Include="Reportes\ReporteRotacionProductosBL.cs" />
+    <Compile Include="Reportes\ReporteRutaBL.cs" />
+    <Compile Include="Reportes\ReporteSectorBL.cs" />
+    <Compile Include="Reportes\ReporteSeparacionCabeceraBL.cs" />
+    <Compile Include="Reportes\ReporteSeparacionContraEntregaBL.cs" />
+    <Compile Include="Reportes\ReporteSeparacionDetalleBL.cs" />
+    <Compile Include="Reportes\ReporteSolicitudPrestamoBL.cs" />
+    <Compile Include="Reportes\ReporteSolicitudProductoBL.cs" />
+    <Compile Include="Reportes\ReporteStockBultosBL.cs" />
+    <Compile Include="Reportes\ReporteTablaBL.cs" />
+    <Compile Include="Reportes\ReporteTablaElementoBL.cs" />
+    <Compile Include="Reportes\ReporteTalonBL.cs" />
+    <Compile Include="Reportes\ReporteTiendaAutoservicioBL.cs" />
+    <Compile Include="Reportes\ReporteTiendaBL.cs" />
+    <Compile Include="Reportes\ReporteTipoCambioBL.cs" />
+    <Compile Include="Reportes\ReporteTipoDocumentoBL.cs" />
+    <Compile Include="Reportes\ReporteTransferenciaBultoBL.cs" />
+    <Compile Include="Reportes\ReporteUbicacionBL.cs" />
+    <Compile Include="Reportes\ReporteUbicacionProductoBL.cs" />
+    <Compile Include="Reportes\ReporteUnidadMedidaBL.cs" />
+    <Compile Include="Reportes\ReporteVacacionesVendidasBL.cs" />
+    <Compile Include="Reportes\ReporteVentaProductoBL.cs" />
+    <Compile Include="EliminaBL.cs" />
+    <Compile Include="RutaBL.cs" />
+    <Compile Include="RutaDetalleBL.cs" />
+    <Compile Include="SectorBL.cs" />
+    <Compile Include="SeparacionBL.cs" />
+    <Compile Include="SolicitudInsumoBL.cs" />
+    <Compile Include="SolicitudInsumoDetalleBL.cs" />
+    <Compile Include="SolicitudPrestamoBL.cs" />
+    <Compile Include="SolicitudPrestamoDetalleBL.cs" />
+    <Compile Include="SolicitudProductoBL.cs" />
+    <Compile Include="SolicitudProductoDetalleBL.cs" />
+    <Compile Include="TempDescuentoVentaProductoBL.cs" />
+    <Compile Include="TempoBL.cs" />
+    <Compile Include="StockBL.cs" />
+    <Compile Include="StockBultoBL.cs" />
+    <Compile Include="SubLineaProductoBL.cs" />
+    <Compile Include="TablaBL.cs" />
+    <Compile Include="TablaElementoBL.cs" />
+    <Compile Include="TalonBL.cs" />
+    <Compile Include="TareoPersonalBL.cs" />
+    <Compile Include="TempListaPrecioDetalleBL.cs" />
+    <Compile Include="TicketBL.cs" />
+    <Compile Include="TiendaBL.cs" />
+    <Compile Include="TipoCambioBL.cs" />
+    <Compile Include="TipoDocumentoBL.cs" />
+    <Compile Include="TopeEmpresaBL.cs" />
+    <Compile Include="TransferenciaBultoBL.cs" />
+    <Compile Include="TransferenciaBultoDetalleBL.cs" />
+    <Compile Include="UbicacionBL.cs" />
+    <Compile Include="UbicacionProductoBL.cs" />
+    <Compile Include="UbigeoBL.cs" />
+    <Compile Include="UnidadMedidaBL.cs" />
+    <Compile Include="UsuarioBL.cs" />
+    <Compile Include="VacacionesBL.cs" />
+    <Compile Include="VariablesBL.cs" />
+    <Compile Include="VehiculoBL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ErpPanorama.BusinessEntity\ErpPanorama.BusinessEntity.csproj">
+      <Project>{5c4d8704-5ef9-430f-b471-ea3881a1f10b}</Project>
+      <Name>ErpPanorama.BusinessEntity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ErpPanorama.DataLogic\ErpPanorama.DataLogic.csproj">
+      <Project>{139178fb-295a-4285-9eae-77070532a0ef}</Project>
+      <Name>ErpPanorama.DataLogic</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

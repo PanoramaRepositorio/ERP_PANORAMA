@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reporteticketpromediovendedor"
+    targetNamespace="http://tempuri.org/reporteticketpromediovendedor.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reporteticketpromediovendedor.xsd"
+    xmlns:mstns="http://tempuri.org/reporteticketpromediovendedor.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reporteticketpromediovendedor">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="Fecha" type="xs:dateTime"/>
+      <xs:attribute name="DescTienda" type="xs:string" />
+      <xs:attribute name="DescVendedor" type="xs:string" />
+      <xs:attribute name="Cargo" type="xs:string" />
+      <xs:attribute name="Tickets" type="xs:int" />
+      <xs:attribute name="TotalVentaAl75" type="xs:decimal" />
+      <xs:attribute name="TotalVentaAl100" type="xs:decimal" />
+      <xs:attribute name="TotalVentaFabrica" type="xs:decimal" />
+      <xs:attribute name="TotalVentaFinal" type="xs:decimal" />
+      <xs:attribute name="TotalVenta" type="xs:decimal" />
+      <xs:attribute name="TicketPromedio" type="xs:decimal" />
+      <xs:attribute name="Participacion" type="xs:decimal" />
+    </xs:complexType>
+  </xs:element>  
+  
+</xs:schema>

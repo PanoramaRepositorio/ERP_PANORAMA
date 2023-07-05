@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportepedidovendedorpisosueldo"
+    targetNamespace="http://tempuri.org/reportepedidovendedorpisosueldo.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportepedidovendedorpisosueldo.xsd"
+    xmlns:mstns="http://tempuri.org/reportepedidovendedorpisosueldo.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name="reportepedidovendedorpisosueldo">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="DescVendedor" type="xs:string" />
+      <xs:attribute name="DescTienda" type="xs:string" />
+      <xs:attribute name="DescCargo" type="xs:string" />
+      <xs:attribute name="TotalClienteFinal" type="xs:decimal" />
+      <xs:attribute name="TotalClienteMayorista" type="xs:decimal" />
+      <xs:attribute name="TotalClienteDiseno" type="xs:decimal" />
+      <xs:attribute name="TotalClienteFinalSinIGV" type="xs:decimal" />
+      <xs:attribute name="TotalClienteMayoristaSinIGV" type="xs:decimal" />
+      <xs:attribute name="TotalClienteDisenoSinIGV" type="xs:decimal" />
+      <xs:attribute name="TotalVenta" type="xs:decimal" />
+      <xs:attribute name="Basico" type="xs:decimal" />
+      <xs:attribute name="CantidadCliente" type="xs:int" />
+      <xs:attribute name="ComisionCliente" type="xs:decimal" />
+      <xs:attribute name="ComisionFinal" type="xs:decimal" />
+      <xs:attribute name="ComisionMayorista" type="xs:decimal" />
+      <xs:attribute name="ComisionDiseno" type="xs:decimal" />
+      <xs:attribute name="Meta" type="xs:decimal" />
+      <xs:attribute name="MetaTienda" type="xs:decimal" />
+      <xs:attribute name="AlcanceMeta" type="xs:decimal" />
+      <xs:attribute name="AlcanceMetaTienda" type="xs:decimal" />
+      <xs:attribute name="MetaConversion" type="xs:decimal" />
+      <xs:attribute name="Conversion" type="xs:decimal" />
+      <xs:attribute name="BonoConversion" type="xs:decimal" />
+      <xs:attribute name="BonoMetaTienda" type="xs:decimal" />
+      <xs:attribute name="FlaCobro" type="xs:boolean" />
+      <xs:attribute name="DetalleCobro" type="xs:string" />
+      <xs:attribute name="BonoItem" type="xs:decimal" />
+      <xs:attribute name="ComisionFinalDM" type="xs:decimal" />
+      <xs:attribute name="ComisionMayoristaDM" type="xs:decimal" />
+      <xs:attribute name="ComisionFinalDM5" type="xs:decimal" />
+      <xs:attribute name="ComisionMayoristaDM5" type="xs:decimal" />
+      <xs:attribute name="ComisionAsesoria" type="xs:decimal" />
+      <xs:attribute name="DiaAlcanceMeta" type="xs:int" />
+      <xs:attribute name="DiaAlcanceMetaTienda" type="xs:int" />
+      <xs:attribute name="DescuentoFalta" type="xs:decimal" />
+      <xs:attribute name="DescuentoTardanza" type="xs:decimal" />
+      <xs:attribute name="DescuentoReclamo" type="xs:decimal" />
+      <xs:attribute name="DescuentoMemo" type="xs:decimal" />
+      <xs:attribute name="FlagIndisciplina" type="xs:boolean" />
+      <xs:attribute name="Faltas" type="xs:int" />
+      <xs:attribute name="Tardanzas" type="xs:int" />
+      <xs:attribute name="TotalSueldo" type="xs:decimal" />
+      <xs:attribute name="TotalSueldoNeto" type="xs:decimal" />
+      <xs:attribute name="DiasIngreso" type="xs:int" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

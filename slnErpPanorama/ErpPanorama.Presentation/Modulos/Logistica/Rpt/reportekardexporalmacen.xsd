@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportekardexporalmacen"
+    targetNamespace="http://tempuri.org/reportekardexporalmacen.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportekardexporalmacen.xsd"
+    xmlns:mstns="http://tempuri.org/reportekardexporalmacen.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reportekardexporalmacen">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="Id" type="xs:int" />
+      <xs:attribute name="IdKardex" type="xs:int" />
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="Periodo" type="xs:int" />
+      <xs:attribute name="DescTienda" type="xs:string" />
+      <xs:attribute name="FechaMovimiento" type="xs:dateTime" />
+      <xs:attribute name="DescAlmacen" type="xs:string" />
+      <xs:attribute name="CodigoProveedor" type="xs:string" />
+      <xs:attribute name="NombreProducto" type="xs:string" />
+      <xs:attribute name="Abreviatura" type="xs:string" />
+      <xs:attribute name="CodTipoDocumento" type="xs:string" />
+      <xs:attribute name="NumeroDocumento" type="xs:string" />
+      <xs:attribute name="TipoMovimiento" type="xs:string" />
+      <xs:attribute name="Observacion" type="xs:string" />
+      <xs:attribute name="Ingresos" type="xs:int" />
+      <xs:attribute name="Salidas" type="xs:int" />
+      <xs:attribute name="Stock" type="xs:int" />
+      <xs:attribute name="FechaRegistro" type="xs:dateTime" />
+      <xs:attribute name="Usuario" type="xs:string" />
+      
+    </xs:complexType>
+  </xs:element>  
+  
+</xs:schema>

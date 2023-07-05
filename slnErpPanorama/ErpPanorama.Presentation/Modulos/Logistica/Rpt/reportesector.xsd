@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportesector"
+    targetNamespace="http://tempuri.org/reportesector.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportesector.xsd"
+    xmlns:mstns="http://tempuri.org/reportesector.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reportesector">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="IdTienda" type="xs:int" />
+      <xs:attribute name="DescTienda" type="xs:string" />
+      <xs:attribute name="IdAlmacen" type="xs:int" />
+      <xs:attribute name="DescAlmacen" type="xs:string" />
+      <xs:attribute name="IdSector" type="xs:int" />
+      <xs:attribute name="DescSector" type="xs:string" />
+      <xs:attribute name="FlagEstado" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

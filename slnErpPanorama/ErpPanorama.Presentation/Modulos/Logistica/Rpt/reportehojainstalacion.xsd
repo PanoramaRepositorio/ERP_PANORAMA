@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportehojainstalacion"
+    targetNamespace="http://tempuri.org/reportehojainstalacion.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportehojainstalacion.xsd"
+    xmlns:mstns="http://tempuri.org/reportehojainstalacion.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name="reportehojainstalacion">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdHojaInstalacion" type="xs:int" />
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="DiaSemana" type="xs:string" />
+      <xs:attribute name="Fecha" type="xs:dateTime"/>
+      <xs:attribute name="IdTurno" type="xs:int" />
+      <xs:attribute name="DescTurno" type="xs:string" />
+      <xs:attribute name="DescVendedor" type="xs:string" />
+      <xs:attribute name="IdCliente" type="xs:int" />
+      <xs:attribute name="DescCliente" type="xs:string" />
+      <xs:attribute name="IdUbigeo" type="xs:string" />
+      <xs:attribute name="Distrito" type="xs:string" />
+      <xs:attribute name="Direccion" type="xs:string" />
+      <xs:attribute name="Referencia" type="xs:string" />
+      <xs:attribute name="FlagReserva" type="xs:boolean" />
+      <xs:attribute name="Observacion" type="xs:string" />
+      <xs:attribute name="NumeroPedido" type="xs:string" />
+      <xs:attribute name="NombreProducto" type="xs:string" />
+      <xs:attribute name="Cantidad" type="xs:int" />
+      <xs:attribute name="FlagEstado" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reporteclientemayoristavendedorasociado"
+    targetNamespace="http://tempuri.org/reporteclientemayoristavendedorasociado.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reporteclientemayoristavendedorasociado.xsd"
+    xmlns:mstns="http://tempuri.org/reporteclientemayoristavendedorasociado.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="reporteclientemayoristavendedorasociado">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdCliente" type="xs:int" />
+      <xs:attribute name="IdRuta" type="xs:int" />      
+      <xs:attribute name="Tipo" type="xs:string" />
+      <xs:attribute name="NumeroDocumento" type="xs:string" />
+      <xs:attribute name="DescCliente" type="xs:string" />
+      <xs:attribute name="Direccion" type="xs:string" />
+      <xs:attribute name="NomDpto" type="xs:string" />
+      <xs:attribute name="NomProv" type="xs:string" />
+      <xs:attribute name="NomDist" type="xs:string" />
+      <xs:attribute name="Telefono" type="xs:string" />
+      <xs:attribute name="Celular" type="xs:string" />
+      <xs:attribute name="OtroTelefono" type="xs:string" />
+      <xs:attribute name="Email" type="xs:string" />
+      <xs:attribute name="DescRuta" type="xs:string" />
+      <xs:attribute name="Categoria" type="xs:string" />
+      <xs:attribute name="Fecha" type="xs:dateTime"/>
+      <xs:attribute name="FechaAniv" type="xs:dateTime"/>
+      <xs:attribute name="FechaNac" type="xs:dateTime"/>
+      <xs:attribute name="FechaCompra" type="xs:dateTime"/>
+      <xs:attribute name="TotalSoles" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

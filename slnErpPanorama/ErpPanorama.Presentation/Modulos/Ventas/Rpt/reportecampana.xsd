@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportecampana"
+    targetNamespace="http://tempuri.org/reportecampana.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportecampana.xsd"
+    xmlns:mstns="http://tempuri.org/reportecampana.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reportecampana">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdCampana" type="xs:int" />
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="DescCampana" type="xs:string" />
+      <xs:attribute name="FlagEstado" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

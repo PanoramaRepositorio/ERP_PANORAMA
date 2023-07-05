@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportecajavacia"
+    targetNamespace="http://tempuri.org/reportecajavacia.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportecajavacia.xsd"
+    xmlns:mstns="http://tempuri.org/reportecajavacia.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reportecajavacia">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdEmpresa" type="xs:int" />
+      <xs:attribute name="IdCajaVacia" type="xs:int" />
+      <xs:attribute name="FechaIngreso" type="xs:date" />
+      <xs:attribute name="FechaSalida" type="xs:date" />
+      <xs:attribute name="Observacion" type="xs:string" />
+      <xs:attribute name="IdUbicacion" type="xs:int" />
+      <xs:attribute name="DescUbicacion" type="xs:string" />
+      <xs:attribute name="IdPiso" type="xs:int" />
+      <xs:attribute name="DescPiso" type="xs:string" />
+      <xs:attribute name="IdProducto" type="xs:int" />
+      <xs:attribute name="CodigoProveedor" type="xs:string" />
+      <xs:attribute name="NombreProducto" type="xs:string" />
+      <xs:attribute name="FlagEstado" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

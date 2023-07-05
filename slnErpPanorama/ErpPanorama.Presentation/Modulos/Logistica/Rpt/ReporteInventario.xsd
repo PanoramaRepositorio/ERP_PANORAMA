@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ReporteInventario"
+    targetNamespace="http://tempuri.org/ReporteInventario.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/ReporteInventario.xsd"
+    xmlns:mstns="http://tempuri.org/ReporteInventario.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="ReporteInventario">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="DescTienda" type="xs:string" />
+      <xs:attribute name="Fecha" type="xs:dateTime" />
+      <xs:attribute name="DescAlmacen" type="xs:string" />
+      <xs:attribute name="CodigoProveedor" type="xs:string" />
+      <xs:attribute name="NombreProducto" type="xs:string" />
+      <xs:attribute name="Abreviatura" type="xs:string" />
+      <xs:attribute name="Cantidad" type="xs:decimal" />
+      <xs:attribute name="Ubicacion" type="xs:string" />
+      <xs:attribute name="DescVendedor" type="xs:string" />
+      <xs:attribute name="FlagEstado" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>
