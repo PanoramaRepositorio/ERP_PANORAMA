@@ -14,6 +14,11 @@
 # Carpeta bin y obj generada por la compilación
 **/bin/
 **/obj/
+**/*.cache
+**/*.exe
+**/*.dll
+**/*.pdb
+**/*.cac
 
 # Archivos de respaldo de código
 *~
@@ -32,5 +37,3 @@
 # Archivos .txt en obj/x86/Release
 **/obj/x86/Release/*.txt
 
-slnErpPanorama/ErpPanorama.Presentation/obj/x86/Release/ErpPanorama.Presentation.csproj.ResolveComReference.cache
-slnErpPanorama/ErpPanorama.Presentation/obj/x86/Release/ErpPanorama.Presentation.csproj.CoreCompileInputs.cache
