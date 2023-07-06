@@ -1,5 +1,6 @@
 
 ## Sistema ERP de Panorama Hogar
+
 Se crea este repositorio con el propósito de llevar un control en el versionado (cambios del sistema de la empresa)  y un trabajo colaborativo
 El sistema ERP de la empresa Panorama Hogar ofrece varios módulos, incluyendo:
 
@@ -10,7 +11,7 @@ El sistema ERP de la empresa Panorama Hogar ofrece varios módulos, incluyendo:
 - Recursos Humanos
 - Diseño y Fabricación, entre otros.
 
-![Logo de Panorama Hogar](https://panoramahogar.com/img/panorama-hogar-logo-1647024106.jpg](https://panoramahogar.com/modules/whfooterlogo/footer-logo.png)
+![Logo de Panorama Hogar](https://panoramahogar.com/modules/whfooterlogo/footer-logo.png)
 
 **Tecnología:**
 
