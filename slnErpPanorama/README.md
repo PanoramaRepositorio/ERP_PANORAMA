@@ -15,3 +15,19 @@ ssh-add ~/.ssh/id_ed25519
 ```bash
 cat ~/.ssh/id_ed25519.pub
 ```
+4. **Agregar la clave SSH a tu cuenta de GitHub:** Abre GitHub en tu navegador, inicia sesión en tu cuenta y accede a la configuración de tu perfil. Luego, sigue estos pasos:
+
+- Haz clic en "SSH and GPG keys" (Claves SSH y GPG) en el menú lateral.
+- Haz clic en "New SSH key" (Nueva clave SSH).
+- Proporciona un título descriptivo para la clave SSH, por ejemplo, "Mi clave SSH personal".
+- Pega el contenido de tu clave SSH que copiaste en el portapapeles en el campo "Key" (Clave).
+- Haz clic en "Add SSH key" (Agregar clave SSH) para guardar la clave en tu cuenta de GitHub.
+
+![image](https://github.com/PanoramaRepositorio/ERP_PANORAMA/assets/138617152/a9169fea-091d-451e-bb2e-c93bc93cb64b)
+
+
+5. Verificar la configuración de la clave SSH: En tu terminal, ejecuta el siguiente comando para verificar si la configuración de tu clave SSH es correcta:
+
+```bash
+ssh -T git@github.com
+```
