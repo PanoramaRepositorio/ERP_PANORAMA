@@ -11,6 +11,10 @@ namespace ErpPanorama.DataLogic
     {
         public PreventaDetalleDL() { }
 
+        /// <summary>
+        /// Inserta un nuevo registro en la tabla PreventaDetalle y registra una auditoría de la operación realizada.
+        /// </summary>
+        /// <param name="pItem">Objeto PreventaDetalleBE que contiene los datos a insertar.</param>
         public void Inserta(PreventaDetalleBE pItem)
         {
             Database db = DatabaseFactory.CreateDatabase("cnErpPanoramaBD");
@@ -32,7 +36,7 @@ namespace ErpPanorama.DataLogic
         {
             Int32 intIdCliente = 0;
             Database db = DatabaseFactory.CreateDatabase("cnErpPanoramaBD");
-            DbCommand dbCommand = db.GetStoredProcCommand("usp_Preventa_Inserta");
+            DbCommand dbCommand = db.GetStoredProcCommand("usp_Preventa_Inserta"); // este procedimiento almacenado realiza la inserción de un nuevo registro en la tabla "Preventa", registra una auditoría de la operación realizada y devuelve el identificador generado para el nuevo registro mediante el parámetro de salida @pIdPreventa.
 
             db.AddOutParameter(dbCommand, "pIdPreventa", DbType.Int32, pItem.IdPreventa);
             db.AddInParameter(dbCommand, "pIdEmpresa", DbType.Int32, pItem.IdEmpresa);
@@ -82,10 +86,16 @@ namespace ErpPanorama.DataLogic
             db.ExecuteNonQuery(dbCommand);
         }
 
+
+        /// <summary>
+        /// Obtiene una lista de detalles de preventa activos basados en el identificador de preventa proporcionado.
+        /// </summary>
+        /// <param name="IdPreventa">Identificador de la preventa.</param>
+        /// <returns>Una lista de objetos PreventaDetalleBE.</returns>
         public List<PreventaDetalleBE> ListaTodosActivo(int IdPreventa)
         {
             Database db = DatabaseFactory.CreateDatabase("cnErpPanoramaBD");
-            DbCommand dbCommand = db.GetStoredProcCommand("usp_PreventaDetalle_ListaTodosActivo");
+            DbCommand dbCommand = db.GetStoredProcCommand("usp_PreventaDetalle_ListaTodosActivo"); // se utiliza para obtener una lista de detalles de preventa activos en función de un identificador de preventa proporcionado
             db.AddInParameter(dbCommand, "pIdPreventa", DbType.Int32, IdPreventa);
             
             IDataReader reader = db.ExecuteReader(dbCommand);
