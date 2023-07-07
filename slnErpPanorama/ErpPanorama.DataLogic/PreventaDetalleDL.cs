@@ -31,7 +31,11 @@ namespace ErpPanorama.DataLogic
 
             db.ExecuteNonQuery(dbCommand);
         }
-
+        /// <summary>
+        /// Inserta un nuevo registro en la tabla Preventa, registra una auditoría de la operación realizada y devuelve el identificador generado para el nuevo registro.
+        /// </summary>
+        /// <param name="pItem">Objeto PreventaBE que contiene los datos a insertar.</param>
+        /// <returns>El identificador generado para el nuevo registro.</returns>
         public Int32 Inserta(PreventaBE pItem)
         {
             Int32 intIdCliente = 0;
@@ -54,8 +58,10 @@ namespace ErpPanorama.DataLogic
 
             return intIdCliente;
         }
-
-
+        /// <summary>
+        /// Actualiza un registro existente en la tabla PreventaDetalle con los datos proporcionados en el objeto PreventaDetalleBE.
+        /// </summary>
+        /// <param name="pItem">Objeto PreventaDetalleBE que contiene los datos a actualizar.</param>
         public void Actualiza(PreventaDetalleBE pItem)
         {
             Database db = DatabaseFactory.CreateDatabase("cnErpPanoramaBD");
@@ -72,7 +78,10 @@ namespace ErpPanorama.DataLogic
 
             db.ExecuteNonQuery(dbCommand);
         }
-
+        /// <summary>
+        /// Elimina un registro de la tabla PreventaDetalle utilizando el identificador de preventa y la información adicional proporcionada en el objeto PreventaDetalleBE.
+        /// </summary>
+        /// <param name="pItem">Objeto PreventaDetalleBE que contiene los datos necesarios para la eliminación.</param>
         public void Elimina(PreventaDetalleBE pItem)
         {
             Database db = DatabaseFactory.CreateDatabase("cnErpPanoramaBD");
@@ -85,7 +94,6 @@ namespace ErpPanorama.DataLogic
 
             db.ExecuteNonQuery(dbCommand);
         }
-
 
         /// <summary>
         /// Obtiene una lista de detalles de preventa activos basados en el identificador de preventa proporcionado.

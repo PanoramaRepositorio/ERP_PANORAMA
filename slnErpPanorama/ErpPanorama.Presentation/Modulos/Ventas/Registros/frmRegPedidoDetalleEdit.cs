@@ -1153,6 +1153,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                 oBE.IdPedidoDetalle = IdPedidoDetalle;
                 oBE.Item = intCorrelativo;
                 oBE.CodigoProveedor = txtCodigo.Text.Trim();
+                // El id 73940 se refiera al  GIFTCARD
                 oBE.NombreProducto = IdProducto == 73940 ? txtProducto.Text.Trim() + " " + txtObservacion.Text.Trim() : txtProducto.Text.Trim();
                 //  oBE.NombreProducto = txtProducto.Text.Trim();
                 oBE.Medida = Medida;
