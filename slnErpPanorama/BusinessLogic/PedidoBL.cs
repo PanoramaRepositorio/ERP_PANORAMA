@@ -446,7 +446,8 @@ namespace ErpPanorama.BusinessLogic
                     //Obtenemos el correlativo
                     List<NumeracionDocumentoBE> mListaNumero = new List<NumeracionDocumentoBE>();
                     mListaNumero = new NumeracionDocumentoBL().ObtenerCorrelativoPeriodo(Parametros.intPanoraramaDistribuidores, pItem.IdTipoDocumento, Parametros.intPeriodo);
-                    //mListaNumero = new NumeracionDocumentoBL().ObtenerCorrelativoPeriodo(Parametros.intEmpresaId, pItem.IdTipoDocumento, Parametros.intPeriodo);
+                    
+
                     if (mListaNumero.Count > 0)
                     {
                         sNumero = AgregarCaracter((mListaNumero[0].Numero + 1).ToString(), "0", 7);
@@ -464,8 +465,7 @@ namespace ErpPanorama.BusinessLogic
 
                     foreach (PedidoDetalleBE item in pListaPedidoDetalle)
                     {
-                        //if (pItem.IdFormaPago == Parametros.intContado || pItem.IdFormaPago == Parametros.intConsignacion || pItem.IdFormaPago == Parametros.intSeparacion || pItem.IdFormaPago == Parametros.intCopagan || pItem.IdFormaPago == Parametros.intContraEntrega || pItem.IdFormaPago == Parametros.intObsequio || pItem.IdFormaPago == Parametros.intASAF)
-                        //{
+                     
                         int IdKardex = 0;
 
                         //    //Establecemos el almacen correspondiente de acuerdo a la tienda
@@ -518,38 +518,7 @@ namespace ErpPanorama.BusinessLogic
 
                         if (pItem.FlagPreVenta == false)
                         {
-                            //Insertar Kardex  --COMENTADO no es Necesario es Directo. *****
-                            /*KardexBE objE_Kardex = new KardexBE();
-                            objE_Kardex.IdKardex = 0;
-                            objE_Kardex.IdEmpresa = Parametros.intEmpresaId;
-                            objE_Kardex.Periodo = pItem.Periodo;
-                            objE_Kardex.FechaMovimiento = Convert.ToDateTime(pItem.Fecha);
-                            objE_Kardex.IdAlmacen = IdAlmacen;
-                            objE_Kardex.IdProducto = item.IdProducto;
-                            objE_Kardex.Cantidad = item.Cantidad;
-                            objE_Kardex.IdTipoDocumento = pItem.IdTipoDocumento;
-                            objE_Kardex.NumeroDocumento = sNumero;
-                            objE_Kardex.Observacion = "Salida Por Pedido de Venta";
-                            objE_Kardex.TipoMovimiento = "S";
-                            objE_Kardex.MontoUnitarioCompra = item.ValorVenta;
-                            objE_Kardex.PrecioCostoPromedio = 0;
-                            objE_Kardex.MontoTotalCompra = 0;
-                            objE_Kardex.FlagEstado = true;
-                            objE_Kardex.Usuario = pItem.Usuario;
-                            objE_Kardex.Maquina = pItem.Maquina;
-
-                            KardexBE objE_KardexValorizado = new KardexBE();
-                            objE_KardexValorizado = new KardexDL().SeleccionaCalculaSaldo(Parametros.intEmpresaId, pItem.IdTienda, IdAlmacen, item.IdProducto);
-
-                            if (objE_KardexValorizado != null)
-                            {
-                                objE_Kardex.PrecioCostoPromedio = objE_KardexValorizado.PrecioCostoPromedio;
-                                objE_Kardex.MontoTotalCompra = objE_KardexValorizado.PrecioCostoPromedio * item.Cantidad;
-                            }
-
-                            KardexDL objDL_Kardex = new KardexDL();
-                            IdKardex = objDL_Kardex.Inserta(objE_Kardex);*/
-
+                            
                             //Verificar el stock
                             List<StockBE> lstStock = new List<StockBE>();
                             StockDL objDL_Stock = new StockDL();
@@ -621,37 +590,6 @@ namespace ErpPanorama.BusinessLogic
                                 item.IdMovimientoAlmacenDetalle = objBL_MovimientoAlmacen.InsertaSalidaEntrada(objMovimientoAlmacen);
                             }
 
-                            //        //Insertamos el detalle del pedido
-                            //        item.IdPedido = IdPedido;
-                            //        item.IdKardex = IdKardex;
-                            //        PedidoDetalle.Inserta(item);
-                            //    }
-                            //}
-
-                            ////Cuando el pedido es crédito
-                            //if (pItem.IdFormaPago == Parametros.intCredito)
-                            //{
-                            //    //Establecemos el almacen correspondiente de acuerdo a la tienda
-                            //    int IdAlmacen = 0;
-
-                            //    if (pItem.IdTienda == Parametros.intTiendaUcayali)
-                            //    {
-                            //        IdAlmacen = Parametros.intAlmCentral;
-                            //    }
-
-                            //    if (pItem.IdTienda == Parametros.intTiendaAndahuaylas)
-                            //    {
-                            //        IdAlmacen = Parametros.intAlmTiendaAndahuaylas;
-                            //    }
-
-                            //    if (pItem.IdTienda == Parametros.intTiendaKonceptos) IdAlmacen = Parametros.intAlmAnaquelesKonceptos;
-
-
-                            //    //Insertamos el detalle del pedido
-                            //    item.IdPedido = IdPedido;
-                            //    item.IdKardex = null;
-
-                            //    PedidoDetalle.Inserta(item);
                         }
 
                         //Insertamos el detalle del pedido
