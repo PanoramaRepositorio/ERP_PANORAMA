@@ -2602,16 +2602,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
             }
         }
 
-        //private void tsmMenuAgregar_Click(object sender, EventArgs e)
-        //{
-        //    this.nuevoToolStripMenuItem_Click(sender, e);
-        //}
-
-        //private void tsmMenuEliminar_Click(object sender, EventArgs e)
-        //{
-        //    this.eliminarToolStripMenuItem_Click(sender, e);
-        //}
-
+     
         private void btnNuevo_Click(object sender, EventArgs e)
         {
             if (Convert.ToInt32(cboTipoVenta.EditValue) == 0)
