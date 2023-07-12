@@ -1049,17 +1049,12 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                     return;
                 }
 
-                //if (bAutoservicio && Parametros.intTiendaId == Parametros.intTiendaUcayali && IdTipoCliente == Parametros.intTipClienteFinal && IdFormaPago == Parametros.intContado)
-                //{
-                //    XtraMessageBox.Show("Este código esta activado solamente para AUTOSERVICIO", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                //    VerificarStockVariosALmacen();
-                //    return;
-                //    //txtCantidad.SelectAll();
-                //    //txtCantidad.Focus();
-                //    //return;
-                //}
 
-                //Mal descarga de muestra
+                // Realiza una validación especial cuando la observación es "muestra",
+                // el checkbox de muestra no está marcado,
+                // el identificador de la tienda coincide con el de Ucayali
+                // y la variable booleana bPreVenta es falsa.
+
                 if (txtObservacion.Text.Trim().ToLower() == "muestra" && chkMuestra.Checked == false && Parametros.intTiendaId == Parametros.intTiendaUcayali && bPreVenta == false)
                 {
                     XtraMessageBox.Show("Ud esta descargando mal el código, esto afectará al stock. En consecuencia se emitirá un reporte con estas falencias. Consultar con Sistemas.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -1069,26 +1064,31 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                 }
 
                 var desc = txtDescuento.EditValue;
+
+                /// <summary>
+                /// Realiza una serie de cálculos y validaciones relacionados con la preventa de productos.
+                /// </summary>
+
                 if (bPreVenta)
                 {
                     int CantidadComprada = 0;
                     int CantidadVendida = 0;
                     int Saldo = 0;
                     int StockComprado = 0;
-
+                    // Obtiene los detalles de preventa del producto basado en el IdProducto
                     PreventaDetalleBE objE_ProductoNavidad = new PreventaDetalleBE();
                     objE_ProductoNavidad = new PreventaDetalleBL().Selecciona(IdProducto);
                     if (objE_ProductoNavidad != null)
                         CantidadComprada = objE_ProductoNavidad.Cantidad;
-
+                    // Obtiene los detalles de pedido relacionados con la preventa de Navidad del producto basado en el IdProducto
                     PedidoDetalleBE objE_ProductoVendido = new PedidoDetalleBE();
                     objE_ProductoVendido = new PedidoDetalleBL().SeleccionaPreVentaNavidad(IdProducto);
                     if (objE_ProductoVendido != null)
                         CantidadVendida = objE_ProductoVendido.Cantidad;
-
+                    // Calcula el stock disponible para la preventa del producto
                     StockComprado = CantidadComprada - CantidadVendida;
                     Saldo = CantidadComprada - (CantidadVendida + Convert.ToInt32(txtCantidad.Text));
-
+                    // Realiza una validación para evitar el stock negativo en la preventa si está configurado
                     if (!Parametros.bStockNegativoPreventa)
                     {
                         if (Saldo < 0)
@@ -1215,27 +1215,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                         else
                         {
                             Descuento = Decuento_Cliente_Final(Convert.ToInt32(txtCantidad.Text));
-                            //int Cantidad = Convert.ToInt32(txtCantidad.Text);
-                            //PromocionTemporalDetalleBE objE_PromocionTemporal = new PromocionTemporalDetalleBL().Selecciona(Parametros.intEmpresaId, IdTipoCliente, IdFormaPago, Parametros.intTiendaId, IdTipoVenta, IdProducto);
-                            //if (objE_PromocionTemporal != null)
-                            //{
-                            //    Descuento = objE_PromocionTemporal.Descuento;
-                            //}
-                            //else
-                            //{
-                            //    if (bFlagEscala)
-                            //    {
-                            //        var var_DescFinalMin = mListaDescuentoClienteFinal.Where(x =>
-                            //        x.IdClasificacionCliente == IdClasificacionCliente &&
-                            //        x.CantidadMaxima >= Cantidad).ToList().Min(x => x.PorDescuento);
-
-                            //        if (var_DescFinalMin != null)
-                            //        {
-                            //            Descuento = var_DescFinalMin;
-                            //        }
-                            //    }
-                            //}
-                            /////// FlagRamo
+                            
                             if (FlagRamoPersonalizado)
                             {
                                 if (IdLineaProducto == 4)
@@ -1396,13 +1376,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
 
         private void txtCantidad_Leave(object sender, EventArgs e)
         {
-            //if (FlagPresionado)
-            //{
-            //    txtValorVenta.EditValue = Convert.ToDecimal(txtPrecioVenta.Text) * Convert.ToDecimal(txtCantidad.Text);
-            //    return;
-            //}
-
-            //VerificarStockVariosALmacen();
+           
 
         }
 
@@ -1412,14 +1386,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
             {
                 if (Parametros.bStockNegativo == false)
                 {
-                    //if (Convert.ToDecimal(txtCantidad.EditValue) > Stock & Parametros.intTiendaId == Parametros.intTiendaUcayali)
-                    //{
-                    //    XtraMessageBox.Show("Stock insuficiente en Almacén. Cantidad:" + Stock + " , Puede vender la muestra", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //    txtCantidad.EditValue = Stock;
-                    //    txtValorVenta.EditValue = Convert.ToDecimal(txtPrecioVenta.Text) * Stock;
-                    //    return;
-                    //}
-
+                
 
                     if (Convert.ToInt32(txtCantidad.EditValue) <= 0)
                     {
@@ -1436,25 +1403,9 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                         if (bAutoservicio && Parametros.intTiendaId == Parametros.intTiendaUcayali && IdTipoCliente == Parametros.intTipClienteFinal && IdFormaPago == Parametros.intContado)
                         {
                             bFiltro = true;
-                            //txtCantidad.EditValue = 99999;
-                            //XtraMessageBox.Show("Este código esta activado solamente para AUTOSERVICIO", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            //txtCantidad.SelectAll();
-                            //txtCantidad.Focus();
-                            //return;
+                           
                         }
-                        //int Cantidad = Convert.ToInt32(txtCantidad.EditValue); //add para autoservicio
-                        //StockBE objE_Stock = null;
-
-                        //if (bAutoservicio && Parametros.intTiendaId == Parametros.intTiendaUcayali && IdTipoCliente == Parametros.intTipClienteFinal && IdFormaPago == Parametros.intContado)//add 29102015
-                        //{
-                        //    objE_Stock = new StockBL().SeleccionaCantidadIdProducto(Parametros.intTiendaId, Parametros.intAlmTiendaUcayali, IdProducto);
-                        //    bFiltro = true;
-                        //}
-                        //else
-                        //{
-                        //    objE_Stock = new StockBL().SeleccionaCantidadIdProducto(Parametros.intTiendaId, Parametros.intAlmCentralUcayali, IdProducto);
-                        //    bFiltro = false;
-                        //} -------------------------------------------------
+                       
 
                         int Cantidad = Convert.ToInt32(txtCantidad.EditValue);
 
