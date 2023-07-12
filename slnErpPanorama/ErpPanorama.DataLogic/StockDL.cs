@@ -11,6 +11,10 @@ namespace ErpPanorama.DataLogic
     {
         public StockDL() { }
 
+        /// <summary>
+        /// Inserta un nuevo registro en la tabla Stock con los datos proporcionados en el objeto StockBE.
+        /// </summary>
+        /// <param name="pItem">Objeto StockBE que contiene los datos a insertar.</param>
         public void Inserta(StockBE pItem)
         {
             Database db = DatabaseFactory.CreateDatabase("cnErpPanoramaBD");
