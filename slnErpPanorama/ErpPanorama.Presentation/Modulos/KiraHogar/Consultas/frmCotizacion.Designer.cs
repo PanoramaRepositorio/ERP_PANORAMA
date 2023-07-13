@@ -46,7 +46,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.Fecha = new DevExpress.XtraEditors.DateEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.cboVendedor = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
@@ -54,6 +53,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.cboTipoCotizacion = new DevExpress.XtraEditors.ComboBoxEdit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
@@ -61,8 +61,8 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             ((System.ComponentModel.ISupportInitialize)(this.txtNumeroPedido.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Fecha.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Fecha.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboVendedor.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboTipoCotizacion.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -132,7 +132,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit1.Properties.PopupSizeable = true;
-            this.comboBoxEdit1.Size = new System.Drawing.Size(113, 20);
+            this.comboBoxEdit1.Size = new System.Drawing.Size(166, 20);
             this.comboBoxEdit1.TabIndex = 127;
             // 
             // tabPage2
@@ -219,21 +219,12 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(456, 41);
+            this.labelControl1.Location = new System.Drawing.Point(520, 40);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(79, 13);
+            this.labelControl1.Size = new System.Drawing.Size(27, 13);
             this.labelControl1.TabIndex = 125;
-            this.labelControl1.Text = "Tipo Cotización :";
-            // 
-            // cboVendedor
-            // 
-            this.cboVendedor.Location = new System.Drawing.Point(560, 38);
-            this.cboVendedor.Name = "cboVendedor";
-            this.cboVendedor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboVendedor.Properties.PopupSizeable = true;
-            this.cboVendedor.Size = new System.Drawing.Size(113, 20);
-            this.cboVendedor.TabIndex = 126;
+            this.labelControl1.Text = "Tipo :";
+            this.labelControl1.Click += new System.EventHandler(this.labelControl1_Click);
             // 
             // labelControl3
             // 
@@ -290,11 +281,22 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             this.textBox2.TabIndex = 135;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
+            // cboTipoCotizacion
+            // 
+            this.cboTipoCotizacion.Location = new System.Drawing.Point(564, 37);
+            this.cboTipoCotizacion.Name = "cboTipoCotizacion";
+            this.cboTipoCotizacion.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboTipoCotizacion.Size = new System.Drawing.Size(218, 20);
+            this.cboTipoCotizacion.TabIndex = 136;
+            this.cboTipoCotizacion.SelectedIndexChanged += new System.EventHandler(this.cboTipoCotizacion_SelectedIndexChanged);
+            // 
             // frmCotizacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(851, 629);
+            this.Controls.Add(this.cboTipoCotizacion);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.textEdit1);
@@ -307,7 +309,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             this.Controls.Add(this.txtNumeroPedido);
             this.Controls.Add(this.labelControl15);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.cboVendedor);
             this.Name = "frmCotizacion";
             this.Text = "frmCotizacion";
             this.Load += new System.EventHandler(this.frmCotizacion_Load);
@@ -319,8 +320,8 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             ((System.ComponentModel.ISupportInitialize)(this.txtNumeroPedido.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Fecha.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Fecha.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboVendedor.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboTipoCotizacion.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -335,7 +336,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.DateEdit Fecha;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.ComboBoxEdit cboVendedor;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.LabelControl labelControl5;
@@ -351,5 +351,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         private DevExpress.XtraEditors.LabelControl labelControl8;
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.ComboBoxEdit cboTipoCotizacion;
     }
 }

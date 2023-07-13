@@ -62,6 +62,7 @@
     <Compile Include="AreaBE.cs" />
     <Compile Include="AsesoriaBE.cs" />
     <Compile Include="BancoProductoBE.cs" />
+    <Compile Include="ComboTipoCotizacionBE.cs" />
     <Compile Include="ReservaSalaBE.cs" />
     <Compile Include="CajaEgresoDetalleDocumentosBE.cs" />
     <Compile Include="CajaEgresoDetalleBE.cs" />

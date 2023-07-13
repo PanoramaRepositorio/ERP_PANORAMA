@@ -69,10 +69,10 @@
     <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>0A72E1B94C787A31D380255DCBB65FCBCBE5DE0A</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>5051291F8F4B73D906D2A69861739CBB431ACF06</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>ErpPanorama.Presentation_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>ErpPanorama.Presentation_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -1663,6 +1663,12 @@
     </Compile>
     <Compile Include="Modulos\Finanzas\Registros\frmVerDetalleCajaEgreso.Designer.cs">
       <DependentUpon>frmVerDetalleCajaEgreso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\KiraHogar\Consultas\frmCotizacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\KiraHogar\Consultas\frmCotizacion.Designer.cs">
+      <DependentUpon>frmCotizacion.cs</DependentUpon>
     </Compile>
     <Compile Include="Modulos\Logistica\Consultas\frmConCierrePedidos.cs">
       <SubType>Form</SubType>
@@ -4706,6 +4712,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Finanzas\Registros\frmVerDetalleCajaEgreso.resx">
       <DependentUpon>frmVerDetalleCajaEgreso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\KiraHogar\Consultas\frmCotizacion.resx">
+      <DependentUpon>frmCotizacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Logistica\Consultas\frmConCierrePedidos.resx">
       <DependentUpon>frmConCierrePedidos.cs</DependentUpon>
@@ -10488,6 +10497,7 @@
     <None Include="BD_ERPPanoramaDataSet.xss">
       <DependentUpon>BD_ERPPanoramaDataSet.xsd</DependentUpon>
     </None>
+    <None Include="ErpPanorama.Presentation_1_TemporaryKey.pfx" />
     <None Include="ErpPanorama.Presentation_TemporaryKey.pfx" />
     <None Include="Modulos\ComercioExterior\Rpt\reporteproductocatalogofacturaMinorista - Copia.xsd">
       <SubType>Designer</SubType>

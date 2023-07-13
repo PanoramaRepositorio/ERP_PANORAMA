@@ -61,6 +61,7 @@
     <Compile Include="AreaBL.cs" />
     <Compile Include="AsesoriaBL.cs" />
     <Compile Include="BancoProductoBL.cs" />
+    <Compile Include="ComboTipoCotizacionBL.cs" />
     <Compile Include="ReservaSalaBL.cs" />
     <Compile Include="CajaChicaBL.cs" />
     <Compile Include="CajaEgresoDetalleDocumentosBL.cs" />

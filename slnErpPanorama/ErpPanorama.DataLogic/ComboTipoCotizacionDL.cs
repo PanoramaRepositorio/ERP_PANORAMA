@@ -10,23 +10,17 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 
 namespace ErpPanorama.DataLogic
 {
-    class ComboTipoCotizacionDL
+    public class ComboTipoCotizacionDL
     {
        
             public List<ComboTipoCotizacionBE> ObtenerComboTipoCotizacion()
             {
                 List<ComboTipoCotizacionBE> listaComboTipoCotizacion = new List<ComboTipoCotizacionBE>();
 
-                // Obtener una instancia de la base de datos
+              
                 Database db = DatabaseFactory.CreateDatabase("cnErpPanoramaBD");
+                DbCommand cmd = db.GetStoredProcCommand("usp_Combo_ListaTipoCotizacion");
 
-                // Crear el comando para ejecutar el procedimiento almacenado
-                DbCommand cmd = db.GetStoredProcCommand("NombreDelProcedimientoAlmacenado");
-
-                // Agregar parámetros al comando si es necesario
-                // db.AddInParameter(cmd, "NombreParametro", DbType.TipoDato, valorParametro);
-
-                // Ejecutar el comando y obtener el resultado en un DataReader
                 using (IDataReader reader = db.ExecuteReader(cmd))
                 {
                     while (reader.Read())
