@@ -23,9 +23,12 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         private void frmCotizacion_Load(object sender, EventArgs e)
         {
 
-            ConfigurarComboBox();
+            ConfigurarComboBoxTipoCotizacion();
+            ConfigurarComboBoxMateriales();
             personalizacióncontrolesform();
+            ConfiguracionNumericUpdownMaterial();
             cboTipoCotizacion.Text = "Seleccione un Tipo";
+            cboMaterial.Text = "Seleccione Material";
 
         }
 
@@ -44,10 +47,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         }
 
 
-        private void ConfigurarComboBox()
+        private void ConfigurarComboBoxTipoCotizacion()
         {
 
-            
+
             // Configurar propiedades del control ComboBoxEdit
             cboTipoCotizacion.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
 
@@ -65,6 +68,39 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             {
                 cboTipoCotizacion.Properties.Items.Add(item.DescTablaElemento);
             }
+        }
+
+
+        private void ConfigurarComboBoxMateriales()
+        {
+
+
+            // Configurar propiedades del control ComboBoxEdit
+            cboMaterial.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+
+            // Crear instancia de ComboTipoCotizacionBL
+            comboTipoCotizacionBL = new ComboTipoCotizacionBL();
+
+            // Obtener la lista de objetos ComboTipoCotizacionBE
+            List<ComboTipoCotizacionBE> listaComboTipoCotizacion = comboTipoCotizacionBL.ObtenerComboMateriales();
+
+            // Limpiar los elementos existentes en el ComboBoxEdit
+            cboMaterial.Properties.Items.Clear();
+
+            // Agregar elementos al ComboBoxEdit
+            foreach (var item in listaComboTipoCotizacion)
+            {
+                cboMaterial.Properties.Items.Add(item.DescTablaElemento);
+            }
+        }
+
+        private void ConfiguracionNumericUpdownMaterial()
+        {
+            // Establecer las propiedades del control NumericUpDown
+            MontoMaterialUpDown1.Minimum = 0;
+            MontoMaterialUpDown1.Maximum = 100;
+            MontoMaterialUpDown1.Value = 1;
+            MontoMaterialUpDown1.Increment = 1;
         }
         private void txtPeriodo_EditValueChanged(object sender, EventArgs e)
         {
@@ -108,6 +144,21 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         }
 
         private void labelControl1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MontoMaterialUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            // Obtener el valor actual del control NumericUpDown
+            int cantidad = (int)MontoMaterialUpDown1.Value;
+
+            // Hacer algo con la cantidad seleccionada
+            // Por ejemplo, mostrarla en una etiqueta
+            //label1.Text = "Cantidad: " + cantidad.ToString();
+        }
+
+        private void labelControl14_Click(object sender, EventArgs e)
         {
 
         }

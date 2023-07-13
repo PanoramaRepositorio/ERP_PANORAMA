@@ -29,14 +29,11 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
-            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
-            this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -51,18 +48,39 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.cboTipoCotizacion = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cboMaterial = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.MontoMaterialUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.MontoInsumosUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.cboInsumos = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
+            this.MontoAccesoriosUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.cboAccesorios = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumeroPedido.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Fecha.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Fecha.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTipoCotizacion.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboMaterial.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MontoMaterialUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MontoInsumosUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboInsumos.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MontoAccesoriosUpDown3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboAccesorios.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -72,23 +90,24 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Location = new System.Drawing.Point(44, 287);
+            this.tabControl1.Location = new System.Drawing.Point(30, 339);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(784, 470);
+            this.tabControl1.Size = new System.Drawing.Size(784, 359);
             this.tabControl1.TabIndex = 53;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.gridControl1);
+            this.tabPage1.Controls.Add(this.MontoMaterialUpDown1);
+            this.tabPage1.Controls.Add(this.cboMaterial);
             this.tabPage1.Controls.Add(this.labelControl8);
             this.tabPage1.Controls.Add(this.labelControl7);
             this.tabPage1.Controls.Add(this.labelControl6);
-            this.tabPage1.Controls.Add(this.textEdit2);
-            this.tabPage1.Controls.Add(this.comboBoxEdit1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(776, 444);
+            this.tabPage1.Size = new System.Drawing.Size(776, 333);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -96,7 +115,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             // 
             // labelControl8
             // 
-            this.labelControl8.Location = new System.Drawing.Point(347, 48);
+            this.labelControl8.Location = new System.Drawing.Point(314, 48);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(30, 13);
             this.labelControl8.TabIndex = 131;
@@ -117,26 +136,13 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             this.labelControl6.TabIndex = 129;
             this.labelControl6.Text = "Selecciona Materiales";
             // 
-            // textEdit2
-            // 
-            this.textEdit2.Location = new System.Drawing.Point(395, 45);
-            this.textEdit2.Name = "textEdit2";
-            this.textEdit2.Properties.MaxLength = 7;
-            this.textEdit2.Size = new System.Drawing.Size(104, 20);
-            this.textEdit2.TabIndex = 128;
-            // 
-            // comboBoxEdit1
-            // 
-            this.comboBoxEdit1.Location = new System.Drawing.Point(163, 45);
-            this.comboBoxEdit1.Name = "comboBoxEdit1";
-            this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit1.Properties.PopupSizeable = true;
-            this.comboBoxEdit1.Size = new System.Drawing.Size(166, 20);
-            this.comboBoxEdit1.TabIndex = 127;
-            // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.MontoInsumosUpDown2);
+            this.tabPage2.Controls.Add(this.cboInsumos);
+            this.tabPage2.Controls.Add(this.labelControl9);
+            this.tabPage2.Controls.Add(this.labelControl10);
+            this.tabPage2.Controls.Add(this.labelControl11);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -148,6 +154,11 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.MontoAccesoriosUpDown3);
+            this.tabPage3.Controls.Add(this.cboAccesorios);
+            this.tabPage3.Controls.Add(this.labelControl12);
+            this.tabPage3.Controls.Add(this.labelControl13);
+            this.tabPage3.Controls.Add(this.labelControl14);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -267,11 +278,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             this.textBox1.TabIndex = 133;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(176, 129);
@@ -291,11 +297,122 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             this.cboTipoCotizacion.TabIndex = 136;
             this.cboTipoCotizacion.SelectedIndexChanged += new System.EventHandler(this.cboTipoCotizacion_SelectedIndexChanged);
             // 
+            // cboMaterial
+            // 
+            this.cboMaterial.Location = new System.Drawing.Point(157, 45);
+            this.cboMaterial.Name = "cboMaterial";
+            this.cboMaterial.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboMaterial.Size = new System.Drawing.Size(108, 20);
+            this.cboMaterial.TabIndex = 137;
+            // 
+            // MontoMaterialUpDown1
+            // 
+            this.MontoMaterialUpDown1.Location = new System.Drawing.Point(367, 46);
+            this.MontoMaterialUpDown1.Name = "MontoMaterialUpDown1";
+            this.MontoMaterialUpDown1.Size = new System.Drawing.Size(50, 21);
+            this.MontoMaterialUpDown1.TabIndex = 138;
+            this.MontoMaterialUpDown1.ValueChanged += new System.EventHandler(this.MontoMaterialUpDown1_ValueChanged);
+            // 
+            // MontoInsumosUpDown2
+            // 
+            this.MontoInsumosUpDown2.Location = new System.Drawing.Point(368, 49);
+            this.MontoInsumosUpDown2.Name = "MontoInsumosUpDown2";
+            this.MontoInsumosUpDown2.Size = new System.Drawing.Size(50, 21);
+            this.MontoInsumosUpDown2.TabIndex = 143;
+            // 
+            // cboInsumos
+            // 
+            this.cboInsumos.Location = new System.Drawing.Point(169, 48);
+            this.cboInsumos.Name = "cboInsumos";
+            this.cboInsumos.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboInsumos.Size = new System.Drawing.Size(108, 20);
+            this.cboInsumos.TabIndex = 142;
+            // 
+            // labelControl9
+            // 
+            this.labelControl9.Location = new System.Drawing.Point(315, 51);
+            this.labelControl9.Name = "labelControl9";
+            this.labelControl9.Size = new System.Drawing.Size(30, 13);
+            this.labelControl9.TabIndex = 141;
+            this.labelControl9.Text = "Monto";
+            // 
+            // labelControl10
+            // 
+            this.labelControl10.Location = new System.Drawing.Point(315, 55);
+            this.labelControl10.Name = "labelControl10";
+            this.labelControl10.Size = new System.Drawing.Size(0, 13);
+            this.labelControl10.TabIndex = 140;
+            // 
+            // labelControl11
+            // 
+            this.labelControl11.Location = new System.Drawing.Point(38, 51);
+            this.labelControl11.Name = "labelControl11";
+            this.labelControl11.Size = new System.Drawing.Size(93, 13);
+            this.labelControl11.TabIndex = 139;
+            this.labelControl11.Text = "Selecciona Insumos";
+            // 
+            // MontoAccesoriosUpDown3
+            // 
+            this.MontoAccesoriosUpDown3.Location = new System.Drawing.Point(367, 48);
+            this.MontoAccesoriosUpDown3.Name = "MontoAccesoriosUpDown3";
+            this.MontoAccesoriosUpDown3.Size = new System.Drawing.Size(50, 21);
+            this.MontoAccesoriosUpDown3.TabIndex = 148;
+            // 
+            // cboAccesorios
+            // 
+            this.cboAccesorios.Location = new System.Drawing.Point(168, 47);
+            this.cboAccesorios.Name = "cboAccesorios";
+            this.cboAccesorios.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboAccesorios.Size = new System.Drawing.Size(108, 20);
+            this.cboAccesorios.TabIndex = 147;
+            // 
+            // labelControl12
+            // 
+            this.labelControl12.Location = new System.Drawing.Point(314, 50);
+            this.labelControl12.Name = "labelControl12";
+            this.labelControl12.Size = new System.Drawing.Size(30, 13);
+            this.labelControl12.TabIndex = 146;
+            this.labelControl12.Text = "Monto";
+            // 
+            // labelControl13
+            // 
+            this.labelControl13.Location = new System.Drawing.Point(314, 54);
+            this.labelControl13.Name = "labelControl13";
+            this.labelControl13.Size = new System.Drawing.Size(0, 13);
+            this.labelControl13.TabIndex = 145;
+            // 
+            // labelControl14
+            // 
+            this.labelControl14.Location = new System.Drawing.Point(37, 50);
+            this.labelControl14.Name = "labelControl14";
+            this.labelControl14.Size = new System.Drawing.Size(104, 13);
+            this.labelControl14.TabIndex = 144;
+            this.labelControl14.Text = "Selecciona Accesorios";
+            this.labelControl14.Click += new System.EventHandler(this.labelControl14_Click);
+            // 
+            // gridControl1
+            // 
+            this.gridControl1.Location = new System.Drawing.Point(37, 89);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(668, 200);
+            this.gridControl1.TabIndex = 139;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
+            // 
             // frmCotizacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(851, 629);
+            this.ClientSize = new System.Drawing.Size(851, 728);
             this.Controls.Add(this.cboTipoCotizacion);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
@@ -315,13 +432,23 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumeroPedido.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Fecha.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Fecha.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTipoCotizacion.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboMaterial.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MontoMaterialUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MontoInsumosUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboInsumos.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MontoAccesoriosUpDown3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboAccesorios.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -341,16 +468,27 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.TextEdit textEdit1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage5;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
-        private DevExpress.XtraEditors.TextEdit textEdit2;
         private DevExpress.XtraEditors.LabelControl labelControl8;
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.ComboBoxEdit cboTipoCotizacion;
+        private DevExpress.XtraEditors.ComboBoxEdit cboMaterial;
+        private System.Windows.Forms.NumericUpDown MontoMaterialUpDown1;
+        private System.Windows.Forms.NumericUpDown MontoInsumosUpDown2;
+        private DevExpress.XtraEditors.ComboBoxEdit cboInsumos;
+        private DevExpress.XtraEditors.LabelControl labelControl9;
+        private DevExpress.XtraEditors.LabelControl labelControl10;
+        private DevExpress.XtraEditors.LabelControl labelControl11;
+        private System.Windows.Forms.NumericUpDown MontoAccesoriosUpDown3;
+        private DevExpress.XtraEditors.ComboBoxEdit cboAccesorios;
+        private DevExpress.XtraEditors.LabelControl labelControl12;
+        private DevExpress.XtraEditors.LabelControl labelControl13;
+        private DevExpress.XtraEditors.LabelControl labelControl14;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
     }
 }
