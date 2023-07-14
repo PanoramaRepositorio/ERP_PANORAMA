@@ -74,6 +74,35 @@ namespace ErpPanorama.DataLogic
             return listaComboMaterial;
         }
 
+        public List<ComboTipoCotizacionBE> ObtenerComboInsumos()
+        {
+            List<ComboTipoCotizacionBE> listacomboInsumo = new List<ComboTipoCotizacionBE>();
+
+            Database db = DatabaseFactory.CreateDatabase("cnErpPanoramaBD");
+            DbCommand cmd = db.GetStoredProcCommand("usp_Combo_ListaInsumos");
+
+            using (IDataReader reader = db.ExecuteReader(cmd))
+            {
+                while (reader.Read())
+                {
+                    ComboTipoCotizacionBE comboTipoInsumo = new ComboTipoCotizacionBE();
+
+                    comboTipoInsumo.IdTablaElemento = Convert.ToInt32(reader["IdTablaElemento"]);
+                    comboTipoInsumo.IdTabla = reader["IdTabla"] != DBNull.Value ? Convert.ToInt32(reader["IdTabla"]) : (int?)null;
+                    comboTipoInsumo.Abreviatura = reader["Abreviatura"].ToString();
+                    comboTipoInsumo.DescTablaElemento = reader["DescTablaElemento"].ToString();
+                    comboTipoInsumo.IdTablaExterna = reader["IdTablaExterna"] != DBNull.Value ? Convert.ToInt32(reader["IdTablaExterna"]) : (int?)null;
+                    comboTipoInsumo.Valor = reader["valor"] != DBNull.Value ? Convert.ToDecimal(reader["valor"]) : (decimal?)null;
+                    comboTipoInsumo.FlagEstado = reader["FlagEstado"] != DBNull.Value ? Convert.ToBoolean(reader["FlagEstado"]) : (bool?)null;
+                    listacomboInsumo.Add(comboTipoInsumo);
+                }
+            }
+                return listacomboInsumo;
+        }
+
+
+
+
 
     }
 
