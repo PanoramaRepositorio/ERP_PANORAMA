@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using ErpPanorama.BusinessEntity;
 using ErpPanorama.BusinessLogic;
 using DevExpress.XtraEditors.Controls;
+using ErpPanorama.Presentation.Modulos.KiraHogar.Registros;
 
 namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
 {
@@ -27,11 +28,14 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         {
 
 
-            tlbMenu.Ensamblado = this.Tag.ToString();
+            //tlbMenu.Ensamblado = this.Tag.ToString();
             CrearDatable_GridControl();
             ConfigurarComboBoxTipoCotizacion();
             ConfigurarComboBoxMateriales();
             ConfigurarComboBoxInsumo();
+            ConfigurarConboBoxAccesorio();
+            ConfigurarComboBoxMano();
+            ConfigurarComboBoxMovilidad();
             personalizacióncontrolesform();
 
 
@@ -41,14 +45,17 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
 
         private void tlbMenu_NewClick()
         {
+            frmRegKiraCotizacion formCotizacion = new frmRegKiraCotizacion();
+            formCotizacion.ShowDialog();
             MessageBox.Show("Aquí dar lógica", "Mensaje tlbMenu_NewClick", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void tlbMenu_EditClick() { 
+        private void tlbMenu_EditClick()
+        {
             MessageBox.Show("Aquí dar lógica", "Mensaje tlbMenu_EditClick", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-        
-           
+
+
 
         private void CrearDatable_GridControl()
         {
@@ -65,7 +72,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             gridControlPestaña5.DataSource = dtDatos;
 
             // Suscribirte al evento SelectedIndexChanged del ComboBoxEdit
-            cboMaterial.SelectedIndexChanged += cboMaterial_SelectedIndexChanged;
+            
         }
 
         private void personalizacióncontrolesform()
@@ -75,11 +82,11 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             grid.TabPages[2].Text = "Accesorios";
             grid.TabPages[3].Text = "Mano de Obra ";
             grid.TabPages[4].Text = "Movilidad y Viaticos";
-            Fecha.Properties.MinValue = DateTime.Today;
-            Fecha.DateTime = DateTime.Today;
-            textBox1.ScrollBars = ScrollBars.Vertical;
-            textBox1.ScrollBars = ScrollBars.Both;
-            textBox2.ScrollBars = ScrollBars.Both;
+            txtFecha.Properties.MinValue = DateTime.Today;
+            txtFecha.DateTime = DateTime.Today;
+            txtCaracteristicas.ScrollBars = ScrollBars.Vertical;
+            txtCaracteristicas.ScrollBars = ScrollBars.Both;
+            txtBreveDescripcion.ScrollBars = ScrollBars.Both;
         }
 
 
@@ -145,13 +152,58 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
 
         }
 
-
-
-        private void MontoMaterialUpDown1_ValueChanged(object sender, EventArgs e)
+        public void ConfigurarConboBoxAccesorio()
         {
-          
+            cboAccesorios.Text = "Seleccione Accesorio";
+            cboAccesorios.Properties.TextEditStyle = TextEditStyles.Standard;
+            cboAccesorios.Properties.AutoComplete = true;
+            cboAccesorios.Properties.CaseSensitiveSearch = false;
+            comboTipoCotizacionBL = new ComboTipoCotizacionBL();
+            List<ComboTipoCotizacionBE> listaaccesorio = comboTipoCotizacionBL.ObtenerAccesorios();
+            cboAccesorios.Properties.Items.Clear();
+            foreach (var item in listaaccesorio)
+            {
+                cboAccesorios.Properties.Items.Add(item.DescTablaElemento);
+            }
         }
 
+        public void ConfigurarComboBoxMano()
+        {
+            cboManoObra.Text = "Seleccione Mano de Obra";
+            cboManoObra.Properties.TextEditStyle = TextEditStyles.Standard;
+            cboManoObra.Properties.AutoComplete = true;
+            cboManoObra.Properties.CaseSensitiveSearch = false;
+            List<ComboTipoCotizacionBE> listamanoobra = comboTipoCotizacionBL.ObtenerManoObra();
+            cboManoObra.Properties.Items.Clear();
+            foreach (var item in listamanoobra)
+            {
+                cboManoObra.Properties.Items.Add(item.DescTablaElemento);
+            }
+        }
+
+        public void ConfigurarComboBoxMovilidad()
+        {
+            cboSeleccionaMovilidad.Text = "Seleccione Movilidad - Viaticos";
+            cboSeleccionaMovilidad.Properties.TextEditStyle = TextEditStyles.Standard;
+            cboSeleccionaMovilidad.Properties.AutoComplete = true;
+            cboSeleccionaMovilidad.Properties.CaseSensitiveSearch = false;
+            List<ComboTipoCotizacionBE> listamovi = comboTipoCotizacionBL.ObtenerMovilidadyViaticos();
+            cboSeleccionaMovilidad.Properties.Items.Clear();
+            foreach (var item in listamovi)
+            {
+                cboSeleccionaMovilidad.Properties.Items.Add(item.DescTablaElemento);
+            }
+        }
+
+
+        private void tlbMenu_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Eventos de los botones agregar de cada pesataña TAB
+        /// </summary>
         private void btnAgregarPestaña1_Click(object sender, EventArgs e)
         {
 
@@ -188,22 +240,15 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             // Refrescar el GridControl para mostrar los nuevos datos
             gridControlPestaña1.RefreshDataSource();
         }
-
-        private void cboMaterial_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        
-
-        }
-
         private void btnAgregarPestaña2_Click(object sender, EventArgs e)
         {
             // Obtener los valores de los controles NumericUpDown y ComboBoxEdit
 
-            string material = cboInsumos.Text;
-            string monto = textEdit2.Text;
+            string insumo = cboInsumos.Text;
+            string monto = txtinsumo.Text;
 
             // Verificar si se ha seleccionado un material
-            if (string.IsNullOrWhiteSpace(material))
+            if (string.IsNullOrWhiteSpace(insumo))
             {
                 MessageBox.Show("Por favor, seleccione un material antes de agregar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -218,21 +263,90 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             DataTable dt = (DataTable)gridControlPestaña2.DataSource;
             // Agregar una nueva fila al DataTable con los valores correspondientes
             DataRow newRow = dt.NewRow();
-            newRow["Descripción"] = material;
+            newRow["Descripción"] = insumo;
             newRow["Costo" + " " + " S/."] = monto;
             dt.Rows.Add(newRow);
 
             // Limpiar los controles NumericUpDown y ComboBoxEdit
 
             cboInsumos.Text = "Seleccione Material";
-            textEdit2.Text = string.Empty;
+            txtinsumo.Text = string.Empty;
 
             // Refrescar el GridControl para mostrar los nuevos datos
             gridControlPestaña2.RefreshDataSource();
         }
-
-        private void tlbMenu_Load(object sender, EventArgs e)
+        private void btnAgregarPestaña3_Click(object sender, EventArgs e)
         {
+            string accesorio = cboAccesorios.Text;
+            string monto = txtMontoaccesorio.Text;
+            if (string.IsNullOrWhiteSpace(accesorio))
+            {
+                MessageBox.Show("Por favor, seleccione un material antes de agregar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if(!decimal.TryParse(monto, out decimal montoDecimal))
+            {
+                MessageBox.Show("Por favor, ingrese un monto válido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            DataTable dt = (DataTable)gridControlPestaña3.DataSource;
+            DataRow newRow = dt.NewRow();
+            newRow["Descripción"] = accesorio;
+            newRow["Costo" + " " + " S/."] = monto;
+            dt.Rows.Add(newRow);
+            cboAccesorios.Text = "Seleccione Accesorio";
+            txtMontoaccesorio.Text = string.Empty;
+            gridControlPestaña3.RefreshDataSource();
+        }
+
+        private void btnAgregarPestaña4_Click(object sender, EventArgs e)
+        {
+            string manoobra = cboManoObra.Text;
+            string monto = txtManoobra.Text;
+            if (string.IsNullOrWhiteSpace(manoobra))
+            {
+                MessageBox.Show("Por favor, seleccione un material antes de agregar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!decimal.TryParse(monto, out decimal montoDecimal))
+            {
+                MessageBox.Show("Por favor, ingrese un monto válido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            DataTable dt = (DataTable)gridControlPestaña3.DataSource;
+            DataRow newRow = dt.NewRow();
+            newRow["Descripción"] = manoobra;
+            newRow["Costo" + " " + " S/."] = monto;
+            dt.Rows.Add(newRow);
+            cboManoObra.Text = "Seleccione Mano de obra";
+            txtManoobra.Text = string.Empty;
+            gridControlPestaña4.RefreshDataSource();
+
+        }
+
+        private void btnAgregarPestaña5_Click(object sender, EventArgs e)
+        {
+
+            string movilidad = cboSeleccionaMovilidad.Text;
+            string monto = txtMovilidad.Text;
+            if (string.IsNullOrWhiteSpace(movilidad))
+            {
+                MessageBox.Show("Por favor, seleccione un material antes de agregar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!decimal.TryParse(monto, out decimal montoDecimal))
+            {
+                MessageBox.Show("Por favor, ingrese un monto válido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            DataTable dt = (DataTable)gridControlPestaña3.DataSource;
+            DataRow newRow = dt.NewRow();
+            newRow["Descripción"] = movilidad;
+            newRow["Costo" + " " + " S/."] = monto;
+            dt.Rows.Add(newRow);
+            cboSeleccionaMovilidad.Text = "Seleccione Movilidad - viaticos";
+            txtMovilidad.Text = string.Empty;
+            gridControlPestaña5.RefreshDataSource();
 
         }
     }
