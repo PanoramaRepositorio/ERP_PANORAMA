@@ -27,5 +27,25 @@ namespace ErpPanorama.BusinessLogic
             ComboTipoCotizacionDL comboinsumo = new ComboTipoCotizacionDL();
             return comboinsumo.ObtenerComboInsumos();
         }
+
+        public List<ComboTipoCotizacionBE> ObtenerAccesorios()
+        {
+            ComboTipoCotizacionDL comboaccesorio = new ComboTipoCotizacionDL();
+            return comboaccesorio.ObtenerlistaAccesorios();
+
+
+        }
+
+        public List<ComboTipoCotizacionBE> ObtenerManoObra()
+        {
+            ComboTipoCotizacionDL comboMano = new ComboTipoCotizacionDL();
+            return comboMano.ObtenerListaManoObra();
+        }
+
+        public List<ComboTipoCotizacionBE> ObtenerMovilidadyViaticos()
+        {
+            ComboTipoCotizacionDL comboMovi = new ComboTipoCotizacionDL();
+            return comboMovi.ObtenerListaMovilidadyViaticos();
+        }
     }
 }
