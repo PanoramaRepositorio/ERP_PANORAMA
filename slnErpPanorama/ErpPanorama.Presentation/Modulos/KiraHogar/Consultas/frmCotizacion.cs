@@ -57,6 +57,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             ConfigurarConboBoxAccesorio();
             ConfigurarComboBoxMano();
             ConfigurarComboBoxMovilidad();
+            ConfigurarComboBoxTipoMoneda();
             personalizacióncontrolesform();
             calcularTotalGastospestaña1();
             calcularTotalGastospestaña2();
@@ -210,6 +211,22 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             foreach (ComboTipoCotizacionBE item in listamovi)
             {
                 cboSeleccionaMovilidad.Properties.Items.Add(item.DescTablaElemento);
+            }
+        }
+
+
+        public void ConfigurarComboBoxTipoMoneda()
+        {
+            cboTipoMoneda.Text = "Seleccione Moneda";
+            cboTipoMoneda.Properties.TextEditStyle = TextEditStyles.Standard;
+            cboTipoMoneda.Properties.AutoComplete = true;
+            cboTipoMoneda.Properties.CaseSensitiveSearch = false;
+            List<ComboTipoCotizacionBE> listamone = comboTipoCotizacionBL.ObtenerComboTipoMoneda();
+            // Configurar el ComboBox
+            cboTipoMoneda.Properties.Items.Clear();
+            foreach (ComboTipoCotizacionBE item in listamone)
+            {
+                cboTipoMoneda.Properties.Items.Add(item.DescTablaElemento);
             }
         }
 
@@ -685,29 +702,42 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         {
             try
             {
-                // Obtener el elemento ComboTipoCotizacionBE seleccionado en el ComboBox
+                // Obtener el elemento ComboTipoCotizacionBE seleccionado en el ComboBox de Tipo de Cotización
                 ComboTipoCotizacionBE itemSeleccionado = comboTipoCotizacionBL.ObtenerComboTipoCotizacion()
                     .FirstOrDefault(x => x.DescTablaElemento == cboTipoCotizacion.Text);
 
                 if (itemSeleccionado == null)
                 {
-                    MessageBox.Show("Debe seleccionar un elemento válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Debe seleccionar un tipo de cotización válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                int idTablaElemento = itemSeleccionado.IdTablaElemento;
+                // Obtener el elemento ComboTipoCotizacionBE seleccionado en el ComboBox de Tipo de Moneda
+                ComboTipoCotizacionBE itemMonedaSeleccionado = comboTipoCotizacionBL.ObtenerComboTipoMoneda()
+                    .FirstOrDefault(x => x.DescTablaElemento == cboTipoMoneda.Text);
+
+                if (itemMonedaSeleccionado == null)
+                {
+                    MessageBox.Show("Debe seleccionar un tipo de moneda válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Obtener el IdTablaElemento de los tipos de cotización y moneda seleccionados
+                int idTipoCotizacion = itemSeleccionado.IdTablaElemento;
+                int idMoneda = itemMonedaSeleccionado.IdTablaElemento;
 
                 // Crear objeto CotizacionKiraBE con los valores ingresados por el usuario
                 CotizacionKiraBE cotizacion = new CotizacionKiraBE
                 {
-                    IdTablaElemento = idTablaElemento,
+                    IdTablaElemento = idTipoCotizacion, // IdTipoCotizacion obtenido del ComboBox de Tipo de Cotización
                     Fecha = txtFecha.DateTime,
                     CodigoProducto = txtCodigoProducto.Text,
                     Descripcion = txtBreveDescripcion.Text,
                     Caracteristicas = txtCaracteristicas.Text,
                     Imagen = txtUrlimagen.Text,
                     TotalGastos = decimal.TryParse(txtTotal.Text, out decimal totalGastos) ? totalGastos : 0.0m,
-                    PrecioVenta = decimal.TryParse(txtPrecioVenta.Text, out decimal precioVenta) ? precioVenta : 0.0m
+                    PrecioVenta = decimal.TryParse(txtPrecioVenta.Text, out decimal precioVenta) ? precioVenta : 0.0m,
+                    IdMoneda = idMoneda // IdMoneda obtenido del ComboBox de Tipo de Moneda
                 };
 
                 // Obtener el DataTable del detalle usando el método auxiliar
@@ -748,6 +778,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
                 MessageBox.Show("Ocurrió un error al guardar la cotización: " + ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
 
 
