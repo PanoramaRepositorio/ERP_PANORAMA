@@ -106,6 +106,8 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             this.txtPrecioVenta = new DevExpress.XtraEditors.TextEdit();
             this.labelControl16 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
+            this.lblmoneda = new DevExpress.XtraEditors.LabelControl();
+            this.cboTipoMoneda = new DevExpress.XtraEditors.ComboBoxEdit();
             this.Tabcontrol.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPrecio.Properties)).BeginInit();
@@ -146,6 +148,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             ((System.ComponentModel.ISupportInitialize)(this.txtUrlimagen.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotal.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPrecioVenta.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboTipoMoneda.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // Tabcontrol
@@ -851,11 +854,30 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             this.labelControl17.TabIndex = 160;
             this.labelControl17.Text = "PRECIO DE VENTA FINAL";
             // 
+            // lblmoneda
+            // 
+            this.lblmoneda.Location = new System.Drawing.Point(67, 307);
+            this.lblmoneda.Name = "lblmoneda";
+            this.lblmoneda.Size = new System.Drawing.Size(48, 13);
+            this.lblmoneda.TabIndex = 163;
+            this.lblmoneda.Text = "Moneda  :";
+            // 
+            // cboTipoMoneda
+            // 
+            this.cboTipoMoneda.Location = new System.Drawing.Point(176, 300);
+            this.cboTipoMoneda.Name = "cboTipoMoneda";
+            this.cboTipoMoneda.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboTipoMoneda.Size = new System.Drawing.Size(145, 20);
+            this.cboTipoMoneda.TabIndex = 162;
+            // 
             // frmCotizacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(889, 888);
+            this.Controls.Add(this.lblmoneda);
+            this.Controls.Add(this.cboTipoMoneda);
             this.Controls.Add(this.labelControl17);
             this.Controls.Add(this.labelControl16);
             this.Controls.Add(this.txtPrecioVenta);
@@ -931,6 +953,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             ((System.ComponentModel.ISupportInitialize)(this.txtUrlimagen.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotal.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPrecioVenta.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboTipoMoneda.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1013,5 +1036,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         private DevExpress.XtraEditors.TextEdit txtPrecioVenta;
         private DevExpress.XtraEditors.LabelControl labelControl16;
         private DevExpress.XtraEditors.LabelControl labelControl17;
+        private DevExpress.XtraEditors.LabelControl lblmoneda;
+        private DevExpress.XtraEditors.ComboBoxEdit cboTipoMoneda;
     }
 }
