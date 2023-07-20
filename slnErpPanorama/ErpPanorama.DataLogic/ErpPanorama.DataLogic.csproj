@@ -74,6 +74,7 @@
     <Compile Include="BancoProductoDL.cs" />
     <Compile Include="CajaChicaDL.cs" />
     <Compile Include="ComboTipoCotizacionDL.cs" />
+    <Compile Include="CotizacionKiraDL.cs" />
     <Compile Include="ReservaSalaDL.cs" />
     <Compile Include="CajaEgresoDetalleDocumentosDL.cs" />
     <Compile Include="CajaEgresoDetalleDL.cs" />
