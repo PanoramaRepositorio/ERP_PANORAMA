@@ -37,5 +37,8 @@ namespace ErpPanorama.BusinessEntity
 
         [DataMember]
         public decimal PrecioVenta { get; set; }
+
+        [DataMember]
+        public int IdMoneda { get; set; } // Nuevo campo para el IdMoneda
     }
 }
