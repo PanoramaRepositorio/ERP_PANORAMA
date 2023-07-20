@@ -40,6 +40,7 @@ namespace ErpPanorama.DataLogic
                         db.AddInParameter(cotizacionCommand, "@Imagen", DbType.String, cotizacion.Imagen);
                         db.AddInParameter(cotizacionCommand, "@TotalGastos", DbType.Decimal, cotizacion.TotalGastos);
                         db.AddInParameter(cotizacionCommand, "@PrecioVenta", DbType.Decimal, cotizacion.PrecioVenta);
+                        db.AddInParameter(cotizacionCommand, "@Moneda", DbType.Int32, cotizacion.IdMoneda); // Nueva línea para agregar el parámetro Moneda
 
                         db.AddOutParameter(cotizacionCommand, "@IdCotizacion", DbType.Int32, 4);
 
