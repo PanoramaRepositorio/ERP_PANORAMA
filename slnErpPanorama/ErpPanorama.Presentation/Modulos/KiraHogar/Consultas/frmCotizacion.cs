@@ -30,7 +30,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         List<DetalleCotizacionBE> detalleCotizacionList = new List<DetalleCotizacionBE>();
 
 
-
         public frmCotizacion()
         {
             InitializeComponent();
@@ -668,98 +667,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             return 0; // O un valor adecuado según tu lógica de negocio
         }
 
-        //private void btnguardar_Click(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        // Obtener el elemento ComboTipoCotizacionBE seleccionado en el ComboBox
-        //        ComboTipoCotizacionBE itemSeleccionado = comboTipoCotizacionBL.ObtenerComboTipoCotizacion()
-        //            .FirstOrDefault(x => x.DescTablaElemento == cboTipoCotizacion.Text);
-
-        //        if (itemSeleccionado == null)
-        //        {
-        //            MessageBox.Show("Debe seleccionar un elemento válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //            return;
-        //        }
-
-        //        int idTablaElemento = itemSeleccionado.IdTablaElemento;
-
-        //        // Crear objeto CotizacionKiraBE con los valores ingresados por el usuario
-        //        CotizacionKiraBE cotizacion = new CotizacionKiraBE
-        //        {
-        //            IdTablaElemento = idTablaElemento,
-        //            Fecha = txtFecha.DateTime,
-        //            CodigoProducto = txtCodigoProducto.Text,
-        //            Descripcion = txtBreveDescripcion.Text,
-        //            Caracteristicas = txtCaracteristicas.Text,
-        //            Imagen = txtUrlimagen.Text,
-        //            TotalGastos = decimal.TryParse(txtTotal.Text, out decimal totalGastos) ? totalGastos : 0.0m,
-        //            PrecioVenta = decimal.TryParse(txtPrecioVenta.Text, out decimal precioVenta) ? precioVenta : 0.0m
-        //        };
-
-        //        // Obtener el DataTable del DataSource del gridControlPestaña1
-        //        DataTable dtDetalle = (DataTable)gridControlPestaña1.DataSource;
-
-        //        // Verificar que el DataTable del detalle no sea nulo y contenga filas
-        //        if (dtDetalle == null || dtDetalle.Rows.Count == 0)
-        //        {
-        //            MessageBox.Show("Debe ingresar al menos un detalle de cotización.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //            return;
-        //        }
-
-        //        //Crear un objeto DataTable con la estructura del tipo dbo.DetalleCotizacionType
-        //        DataTable dtDetalleCotizacion = new DataTable();
-        //        dtDetalleCotizacion.Columns.Add("IdTablaElemento", typeof(int));
-        //        dtDetalleCotizacion.Columns.Add("Item", typeof(int));
-        //        dtDetalleCotizacion.Columns.Add("DescripcionGastos", typeof(string));
-        //        dtDetalleCotizacion.Columns.Add("FlagAprobacion", typeof(bool));
-        //        dtDetalleCotizacion.Columns.Add("FlagEstado", typeof(bool));
-
-        //        // Iterar sobre las filas del DataTable del detalle y agregar cada fila al DataTable dtDetalleCotizacion
-        //        foreach (DataRow row in dtDetalle.Rows)
-        //        {
-        //            int idTablaElementoDetalle = Convert.ToInt32(row["IdTablaElemento"]);
-        //            DataRow newRow = dtDetalleCotizacion.NewRow();
-        //            newRow["IdTablaElemento"] = idTablaElementoDetalle;
-        //            newRow["Item"] = Convert.ToInt32(row["Item"]);
-        //            newRow["DescripcionGastos"] = row["DescripcionGastos"].ToString();
-        //            newRow["FlagAprobacion"] = true;
-        //            newRow["FlagEstado"] = true;
-        //            dtDetalleCotizacion.Rows.Add(newRow);
-        //        }
-
-        //        // Verificar el contenido del DataTable dtDetalleCotizacion antes de guardar
-        //        foreach (DataRow row in dtDetalleCotizacion.Rows)
-        //        {
-        //            Console.WriteLine($"IdTablaElemento: {row["IdTablaElemento"]}, Item: {row["Item"]}, DescripcionGastos: {row["DescripcionGastos"]},FlagAprobacion: {row["FlagAprobacion"]}, FlagEstado : {row["FlagEstado"]} ");
-        //        }
-
-        //        // Imprimir contenido del DataTable dtDetalle
-        //        Console.WriteLine("Contenido de dtDetalle:");
-        //        foreach (DataRow row in dtDetalle.Rows)
-        //        {
-        //            Console.WriteLine($"IdTablaElemento: {row["IdTablaElemento"]}, Item: {row["Item"]}, DescripcionGastos: {row["DescripcionGastos"]}");
-        //        }
-
-        //        // Imprimir contenido del DataTable dtDetalleCotizacion
-        //        Console.WriteLine("Contenido de dtDetalleCotizacion:");
-        //        foreach (DataRow row in dtDetalleCotizacion.Rows)
-        //        {
-        //            Console.WriteLine($"IdTablaElemento: {row["IdTablaElemento"]}, Item: {row["Item"]}, DescripcionGastos: {row["DescripcionGastos"]}, FlagAprobacion: {row["FlagAprobacion"]}, FlagEstado: {row["FlagEstado"]}");
-        //        }
-
-
-        //        // Llamar al método RegistrarCotizacionYDetalle de CotizacionKiraBL
-        //        CotizacionKiraBL cotizacionKiraBL = new CotizacionKiraBL();
-        //        cotizacionKiraBL.RegistrarCotizacionYDetalle(cotizacion, dtDetalleCotizacion);
-
-        //        MessageBox.Show("La cotización se registró correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Ocurrió un error al guardar la cotización: " + ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
 
         // Agregar este método en la clase de la presentación
         private DataTable ObtenerDataTableDetalle()

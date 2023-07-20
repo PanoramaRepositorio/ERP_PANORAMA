@@ -105,6 +105,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             this.txtTotal = new DevExpress.XtraEditors.TextEdit();
             this.txtPrecioVenta = new DevExpress.XtraEditors.TextEdit();
             this.labelControl16 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
             this.Tabcontrol.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPrecio.Properties)).BeginInit();
@@ -825,26 +826,37 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             // 
             // txtPrecioVenta
             // 
-            this.txtPrecioVenta.Location = new System.Drawing.Point(734, 444);
+            this.txtPrecioVenta.Location = new System.Drawing.Point(717, 444);
             this.txtPrecioVenta.Name = "txtPrecioVenta";
             this.txtPrecioVenta.Properties.MaxLength = 7;
-            this.txtPrecioVenta.Size = new System.Drawing.Size(52, 20);
+            this.txtPrecioVenta.Size = new System.Drawing.Size(79, 20);
             this.txtPrecioVenta.TabIndex = 158;
             // 
             // labelControl16
             // 
-            this.labelControl16.Location = new System.Drawing.Point(593, 859);
+            this.labelControl16.Location = new System.Drawing.Point(580, 859);
             this.labelControl16.Name = "labelControl16";
             this.labelControl16.Size = new System.Drawing.Size(60, 13);
             this.labelControl16.TabIndex = 159;
             this.labelControl16.Text = "Gastos Total";
             this.labelControl16.Click += new System.EventHandler(this.labelControl16_Click);
             // 
+            // labelControl17
+            // 
+            this.labelControl17.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.labelControl17.Appearance.Options.UseFont = true;
+            this.labelControl17.Location = new System.Drawing.Point(580, 447);
+            this.labelControl17.Name = "labelControl17";
+            this.labelControl17.Size = new System.Drawing.Size(131, 13);
+            this.labelControl17.TabIndex = 160;
+            this.labelControl17.Text = "PRECIO DE VENTA FINAL";
+            // 
             // frmCotizacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(889, 888);
+            this.Controls.Add(this.labelControl17);
             this.Controls.Add(this.labelControl16);
             this.Controls.Add(this.txtPrecioVenta);
             this.Controls.Add(this.txtTotal);
@@ -872,7 +884,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             this.Controls.Add(this.Tabcontrol);
             this.Name = "frmCotizacion";
             this.Text = "frmCotizacion";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmCotizacion_Load);
             this.Tabcontrol.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -1001,5 +1012,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         private DevExpress.XtraEditors.TextEdit txtTotal;
         private DevExpress.XtraEditors.TextEdit txtPrecioVenta;
         private DevExpress.XtraEditors.LabelControl labelControl16;
+        private DevExpress.XtraEditors.LabelControl labelControl17;
     }
 }
