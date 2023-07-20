@@ -1667,7 +1667,7 @@
     <Compile Include="Modulos\KiraHogar\Consultas\frmCotizacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modulos\KiraHogar\Consultas\frmCotizacion.Designer.cs">
+    <Compile Include="Modulos\KiraHogar\Consultas\frmCotizacion.designer.cs">
       <DependentUpon>frmCotizacion.cs</DependentUpon>
     </Compile>
     <Compile Include="Modulos\KiraHogar\Registros\frmRegKiraCotizacion.cs">

@@ -856,7 +856,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             this.Controls.Add(this.btnAgregarimg);
             this.Controls.Add(this.picImage);
             this.Controls.Add(this.lblTitulo);
-            //this.Controls.Add(this.tlbMenu);
+            this.Controls.Add(this.tlbMenu);
             this.Controls.Add(this.cboTipoCotizacion);
             this.Controls.Add(this.txtBreveDescripcion);
             this.Controls.Add(this.txtCaracteristicas);
