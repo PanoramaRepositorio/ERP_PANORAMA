@@ -5,11 +5,13 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ErpPanorama.BusinessEntity;
 using ErpPanorama.BusinessLogic;
 using DevExpress.XtraEditors.Controls;
+using ErpPanorama.Presentation.Funciones;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraEditors; // Agrega esta directiva para poder usar ComboBoxEdit
 using ErpPanorama.Presentation.Modulos.KiraHogar.Registros;
@@ -20,31 +22,16 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
     public partial class frmCotizacion : DevExpress.XtraEditors.XtraForm
     {
         public ComboTipoCotizacionBL comboTipoCotizacionBL;
-
-        // Declarar el diccionario como un campo de la clase
-        private Dictionary<TabPage, ComboBoxEdit> comboBoxesByTabPage;
-        private ComboBoxEdit selectedComboBox; // Variable para almacenar el ComboBox seleccionado
-
-        private DataTable dtDatosActual;
+        private CotizacionKiraBL cotizacionKiraBL = new CotizacionKiraBL();
+        // Variable para almacenar el cuadro de diálogo de selección de archivos
+        private OpenFileDialog openFile = new OpenFileDialog();
         // Declarar una variable para almacenar los detalles de cotización
         List<DetalleCotizacionBE> detalleCotizacionList = new List<DetalleCotizacionBE>();
-
 
         public frmCotizacion()
         {
             InitializeComponent();
-
-            // Inicializar el diccionario en el constructor
-            comboBoxesByTabPage = new Dictionary<TabPage, ComboBoxEdit>
-            {
-                { tabPage1, cboMaterial },
-                { tabPage2, cboInsumos },
-                { tabPage3, cboAccesorios },
-                { tabPage4, cboManoObra },
-                { tabPage5, cboSeleccionaMovilidad }
-            };
         }
-
 
         private DataTable dtDatos;
         private void frmCotizacion_Load(object sender, EventArgs e)
@@ -64,14 +51,8 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             calcularTotalGastospestaña3();
             calcularTotalGastospestaña4();
             calcularTotalGastospestaña5();
-            // Agregar eventos de selección para los ComboBoxes en cada pestaña
-            cboMaterial.SelectedIndexChanged += cboMaterial_SelectedIndexChanged;
-            cboInsumos.SelectedIndexChanged += cboInsumos_SelectedIndexChanged;
-            cboAccesorios.SelectedIndexChanged += cboAccesorios_SelectedIndexChanged;
-            cboManoObra.SelectedIndexChanged += cboManoObra_SelectedIndexChanged;
-            cboSeleccionaMovilidad.SelectedIndexChanged += cboSeleccionaMovilidad_SelectedIndexChanged;
+            txtCodigoProducto.TextChanged += txtCodigoProducto_TextChanged;
         }
-
         private void tlbMenu_NewClick()
         {
             frmRegKiraCotizacion formCotizacion = new frmRegKiraCotizacion();
@@ -83,9 +64,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         {
             MessageBox.Show("Aquí dar lógica", "Mensaje tlbMenu_EditClick", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
-
-
         private void CrearDatable_GridControl()
         {
             // Crear el DataTable para almacenar los datos
@@ -102,9 +80,8 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             gridControlPestaña3.DataSource = dtDatos;
             gridControlPestaña4.DataSource = dtDatos;
             gridControlPestaña5.DataSource = dtDatos;
-            
-        }
 
+        }
         private void personalizacióncontrolesform()
         {
             Tabcontrol.TabPages[0].Text = "Materiales";
@@ -112,6 +89,8 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             Tabcontrol.TabPages[2].Text = "Accesorios";
             Tabcontrol.TabPages[3].Text = "Mano de Obra ";
             Tabcontrol.TabPages[4].Text = "Movilidad y Viaticos";
+            Tabcontrol.TabPages[5].Text = "Equipos y Herramientas";
+            Tabcontrol.TabPages[6].Text = "Resumen";
             txtFecha.Properties.MinValue = DateTime.Today;
             txtFecha.DateTime = DateTime.Today;
             txtCaracteristicas.ScrollBars = ScrollBars.Vertical;
@@ -120,10 +99,11 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         }
 
 
-
+        /// <summary>
+        /// Metodos de llenar datos a los combos de la BD
+        /// </summary>
         private void ConfigurarComboBoxTipoCotizacion()
         {
-
             cboTipoCotizacion.Text = "Seleccione un Tipo";
             // Configurar propiedades del control ComboBoxEdit
             cboTipoCotizacion.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
@@ -153,7 +133,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
                 cboMaterial.Properties.Items.Add(item.DescTablaElemento);
             }
         }
-
         public void ConfigurarComboBoxInsumo()
         {
             cboInsumos.Text = "Selecione Insumo";
@@ -169,7 +148,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             }
 
         }
-
         public void ConfigurarConboBoxAccesorio()
         {
             cboAccesorios.Text = "Seleccione Accesorio";
@@ -184,7 +162,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
                 cboAccesorios.Properties.Items.Add(item.DescTablaElemento);
             }
         }
-
         public void ConfigurarComboBoxMano()
         {
             cboManoObra.Text = "Seleccione Mano de Obra";
@@ -198,7 +175,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
                 cboManoObra.Properties.Items.Add(item.DescTablaElemento);
             }
         }
-
         public void ConfigurarComboBoxMovilidad()
         {
             cboSeleccionaMovilidad.Text = "Seleccione Movilidad - Viaticos";
@@ -213,8 +189,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
                 cboSeleccionaMovilidad.Properties.Items.Add(item.DescTablaElemento);
             }
         }
-
-
         public void ConfigurarComboBoxTipoMoneda()
         {
             cboTipoMoneda.Text = "Seleccione Moneda";
@@ -231,6 +205,35 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         }
 
 
+
+        /// <summary>
+        /// Metodos agregar valores a los combos despues de alguna operación (guardar)
+        /// </summary>
+        public void valorespredeterminadosdeloscbo()
+
+
+        {
+            string cboTipoCotizacionDefault = "Seleccione un Tipo";
+            string cboMaterialDefault = "Seleccione Material";
+            string cboInsumosDefault = "Selecione Insumo";
+            string cboAccesoriosDefault = "Seleccione Accesorio";
+            string cboManoObraDefault = "Seleccione Mano de Obra";
+            string cboSeleccionaMovilidadDefault = "Seleccione Movilidad - Viaticos";
+            string cboTipoMonedaDefault = "Seleccione Moneda";
+            // Restaurar los valores predeterminados en los comboboxes
+            cboTipoCotizacion.Text = cboTipoCotizacionDefault;
+            cboMaterial.Text = cboMaterialDefault;
+            cboInsumos.Text = cboInsumosDefault;
+            cboAccesorios.Text = cboAccesoriosDefault;
+            cboManoObra.Text = cboManoObraDefault;
+            cboSeleccionaMovilidad.Text = cboSeleccionaMovilidadDefault;
+            cboTipoMoneda.Text = cboTipoMonedaDefault;
+        }
+        
+        
+        /// <summary>
+        /// Metodos que lo que hace es sumar el monto de cada Item del GridControl de cada Pestaña
+        /// </summary>
         public void calcularTotalGastospestaña1()
         {
             CotizacionKiraBE cotizacion = new CotizacionKiraBE();
@@ -255,7 +258,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
                 txtPrecioVenta.Text = "Error: totalGastos no puede ser cero";
             }
         }
-
         public void calcularTotalGastospestaña2()
         {
             CotizacionKiraBE cotizacion = new CotizacionKiraBE();
@@ -280,7 +282,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
                 txtPrecioVenta.Text = "Error: totalGastos no puede ser cero";
             }
         }
-
         public void calcularTotalGastospestaña3()
         {
             CotizacionKiraBE cotizacion = new CotizacionKiraBE();
@@ -329,9 +330,8 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
                 txtPrecioVenta.Text = "Error: totalGastos no puede ser cero";
             }
         }
-
         public void calcularTotalGastospestaña5()
-        { 
+        {
             CotizacionKiraBE cotizacion = new CotizacionKiraBE();
             DataTable dt = (DataTable)gridControlPestaña5.DataSource;
             // Calcular el Total de Gastos
@@ -361,7 +361,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         }
 
         /// <summary>
-        /// Eventos de los botones agregar de cada pesataña TAB
+        /// Metodos de los botones agregar de cada pesataña TAB
         /// </summary>
         private void btnAgregarPestaña1_Click(object sender, EventArgs e)
         {
@@ -425,7 +425,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             gridControlPestaña5.RefreshDataSource();
             calcularTotalGastospestaña1();
         }
-
         private void btnAgregarPestaña2_Click(object sender, EventArgs e)
         {
             string insumo = cboInsumos.Text;
@@ -493,7 +492,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
                 MessageBox.Show("Por favor, seleccione un material antes de agregar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if(!decimal.TryParse(monto, out decimal montoDecimal))
+            if (!decimal.TryParse(monto, out decimal montoDecimal))
             {
                 MessageBox.Show("Por favor, ingrese un monto válido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -543,7 +542,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             gridControlPestaña5.RefreshDataSource();
             calcularTotalGastospestaña3();
         }
-
         private void btnAgregarPestaña4_Click(object sender, EventArgs e)
         {
             string manoobra = cboManoObra.Text;
@@ -604,7 +602,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             calcularTotalGastospestaña4();
 
         }
-
         private void btnAgregarPestaña5_Click(object sender, EventArgs e)
         {
 
@@ -671,21 +668,11 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
 
         }
 
-        private int ObtenerIdTablaElemento(ComboBoxEdit comboBox)
-        {
-            if (comboBox.SelectedIndex != -1)
-            {
-                ComboTipoCotizacionBE comboTipoCotizacionBE = comboTipoCotizacionBL.ObtenerComboTipoCotizacion().FirstOrDefault(x => x.DescTablaElemento == comboBox.SelectedItem.ToString());
-                if (comboTipoCotizacionBE != null)
-                {
-                    return comboTipoCotizacionBE.IdTablaElemento;
-                }
-            }
-            return 0; // O un valor adecuado según tu lógica de negocio
-        }
 
-
-        // Agregar este método en la clase de la presentación
+        /// <summary>
+        /// Metodos que obtiene las filas del Gridcontrol para posterior usarlo 
+        /// en RegistrarCotizacionYDetalle
+        /// </summary>
         private DataTable ObtenerDataTableDetalle()
         {
             // Obtener el DataTable del DataSource del gridControlPestaña1
@@ -698,6 +685,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
                 return null;
             }
         }
+
         private void btnguardar_Click(object sender, EventArgs e)
         {
             try
@@ -711,7 +699,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
                     MessageBox.Show("Debe seleccionar un tipo de cotización válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
                 // Obtener el elemento ComboTipoCotizacionBE seleccionado en el ComboBox de Tipo de Moneda
                 ComboTipoCotizacionBE itemMonedaSeleccionado = comboTipoCotizacionBL.ObtenerComboTipoMoneda()
                     .FirstOrDefault(x => x.DescTablaElemento == cboTipoMoneda.Text);
@@ -721,11 +708,9 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
                     MessageBox.Show("Debe seleccionar un tipo de moneda válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
                 // Obtener el IdTablaElemento de los tipos de cotización y moneda seleccionados
                 int idTipoCotizacion = itemSeleccionado.IdTablaElemento;
                 int idMoneda = itemMonedaSeleccionado.IdTablaElemento;
-
                 // Crear objeto CotizacionKiraBE con los valores ingresados por el usuario
                 CotizacionKiraBE cotizacion = new CotizacionKiraBE
                 {
@@ -734,25 +719,39 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
                     CodigoProducto = txtCodigoProducto.Text,
                     Descripcion = txtBreveDescripcion.Text,
                     Caracteristicas = txtCaracteristicas.Text,
-                    Imagen = txtUrlimagen.Text,
+                    Imagen = "",
                     TotalGastos = decimal.TryParse(txtTotal.Text, out decimal totalGastos) ? totalGastos : 0.0m,
                     PrecioVenta = decimal.TryParse(txtPrecioVenta.Text, out decimal precioVenta) ? precioVenta : 0.0m,
                     IdMoneda = idMoneda // IdMoneda obtenido del ComboBox de Tipo de Moneda
                 };
+                // Guardar la imagen en el fileserver y obtener la ruta de destino
+                if (picImage.Image != null && !string.IsNullOrEmpty(openFile.FileName))
+                {
+                    string fileName = Path.GetFileName(openFile.FileName);
+                    string destinationPath = Path.Combine(@"\\172.16.0.155\Sistemas\Imagenes", fileName);
+                    try
+                    {
+                        File.Copy(openFile.FileName, destinationPath, true);
+                        cotizacion.Imagen = destinationPath;
+                    }
+                    catch (Exception ex)
+                    {
+                        // Manejar errores si ocurre algún problema al copiar la imagen
+                        MessageBox.Show("Error al guardar la imagen: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
 
                 // Obtener el DataTable del detalle usando el método auxiliar
                 DataTable dtDetalle = ObtenerDataTableDetalle();
-
                 // Verificar que el DataTable del detalle no sea nulo y contenga filas
                 if (dtDetalle == null || dtDetalle.Rows.Count == 0)
                 {
                     MessageBox.Show("Debe ingresar al menos un detalle de cotización.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
                 // Obtener la lista de detalles de cotización desde el dtDetalle
                 List<DetalleCotizacionBE> detallesCotizacion = new List<DetalleCotizacionBE>();
-
                 foreach (DataRow row in dtDetalle.Rows)
                 {
                     DetalleCotizacionBE detalle = new DetalleCotizacionBE
@@ -763,73 +762,90 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
                         FlagAprobacion = true,
                         FlagEstado = true
                     };
-
                     detallesCotizacion.Add(detalle);
                 }
-
-                // Llamar al método RegistrarCotizacionYDetalle de CotizacionKiraBL
-                CotizacionKiraBL cotizacionKiraBL = new CotizacionKiraBL();
-                cotizacionKiraBL.RegistrarCotizacionYDetalle(cotizacion, detallesCotizacion);
-
+               cotizacionKiraBL.RegistrarCotizacionYDetalle(cotizacion, detallesCotizacion);
+                LimpiarControlesTextBox(this.Controls);
+                valorespredeterminadosdeloscbo();
+                lblCodigoExistente.Text = "";
+                DataTable dtVacio = new DataTable();
+                gridControlPestaña1.DataSource = dtVacio;
+                gridControlPestaña2.DataSource = dtVacio;
+                gridControlPestaña3.DataSource = dtVacio;
+                gridControlPestaña4.DataSource = dtVacio;
+                gridControlPestaña5.DataSource = dtVacio;
+                this.picImage.Image = ErpPanorama.Presentation.Properties.Resources.noImage;
                 MessageBox.Show("La cotización se registró correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Ocurrió un error al guardar la cotización: " + ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                LimpiarControlesTextBox(this.Controls);
             }
         }
-
-
-
-
-        private void cboMaterial_SelectedIndexChanged(object sender, EventArgs e)
+        public void LimpiarControlesTextBox(Control.ControlCollection controls)
         {
-            if (cboMaterial.SelectedItem != null)
+            foreach (Control control in controls)
             {
-                string materialSeleccionado = cboMaterial.SelectedItem.ToString();
-                
+                if (control is TextBox textBox)
+                {
+                    textBox.Text = "";
+                }
+                else if (control is System.Windows.Forms.ComboBox comboBox)
+                {
+                    valorespredeterminadosdeloscbo();
+                }
+                else if (control.HasChildren) // Si el control tiene controles hijos, realizar un recorrido recursivo
+                {
+                    LimpiarControlesTextBox(control.Controls);
+                }
             }
         }
 
-        private void cboInsumos_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnAgregarimg_Click(object sender, EventArgs e)
         {
-            if (cboInsumos.SelectedItem != null)
+            openFile.Filter = "Jpg File|*.Jpg|Jpeg File|*.Jpeg|Png File|*.Png |Gif File|*.Gif|All|*.*";
+            openFile.ShowDialog();
+
+            if (!string.IsNullOrEmpty(openFile.FileName))
             {
-                string insumoSeleccionado = cboInsumos.SelectedItem.ToString();
-                
+                FileInfo fi;
+                Decimal mxKb = Parametros.dmlTamanioImagen; // Convert.ToDecimal(100);
+                Decimal acKb;
+
+                fi = new FileInfo(openFile.FileName);
+                acKb = Convert.ToDecimal(fi.Length) / 1024;
+                if (fi.Length > (mxKb * 1024))
+                {
+                    XtraMessageBox.Show(openFile.FileName + " Tamaño Máximo: " + mxKb.ToString() + " Kb. Tamaño Actual: " + acKb.ToString("###,##0.00") + " Kb.", "Importar Imagenes", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    this.picImage.Image = Image.FromFile(openFile.FileName);
+                }
             }
         }
 
-        private void cboAccesorios_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnEliminarimg_Click(object sender, EventArgs e)
         {
-            if (cboAccesorios.SelectedItem != null)
+            this.picImage.Image = ErpPanorama.Presentation.Properties.Resources.noImage;
+        }
+        private void txtCodigoProducto_TextChanged(object sender, EventArgs e)
+        {
+            CotizacionKiraBL cotizacionKiraBLs = new CotizacionKiraBL();
+            if (cotizacionKiraBLs.ValidarCodigoProducto(txtCodigoProducto.Text))
             {
-                string accesorioSeleccionado = cboAccesorios.SelectedItem.ToString();
-               
+                lblCodigoExistente.Text = "El código de producto ya existe en la base de datos.";
+                lblCodigoExistente.ForeColor = Color.Red;
             }
-        }
-
-        private void cboManoObra_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cboManoObra.SelectedItem != null)
+            else
             {
-                string manoObraSeleccionada = cboManoObra.SelectedItem.ToString();
-                
+                lblCodigoExistente.Text = "Código disponible.";
+                lblCodigoExistente.ForeColor = Color.Green;
             }
         }
 
-        private void cboSeleccionaMovilidad_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cboSeleccionaMovilidad.SelectedItem != null)
-            {
-                string movilidadSeleccionada = cboSeleccionaMovilidad.SelectedItem.ToString();
-                
-            }
-        }
-
-        private void labelControl16_Click(object sender, EventArgs e)
-        {
-
-        }
     }
+
+
 }
