@@ -86,5 +86,26 @@ namespace ErpPanorama.DataLogic
             return dt;
         }
 
+        public bool ValidarCodigoProducto(string codigoProducto)
+        {
+            bool existeCodigo = false;
+
+            using (var connection = db.CreateConnection())
+            {
+                connection.Open();
+                using (var command = db.GetStoredProcCommand("usp_ValidarCodigoProducto"))
+                {
+                    db.AddInParameter(command, "@CodigoProducto", DbType.String, codigoProducto);
+                    db.AddOutParameter(command, "@ExisteCodigo", DbType.Boolean, 1);
+
+                    db.ExecuteNonQuery(command);
+
+                    existeCodigo = Convert.ToBoolean(db.GetParameterValue(command, "@ExisteCodigo"));
+                }
+            }
+
+            return existeCodigo;
+        }
+
     }
 }
