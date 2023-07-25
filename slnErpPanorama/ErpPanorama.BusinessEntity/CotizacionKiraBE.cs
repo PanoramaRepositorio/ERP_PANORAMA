@@ -7,7 +7,6 @@ using System.Runtime.Serialization;
 
 namespace ErpPanorama.BusinessEntity
 {
-
     [DataContract]
     public class CotizacionKiraBE
     {
@@ -37,5 +36,27 @@ namespace ErpPanorama.BusinessEntity
 
         [DataMember]
         public decimal PrecioVenta { get; set; }
+
+        [DataMember]
+        public int IdMoneda { get; set; }
+
+        // Nuevas propiedades para los costos
+        [DataMember]
+        public decimal CostoMateriales { get; set; }
+
+        [DataMember]
+        public decimal CostoInsumos { get; set; }
+
+        [DataMember]
+        public decimal CostoAccesorios { get; set; }
+
+        [DataMember]
+        public decimal CostoManoObra { get; set; }
+
+        [DataMember]
+        public decimal CostoMovilidad { get; set; }
+
+        [DataMember]
+        public decimal CostoEquipos { get; set; }
     }
 }

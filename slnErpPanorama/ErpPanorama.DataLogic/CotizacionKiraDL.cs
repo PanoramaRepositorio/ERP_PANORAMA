@@ -21,7 +21,7 @@ namespace ErpPanorama.DataLogic
             db = DatabaseFactory.CreateDatabase("cnErpPanoramaBD");
         }
 
-        public void RegistrarCotizacionYDetalle(CotizacionKiraBE cotizacion, List<DetalleCotizacionBE> detallesCotizacion)
+        public void RegistrarCotizacionYDetalle(CotizacionKiraBE cotizacion, List<DetalleCotizacionBE> detallesCotizacion, out int idCotizacion)
         {
             using (var connection = db.CreateConnection())
             {
@@ -37,11 +37,20 @@ namespace ErpPanorama.DataLogic
                         db.AddInParameter(cotizacionCommand, "@CodigoProducto", DbType.String, cotizacion.CodigoProducto);
                         db.AddInParameter(cotizacionCommand, "@Descripcion", DbType.String, cotizacion.Descripcion);
                         db.AddInParameter(cotizacionCommand, "@Caracteristicas", DbType.String, cotizacion.Caracteristicas);
-                        db.AddInParameter(cotizacionCommand, "@Imagen", DbType.String, cotizacion.Imagen);
+                        db.AddInParameter(cotizacionCommand, "@CostoMateriales", DbType.Decimal, cotizacion.CostoMateriales);
+                        db.AddInParameter(cotizacionCommand, "@CostoInsumos", DbType.Decimal, cotizacion.CostoInsumos);
+                        db.AddInParameter(cotizacionCommand, "@CostoAccesorios", DbType.Decimal, cotizacion.CostoAccesorios);
+                        db.AddInParameter(cotizacionCommand, "@CostoManoObra", DbType.Decimal, cotizacion.CostoManoObra);
+                        db.AddInParameter(cotizacionCommand, "@CostoMovilidad", DbType.Decimal, cotizacion.CostoMovilidad);
+                        db.AddInParameter(cotizacionCommand, "@CostoEquipos", DbType.Decimal, cotizacion.CostoEquipos);
                         db.AddInParameter(cotizacionCommand, "@TotalGastos", DbType.Decimal, cotizacion.TotalGastos);
                         db.AddInParameter(cotizacionCommand, "@PrecioVenta", DbType.Decimal, cotizacion.PrecioVenta);
+                        db.AddInParameter(cotizacionCommand, "@Moneda", DbType.Int32, cotizacion.IdMoneda); // Nuevo parámetro para la moneda
 
                         db.AddOutParameter(cotizacionCommand, "@IdCotizacion", DbType.Int32, 4);
+
+                        // Agregar el parámetro @Imagen si se necesita almacenar en la base de datos
+                        db.AddInParameter(cotizacionCommand, "@Imagen", DbType.String, cotizacion.Imagen);
 
                         // Agregar los parámetros de tabla estructurada para los detalles de cotización
                         var tvpParam = new SqlParameter("@DetalleCotizacion", SqlDbType.Structured)
@@ -54,7 +63,7 @@ namespace ErpPanorama.DataLogic
                         db.ExecuteNonQuery(cotizacionCommand, transaction);
 
                         // Obtener el ID de la cotización recién insertada
-                        cotizacion.IdCotizacion = Convert.ToInt32(db.GetParameterValue(cotizacionCommand, "@IdCotizacion"));
+                        idCotizacion = Convert.ToInt32(db.GetParameterValue(cotizacionCommand, "@IdCotizacion"));
 
                         // Confirmar la transacción
                         transaction.Commit();
@@ -83,6 +92,27 @@ namespace ErpPanorama.DataLogic
             }
 
             return dt;
+        }
+
+        public bool ValidarCodigoProducto(string codigoProducto)
+        {
+            bool existeCodigo = false;
+
+            using (var connection = db.CreateConnection())
+            {
+                connection.Open();
+                using (var command = db.GetStoredProcCommand("usp_ValidarCodigoProducto"))
+                {
+                    db.AddInParameter(command, "@CodigoProducto", DbType.String, codigoProducto);
+                    db.AddOutParameter(command, "@ExisteCodigo", DbType.Boolean, 1);
+
+                    db.ExecuteNonQuery(command);
+
+                    existeCodigo = Convert.ToBoolean(db.GetParameterValue(command, "@ExisteCodigo"));
+                }
+            }
+
+            return existeCodigo;
         }
 
     }

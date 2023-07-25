@@ -19,9 +19,14 @@ namespace ErpPanorama.BusinessLogic
             cotizacionKiraDL = new CotizacionKiraDL();
         }
 
-        public void RegistrarCotizacionYDetalle(CotizacionKiraBE cotizacion, List<DetalleCotizacionBE> detallesCotizacion)
+        public void RegistrarCotizacionYDetalle(CotizacionKiraBE cotizacion, List<DetalleCotizacionBE> detallesCotizacion, out int idCotizacion)
         {
-            cotizacionKiraDL.RegistrarCotizacionYDetalle(cotizacion, detallesCotizacion);
+            cotizacionKiraDL.RegistrarCotizacionYDetalle(cotizacion, detallesCotizacion, out idCotizacion);
+        }
+
+        public bool ValidarCodigoProducto(string codigoProducto)
+        {
+            return cotizacionKiraDL.ValidarCodigoProducto(codigoProducto);
         }
     }
 }

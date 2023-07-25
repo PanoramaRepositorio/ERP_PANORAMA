@@ -34,7 +34,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             formCotizacion.StartPosition = FormStartPosition.CenterParent;
             formCotizacion.Show(); // Mostrar el formulario
 
-
         }
 
         private void tlbMenu_Load(object sender, EventArgs e)
