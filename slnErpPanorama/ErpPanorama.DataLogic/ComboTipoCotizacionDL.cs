@@ -197,6 +197,29 @@ namespace ErpPanorama.DataLogic
             return listamovilidad;
         }
 
+        public List<ComboTipoCotizacionBE> ObtenerListaEquipoHerramienta()
+        {
+            List<ComboTipoCotizacionBE> listamovilidad = new List<ComboTipoCotizacionBE>();
+            Database db = DatabaseFactory.CreateDatabase("cnErpPanoramaBD");
+            DbCommand cmd = db.GetStoredProcCommand("usp_Combo_ListaEquiposHerramientas");
+            using (IDataReader reader = db.ExecuteReader(cmd))
+            {
+                while (reader.Read())
+                {
+                    ComboTipoCotizacionBE combomovilidad = new ComboTipoCotizacionBE();
+                    combomovilidad.IdTablaElemento = Convert.ToInt32(reader["IdTablaElemento"]);
+                    combomovilidad.IdTabla = reader["IdTabla"] != DBNull.Value ? Convert.ToInt32(reader["IdTabla"]) : (int?)null;
+                    combomovilidad.Abreviatura = reader["Abreviatura"].ToString();
+                    combomovilidad.DescTablaElemento = reader["DescTablaElemento"].ToString();
+                    combomovilidad.IdTablaExterna = reader["IdTablaExterna"] != DBNull.Value ? Convert.ToInt32(reader["IdTablaExterna"]) : (int?)null;
+                    combomovilidad.Valor = reader["Valor"] != DBNull.Value ? Convert.ToDecimal(reader["Valor"]) : (decimal?)null;
+                    combomovilidad.FlagEstado = reader["FlagEstado"] != DBNull.Value ? Convert.ToBoolean(reader["FlagEstado"]) : (bool?)null;
+                    listamovilidad.Add(combomovilidad);
+                }
+            }
+
+            return listamovilidad;
+        }
 
 
 

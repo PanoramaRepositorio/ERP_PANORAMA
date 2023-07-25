@@ -53,5 +53,11 @@ namespace ErpPanorama.BusinessLogic
             ComboTipoCotizacionDL combomone = new ComboTipoCotizacionDL();
             return combomone.ObtenerListaMonedas();
         }
+
+        public List<ComboTipoCotizacionBE> ObtenerComboEquiposHerramienta()
+        {
+            ComboTipoCotizacionDL combomone = new ComboTipoCotizacionDL();
+            return combomone.ObtenerListaEquipoHerramienta();
+        }
     }
 }
