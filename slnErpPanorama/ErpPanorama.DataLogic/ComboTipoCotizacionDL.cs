@@ -221,7 +221,37 @@ namespace ErpPanorama.DataLogic
         }
 
 
+        public List<CotizacionKiraBE> ObtenerListadoCotizaciones()
+        {
+            List<CotizacionKiraBE> listaCotizaciones = new List<CotizacionKiraBE>();
 
+            Database db = DatabaseFactory.CreateDatabase("cnErpPanoramaBD");
+            DbCommand cmd = db.GetStoredProcCommand("usp_ListarCotizaciones");
+
+            using (IDataReader reader = db.ExecuteReader(cmd))
+            {
+                while (reader.Read())
+                {
+                    CotizacionKiraBE cotizacion = new CotizacionKiraBE();
+
+                    cotizacion.CodigoProducto = reader["CodigoProducto"].ToString();
+                    cotizacion.Descripcion = reader["Descripcion"].ToString();
+                    cotizacion.CostoMateriales = reader["CostoMateriales"] != DBNull.Value ? Convert.ToDecimal(reader["CostoMateriales"]) : 0;
+                    cotizacion.CostoInsumos = reader["CostoInsumos"] != DBNull.Value ? Convert.ToDecimal(reader["CostoInsumos"]) : 0;
+                    cotizacion.CostoAccesorios = reader["CostoAccesorios"] != DBNull.Value ? Convert.ToDecimal(reader["CostoAccesorios"]) : 0;
+                    cotizacion.CostoManoObra = reader["CostoManoObra"] != DBNull.Value ? Convert.ToDecimal(reader["CostoManoObra"]) : 0;
+                    cotizacion.CostoMovilidad = reader["CostoMovilidad"] != DBNull.Value ? Convert.ToDecimal(reader["CostoMovilidad"]) : 0;
+                    cotizacion.CostoEquipos = reader["CostoEquipos"] != DBNull.Value ? Convert.ToDecimal(reader["CostoEquipos"]) : 0;
+                    cotizacion.TotalGastos = reader["TotalGastos"] != DBNull.Value ? Convert.ToDecimal(reader["TotalGastos"]) : 0;
+                    cotizacion.PrecioVenta = reader["PrecioVenta"] != DBNull.Value ? Convert.ToDecimal(reader["PrecioVenta"]) : 0;
+                    cotizacion.Fecha = reader["Fecha"] != DBNull.Value ? Convert.ToDateTime(reader["Fecha"]) : DateTime.MinValue;
+
+                    listaCotizaciones.Add(cotizacion);
+                }
+            }
+
+            return listaCotizaciones;
+        }
 
 
 

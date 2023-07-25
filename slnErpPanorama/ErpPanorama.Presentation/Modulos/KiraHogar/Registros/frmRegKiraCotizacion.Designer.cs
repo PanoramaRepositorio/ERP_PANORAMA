@@ -83,6 +83,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.tlbMenu.Size = new System.Drawing.Size(1742, 31);
             this.tlbMenu.TabIndex = 0;
             this.tlbMenu.NewClick += new ErpPanorama.Presentation.ControlUser.UIToolBar.delegateNewClick(this.tlbMenu_NewClick);
+            this.tlbMenu.RefreshClick += new ErpPanorama.Presentation.ControlUser.UIToolBar.delegateRefreshClick(this.tlbMenu_RefreshClick);
             this.tlbMenu.Load += new System.EventHandler(this.tlbMenu_Load);
             // 
             // groupControl1
@@ -244,25 +245,25 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // gridColumn12
             // 
-            this.gridColumn12.Caption = "Empresa";
-            this.gridColumn12.FieldName = "RazonSocial";
+            this.gridColumn12.Caption = "Codigo Producto";
+            this.gridColumn12.FieldName = "CodigoProducto";
             this.gridColumn12.Name = "gridColumn12";
             this.gridColumn12.OptionsColumn.AllowEdit = false;
             this.gridColumn12.OptionsColumn.AllowFocus = false;
             this.gridColumn12.Visible = true;
             this.gridColumn12.VisibleIndex = 0;
-            this.gridColumn12.Width = 250;
+            this.gridColumn12.Width = 131;
             // 
             // gridColumn6
             // 
-            this.gridColumn6.Caption = "Tienda";
-            this.gridColumn6.FieldName = "DescTienda";
+            this.gridColumn6.Caption = "Nombre";
+            this.gridColumn6.FieldName = "Descripcion";
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.OptionsColumn.AllowEdit = false;
             this.gridColumn6.OptionsColumn.AllowFocus = false;
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 1;
-            this.gridColumn6.Width = 100;
+            this.gridColumn6.Width = 216;
             // 
             // gridColumn14
             // 
@@ -274,102 +275,104 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // gridColumn2
             // 
-            this.gridColumn2.Caption = "N° Documento";
-            this.gridColumn2.FieldName = "Numero";
+            this.gridColumn2.Caption = "Materiales";
+            this.gridColumn2.FieldName = "CostoMateriales";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.OptionsColumn.AllowFocus = false;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 2;
-            this.gridColumn2.Width = 80;
+            this.gridColumn2.Width = 147;
             // 
             // gridColumn3
             // 
-            this.gridColumn3.Caption = "Fecha";
-            this.gridColumn3.FieldName = "Fecha";
+            this.gridColumn3.Caption = "Insumos";
+            this.gridColumn3.FieldName = "CostoInsumos";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.OptionsColumn.AllowFocus = false;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 3;
-            this.gridColumn3.Width = 80;
+            this.gridColumn3.Width = 126;
             // 
             // gridColumn1
             // 
-            this.gridColumn1.Caption = "N° Pedido";
-            this.gridColumn1.FieldName = "NumeroPedido";
+            this.gridColumn1.Caption = "Accesorios";
+            this.gridColumn1.FieldName = "CostoAccesorios";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.OptionsColumn.AllowFocus = false;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 4;
+            this.gridColumn1.Width = 124;
             // 
             // gridColumn4
             // 
-            this.gridColumn4.Caption = "N° Documento Venta";
-            this.gridColumn4.FieldName = "NumeroDocumentoVenta";
+            this.gridColumn4.Caption = "Mano de Obra";
+            this.gridColumn4.FieldName = "CostoManoObra";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.OptionsColumn.AllowFocus = false;
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 5;
-            this.gridColumn4.Width = 110;
+            this.gridColumn4.Width = 140;
             // 
             // gridColumn8
             // 
-            this.gridColumn8.Caption = "Cliente";
-            this.gridColumn8.FieldName = "DescCliente";
+            this.gridColumn8.Caption = "Movilidad y Viaticos";
+            this.gridColumn8.FieldName = "CostoMovilidad";
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.OptionsColumn.AllowFocus = false;
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 6;
-            this.gridColumn8.Width = 250;
+            this.gridColumn8.Width = 206;
             // 
             // gridColumn9
             // 
-            this.gridColumn9.Caption = "Moneda";
-            this.gridColumn9.FieldName = "CodMoneda";
+            this.gridColumn9.Caption = "Equipo y Herramientas";
+            this.gridColumn9.FieldName = "CostoEquipos";
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.OptionsColumn.AllowEdit = false;
             this.gridColumn9.OptionsColumn.AllowFocus = false;
             this.gridColumn9.Visible = true;
             this.gridColumn9.VisibleIndex = 7;
-            this.gridColumn9.Width = 50;
+            this.gridColumn9.Width = 156;
             // 
             // gridColumn11
             // 
-            this.gridColumn11.Caption = "Total";
+            this.gridColumn11.Caption = "Costo Gastos Total";
             this.gridColumn11.DisplayFormat.FormatString = "#,0.00";
             this.gridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumn11.FieldName = "Total";
+            this.gridColumn11.FieldName = "TotalGastos";
             this.gridColumn11.Name = "gridColumn11";
             this.gridColumn11.OptionsColumn.AllowEdit = false;
             this.gridColumn11.OptionsColumn.AllowFocus = false;
             this.gridColumn11.Visible = true;
             this.gridColumn11.VisibleIndex = 8;
+            this.gridColumn11.Width = 156;
             // 
             // gridColumn7
             // 
-            this.gridColumn7.Caption = "Aprobado";
-            this.gridColumn7.FieldName = "FlagAprobado";
+            this.gridColumn7.Caption = "Precio de Venta Final";
+            this.gridColumn7.FieldName = "PrecioVenta";
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.OptionsColumn.AllowFocus = false;
             this.gridColumn7.Visible = true;
             this.gridColumn7.VisibleIndex = 9;
-            this.gridColumn7.Width = 65;
+            this.gridColumn7.Width = 157;
             // 
             // gridColumn13
             // 
-            this.gridColumn13.Caption = "Recibido";
-            this.gridColumn13.FieldName = "FlagRecibido";
+            this.gridColumn13.Caption = "Fecha de Registro";
+            this.gridColumn13.FieldName = "Fecha";
             this.gridColumn13.Name = "gridColumn13";
             this.gridColumn13.OptionsColumn.AllowEdit = false;
             this.gridColumn13.OptionsColumn.AllowFocus = false;
             this.gridColumn13.Visible = true;
             this.gridColumn13.VisibleIndex = 10;
-            this.gridColumn13.Width = 60;
+            this.gridColumn13.Width = 170;
             // 
             // gridColumn15
             // 
@@ -378,8 +381,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn15.Name = "gridColumn15";
             this.gridColumn15.OptionsColumn.AllowEdit = false;
             this.gridColumn15.OptionsColumn.AllowFocus = false;
-            this.gridColumn15.Visible = true;
-            this.gridColumn15.VisibleIndex = 11;
             this.gridColumn15.Width = 120;
             // 
             // gridColumn17
@@ -389,8 +390,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn17.Name = "gridColumn17";
             this.gridColumn17.OptionsColumn.AllowEdit = false;
             this.gridColumn17.OptionsColumn.AllowFocus = false;
-            this.gridColumn17.Visible = true;
-            this.gridColumn17.VisibleIndex = 12;
             this.gridColumn17.Width = 104;
             // 
             // gridColumn18
@@ -400,8 +399,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn18.Name = "gridColumn18";
             this.gridColumn18.OptionsColumn.AllowEdit = false;
             this.gridColumn18.OptionsColumn.AllowFocus = false;
-            this.gridColumn18.Visible = true;
-            this.gridColumn18.VisibleIndex = 15;
             this.gridColumn18.Width = 247;
             // 
             // gridColumn19
@@ -411,8 +408,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn19.Name = "gridColumn19";
             this.gridColumn19.OptionsColumn.AllowEdit = false;
             this.gridColumn19.OptionsColumn.AllowFocus = false;
-            this.gridColumn19.Visible = true;
-            this.gridColumn19.VisibleIndex = 16;
             this.gridColumn19.Width = 111;
             // 
             // gridColumn21
@@ -423,7 +418,8 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn21.OptionsColumn.AllowEdit = false;
             this.gridColumn21.OptionsColumn.AllowFocus = false;
             this.gridColumn21.Visible = true;
-            this.gridColumn21.VisibleIndex = 13;
+            this.gridColumn21.VisibleIndex = 11;
+            this.gridColumn21.Width = 183;
             // 
             // gridColumn20
             // 
@@ -442,8 +438,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn22.Name = "gridColumn22";
             this.gridColumn22.OptionsColumn.AllowEdit = false;
             this.gridColumn22.OptionsColumn.AllowFocus = false;
-            this.gridColumn22.Visible = true;
-            this.gridColumn22.VisibleIndex = 14;
             this.gridColumn22.Width = 51;
             // 
             // gridColumn23
@@ -453,8 +447,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn23.Name = "gridColumn23";
             this.gridColumn23.OptionsColumn.AllowEdit = false;
             this.gridColumn23.OptionsColumn.AllowFocus = false;
-            this.gridColumn23.Visible = true;
-            this.gridColumn23.VisibleIndex = 17;
             // 
             // gridColumn24
             // 
@@ -463,8 +455,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn24.Name = "gridColumn24";
             this.gridColumn24.OptionsColumn.AllowEdit = false;
             this.gridColumn24.OptionsColumn.AllowFocus = false;
-            this.gridColumn24.Visible = true;
-            this.gridColumn24.VisibleIndex = 18;
             // 
             // frmRegKiraCotizacion
             // 

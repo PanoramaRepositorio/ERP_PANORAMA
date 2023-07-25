@@ -43,7 +43,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
 
         private void frmCotizacion_Load(object sender, EventArgs e)
         {
-            //tlbMenu.Ensamblado = this.Tag.ToString();
+            
             CrearDatable_GridControl();
             ConfigurarComboBoxTipoCotizacion();
             ConfigurarComboBoxMateriales();
@@ -54,12 +54,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             ConfigurarComboBoxTipoMoneda();
             ConfigurarComboBoxEquipos();
             personalizacióncontrolesform();
-            //calcularTotalGastospestaña1();
-            //calcularTotalGastospestaña2();
-            //calcularTotalGastospestaña3();
-            //calcularTotalGastospestaña4();
-            //calcularTotalGastospestaña5();
-            //calcularTotalGastospestaña6();
             calcularTotalGastospestaña7();
             // Establecer la propiedad MaxLength a 0 para permitir una cantidad ilimitada de caracteres
             txtCodigoProducto.Properties.MaxLength = 0;
