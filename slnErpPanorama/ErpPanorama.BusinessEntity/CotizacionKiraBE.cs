@@ -58,5 +58,9 @@ namespace ErpPanorama.BusinessEntity
 
         [DataMember]
         public decimal CostoEquipos { get; set; }
+
+        // Nueva propiedad para el FlagEstado
+        [DataMember]
+        public bool FlagEstado { get; set; }
     }
 }

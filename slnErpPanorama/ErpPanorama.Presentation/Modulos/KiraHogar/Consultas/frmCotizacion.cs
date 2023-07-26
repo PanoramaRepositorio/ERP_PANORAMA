@@ -1043,7 +1043,8 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
                     Imagen = "",
                     TotalGastos = decimal.TryParse(txtTotal.Text, out decimal totalGastos) ? totalGastos : 0.0m,
                     PrecioVenta = decimal.TryParse(txtPrecioVenta.Text, out decimal precioVenta) ? precioVenta : 0.0m,
-                    IdMoneda = idMoneda // IdMoneda obtenido del ComboBox de Tipo de Moneda
+                    IdMoneda = idMoneda, // IdMoneda obtenido del ComboBox de Tipo de Moneda
+                    FlagEstado = true
                 };
 
                 // Calcular las sumas de costos de cada pestaña y agregarlas al objeto CotizacionKiraBE
@@ -1099,7 +1100,8 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
                         Item = Convert.ToInt32(row["Item"]),
                         DescripcionGastos = row["DescripcionGastos"].ToString(),
                         FlagAprobacion = Convert.ToBoolean(row["FlagAprobacion"]),
-                        FlagEstado = Convert.ToBoolean(row["FlagEstado"])
+                        FlagEstado = Convert.ToBoolean(row["FlagEstado"]),
+                        Costo = Convert.ToDecimal(row["Costo" + " " + " S/."]) // Agregar el campo Costo
                     };
                     detallesCotizacion.Add(detalle);
                 }
