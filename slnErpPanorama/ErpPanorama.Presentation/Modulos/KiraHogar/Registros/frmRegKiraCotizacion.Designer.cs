@@ -38,7 +38,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.txtPeriodo = new DevExpress.XtraEditors.TextEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.gcCotizaciones = new DevExpress.XtraGrid.GridControl();
-            this.gvCambio = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gvCotizacion = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -68,7 +68,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             ((System.ComponentModel.ISupportInitialize)(this.txtNumero.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPeriodo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcCotizaciones)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvCambio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvCotizacion)).BeginInit();
             this.SuspendLayout();
             // 
             // tlbMenu
@@ -81,6 +81,8 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.tlbMenu.TabIndex = 0;
             this.tlbMenu.NewClick += new ErpPanorama.Presentation.ControlUser.UIToolBar.delegateNewClick(this.tlbMenu_NewClick);
             this.tlbMenu.RefreshClick += new ErpPanorama.Presentation.ControlUser.UIToolBar.delegateRefreshClick(this.tlbMenu_RefreshClick);
+            this.tlbMenu.ExportClick += new ErpPanorama.Presentation.ControlUser.UIToolBar.delegateExportClick(this.tlbMenu_ExportClick);
+            this.tlbMenu.ExitClick += new ErpPanorama.Presentation.ControlUser.UIToolBar.delegateExitClick(this.tlbMenu_ExitClick);
             this.tlbMenu.Load += new System.EventHandler(this.tlbMenu_Load);
             // 
             // groupControl1
@@ -156,16 +158,16 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             this.gcCotizaciones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcCotizaciones.Location = new System.Drawing.Point(0, 83);
-            this.gcCotizaciones.MainView = this.gvCambio;
+            this.gcCotizaciones.MainView = this.gvCotizacion;
             this.gcCotizaciones.Name = "gcCotizaciones";
             this.gcCotizaciones.Size = new System.Drawing.Size(1742, 474);
             this.gcCotizaciones.TabIndex = 25;
             this.gcCotizaciones.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gvCambio});
+            this.gvCotizacion});
             // 
-            // gvCambio
+            // gvCotizacion
             // 
-            this.gvCambio.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gvCotizacion.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn10,
             this.gridColumn5,
             this.gridColumn16,
@@ -190,11 +192,13 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn22,
             this.gridColumn23,
             this.gridColumn24});
-            this.gvCambio.GridControl = this.gcCotizaciones;
-            this.gvCambio.GroupPanelText = "Resultado de la Busqueda";
-            this.gvCambio.Name = "gvCambio";
-            this.gvCambio.OptionsView.ColumnAutoWidth = false;
-            this.gvCambio.OptionsView.ShowGroupPanel = false;
+            this.gvCotizacion.GridControl = this.gcCotizaciones;
+            this.gvCotizacion.GroupPanelText = "Resultado de la Busqueda";
+            this.gvCotizacion.Name = "gvCotizacion";
+            this.gvCotizacion.OptionsSelection.MultiSelect = true;
+            this.gvCotizacion.OptionsView.ColumnAutoWidth = false;
+            this.gvCotizacion.OptionsView.ShowGroupPanel = false;
+
             // 
             // gridColumn10
             // 
@@ -319,7 +323,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // gridColumn11
             // 
             this.gridColumn11.Caption = "Costo Gastos Total";
-            this.gridColumn11.DisplayFormat.FormatString = "#,0.00";
             this.gridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn11.FieldName = "TotalGastos";
             this.gridColumn11.Name = "gridColumn11";
@@ -451,7 +454,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             ((System.ComponentModel.ISupportInitialize)(this.txtNumero.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPeriodo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcCotizaciones)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvCambio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvCotizacion)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -467,7 +470,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
         public DevExpress.XtraEditors.TextEdit txtPeriodo;
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraGrid.GridControl gcCotizaciones;
-        private DevExpress.XtraGrid.Views.Grid.GridView gvCambio;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvCotizacion;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;

@@ -6,19 +6,26 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DevExpress.XtraEditors;
 using System.Windows.Forms;
 using ErpPanorama.Presentation.Modulos.KiraHogar.Consultas;
 using ErpPanorama.BusinessEntity;
 using ErpPanorama.BusinessLogic;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid; // Para GridView y GridControl
+using DevExpress.XtraGrid.Views.Base; // Para ColumnCopyMode
+using DevExpress.Export; // Para ClipboardCopyFormat
+
 
 namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
 {
     public partial class frmRegKiraCotizacion : DevExpress.XtraEditors.XtraForm
     {
+        
         public frmRegKiraCotizacion()
         {
             InitializeComponent();
+            
         }
 
         private void frmRegKiraCotizacion_Load(object sender, EventArgs e)
@@ -30,6 +37,9 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             ActualizarNumeroFilas();
 
         }
+
+
+       
 
         private void ActualizarNumeroFilas()
         {
@@ -72,6 +82,32 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
 
         }
 
+        private void tlbMenu_ExitClick()
+        {
+            this.Close();
+        }
+
+        private void tlbMenu_ExportClick()
+        {
+            string _msg = "Se genero el archivo excel de forma satisfactoria en la siguiente ubicación.\n{0}";
+            string _fileName = "Listado de cotizaciones KIRA";
+            FolderBrowserDialog f = new FolderBrowserDialog();
+            f.ShowDialog(this);
+            if (f.SelectedPath != "")
+            {
+                Cursor = Cursors.AppStarting;
+                gcCotizaciones.ExportToXls(f.SelectedPath + @"\" + _fileName + ".xls");
+                string _nM = string.Format(_msg, f.SelectedPath + @"\" + _fileName + ".xls");
+                XtraMessageBox.Show(_nM, "Exportar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                Cursor = Cursors.Default;
+            }
+
+        }
+
+   
+       
+     
         private void tlbMenu_Load(object sender, EventArgs e)
         {
             CargarListadoCotizaciones();
@@ -82,7 +118,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             CargarListadoCotizaciones();
             ActualizarNumeroFilas();
         }
-
-
+     
     }
 }
