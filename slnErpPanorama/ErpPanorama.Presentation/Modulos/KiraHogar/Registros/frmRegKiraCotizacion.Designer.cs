@@ -33,8 +33,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.lblTotalRegistros = new DevExpress.XtraEditors.LabelControl();
             this.btnConsultarMasInformacion = new DevExpress.XtraEditors.SimpleButton();
-            this.cboMes = new DevExpress.XtraScheduler.UI.MonthEdit();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txtNumero = new DevExpress.XtraEditors.TextEdit();
             this.txtPeriodo = new DevExpress.XtraEditors.TextEdit();
@@ -67,7 +65,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn24 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cboMes.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumero.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPeriodo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcCotizaciones)).BeginInit();
@@ -90,8 +87,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             this.groupControl1.Controls.Add(this.lblTotalRegistros);
             this.groupControl1.Controls.Add(this.btnConsultarMasInformacion);
-            this.groupControl1.Controls.Add(this.cboMes);
-            this.groupControl1.Controls.Add(this.labelControl2);
             this.groupControl1.Controls.Add(this.labelControl1);
             this.groupControl1.Controls.Add(this.txtNumero);
             this.groupControl1.Controls.Add(this.txtPeriodo);
@@ -120,35 +115,17 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.btnConsultarMasInformacion.TabIndex = 58;
             this.btnConsultarMasInformacion.Text = "Más Información";
             // 
-            // cboMes
-            // 
-            this.cboMes.Location = new System.Drawing.Point(157, 26);
-            this.cboMes.Name = "cboMes";
-            this.cboMes.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboMes.Properties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Simple;
-            this.cboMes.Size = new System.Drawing.Size(110, 20);
-            this.cboMes.TabIndex = 57;
-            // 
-            // labelControl2
-            // 
-            this.labelControl2.Location = new System.Drawing.Point(128, 29);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(23, 13);
-            this.labelControl2.TabIndex = 56;
-            this.labelControl2.Text = "Mes:";
-            // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(273, 29);
+            this.labelControl1.Location = new System.Drawing.Point(163, 29);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(73, 13);
+            this.labelControl1.Size = new System.Drawing.Size(71, 13);
             this.labelControl1.TabIndex = 49;
-            this.labelControl1.Text = "N° Documento:";
+            this.labelControl1.Text = "N° Cotizacion :";
             // 
             // txtNumero
             // 
-            this.txtNumero.Location = new System.Drawing.Point(352, 26);
+            this.txtNumero.Location = new System.Drawing.Point(256, 26);
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Properties.MaxLength = 6;
             this.txtNumero.Size = new System.Drawing.Size(106, 20);
@@ -471,7 +448,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cboMes.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumero.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPeriodo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcCotizaciones)).EndInit();
@@ -486,8 +462,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraEditors.LabelControl lblTotalRegistros;
         private DevExpress.XtraEditors.SimpleButton btnConsultarMasInformacion;
-        private DevExpress.XtraScheduler.UI.MonthEdit cboMes;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.TextEdit txtNumero;
         public DevExpress.XtraEditors.TextEdit txtPeriodo;
