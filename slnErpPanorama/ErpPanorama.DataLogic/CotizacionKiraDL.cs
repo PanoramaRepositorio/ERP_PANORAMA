@@ -31,7 +31,7 @@ namespace ErpPanorama.DataLogic
                     try
                     {
                         // Insertar la cotización en la tabla "CotizacionKIRA"
-                        var cotizacionCommand = db.GetStoredProcCommand("usp_RegistrarCotizacionYDetalle1");
+                        var cotizacionCommand = db.GetStoredProcCommand("usp_RegistrarCotizacionYDetalle");
                         db.AddInParameter(cotizacionCommand, "@IdTablaElemento", DbType.Int32, cotizacion.IdTablaElemento);
                         db.AddInParameter(cotizacionCommand, "@Fecha", DbType.Date, cotizacion.Fecha);
                         db.AddInParameter(cotizacionCommand, "@CodigoProducto", DbType.String, cotizacion.CodigoProducto);
@@ -55,7 +55,7 @@ namespace ErpPanorama.DataLogic
                         // Agregar los parámetros de tabla estructurada para los detalles de cotización
                         var tvpParam = new SqlParameter("@DetalleCotizacion", SqlDbType.Structured)
                         {
-                            TypeName = "dbo.DetalleCotizacionType1",
+                            TypeName = "dbo.DetalleCotizacionType",
                             Value = ConvertToDataTable(detallesCotizacion)
                         };
                         cotizacionCommand.Parameters.Add(tvpParam);
@@ -114,6 +114,20 @@ namespace ErpPanorama.DataLogic
             }
 
             return existeCodigo;
+        }
+
+        public void EliminarCotizacionPorCodigoProducto(string codigoProducto)
+        {
+            using (var connection = db.CreateConnection())
+            {
+                connection.Open();
+                using (var command = db.GetStoredProcCommand("usp_EliminarCotizacion"))
+                {
+                    db.AddInParameter(command, "@CodigoProducto", DbType.String, codigoProducto);
+
+                    db.ExecuteNonQuery(command);
+                }
+            }
         }
 
     }
