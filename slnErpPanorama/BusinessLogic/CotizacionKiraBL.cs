@@ -28,5 +28,10 @@ namespace ErpPanorama.BusinessLogic
         {
             return cotizacionKiraDL.ValidarCodigoProducto(codigoProducto);
         }
+
+        public void EliminarCotizacionPorCodigoProducto(string codigoProducto)
+        {
+            cotizacionKiraDL.EliminarCotizacionPorCodigoProducto(codigoProducto);
+        }
     }
 }
