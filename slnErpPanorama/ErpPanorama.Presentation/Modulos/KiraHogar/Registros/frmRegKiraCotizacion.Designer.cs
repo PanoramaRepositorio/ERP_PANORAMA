@@ -77,12 +77,13 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.tlbMenu.Ensamblado = "";
             this.tlbMenu.Location = new System.Drawing.Point(0, 0);
             this.tlbMenu.Name = "tlbMenu";
-            this.tlbMenu.Size = new System.Drawing.Size(1742, 31);
+            this.tlbMenu.Size = new System.Drawing.Size(1755, 31);
             this.tlbMenu.TabIndex = 0;
             this.tlbMenu.NewClick += new ErpPanorama.Presentation.ControlUser.UIToolBar.delegateNewClick(this.tlbMenu_NewClick);
             this.tlbMenu.RefreshClick += new ErpPanorama.Presentation.ControlUser.UIToolBar.delegateRefreshClick(this.tlbMenu_RefreshClick);
             this.tlbMenu.ExportClick += new ErpPanorama.Presentation.ControlUser.UIToolBar.delegateExportClick(this.tlbMenu_ExportClick);
             this.tlbMenu.ExitClick += new ErpPanorama.Presentation.ControlUser.UIToolBar.delegateExitClick(this.tlbMenu_ExitClick);
+            this.tlbMenu.DeleteClick += new ErpPanorama.Presentation.ControlUser.UIToolBar.delegateDeleteClick(tlbMenu_DeleteClick);
             this.tlbMenu.Load += new System.EventHandler(this.tlbMenu_Load);
             // 
             // groupControl1
@@ -96,7 +97,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupControl1.Location = new System.Drawing.Point(0, 31);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(1742, 52);
+            this.groupControl1.Size = new System.Drawing.Size(1755, 52);
             this.groupControl1.TabIndex = 24;
             this.groupControl1.Text = "Criterios de Búsqueda";
             // 
@@ -160,7 +161,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gcCotizaciones.Location = new System.Drawing.Point(0, 83);
             this.gcCotizaciones.MainView = this.gvCotizacion;
             this.gcCotizaciones.Name = "gcCotizaciones";
-            this.gcCotizaciones.Size = new System.Drawing.Size(1742, 474);
+            this.gcCotizaciones.Size = new System.Drawing.Size(1755, 474);
             this.gcCotizaciones.TabIndex = 25;
             this.gcCotizaciones.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvCotizacion});
@@ -198,7 +199,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gvCotizacion.OptionsSelection.MultiSelect = true;
             this.gvCotizacion.OptionsView.ColumnAutoWidth = false;
             this.gvCotizacion.OptionsView.ShowGroupPanel = false;
-
             // 
             // gridColumn10
             // 
@@ -397,8 +397,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn21.Name = "gridColumn21";
             this.gridColumn21.OptionsColumn.AllowEdit = false;
             this.gridColumn21.OptionsColumn.AllowFocus = false;
-            this.gridColumn21.Visible = true;
-            this.gridColumn21.VisibleIndex = 11;
             this.gridColumn21.Width = 183;
             // 
             // gridColumn20
@@ -440,7 +438,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1742, 557);
+            this.ClientSize = new System.Drawing.Size(1755, 557);
             this.Controls.Add(this.gcCotizaciones);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.tlbMenu);

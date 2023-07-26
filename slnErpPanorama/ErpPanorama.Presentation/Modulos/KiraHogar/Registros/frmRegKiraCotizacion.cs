@@ -12,9 +12,6 @@ using ErpPanorama.Presentation.Modulos.KiraHogar.Consultas;
 using ErpPanorama.BusinessEntity;
 using ErpPanorama.BusinessLogic;
 using DevExpress.XtraGrid.Views.Grid;
-using DevExpress.XtraGrid; // Para GridView y GridControl
-using DevExpress.XtraGrid.Views.Base; // Para ColumnCopyMode
-using DevExpress.Export; // Para ClipboardCopyFormat
 
 
 namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
@@ -71,7 +68,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                 MessageBox.Show("Error al cargar el listado de cotizaciones: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void tlbMenu_NewClick()
         {
 
@@ -79,7 +75,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             formCotizacion.Dock = DockStyle.Fill; // Rellenar el área del contenedor
             formCotizacion.StartPosition = FormStartPosition.CenterParent;
             formCotizacion.Show(); // Mostrar el formulario
-
         }
 
         private void tlbMenu_ExitClick()
@@ -104,10 +99,43 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             }
 
         }
+        CotizacionKiraBL cotizacionKiraBL = new CotizacionKiraBL();
+        private void tlbMenu_DeleteClick()
+        {
+            // Obtener la fila seleccionada en el GridView
+            int filaSeleccionada = gvCotizacion.FocusedRowHandle;
+            // Verificar que haya una fila seleccionada
+            if (filaSeleccionada >= 0)
+            {
+                // Obtener el valor del CodigoProducto de la fila seleccionada
+                string codigoProducto = gvCotizacion.GetRowCellValue(filaSeleccionada, "CodigoProducto").ToString();
 
-   
-       
-     
+                // Preguntar al usuario si está seguro de eliminar la cotización
+                DialogResult resultado = MessageBox.Show("¿Estás seguro de eliminar la cotización?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (resultado == DialogResult.Yes)
+                {
+                    try
+                    {
+                        // Llamar al método para eliminar la cotización por CodigoProducto
+                        cotizacionKiraBL.EliminarCotizacionPorCodigoProducto(codigoProducto);
+                        // Actualizar la lista de cotizaciones en el grid
+                        CargarListadoCotizaciones();
+                        // Mostrar mensaje de éxito
+                        MessageBox.Show("La cotización se eliminó correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        // Manejar el error si ocurre
+                        MessageBox.Show("Error al eliminar la cotización: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                // Si no hay una fila seleccionada, mostrar un mensaje
+                MessageBox.Show("Selecciona una cotización para eliminar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void tlbMenu_Load(object sender, EventArgs e)
         {
             CargarListadoCotizaciones();
