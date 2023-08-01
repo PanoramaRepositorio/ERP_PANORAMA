@@ -1664,17 +1664,23 @@
     <Compile Include="Modulos\Finanzas\Registros\frmVerDetalleCajaEgreso.Designer.cs">
       <DependentUpon>frmVerDetalleCajaEgreso.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modulos\KiraHogar\Consultas\frmCotizacion.cs">
+    <Compile Include="Modulos\KiraHogar\Registros\frmRegCotizacionPrecioProductoClienteStock.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modulos\KiraHogar\Consultas\frmCotizacion.designer.cs">
-      <DependentUpon>frmCotizacion.cs</DependentUpon>
+    <Compile Include="Modulos\KiraHogar\Registros\frmRegCotizacionPrecioProductoClienteStock.designer.cs">
+      <DependentUpon>frmRegCotizacionPrecioProductoClienteStock.cs</DependentUpon>
     </Compile>
     <Compile Include="Modulos\KiraHogar\Registros\frmRegKiraCotizacion.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Modulos\KiraHogar\Registros\frmRegKiraCotizacion.Designer.cs">
       <DependentUpon>frmRegKiraCotizacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\KiraHogar\Registros\frmRegKiraCotizacionProductoTerminado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\KiraHogar\Registros\frmRegKiraCotizacionProductoTerminado.Designer.cs">
+      <DependentUpon>frmRegKiraCotizacionProductoTerminado.cs</DependentUpon>
     </Compile>
     <Compile Include="Modulos\Logistica\Consultas\frmConCierrePedidos.cs">
       <SubType>Form</SubType>
@@ -4719,8 +4725,8 @@
     <EmbeddedResource Include="Modulos\Finanzas\Registros\frmVerDetalleCajaEgreso.resx">
       <DependentUpon>frmVerDetalleCajaEgreso.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modulos\KiraHogar\Consultas\frmCotizacion.resx">
-      <DependentUpon>frmCotizacion.cs</DependentUpon>
+    <EmbeddedResource Include="Modulos\KiraHogar\Registros\frmRegCotizacionPrecioProductoClienteStock.resx">
+      <DependentUpon>frmRegCotizacionPrecioProductoClienteStock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\KiraHogar\Registros\frmRegKiraCotizacion.resx">
       <DependentUpon>frmRegKiraCotizacion.cs</DependentUpon>
@@ -11939,6 +11945,7 @@
     <Folder Include="Modulos\Finanzas\Otros\" />
     <Folder Include="Modulos\Finanzas\Reportes\" />
     <Folder Include="Modulos\Finanzas\Rpt\" />
+    <Folder Include="Modulos\KiraHogar\Consultas\" />
     <Folder Include="Modulos\MesaAyuda\Maestros\" />
   </ItemGroup>
   <ItemGroup>
