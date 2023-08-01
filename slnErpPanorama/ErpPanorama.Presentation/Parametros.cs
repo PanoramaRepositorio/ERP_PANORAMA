@@ -525,6 +525,9 @@ namespace ErpPanorama.Presentation
         //Parametros Comisión Club Design
         public static decimal dmlClubDesign = 0;
 
+        //Parametros MARGEN DE CONTRIBUCION
+        public static decimal margencontri = 0.4m;
+
         //Parametros Stock Negativo
         public static bool bStockNegativo = true;
         public static bool bStockNegativoPreventa = true;
