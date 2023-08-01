@@ -4731,6 +4731,9 @@
     <EmbeddedResource Include="Modulos\KiraHogar\Registros\frmRegKiraCotizacion.resx">
       <DependentUpon>frmRegKiraCotizacion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\KiraHogar\Registros\frmRegKiraCotizacionProductoTerminado.resx">
+      <DependentUpon>frmRegKiraCotizacionProductoTerminado.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Logistica\Consultas\frmConCierrePedidos.resx">
       <DependentUpon>frmConCierrePedidos.cs</DependentUpon>
     </EmbeddedResource>
