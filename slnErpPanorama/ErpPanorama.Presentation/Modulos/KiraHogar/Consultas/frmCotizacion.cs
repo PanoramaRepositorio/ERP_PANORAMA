@@ -25,6 +25,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         private CotizacionKiraBL cotizacionKiraBL = new CotizacionKiraBL();
         // Variable para almacenar el cuadro de diálogo de selección de archivos
         private OpenFileDialog openFile = new OpenFileDialog();
+        private frmRegKiraCotizacion formRegKiraCotizacion;
         // Declarar una variable para almacenar los detalles de cotización
         List<DetalleCotizacionBE> detalleCotizacionList = new List<DetalleCotizacionBE>();
 
@@ -32,7 +33,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         {
             InitializeComponent();
         }
-
         private DataTable dtDatospestaña1;
         private DataTable dtDatospestaña2;
         private DataTable dtDatospestaña3;
@@ -40,7 +40,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         private DataTable dtDatospestaña5;
         private DataTable dtDatospestaña6;
         private DataTable dtDatosResumen;
-
         private void frmCotizacion_Load(object sender, EventArgs e)
         {
             
@@ -54,22 +53,15 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             ConfigurarComboBoxTipoMoneda();
             ConfigurarComboBoxEquipos();
             personalizacióncontrolesform();
+            OcultarColumnasGridControlPestañas();
             calcularTotalGastospestaña7();
+            
+
             // Establecer la propiedad MaxLength a 0 para permitir una cantidad ilimitada de caracteres
             txtCodigoProducto.Properties.MaxLength = 0;
             txtCodigoProducto.TextChanged += txtCodigoProducto_TextChanged;
         }
-        private void tlbMenu_NewClick()
-        {
-            frmRegKiraCotizacion formCotizacion = new frmRegKiraCotizacion();
-            formCotizacion.ShowDialog();
-            MessageBox.Show("Aquí dar lógica", "Mensaje tlbMenu_NewClick", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
 
-        private void tlbMenu_EditClick()
-        {
-            MessageBox.Show("Aquí dar lógica", "Mensaje tlbMenu_EditClick", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
         private void CrearDatable_GridControl()
         {
             // Crear el DataTable para almacenar los datos pestaña 1
@@ -130,12 +122,8 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             // Crear el DataTable para almacenar los datos pestaña 7
 
             dtDatosResumen = new DataTable();
-            //dtDatosResumen.Columns.Add("IdTablaElemento", typeof(int));
-            //dtDatosResumen.Columns.Add("Item", typeof(int));
             dtDatosResumen.Columns.Add("NombreTablaElemento", typeof(string)); // Columna para mostrar el nombre
             dtDatosResumen.Columns.Add("DescripcionGastos", typeof(string));
-            //dtDatosResumen.Columns.Add("FlagAprobacion", typeof(bool));
-            //dtDatosResumen.Columns.Add("FlagEstado", typeof(bool));
             dtDatosResumen.Columns.Add("Costo" + " " + " S/.", typeof(decimal)); // Nueva columna para el precio total
 
 
@@ -161,7 +149,87 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             gridView7.Columns["NombreTablaElemento"].GroupIndex = 0; // Establecer la columna "NombreTablaElemento" como columna de agrupación
 
         }
-        // Método para verificar si una fila está vacía o contiene solo valores nulos o en blanco
+
+        private void OcultarColumnasGridControlPestañas()
+        {
+            // Obtener el objeto GridView asociado a gridControlPestaña1
+            GridView gridViewPestaña1 = gridControlPestaña1.MainView as GridView;
+            GridView gridViewPestaña2 = gridControlPestaña2.MainView as GridView;
+            GridView gridViewPestaña3 = gridControlPestaña3.MainView as GridView;
+            GridView gridViewPestaña4 = gridControlPestaña4.MainView as GridView;
+            GridView gridViewPestaña5 = gridControlPestaña5.MainView as GridView;
+            GridView gridViewPestaña6 = gridControlPestaña6.MainView as GridView;
+
+
+            // Verificar que el objeto GridView no sea nulo
+            if (gridViewPestaña1 != null)
+            {
+                // Ocultar las columnas que no quieres mostrar en gridControlPestaña1
+                gridViewPestaña1.Columns["IdTablaElemento"].Visible = false;
+                gridViewPestaña1.Columns["Item"].Visible = false;
+                gridViewPestaña1.Columns["FlagAprobacion"].Visible = false;
+                gridViewPestaña1.Columns["FlagEstado"].Visible = false;
+
+                // Dejar visibles solo las columnas DescripcionGastos y Costo
+                gridViewPestaña1.Columns["DescripcionGastos"].Visible = true;
+                gridViewPestaña1.Columns["Costo" + " " + " S/."].Visible = true;
+
+                // Ocultar las columnas que no quieres mostrar en gridControlPestaña2
+                gridViewPestaña2.Columns["IdTablaElemento"].Visible = false;
+                gridViewPestaña2.Columns["Item"].Visible = false;
+                gridViewPestaña2.Columns["FlagAprobacion"].Visible = false;
+                gridViewPestaña2.Columns["FlagEstado"].Visible = false;
+
+                // Dejar visibles solo las columnas DescripcionGastos y Costo
+                gridViewPestaña2.Columns["DescripcionGastos"].Visible = true;
+                gridViewPestaña2.Columns["Costo" + " " + " S/."].Visible = true;
+
+                // Ocultar las columnas que no quieres mostrar en gridControlPestaña3
+                gridViewPestaña3.Columns["IdTablaElemento"].Visible = false;
+                gridViewPestaña3.Columns["Item"].Visible = false;
+                gridViewPestaña3.Columns["FlagAprobacion"].Visible = false;
+                gridViewPestaña3.Columns["FlagEstado"].Visible = false;
+
+                // Dejar visibles solo las columnas DescripcionGastos y Costo
+                gridViewPestaña3.Columns["DescripcionGastos"].Visible = true;
+                gridViewPestaña3.Columns["Costo" + " " + " S/."].Visible = true;
+
+                // Ocultar las columnas que no quieres mostrar en gridControlPestaña4
+                gridViewPestaña4.Columns["IdTablaElemento"].Visible = false;
+                gridViewPestaña4.Columns["Item"].Visible = false;
+                gridViewPestaña4.Columns["FlagAprobacion"].Visible = false;
+                gridViewPestaña4.Columns["FlagEstado"].Visible = false;
+
+                // Dejar visibles solo las columnas DescripcionGastos y Costo
+                gridViewPestaña4.Columns["DescripcionGastos"].Visible = true;
+                gridViewPestaña4.Columns["Costo" + " " + " S/."].Visible = true;
+
+                // Ocultar las columnas que no quieres mostrar en gridControlPestaña5
+                gridViewPestaña5.Columns["IdTablaElemento"].Visible = false;
+                gridViewPestaña5.Columns["Item"].Visible = false;
+                gridViewPestaña5.Columns["FlagAprobacion"].Visible = false;
+                gridViewPestaña5.Columns["FlagEstado"].Visible = false;
+
+                // Dejar visibles solo las columnas DescripcionGastos y Costo
+                gridViewPestaña5.Columns["DescripcionGastos"].Visible = true;
+                gridViewPestaña5.Columns["Costo" + " " + " S/."].Visible = true;
+
+                // Ocultar las columnas que no quieres mostrar en gridControlPestaña6
+                gridViewPestaña6.Columns["IdTablaElemento"].Visible = false;
+                gridViewPestaña6.Columns["Item"].Visible = false;
+                gridViewPestaña6.Columns["FlagAprobacion"].Visible = false;
+                gridViewPestaña6.Columns["FlagEstado"].Visible = false;
+
+                // Dejar visibles solo las columnas DescripcionGastos y Costo
+                gridViewPestaña6.Columns["DescripcionGastos"].Visible = true;
+                gridViewPestaña6.Columns["Costo" + " " + " S/."].Visible = true;
+            }
+        }
+
+
+        /// <summary>
+        ///Método para verificar si una fila está vacía o contiene solo valores nulos o en blanco
+        /// </summary>
         private bool DataRowIsEmpty(DataRow row)
         {
             // Verificar si la fila está vacía o contiene solo valores nulos o en blanco
@@ -174,20 +242,49 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             }
             return true;
         }
-
-
-
+        /// <summary>
+        ///toma los datos de la tabla dtPestana, verifica si la fila no está vacía 
+        ///y luego agrega algunas columnas específicas de esa fila a otro DataTable llamado dtDatosResumen
+        /// </summary>
+        private void AgregarDatosDePestanaAlResumen(DataTable dtPestana)
+        {
+            foreach (DataRow row in dtPestana.Rows)
+            {
+                if (!DataRowIsEmpty(row))
+                {
+                    DataRow newRow = dtDatosResumen.NewRow();
+                    newRow["NombreTablaElemento"] = ObtenerNombreTablaElemento((int)row["IdTablaElemento"]); // Usamos una función para obtener el nombre
+                    newRow["DescripcionGastos"] = row["DescripcionGastos"];
+                    newRow["Costo" + " " + " S/."] = row["Costo" + " " + " S/."];
+                    dtDatosResumen.Rows.Add(newRow);
+                }
+            }
+        }
+        // Método para agregar todos los datos de cada pestaña al resumen
+        private void AgregarDatosAlResumen()
+        {
+            // Limpiar el resumen antes de agregar los nuevos datos
+            dtDatosResumen.Rows.Clear();
+            // Agregar los datos de cada pestaña al resumen
+            AgregarDatosDePestanaAlResumen(dtDatospestaña1);
+            AgregarDatosDePestanaAlResumen(dtDatospestaña2);
+            AgregarDatosDePestanaAlResumen(dtDatospestaña3);
+            AgregarDatosDePestanaAlResumen(dtDatospestaña4);
+            AgregarDatosDePestanaAlResumen(dtDatospestaña5);
+            AgregarDatosDePestanaAlResumen(dtDatospestaña6);
+            // Actualiza el DataSource del gridControlPestaña7Resumen con el DataTable dtDatosResumen
+            gridControlPestaña7Resumen.DataSource = dtDatosResumen;
+            calcularTotalGastospestaña7();
+        }
+    
         private void DtDatospestaña1_TableNewRow(object sender, DataTableNewRowEventArgs e)
         {
             AgregarDatosAlResumen();
         }
-
-
         private void DtDatospestaña2_TableNewRow(object sender, DataTableNewRowEventArgs e)
         {
             AgregarDatosAlResumen();
         }
-
         private void DtDatospestaña3_TableNewRow(object sender, DataTableNewRowEventArgs e)
         {
             AgregarDatosAlResumen();
@@ -204,7 +301,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         {
             AgregarDatosAlResumen();
         }
-
         private void personalizacióncontrolesform()
         {
             Tabcontrol.TabPages[0].Text = "Materiales";
@@ -219,8 +315,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             txtCaracteristicas.ScrollBars = ScrollBars.Vertical;
             txtCaracteristicas.ScrollBars = ScrollBars.Both;
             txtBreveDescripcion.ScrollBars = ScrollBars.Both;
+            txtMargen.Text = Parametros.margencontri.ToString();
+            txtPrecioVenta.Enabled = false;
+            txtMargen.Enabled = false;
         }
-
 
         /// <summary>
         /// Metodos de llenar datos a los combos de la BD
@@ -245,9 +343,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         private void ConfigurarComboBoxMateriales()
         {
             cboMaterial.Text = "Seleccione Material";
-            cboMaterial.Properties.TextEditStyle = TextEditStyles.Standard;
-            cboMaterial.Properties.AutoComplete = true;
-            cboMaterial.Properties.CaseSensitiveSearch = false;
+            //cboMaterial.Properties.TextEditStyle = TextEditStyles.Standard;
+            //cboMaterial.Properties.AutoComplete = true;
+            //cboMaterial.Properties.CaseSensitiveSearch = false;
+            cboMaterial.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             comboTipoCotizacionBL = new ComboTipoCotizacionBL();
             List<ComboTipoCotizacionBE> listaComboTipoCotizacion = comboTipoCotizacionBL.ObtenerComboMateriales();
             cboMaterial.Properties.Items.Clear();
@@ -259,9 +358,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         public void ConfigurarComboBoxInsumo()
         {
             cboInsumos.Text = "Selecione Insumo";
-            cboInsumos.Properties.TextEditStyle = TextEditStyles.Standard;
-            cboInsumos.Properties.AutoComplete = true;
-            cboInsumos.Properties.CaseSensitiveSearch = false;
+            cboInsumos.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             comboTipoCotizacionBL = new ComboTipoCotizacionBL();
             List<ComboTipoCotizacionBE> listaComboTipoIsumo = comboTipoCotizacionBL.ObtenerComboInsumo();
             cboInsumos.Properties.Items.Clear();
@@ -274,9 +371,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         public void ConfigurarConboBoxAccesorio()
         {
             cboAccesorios.Text = "Seleccione Accesorio";
-            cboAccesorios.Properties.TextEditStyle = TextEditStyles.Standard;
-            cboAccesorios.Properties.AutoComplete = true;
-            cboAccesorios.Properties.CaseSensitiveSearch = false;
+            cboAccesorios.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             comboTipoCotizacionBL = new ComboTipoCotizacionBL();
             List<ComboTipoCotizacionBE> listaaccesorio = comboTipoCotizacionBL.ObtenerAccesorios();
             cboAccesorios.Properties.Items.Clear();
@@ -288,9 +383,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         public void ConfigurarComboBoxMano()
         {
             cboManoObra.Text = "Seleccione Mano de Obra";
-            cboManoObra.Properties.TextEditStyle = TextEditStyles.Standard;
-            cboManoObra.Properties.AutoComplete = true;
-            cboManoObra.Properties.CaseSensitiveSearch = false;
+            cboManoObra.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             List<ComboTipoCotizacionBE> listamanoobra = comboTipoCotizacionBL.ObtenerManoObra();
             cboManoObra.Properties.Items.Clear();
             foreach (var item in listamanoobra)
@@ -301,7 +394,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         public void ConfigurarComboBoxMovilidad()
         {
             cboSeleccionaMovilidad.Text = "Seleccione Movilidad - Viaticos";
-            cboSeleccionaMovilidad.Properties.TextEditStyle = TextEditStyles.Standard;
+            //cboSeleccionaMovilidad.Properties.TextEditStyle = TextEditStyles.Standard;
             cboSeleccionaMovilidad.Properties.AutoComplete = true;
             cboSeleccionaMovilidad.Properties.CaseSensitiveSearch = false;
             List<ComboTipoCotizacionBE> listamovi = comboTipoCotizacionBL.ObtenerMovilidadyViaticos();
@@ -315,9 +408,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         public void ConfigurarComboBoxTipoMoneda()
         {
             cboTipoMoneda.Text = "Seleccione Moneda";
-            cboTipoMoneda.Properties.TextEditStyle = TextEditStyles.Standard;
-            cboTipoMoneda.Properties.AutoComplete = true;
-            cboTipoMoneda.Properties.CaseSensitiveSearch = false;
+            cboTipoMoneda.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             List<ComboTipoCotizacionBE> listamone = comboTipoCotizacionBL.ObtenerComboTipoMoneda();
             // Configurar el ComboBox
             cboTipoMoneda.Properties.Items.Clear();
@@ -326,7 +417,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
                 cboTipoMoneda.Properties.Items.Add(item.DescTablaElemento);
             }
         }
-
         public void ConfigurarComboBoxEquipos()
         {
             cboequipos.Text = "Seleccione opción";
@@ -342,14 +432,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             }
         }
 
-
-
         /// <summary>
         /// Metodos agregar valores a los combos despues de alguna operación (guardar)
         /// </summary>
         public void valorespredeterminadosdeloscbo()
-
-
         {
             string cboTipoCotizacionDefault = "Seleccione un Tipo";
             string cboMaterialDefault = "Seleccione Material";
@@ -379,17 +465,15 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             // Calcular el Precio de Venta
             if (totalGastos != 0)
             {
-                decimal margenContribucion = 0.4m; // Valor de J69 (MARGEN DE CONTRIBUCION)
+                decimal margenContribucion = Parametros.margencontri; // Valor de J69 (MARGEN DE CONTRIBUCION)
                 decimal precioVenta = totalGastos / (1 - margenContribucion);
                 cotizacion.PrecioVenta = precioVenta;
-                txtPrecioVenta.Text = precioVenta.ToString();
+                txtPrecioVenta.Text = Math.Round(precioVenta, 2).ToString("0.00"); // Redondear a dos decimales
             }
             else
             {
-                // Manejar la situación cuando totalGastos es cero
-                // Por ejemplo, puedes mostrar un mensaje de error o asignar un valor predeterminado al precio de venta.
-                cotizacion.PrecioVenta = 0; // Asignar un valor predeterminado
-                txtPrecioVenta.Text = "Error: totalGastos no puede ser cero";
+                cotizacion.PrecioVenta = 0;
+                txtPrecioVenta.Text = "0";
             }
         }
 
@@ -397,26 +481,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         {
 
         }
-        // Método para agregar todos los datos de cada pestaña al resumen
-        private void AgregarDatosAlResumen()
-        {
-            // Limpiar el resumen antes de agregar los nuevos datos
-            dtDatosResumen.Rows.Clear();
-
-            // Agregar los datos de cada pestaña al resumen
-            AgregarDatosDePestanaAlResumen(dtDatospestaña1);
-            AgregarDatosDePestanaAlResumen(dtDatospestaña2);
-            AgregarDatosDePestanaAlResumen(dtDatospestaña3);
-            AgregarDatosDePestanaAlResumen(dtDatospestaña4);
-            AgregarDatosDePestanaAlResumen(dtDatospestaña5);
-            AgregarDatosDePestanaAlResumen(dtDatospestaña6);
-
-            // Actualiza el DataSource del gridControlPestaña7Resumen con el DataTable dtDatosResumen
-            gridControlPestaña7Resumen.DataSource = dtDatosResumen;
-            calcularTotalGastospestaña7();
-        }
-
-        // Método para obtener el nombre correspondiente a un valor de "IdTablaElemento"
+      
+        /// <summary>
+        ///Método para obtener el nombre correspondiente a un valor de IdTablaElemento
+        /// </summary>
         private string ObtenerNombreTablaElemento(int idTablaElemento)
         {
             // Valores y nombres correspondientes
@@ -467,26 +535,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
 
             return nombresTablaElemento.ContainsKey(idTablaElemento) ? nombresTablaElemento[idTablaElemento] : string.Empty;
         }
-
-        private void AgregarDatosDePestanaAlResumen(DataTable dtPestana)
-        {
-
-            foreach (DataRow row in dtPestana.Rows)
-            {
-                if (!DataRowIsEmpty(row))
-                {
-                    DataRow newRow = dtDatosResumen.NewRow();
-                    //newRow["IdTablaElemento"] = row["IdTablaElemento"];
-                    newRow["NombreTablaElemento"] = ObtenerNombreTablaElemento((int)row["IdTablaElemento"]); // Usamos una función para obtener el nombre
-                    newRow["DescripcionGastos"] = row["DescripcionGastos"];
-                    newRow["Costo" + " " + " S/."] = row["Costo" + " " + " S/."];
-                    dtDatosResumen.Rows.Add(newRow);
-                }
-            }
-            //calcularTotalGastospestaña7();
-        }
-
-        // Método para calcular la suma de costos de la pestaña 1
+   
+        /// <summary>
+        ///  Método para calcular la suma de costos de la pestaña 1
+        /// </summary>
         private decimal CalcularSumaCostosPestana1(DataTable dt)
         {
             decimal sumaCostos = 0.0m;
@@ -504,7 +556,66 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
 
             return sumaCostos;
         }
-
+        private decimal CalcularSumaCostosPestana2(DataTable dt)
+        {
+            decimal sumaCostos = 0.0m;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (decimal.TryParse(row["Costo" + " " + " S/."].ToString(), out decimal costo))
+                {
+                    sumaCostos += costo;
+                }
+            }
+            return sumaCostos;
+        }
+        private decimal CalcularSumaCostosPestana3(DataTable dt)
+        {
+            decimal sumaCostos = 0.0m;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (decimal.TryParse(row["Costo" + " " + " S/."].ToString(), out decimal costo))
+                {
+                    sumaCostos += costo;
+                }
+            }
+            return sumaCostos;
+        }
+        private decimal CalcularSumaCostosPestana4(DataTable dt)
+        {
+            decimal sumaCostos = 0.0m;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (decimal.TryParse(row["Costo" + " " + " S/."].ToString(), out decimal costo))
+                {
+                    sumaCostos += costo;
+                }
+            }
+            return sumaCostos;
+        }
+        private decimal CalcularSumaCostosPestana5(DataTable dt)
+        {
+            decimal sumaCostos = 0.0m;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (decimal.TryParse(row["Costo" + " " + " S/."].ToString(), out decimal costo))
+                {
+                    sumaCostos += costo;
+                }
+            }
+            return sumaCostos;
+        }
+        private decimal CalcularSumaCostosPestana6(DataTable dt)
+        {
+            decimal sumaCostos = 0.0m;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (decimal.TryParse(row["Costo" + " " + " S/."].ToString(), out decimal costo))
+                {
+                    sumaCostos += costo;
+                }
+            }
+            return sumaCostos;
+        }
         /// <summary>
         /// Metodos de los botones agregar de cada pesataña TAB
         /// </summary>
@@ -579,175 +690,135 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             // Después de agregar los datos a la pestaña 1, actualiza el resumen
 
         }
-
-        private decimal CalcularSumaCostosPestana2(DataTable dt)
-        {
-            decimal sumaCostos = 0.0m;
-            foreach (DataRow row in dt.Rows)
-            {
-                if (decimal.TryParse(row["Costo" + " " + " S/."].ToString(), out decimal costo))
-                {
-                    sumaCostos += costo;
-                }
-            }
-            return sumaCostos;
-        }
+      
         private void btnAgregarPestaña2_Click(object sender, EventArgs e)
         {
-            string insumo = cboInsumos.Text;
-            string monto = txtinsumo.Text;
-            if (string.IsNullOrWhiteSpace(insumo))
+            try
             {
-                MessageBox.Show("Por favor, seleccione un Isumo antes de agregar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (!decimal.TryParse(monto, out decimal montoDecimal))
-            {
-                MessageBox.Show("Por favor, ingrese un monto válido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            // Obtener el elemento ComboTipoCotizacionBE seleccionado en el ComboBox
-            ComboTipoCotizacionBE itemSeleccionado = comboTipoCotizacionBL.ObtenerComboInsumo()
-                .FirstOrDefault(x => x.DescTablaElemento == cboInsumos.Text);
-
-            if (itemSeleccionado == null)
-            {
-                MessageBox.Show("Debe seleccionar un elemento válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            int idTablaElemento = itemSeleccionado.IdTablaElemento;
-
-            // Obtener el DataTable del DataSource del gridControlPestaña5
-            DataTable dt = (DataTable)gridControlPestaña2.DataSource;
-
-            // Buscar si la descripción ya existe en el DataTable
-            DataRow existingRow = dt.AsEnumerable()
-                .FirstOrDefault(row => row.Field<string>("DescripcionGastos") == insumo);
-            if (existingRow != null)
-            {
-                // Si la descripción ya existe, incrementar el Item en esa fila
-                int currentItem = existingRow.Field<int>("Item");
-                decimal currentItemCosto = existingRow.Field<decimal>("Costo" + " " + " S/.");
-                existingRow["Item"] = currentItem + 1;
-                existingRow["Costo" + " " + " S/."] = currentItemCosto + montoDecimal;
-            }
-            else
-            {
-                // Si la descripción no existe, agregar una nueva fila con el Item en 1
-                DataRow newRow = dt.NewRow();
-                newRow["IdTablaElemento"] = idTablaElemento;
-                newRow["DescripcionGastos"] = insumo;
-                newRow["Item"] = 1;
-                newRow["Costo" + " " + " S/."] = montoDecimal;
-                newRow["FlagAprobacion"] = true; // Establecer el valor predeterminado de FlagAprobacion a true
-                newRow["FlagEstado"] = true; // Establecer el valor predeterminado de FlagEstado a true
-                dt.Rows.Add(newRow);
-            }
-
-            // Llamamos al método que agrega todos los datos al resumen
-            AgregarDatosAlResumen();
-            gridView7.ExpandAllGroups();
-            // Calcular la suma de costos de la pestaña 1 y mostrarla en el textbox correspondiente
-            decimal sumaCostosPestana2 = CalcularSumaCostosPestana2(dt);
-            txtSumaCostosPestaña2.Text = sumaCostosPestana2.ToString("0.00");
-            cboInsumos.Text = "Seleccione Insumos";
-            txtinsumo.Text = string.Empty;
-            gridControlPestaña5.RefreshDataSource();
-            //calcularTotalGastospestaña2();
-
-        }
-        private decimal CalcularSumaCostosPestana3(DataTable dt)
-        {
-            decimal sumaCostos = 0.0m;
-            foreach (DataRow row in dt.Rows)
-            {
-                if (decimal.TryParse(row["Costo" + " " + " S/."].ToString(), out decimal costo))
+                string insumo = cboInsumos.Text;
+                string monto = txtinsumo.Text;
+                if (string.IsNullOrWhiteSpace(insumo))
                 {
-                    sumaCostos += costo;
+                    MessageBox.Show("Por favor, seleccione un Isumo antes de agregar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
+                if (!decimal.TryParse(monto, out decimal montoDecimal))
+                {
+                    MessageBox.Show("Por favor, ingrese un monto válido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                ComboTipoCotizacionBE itemSeleccionado = comboTipoCotizacionBL.ObtenerComboInsumo()
+                    .FirstOrDefault(x => x.DescTablaElemento == cboInsumos.Text);
+
+                if (itemSeleccionado == null)
+                {
+                    MessageBox.Show("Debe seleccionar un elemento válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                int idTablaElemento = itemSeleccionado.IdTablaElemento;
+                DataTable dt = (DataTable)gridControlPestaña2.DataSource;
+                DataRow existingRow = dt.AsEnumerable()
+                    .FirstOrDefault(row => row.Field<string>("DescripcionGastos") == insumo);
+                if (existingRow != null)
+                {
+                    int currentItem = existingRow.Field<int>("Item");
+                    decimal currentItemCosto = existingRow.Field<decimal>("Costo" + " " + " S/.");
+                    existingRow["Item"] = currentItem + 1;
+                    existingRow["Costo" + " " + " S/."] = currentItemCosto + montoDecimal;
+                }
+                else
+                {
+                    DataRow newRow = dt.NewRow();
+                    newRow["IdTablaElemento"] = idTablaElemento;
+                    newRow["DescripcionGastos"] = insumo;
+                    newRow["Item"] = 1;
+                    newRow["Costo" + " " + " S/."] = montoDecimal;
+                    newRow["FlagAprobacion"] = true;
+                    newRow["FlagEstado"] = true;
+                    dt.Rows.Add(newRow);
+                }
+                AgregarDatosAlResumen();
+                gridView7.ExpandAllGroups();
+                decimal sumaCostosPestana2 = CalcularSumaCostosPestana2(dt);
+                txtSumaCostosPestaña2.Text = sumaCostosPestana2.ToString("0.00");
+                cboInsumos.Text = "Seleccione Insumos";
+                txtinsumo.Text = string.Empty;
+                gridControlPestaña2.RefreshDataSource();
             }
-            return sumaCostos;
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
         }
+       
         private void btnAgregarPestaña3_Click(object sender, EventArgs e)
         {
-            string accesorio = cboAccesorios.Text;
-            string monto = txtMontoaccesorio.Text;
-            if (string.IsNullOrWhiteSpace(accesorio))
+            try
             {
-                MessageBox.Show("Por favor, seleccione un Accesorio antes de agregar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (!decimal.TryParse(monto, out decimal montoDecimal))
-            {
-                MessageBox.Show("Por favor, ingrese un monto válido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            // Obtener el elemento ComboTipoCotizacionBE seleccionado en el ComboBox
-            ComboTipoCotizacionBE itemSeleccionado = comboTipoCotizacionBL.ObtenerAccesorios()
-                .FirstOrDefault(x => x.DescTablaElemento == cboAccesorios.Text);
-
-            if (itemSeleccionado == null)
-            {
-                MessageBox.Show("Debe seleccionar un elemento válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            int idTablaElemento = itemSeleccionado.IdTablaElemento;
-
-            // Obtener el DataTable del DataSource del gridControlPestaña5
-            DataTable dt = (DataTable)gridControlPestaña3.DataSource;
-
-            // Buscar si la descripción ya existe en el DataTable
-            DataRow existingRow = dt.AsEnumerable()
-                .FirstOrDefault(row => row.Field<string>("DescripcionGastos") == accesorio);
-
-            if (existingRow != null)
-            {
-                // Si la descripción ya existe, incrementar el Item en esa fila
-                int currentItem = existingRow.Field<int>("Item");
-                decimal currentItemCosto = existingRow.Field<decimal>("Costo" + " " + " S/.");
-                existingRow["Item"] = currentItem + 1;
-                existingRow["Costo" + " " + " S/."] = currentItemCosto + montoDecimal;
-            }
-            else
-            {
-                // Si la descripción no existe, agregar una nueva fila con el Item en 1
-                DataRow newRow = dt.NewRow();
-                newRow["IdTablaElemento"] = idTablaElemento;
-                newRow["DescripcionGastos"] = accesorio;
-                newRow["Item"] = 1;
-                newRow["Costo" + " " + " S/."] = montoDecimal;
-                newRow["FlagAprobacion"] = true; // Establecer el valor predeterminado de FlagAprobacion a true
-                newRow["FlagEstado"] = true; // Establecer el valor predeterminado de FlagEstado a true
-                dt.Rows.Add(newRow);
-            }
-            // Llamamos al método que agrega todos los datos al resumen
-            AgregarDatosAlResumen();
-            gridView7.ExpandAllGroups();
-
-            // Calcular la suma de costos de la pestaña 1 y mostrarla en el textbox correspondiente
-            decimal sumaCostosPestana3 = CalcularSumaCostosPestana3(dt);
-            txtSumaCostosPestaña3.Text = sumaCostosPestana3.ToString("0.00");
-
-            cboAccesorios.Text = "Seleccione Accesorio";
-            txtMontoaccesorio.Text = string.Empty;
-            gridControlPestaña5.RefreshDataSource();
-            //calcularTotalGastospestaña3();
-        }
-
-        private decimal CalcularSumaCostosPestana4(DataTable dt)
-        {
-            decimal sumaCostos = 0.0m;
-            foreach (DataRow row in dt.Rows)
-            {
-                if (decimal.TryParse(row["Costo" + " " + " S/."].ToString(), out decimal costo))
+                string accesorio = cboAccesorios.Text;
+                string monto = txtMontoaccesorio.Text;
+                if (string.IsNullOrWhiteSpace(accesorio))
                 {
-                    sumaCostos += costo;
+                    MessageBox.Show("Por favor, seleccione un Accesorio antes de agregar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
+                if (!decimal.TryParse(monto, out decimal montoDecimal))
+                {
+                    MessageBox.Show("Por favor, ingrese un monto válido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                ComboTipoCotizacionBE itemSeleccionado = comboTipoCotizacionBL.ObtenerAccesorios()
+                    .FirstOrDefault(x => x.DescTablaElemento == cboAccesorios.Text);
+
+                if (itemSeleccionado == null)
+                {
+                    MessageBox.Show("Debe seleccionar un elemento válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                int idTablaElemento = itemSeleccionado.IdTablaElemento;
+                DataTable dt = (DataTable)gridControlPestaña3.DataSource;
+                DataRow existingRow = dt.AsEnumerable()
+                    .FirstOrDefault(row => row.Field<string>("DescripcionGastos") == accesorio);
+
+                if (existingRow != null)
+                {
+                    int currentItem = existingRow.Field<int>("Item");
+                    decimal currentItemCosto = existingRow.Field<decimal>("Costo" + " " + " S/.");
+                    existingRow["Item"] = currentItem + 1;
+                    existingRow["Costo" + " " + " S/."] = currentItemCosto + montoDecimal;
+                }
+                else
+                {
+                    DataRow newRow = dt.NewRow();
+                    newRow["IdTablaElemento"] = idTablaElemento;
+                    newRow["DescripcionGastos"] = accesorio;
+                    newRow["Item"] = 1;
+                    newRow["Costo" + " " + " S/."] = montoDecimal;
+                    newRow["FlagAprobacion"] = true;
+                    newRow["FlagEstado"] = true;
+                    dt.Rows.Add(newRow);
+                }
+                AgregarDatosAlResumen();
+                gridView7.ExpandAllGroups();
+                decimal sumaCostosPestana3 = CalcularSumaCostosPestana3(dt);
+                txtSumaCostosPestaña3.Text = sumaCostosPestana3.ToString("0.00");
+                cboAccesorios.Text = "Seleccione Accesorio";
+                txtMontoaccesorio.Text = string.Empty;
+                gridControlPestaña3.RefreshDataSource();
             }
-            return sumaCostos;
+            catch (Exception)
+            {
+
+                throw;
+            }
+           
+
         }
+
+       
         private void btnAgregarPestaña4_Click(object sender, EventArgs e)
         {
             string manoobra = cboManoObra.Text;
@@ -762,7 +833,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
                 MessageBox.Show("Por favor, ingrese un monto válido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            // Obtener el elemento ComboTipoCotizacionBE seleccionado en el ComboBox
             ComboTipoCotizacionBE itemSeleccionado = comboTipoCotizacionBL.ObtenerManoObra()
                 .FirstOrDefault(x => x.DescTablaElemento == cboManoObra.Text);
 
@@ -773,17 +843,12 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             }
 
             int idTablaElemento = itemSeleccionado.IdTablaElemento;
-
-            // Obtener el DataTable del DataSource del gridControlPestaña5
             DataTable dt = (DataTable)gridControlPestaña4.DataSource;
-
-            // Buscar si la descripción ya existe en el DataTable
             DataRow existingRow = dt.AsEnumerable()
                 .FirstOrDefault(row => row.Field<string>("DescripcionGastos") == manoobra);
 
             if (existingRow != null)
             {
-                // Si la descripción ya existe, incrementar el Item en esa fila
                 int currentItem = existingRow.Field<int>("Item");
                 decimal currentItemCosto = existingRow.Field<decimal>("Costo" + " " + " S/.");
                 existingRow["Item"] = currentItem + 1;
@@ -791,46 +856,28 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             }
             else
             {
-                // Si la descripción no existe, agregar una nueva fila con el Item en 1
                 DataRow newRow = dt.NewRow();
                 newRow["IdTablaElemento"] = idTablaElemento;
                 newRow["DescripcionGastos"] = manoobra;
                 newRow["Item"] = 1;
                 newRow["Costo" + " " + " S/."] = montoDecimal;
-                newRow["FlagAprobacion"] = true; // Establecer el valor predeterminado de FlagAprobacion a true
-                newRow["FlagEstado"] = true; // Establecer el valor predeterminado de FlagEstado a true
+                newRow["FlagAprobacion"] = true; 
+                newRow["FlagEstado"] = true; 
                 dt.Rows.Add(newRow);
             }
-            // Llamamos al método que agrega todos los datos al resumen
             AgregarDatosAlResumen();
             gridView7.ExpandAllGroups();
-
-            // Calcular la suma de costos de la pestaña 1 y mostrarla en el textbox correspondiente
             decimal sumaCostosPestana4 = CalcularSumaCostosPestana4(dt);
             txtSumaCostosPestaña4.Text = sumaCostosPestana4.ToString("0.00");
             cboManoObra.Text = "Seleccione Mano de Obra";
             txtManoobra.Text = string.Empty;
-            gridControlPestaña5.RefreshDataSource();
-            //calcularTotalGastospestaña4();
+            gridControlPestaña4.RefreshDataSource();
 
         }
 
-        private decimal CalcularSumaCostosPestana5(DataTable dt)
-        {
-            decimal sumaCostos = 0.0m;
-            foreach (DataRow row in dt.Rows)
-            {
-                if (decimal.TryParse(row["Costo" + " " + " S/."].ToString(), out decimal costo))
-                {
-                    sumaCostos += costo;
-                }
-            }
-            return sumaCostos;
-        }
+       
         private void btnAgregarPestaña5_Click(object sender, EventArgs e)
         {
-
-
             string movilidad = cboSeleccionaMovilidad.Text;
             string monto = txtMovilidad.Text;
 
@@ -845,8 +892,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
                 MessageBox.Show("Por favor, ingrese un monto válido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            // Obtener el elemento ComboTipoCotizacionBE seleccionado en el ComboBox
             ComboTipoCotizacionBE itemSeleccionado = comboTipoCotizacionBL.ObtenerMovilidadyViaticos()
                 .FirstOrDefault(x => x.DescTablaElemento == cboSeleccionaMovilidad.Text);
 
@@ -855,19 +900,12 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
                 MessageBox.Show("Debe seleccionar un elemento válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
             int idTablaElemento = itemSeleccionado.IdTablaElemento;
-
-            // Obtener el DataTable del DataSource del gridControlPestaña5
             DataTable dt = (DataTable)gridControlPestaña5.DataSource;
-
-            // Buscar si la descripción ya existe en el DataTable
             DataRow existingRow = dt.AsEnumerable()
                 .FirstOrDefault(row => row.Field<string>("DescripcionGastos") == movilidad);
-
             if (existingRow != null)
             {
-                // Si la descripción ya existe, incrementar el Item en esa fila
                 int currentItem = existingRow.Field<int>("Item");
                 decimal currentItemCosto = existingRow.Field<decimal>("Costo" + " " + " S/.");
                 existingRow["Item"] = currentItem + 1;
@@ -875,61 +913,39 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             }
             else
             {
-                // Si la descripción no existe, agregar una nueva fila con el Item en 1
                 DataRow newRow = dt.NewRow();
                 newRow["IdTablaElemento"] = idTablaElemento;
                 newRow["DescripcionGastos"] = movilidad;
                 newRow["Item"] = 1;
                 newRow["Costo" + " " + " S/."] = montoDecimal;
-                newRow["FlagAprobacion"] = true; // Establecer el valor predeterminado de FlagAprobacion a true
-                newRow["FlagEstado"] = true; // Establecer el valor predeterminado de FlagEstado a true
+                newRow["FlagAprobacion"] = true; 
+                newRow["FlagEstado"] = true; 
                 dt.Rows.Add(newRow);
             }
-            // Llamamos al método que agrega todos los datos al resumen
             AgregarDatosAlResumen();
             gridView7.ExpandAllGroups();
-
-            // Calcular la suma de costos de la pestaña 1 y mostrarla en el textbox correspondiente
             decimal sumaCostosPestana5 = CalcularSumaCostosPestana5(dt);
             txtSumaCostosPestaña5.Text = sumaCostosPestana5.ToString("0.00");
             cboSeleccionaMovilidad.Text = "Seleccione Movilidad - viaticos";
             txtMovilidad.Text = string.Empty;
             gridControlPestaña5.RefreshDataSource();
-            //calcularTotalGastospestaña5();
-
         }
 
-        private decimal CalcularSumaCostosPestana6(DataTable dt)
-        {
-            decimal sumaCostos = 0.0m;
-            foreach (DataRow row in dt.Rows)
-            {
-                if (decimal.TryParse(row["Costo" + " " + " S/."].ToString(), out decimal costo))
-                {
-                    sumaCostos += costo;
-                }
-            }
-            return sumaCostos;
-        }
+        
         private void btnAgregarPestaña6_Click(object sender, EventArgs e)
         {
-
             string movilidad = cboequipos.Text;
             string monto = txtequipos.Text;
-
             if (string.IsNullOrWhiteSpace(movilidad))
             {
                 MessageBox.Show("Por favor, seleccione un Equipo antes de agregar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             if (!decimal.TryParse(monto, out decimal montoDecimal))
             {
                 MessageBox.Show("Por favor, ingrese un monto válido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            // Obtener el elemento ComboTipoCotizacionBE seleccionado en el ComboBox
             ComboTipoCotizacionBE itemSeleccionado = comboTipoCotizacionBL.ObtenerComboEquiposHerramienta()
                 .FirstOrDefault(x => x.DescTablaElemento == cboequipos.Text);
 
@@ -938,19 +954,12 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
                 MessageBox.Show("Debe seleccionar un elemento válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
             int idTablaElemento = itemSeleccionado.IdTablaElemento;
-
-            // Obtener el DataTable del DataSource del gridControlPestaña5
             DataTable dt = (DataTable)gridControlPestaña6.DataSource;
-
-            // Buscar si la descripción ya existe en el DataTable
             DataRow existingRow = dt.AsEnumerable()
                 .FirstOrDefault(row => row.Field<string>("DescripcionGastos") == movilidad);
-
             if (existingRow != null)
             {
-                // Si la descripción ya existe, incrementar el Item en esa fila
                 int currentItem = existingRow.Field<int>("Item");
                 decimal currentItemCosto = existingRow.Field<decimal>("Costo" + " " + " S/.");
                 existingRow["Item"] = currentItem + 1;
@@ -958,26 +967,22 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             }
             else
             {
-                // Si la descripción no existe, agregar una nueva fila con el Item en 1
                 DataRow newRow = dt.NewRow();
                 newRow["IdTablaElemento"] = idTablaElemento;
                 newRow["DescripcionGastos"] = movilidad;
                 newRow["Item"] = 1;
                 newRow["Costo" + " " + " S/."] = montoDecimal;
-                newRow["FlagAprobacion"] = true; // Establecer el valor predeterminado de FlagAprobacion a true
-                newRow["FlagEstado"] = true; // Establecer el valor predeterminado de FlagEstado a true
+                newRow["FlagAprobacion"] = true; 
+                newRow["FlagEstado"] = true; 
                 dt.Rows.Add(newRow);
             }
-            // Llamamos al método que agrega todos los datos al resumen
             AgregarDatosAlResumen();
             gridView7.ExpandAllGroups();
-            // Calcular la suma de costos de la pestaña 1 y mostrarla en el textbox correspondiente
             decimal sumaCostosPestana6 = CalcularSumaCostosPestana6(dt);
             txtSumaCostosPestaña6.Text = sumaCostosPestana6.ToString("0.00");
             cboequipos.Text = "Seleccione Equipo y Herramientas";
             txtequipos.Text = string.Empty;
             gridControlPestaña6.RefreshDataSource();
-            //calcularTotalGastospestaña6();
         }
 
 
@@ -1124,6 +1129,15 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
                 this.picImage.Image = ErpPanorama.Presentation.Properties.Resources.noImage;
 
                 MessageBox.Show("La cotización se registró correctamente. ID de cotización: " + idCotizacion, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Suponiendo que tienes una instancia de frmRegKiraCotizacion llamada formRegKiraCotizacion
+                if (formRegKiraCotizacion == null)
+                {
+                    // Crear una nueva instancia si no existe
+                    formRegKiraCotizacion = new frmRegKiraCotizacion();
+                }
+
+                // Llamar al método CargarListadoCotizaciones del formulario frmRegKiraCotizacion
+                formRegKiraCotizacion.CargarListadoCotizaciones();
             }
             catch (Exception ex)
             {
@@ -1193,21 +1207,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             }
         }
 
-        private void labelControl1_Click(object sender, EventArgs e)
+        private void labelControl4_Click(object sender, EventArgs e)
         {
 
         }
-
-        private void labelControl13_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void gridControlPestaña7Resumen_Click(object sender, EventArgs e)
-        {
-
-        }
-
     }
 
 

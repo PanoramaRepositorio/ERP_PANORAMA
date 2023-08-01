@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using ErpPanorama.Presentation.Modulos.KiraHogar.Consultas;
 using ErpPanorama.BusinessEntity;
 using ErpPanorama.BusinessLogic;
+using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
 
 
@@ -18,11 +19,12 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
 {
     public partial class frmRegKiraCotizacion : DevExpress.XtraEditors.XtraForm
     {
-        
+        private Timer timer;
+
         public frmRegKiraCotizacion()
         {
             InitializeComponent();
-            
+            timerFilas();
         }
 
         private void frmRegKiraCotizacion_Load(object sender, EventArgs e)
@@ -32,11 +34,15 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             tlbMenu.Ensamblado = this.Tag.ToString();
             CargarListadoCotizaciones();
             ActualizarNumeroFilas();
+            timerFilas();
 
         }
-
-
-       
+        private void timerFilas() {
+            timer = new Timer();
+            timer.Interval = 5000; // 5 segundos
+            timer.Tick += timer1_Tick;
+            timer.Start();
+        }
 
         private void ActualizarNumeroFilas()
         {
@@ -52,7 +58,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             }
         }
 
-        private void CargarListadoCotizaciones()
+        public void CargarListadoCotizaciones()
         {
             try
             {
@@ -146,6 +152,45 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             CargarListadoCotizaciones();
             ActualizarNumeroFilas();
         }
-     
+
+        private void gvCotizacion_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
+        {
+            if (e.Column.FieldName == "PrecioVenta" || e.Column.FieldName == "TotalGastos")
+            {
+                // Obtener el valor de la celda
+                decimal valor = Convert.ToDecimal(e.CellValue);
+                Color color = Color.Empty;
+
+                if (e.Column.FieldName == "PrecioVenta")
+                {
+                    // Resaltar el campo "PrecioVenta" en color verde si es mayor a 2000
+                    if (valor > 2000)
+                        color = Color.Green;
+                }
+                else if (e.Column.FieldName == "TotalGastos")
+                {
+                    // Resaltar el campo "TotalGastos" con diferentes colores según su valor
+                    if (valor > 2000)
+                        color = Color.Red;
+                    else if (valor > 1500)
+                        color = Color.Orange;
+                    else
+                        color = Color.Green;
+                }
+
+                if (color != Color.Empty)
+                {
+                    // Cambiar el color de fondo de la celda
+                    e.Appearance.BackColor = color;
+                    e.Appearance.BackColor2 = color;
+                }
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            CargarListadoCotizaciones();
+            ActualizarNumeroFilas();
+        }
     }
 }
