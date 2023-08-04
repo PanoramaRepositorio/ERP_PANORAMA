@@ -75,6 +75,7 @@ namespace ErpPanorama.Presentation.Modulos.Logistica.Registros
 
         private void frmRegAuditoriaPedidoEdit_Load(object sender, EventArgs e)
         {
+            cboPersonaChequeo.EditValue = true;
             deFecha.EditValue = DateTime.Now;
             BSUtils.LoaderLook(cboVendedor, new PersonaBL().SeleccionaVendedor(Parametros.intEmpresaId), "ApeNom", "IdPersona", true);
             deFechaChequeo.EditValue = DateTime.Now;

@@ -130,5 +130,51 @@ namespace ErpPanorama.DataLogic
             }
         }
 
+        public int ObtenerSiguienteNumeroCotizacion()
+        {
+            int siguienteNumero = 1;
+
+            using (var connection = db.CreateConnection())
+            {
+                connection.Open();
+                using (var command = db.GetStoredProcCommand("usp_ObtenerSiguienteNumeroCotizacion"))
+                {
+                    var reader = db.ExecuteReader(command);
+
+                    // Verificamos si hay al menos una fila en el resultado
+                    if (reader.Read())
+                    {
+                        siguienteNumero = Convert.ToInt32(reader["SiguienteNumero"]);
+                    }
+                }
+            }
+
+            return siguienteNumero;
+        }
+
+
+        public int ObtenerSiguienteNumeroCotizacionProductoTerminado()
+        {
+            int siguienteNumero = 1;
+
+            using (var connection = db.CreateConnection())
+            {
+                connection.Open();
+                using (var command = db.GetStoredProcCommand("usp_ObtenerSiguienteNumeroCotizacionProducto"))
+                {
+                    var reader = db.ExecuteReader(command);
+
+                    // Verificamos si hay al menos una fila en el resultado
+                    if (reader.Read())
+                    {
+                        siguienteNumero = Convert.ToInt32(reader["SiguienteNumero"]);
+                    }
+                }
+            }
+
+            return siguienteNumero;
+        }
+
+
     }
 }

@@ -14,6 +14,8 @@ using DevExpress.XtraEditors.Controls;
 using ErpPanorama.Presentation.Funciones;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraEditors;
+using DevExpress.Utils.Menu;
+using DevExpress.Utils;
 using ErpPanorama.Presentation.Modulos.KiraHogar.Registros;
 
 
@@ -32,6 +34,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         public frmCotizacion()
         {
             InitializeComponent();
+
         }
         private DataTable dtDatospestaña1;
         private DataTable dtDatospestaña2;
@@ -40,9 +43,13 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         private DataTable dtDatospestaña5;
         private DataTable dtDatospestaña6;
         private DataTable dtDatosResumen;
+        private ImageCollection imageCollection;
+
+
         private void frmCotizacion_Load(object sender, EventArgs e)
         {
-            
+            imageCollection = new ImageCollection();
+            imageCollection.AddImage(Properties.Resources.Stop_2);
             CrearDatable_GridControl();
             ConfigurarComboBoxTipoCotizacion();
             ConfigurarComboBoxMateriales();
@@ -53,14 +60,18 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             ConfigurarComboBoxTipoMoneda();
             ConfigurarComboBoxEquipos();
             personalizacióncontrolesform();
+            AgregarPestaña6();
             OcultarColumnasGridControlPestañas();
             calcularTotalGastospestaña7();
-            
+
 
             // Establecer la propiedad MaxLength a 0 para permitir una cantidad ilimitada de caracteres
             txtCodigoProducto.Properties.MaxLength = 0;
             txtCodigoProducto.TextChanged += txtCodigoProducto_TextChanged;
         }
+
+        // Evento de clic para el botón de eliminar en la pestaña 1
+
 
         private void CrearDatable_GridControl()
         {
@@ -276,7 +287,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             gridControlPestaña7Resumen.DataSource = dtDatosResumen;
             calcularTotalGastospestaña7();
         }
-    
+
         private void DtDatospestaña1_TableNewRow(object sender, DataTableNewRowEventArgs e)
         {
             AgregarDatosAlResumen();
@@ -303,18 +314,32 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         }
         private void personalizacióncontrolesform()
         {
+            int siguienteNumeroCotizacion = cotizacionKiraBL.ObtenerSiguienteNumeroCotizacion();
+            txtNumeroCotizacion.Text = siguienteNumeroCotizacion.ToString();
+            txtNumeroCotizacion.Enabled = false;
             Tabcontrol.TabPages[0].Text = "Materiales";
             Tabcontrol.TabPages[1].Text = "Insumos";
             Tabcontrol.TabPages[2].Text = "Accesorios";
             Tabcontrol.TabPages[3].Text = "Mano de Obra ";
             Tabcontrol.TabPages[4].Text = "Movilidad y Viaticos";
-            Tabcontrol.TabPages[5].Text = "Equipos y Herramientas";
-            Tabcontrol.TabPages[6].Text = "Resumen";
+            //Tabcontrol.TabPages[5].Text = "Equipos y Herramientas";
+            // Ocultar la pestaña "Equipos y Herramientas"
+            int indexToHide = 5; // Índice de la pestaña que deseas ocultar
+            if (indexToHide >= 0 && indexToHide < Tabcontrol.TabCount)
+            {
+                TabPage tabPageToHide = Tabcontrol.TabPages[indexToHide];
+                Tabcontrol.TabPages.Remove(tabPageToHide);
+            }
+            Tabcontrol.TabPages[5].Text = "Resumen";
             txtFecha.Properties.MinValue = DateTime.Today;
             txtFecha.DateTime = DateTime.Today;
             txtCaracteristicas.ScrollBars = ScrollBars.Vertical;
             txtCaracteristicas.ScrollBars = ScrollBars.Both;
             txtBreveDescripcion.ScrollBars = ScrollBars.Both;
+            txtEquipoyherramientas.Text = "50";
+            txtEquipoyherramientas.Enabled = false;
+            txtequipos.Text = "50";
+            txtequipos.Enabled = false;
             txtMargen.Text = Parametros.margencontri.ToString();
             txtPrecioVenta.Enabled = false;
             txtMargen.Enabled = false;
@@ -419,16 +444,21 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         }
         public void ConfigurarComboBoxEquipos()
         {
-            cboequipos.Text = "Seleccione opción";
+            //cboequipos.Text = "Seleccione opción";
             cboequipos.Properties.TextEditStyle = TextEditStyles.Standard;
-            cboequipos.Properties.AutoComplete = true;
-            cboequipos.Properties.CaseSensitiveSearch = false;
+            cboequipos.Properties.ReadOnly = true; // Establecer como no editable
             List<ComboTipoCotizacionBE> listequi = comboTipoCotizacionBL.ObtenerComboEquiposHerramienta();
             // Configurar el ComboBox
             cboequipos.Properties.Items.Clear();
             foreach (ComboTipoCotizacionBE item in listequi)
             {
                 cboequipos.Properties.Items.Add(item.DescTablaElemento);
+            }
+            // Verificar si hay un único registro en la lista
+            if (listequi.Count == 1)
+            {
+                // Seleccionar automáticamente el único registro
+                cboequipos.SelectedItem = listequi[0].DescTablaElemento;
             }
         }
 
@@ -481,7 +511,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         {
 
         }
-      
+
         /// <summary>
         ///Método para obtener el nombre correspondiente a un valor de IdTablaElemento
         /// </summary>
@@ -535,7 +565,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
 
             return nombresTablaElemento.ContainsKey(idTablaElemento) ? nombresTablaElemento[idTablaElemento] : string.Empty;
         }
-   
+
         /// <summary>
         ///  Método para calcular la suma de costos de la pestaña 1
         /// </summary>
@@ -690,7 +720,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             // Después de agregar los datos a la pestaña 1, actualiza el resumen
 
         }
-      
+
         private void btnAgregarPestaña2_Click(object sender, EventArgs e)
         {
             try
@@ -750,9 +780,9 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
 
                 throw;
             }
-            
+
         }
-       
+
         private void btnAgregarPestaña3_Click(object sender, EventArgs e)
         {
             try
@@ -814,11 +844,11 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
 
                 throw;
             }
-           
+
 
         }
 
-       
+
         private void btnAgregarPestaña4_Click(object sender, EventArgs e)
         {
             string manoobra = cboManoObra.Text;
@@ -861,8 +891,8 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
                 newRow["DescripcionGastos"] = manoobra;
                 newRow["Item"] = 1;
                 newRow["Costo" + " " + " S/."] = montoDecimal;
-                newRow["FlagAprobacion"] = true; 
-                newRow["FlagEstado"] = true; 
+                newRow["FlagAprobacion"] = true;
+                newRow["FlagEstado"] = true;
                 dt.Rows.Add(newRow);
             }
             AgregarDatosAlResumen();
@@ -875,7 +905,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
 
         }
 
-       
+
         private void btnAgregarPestaña5_Click(object sender, EventArgs e)
         {
             string movilidad = cboSeleccionaMovilidad.Text;
@@ -918,8 +948,8 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
                 newRow["DescripcionGastos"] = movilidad;
                 newRow["Item"] = 1;
                 newRow["Costo" + " " + " S/."] = montoDecimal;
-                newRow["FlagAprobacion"] = true; 
-                newRow["FlagEstado"] = true; 
+                newRow["FlagAprobacion"] = true;
+                newRow["FlagEstado"] = true;
                 dt.Rows.Add(newRow);
             }
             AgregarDatosAlResumen();
@@ -931,8 +961,60 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             gridControlPestaña5.RefreshDataSource();
         }
 
-        
+
         private void btnAgregarPestaña6_Click(object sender, EventArgs e)
+        {
+            //string movilidad = cboequipos.Text;
+            //string monto = txtequipos.Text;
+            //if (string.IsNullOrWhiteSpace(movilidad))
+            //{
+            //    MessageBox.Show("Por favor, seleccione un Equipo antes de agregar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
+            //if (!decimal.TryParse(monto, out decimal montoDecimal))
+            //{
+            //    MessageBox.Show("Por favor, ingrese un monto válido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
+            //ComboTipoCotizacionBE itemSeleccionado = comboTipoCotizacionBL.ObtenerComboEquiposHerramienta()
+            //    .FirstOrDefault(x => x.DescTablaElemento == cboequipos.Text);
+
+            //if (itemSeleccionado == null)
+            //{
+            //    MessageBox.Show("Debe seleccionar un elemento válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return;
+            //}
+            //int idTablaElemento = itemSeleccionado.IdTablaElemento;
+            //DataTable dt = (DataTable)gridControlPestaña6.DataSource;
+            //DataRow existingRow = dt.AsEnumerable()
+            //    .FirstOrDefault(row => row.Field<string>("DescripcionGastos") == movilidad);
+            //if (existingRow != null)
+            //{
+            //    int currentItem = existingRow.Field<int>("Item");
+            //    decimal currentItemCosto = existingRow.Field<decimal>("Costo" + " " + " S/.");
+            //    existingRow["Item"] = currentItem + 1;
+            //    existingRow["Costo" + " " + " S/."] = currentItemCosto + montoDecimal;
+            //}
+            //else
+            //{
+            //    DataRow newRow = dt.NewRow();
+            //    newRow["IdTablaElemento"] = idTablaElemento;
+            //    newRow["DescripcionGastos"] = movilidad;
+            //    newRow["Item"] = 1;
+            //    newRow["Costo" + " " + " S/."] = montoDecimal;
+            //    newRow["FlagAprobacion"] = true;
+            //    newRow["FlagEstado"] = true;
+            //    dt.Rows.Add(newRow);
+            //}
+            //AgregarDatosAlResumen();
+            //gridView7.ExpandAllGroups();
+            //decimal sumaCostosPestana6 = CalcularSumaCostosPestana6(dt);
+            //txtSumaCostosPestaña6.Text = sumaCostosPestana6.ToString("0.00");
+            //txtequipos.Text = "50";
+            //gridControlPestaña6.RefreshDataSource();
+        }
+
+        private void AgregarPestaña6()
         {
             string movilidad = cboequipos.Text;
             string monto = txtequipos.Text;
@@ -972,16 +1054,15 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
                 newRow["DescripcionGastos"] = movilidad;
                 newRow["Item"] = 1;
                 newRow["Costo" + " " + " S/."] = montoDecimal;
-                newRow["FlagAprobacion"] = true; 
-                newRow["FlagEstado"] = true; 
+                newRow["FlagAprobacion"] = true;
+                newRow["FlagEstado"] = true;
                 dt.Rows.Add(newRow);
             }
             AgregarDatosAlResumen();
             gridView7.ExpandAllGroups();
             decimal sumaCostosPestana6 = CalcularSumaCostosPestana6(dt);
             txtSumaCostosPestaña6.Text = sumaCostosPestana6.ToString("0.00");
-            cboequipos.Text = "Seleccione Equipo y Herramientas";
-            txtequipos.Text = string.Empty;
+            txtequipos.Text = "50";
             gridControlPestaña6.RefreshDataSource();
         }
 
@@ -1058,8 +1139,8 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
                 cotizacion.CostoAccesorios = decimal.TryParse(txtSumaCostosPestaña3.Text, out decimal sumaCostosPestana3) ? sumaCostosPestana3 : 0.0m;
                 cotizacion.CostoManoObra = decimal.TryParse(txtSumaCostosPestaña4.Text, out decimal sumaCostosPestana4) ? sumaCostosPestana4 : 0.0m;
                 cotizacion.CostoMovilidad = decimal.TryParse(txtSumaCostosPestaña5.Text, out decimal sumaCostosPestana5) ? sumaCostosPestana5 : 0.0m;
-                cotizacion.CostoEquipos = decimal.TryParse(txtSumaCostosPestaña6.Text, out decimal sumaCostosPestana6) ? sumaCostosPestana6 : 0.0m;
-
+                //cotizacion.CostoEquipos = decimal.TryParse(txtSumaCostosPestaña6.Text, out decimal sumaCostosPestana6) ? sumaCostosPestana6 : 0.0m;
+                cotizacion.CostoEquipos = decimal.Parse(txtEquipoyherramientas.Text);
                 // Guardar la imagen en el fileserver y obtener la ruta de destino
                 if (picImage.Image != null && !string.IsNullOrEmpty(openFile.FileName))
                 {
@@ -1094,6 +1175,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
                 AgregarDatosDePestanaAlDetalle(dtDatospestaña4, dtDetalleCompleto);
                 AgregarDatosDePestanaAlDetalle(dtDatospestaña5, dtDetalleCompleto);
                 AgregarDatosDePestanaAlDetalle(dtDatospestaña6, dtDetalleCompleto);
+
 
                 // Obtener la lista de detalles de cotización desde el dtDetalleCompleto
                 List<DetalleCotizacionBE> detallesCotizacion = new List<DetalleCotizacionBE>();
@@ -1152,6 +1234,8 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
                 if (control is TextBox textBox)
                 {
                     textBox.Text = "";
+                    int siguienteNumeroCotizacion = cotizacionKiraBL.ObtenerSiguienteNumeroCotizacion();
+                    txtNumeroCotizacion.Text = siguienteNumeroCotizacion.ToString();
                 }
                 else if (control is System.Windows.Forms.ComboBox comboBox)
                 {
@@ -1207,11 +1291,286 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             }
         }
 
-        private void labelControl4_Click(object sender, EventArgs e)
+
+
+        private void txtEquipoyherramientas_EditValueChanged(object sender, EventArgs e)
         {
 
         }
+
+        private void btnActualizarPestaña1_Click(object sender, EventArgs e)
+        {
+            // Obtener el DataTable asociado al gridControlPestaña1 y actualizar los datos si es necesario.
+            DataTable dt = (DataTable)gridControlPestaña1.DataSource;
+
+            // Actualizar el resumen y el gridControlPestaña1
+            AgregarDatosAlResumen();
+            gridView1.RefreshData();
+            // Calcular la suma de costos de la pestaña 1 y mostrarla en el textbox correspondiente
+            decimal sumaCostosPestana1 = CalcularSumaCostosPestana1(dt);
+            txtSumaCostosPestaña1.Text = sumaCostosPestana1.ToString("0.00");
+        }
+
+        private void btnActualizarPestaña2_Click(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)gridControlPestaña2.DataSource;
+            AgregarDatosAlResumen();
+            gridView2.RefreshData();
+            decimal sumaCostosPestana2 = CalcularSumaCostosPestana2(dt);
+            txtSumaCostosPestaña2.Text = sumaCostosPestana2.ToString("0.00");
+        }
+
+        private void btnActualizarPestaña3_Click(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)gridControlPestaña3.DataSource;
+            AgregarDatosAlResumen();
+            gridView3.RefreshData();
+            decimal sumaCostosPestana3 = CalcularSumaCostosPestana3(dt);
+            txtSumaCostosPestaña3.Text = sumaCostosPestana3.ToString("0.00");
+        }
+
+        private void btnActualizarPestaña4_Click(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)gridControlPestaña4.DataSource;
+            AgregarDatosAlResumen();
+            gridView4.RefreshData();
+            decimal sumaCostosPestana4 = CalcularSumaCostosPestana4(dt);
+            txtSumaCostosPestaña4.Text = sumaCostosPestana4.ToString("0.00");
+        }
+        private void btnActualizarPestaña5_Click(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)gridControlPestaña5.DataSource;
+            AgregarDatosAlResumen();
+            gridView5.RefreshData();
+            decimal sumaCostosPestana5 = CalcularSumaCostosPestana5(dt);
+            txtSumaCostosPestaña5.Text = sumaCostosPestana5.ToString("0.00");
+        }
+
+        private void btnEliminarPestaña1_Click(object sender, EventArgs e)
+        {
+            // Obtener el GridView correspondiente a la pestaña 1 (gridView1) y el índice de la fila seleccionada
+            GridView gridView = gridView1;
+            int selectedRowHandle = gridView.FocusedRowHandle;
+            if (selectedRowHandle >= 0)
+            {
+                // Confirmar si el usuario desea eliminar el registro
+                DialogResult result = MessageBox.Show("¿Estás seguro de eliminar este registro?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    // Eliminar la fila del DataTable asociado al gridControlPestaña1
+                    DataTable dt = (DataTable)gridView.GridControl.DataSource;
+                    dt.Rows.RemoveAt(selectedRowHandle);
+
+                    // Actualizar el resumen y el gridControlPestaña1
+                    AgregarDatosAlResumen();
+                    gridView.RefreshData();
+                    // Calcular la suma de costos de la pestaña 1 y mostrarla en el textbox correspondiente
+                    decimal sumaCostosPestana1 = CalcularSumaCostosPestana1(dt);
+                    txtSumaCostosPestaña1.Text = sumaCostosPestana1.ToString("0.00");
+                }
+            }
+        }
+
+        private void btnEliminarPestaña2_Click(object sender, EventArgs e)
+        {
+            GridView gridView = gridView2;
+            int selectedRowHandle = gridView.FocusedRowHandle;
+            if (selectedRowHandle >= 0)
+            {
+                DialogResult result = MessageBox.Show("¿Estás seguro de eliminar este registro?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    DataTable dt = (DataTable)gridView.GridControl.DataSource;
+                    dt.Rows.RemoveAt(selectedRowHandle);
+                    AgregarDatosAlResumen();
+                    gridView.RefreshData();
+                    decimal sumaCostosPestana2 = CalcularSumaCostosPestana2(dt);
+                    txtSumaCostosPestaña2.Text = sumaCostosPestana2.ToString("0.00");
+                }
+            }
+        }
+
+        private void btnEliminarPestaña3_Click(object sender, EventArgs e)
+        {
+            GridView gridView = gridView3;
+            int selectedRowHandle = gridView.FocusedRowHandle;
+            if (selectedRowHandle >= 0)
+            {
+                DialogResult result = MessageBox.Show("¿Estás seguro de eliminar este registro?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    DataTable dt = (DataTable)gridView.GridControl.DataSource;
+                    dt.Rows.RemoveAt(selectedRowHandle);
+                    AgregarDatosAlResumen();
+                    gridView.RefreshData();
+                    decimal sumaCostosPestana3 = CalcularSumaCostosPestana3(dt);
+                    txtSumaCostosPestaña3.Text = sumaCostosPestana3.ToString("0.00");
+                }
+            }
+        }
+
+        private void btnEliminarPestaña4_Click(object sender, EventArgs e)
+        {
+            GridView gridView = gridView4;
+            int selectedRowHandle = gridView.FocusedRowHandle;
+            if (selectedRowHandle >= 0)
+            {
+                DialogResult result = MessageBox.Show("¿Estás seguro de eliminar este registro?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    DataTable dt = (DataTable)gridView.GridControl.DataSource;
+                    dt.Rows.RemoveAt(selectedRowHandle);
+                    AgregarDatosAlResumen();
+                    gridView.RefreshData();
+                    decimal sumaCostosPestana4 = CalcularSumaCostosPestana4(dt);
+                    txtSumaCostosPestaña4.Text = sumaCostosPestana4.ToString("0.00");
+                }
+            }
+        }
+
+        private void btnEliminarPestaña5_Click(object sender, EventArgs e)
+        {
+            GridView gridView = gridView5;
+            int selectedRowHandle = gridView.FocusedRowHandle;
+            if (selectedRowHandle >= 0)
+            {
+                DialogResult result = MessageBox.Show("¿Estás seguro de eliminar este registro?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    DataTable dt = (DataTable)gridView.GridControl.DataSource;
+                    dt.Rows.RemoveAt(selectedRowHandle);
+                    AgregarDatosAlResumen();
+                    gridView.RefreshData();
+                    decimal sumaCostosPestana5 = CalcularSumaCostosPestana5(dt);
+                    txtSumaCostosPestaña5.Text = sumaCostosPestana5.ToString("0.00");
+                }
+            }
+        }
+
+
+
+
+
+
+        // Clase auxiliar para almacenar la información del menú contextual
+        private class MenuItemInfo
+        {
+            public GridView View { get; set; }
+            public int RowHandle { get; set; }
+
+            public MenuItemInfo(GridView view, int rowHandle)
+            {
+                View = view;
+                RowHandle = rowHandle;
+            }
+        }
+
+        // Evento que se activa cuando se hace clic en el elemento de menú "Eliminar Fila"
+        private void OnMenuItemClick(object sender, EventArgs e)
+        {
+            if (sender is DXMenuItem item)
+            {
+                if (item.Tag is MenuItemInfo menuItemInfo)
+                {
+                    if (menuItemInfo.View.IsValidRowHandle(menuItemInfo.RowHandle))
+                    {
+                        menuItemInfo.View.DeleteRow(menuItemInfo.RowHandle);
+                        // Obtener el DataTable asociado al gridControlPestaña1
+                        DataTable dt = (DataTable)gridControlPestaña1.DataSource;
+                        DataTable dt2 = (DataTable)gridControlPestaña2.DataSource;
+
+                        // Actualizar el resumen y el gridControlPestaña1
+                        AgregarDatosAlResumen();
+                        gridView1.RefreshData();
+
+                        // Calcular la suma de costos de la pestaña 1 y mostrarla en el textbox correspondiente
+                        decimal sumaCostosPestana1 = CalcularSumaCostosPestana1(dt);
+                        decimal sumaCostosPestana2 = CalcularSumaCostosPestana1(dt2);
+                        txtSumaCostosPestaña1.Text = sumaCostosPestana1.ToString("0.00");
+                        txtSumaCostosPestaña2.Text = sumaCostosPestana2.ToString("0.00");
+                    }
+                }
+            }
+        }
+
+        private void gridView1_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            if (e.MenuType == GridMenuType.Row)
+            {
+                int rowHandle = e.HitInfo.RowHandle;
+                GridView view = sender as GridView;
+                if (rowHandle >= 0 && view.IsDataRow(rowHandle))
+                {
+                    DXMenuItem menuItemEliminar = new DXMenuItem("Eliminar Fila", OnMenuItemClick);
+                    menuItemEliminar.ImageOptions.Image = imageCollection.Images[0]; // Agregar la imagen al elemento de menú
+                    menuItemEliminar.Tag = new MenuItemInfo(view, rowHandle);
+                    e.Menu.Items.Add(menuItemEliminar);
+                }
+            }
+        }
+
+        private void gridView2_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            if (e.MenuType == GridMenuType.Row)
+            {
+                int rowHandle = e.HitInfo.RowHandle;
+                GridView view = sender as GridView;
+                if (rowHandle >= 0 && view.IsDataRow(rowHandle))
+                {
+                    DXMenuItem menuItemEliminar = new DXMenuItem("Eliminar Fila", OnMenuItemClick);
+                    menuItemEliminar.ImageOptions.Image = imageCollection.Images[0]; // Agregar la imagen al elemento de menú
+                    menuItemEliminar.Tag = new MenuItemInfo(view, rowHandle);
+                    e.Menu.Items.Add(menuItemEliminar);
+                }
+            }
+        }
+
+        private void gridView3_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            if (e.MenuType == GridMenuType.Row)
+            {
+                int rowHandle = e.HitInfo.RowHandle;
+                GridView view = sender as GridView;
+                if (rowHandle >= 0 && view.IsDataRow(rowHandle))
+                {
+                    DXMenuItem menuItemEliminar = new DXMenuItem("Eliminar Fila", OnMenuItemClick);
+                    menuItemEliminar.ImageOptions.Image = imageCollection.Images[0]; // Agregar la imagen al elemento de menú
+                    menuItemEliminar.Tag = new MenuItemInfo(view, rowHandle);
+                    e.Menu.Items.Add(menuItemEliminar);
+                }
+            }
+        }
+
+        private void gridView4_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            if (e.MenuType == GridMenuType.Row)
+            {
+                int rowHandle = e.HitInfo.RowHandle;
+                GridView view = sender as GridView;
+                if (rowHandle >= 0 && view.IsDataRow(rowHandle))
+                {
+                    DXMenuItem menuItemEliminar = new DXMenuItem("Eliminar Fila", OnMenuItemClick);
+                    menuItemEliminar.ImageOptions.Image = imageCollection.Images[0]; // Agregar la imagen al elemento de menú
+                    menuItemEliminar.Tag = new MenuItemInfo(view, rowHandle);
+                    e.Menu.Items.Add(menuItemEliminar);
+                }
+            }
+        }
+
+        private void gridView5_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            if (e.MenuType == GridMenuType.Row)
+            {
+                int rowHandle = e.HitInfo.RowHandle;
+                GridView view = sender as GridView;
+                if (rowHandle >= 0 && view.IsDataRow(rowHandle))
+                {
+                    DXMenuItem menuItemEliminar = new DXMenuItem("Eliminar Fila", OnMenuItemClick);
+                    menuItemEliminar.ImageOptions.Image = imageCollection.Images[0]; // Agregar la imagen al elemento de menú
+                    menuItemEliminar.Tag = new MenuItemInfo(view, rowHandle);
+                    e.Menu.Items.Add(menuItemEliminar);
+                }
+            }
+        }
     }
-
-
 }

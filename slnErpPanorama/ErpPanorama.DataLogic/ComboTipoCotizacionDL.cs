@@ -245,12 +245,38 @@ namespace ErpPanorama.DataLogic
                     cotizacion.TotalGastos = reader["TotalGastos"] != DBNull.Value ? Convert.ToDecimal(reader["TotalGastos"]) : 0;
                     cotizacion.PrecioVenta = reader["PrecioVenta"] != DBNull.Value ? Convert.ToDecimal(reader["PrecioVenta"]) : 0;
                     cotizacion.Fecha = reader["Fecha"] != DBNull.Value ? Convert.ToDateTime(reader["Fecha"]) : DateTime.MinValue;
+                    // Agregamos la columna DescTablaElemento a la entidad CotizacionKiraBE
+                    cotizacion.DescTablaElemento = reader["DescTablaElemento"].ToString();
 
                     listaCotizaciones.Add(cotizacion);
                 }
             }
 
             return listaCotizaciones;
+        }
+
+        public List<ComboTipoCotizacionBE> ObtenerListaProductoTerminados()
+        {
+            List<ComboTipoCotizacionBE> listaProductoterminado = new List<ComboTipoCotizacionBE>();
+            Database db = DatabaseFactory.CreateDatabase("cnErpPanoramaBD");
+            DbCommand cmd = db.GetStoredProcCommand("usp_Combo_ListaProductoTerminado");
+            using (IDataReader reader = db.ExecuteReader(cmd))
+            {
+                while (reader.Read())
+                {
+                    ComboTipoCotizacionBE comboProductoTerminado = new ComboTipoCotizacionBE();
+                    comboProductoTerminado.IdTablaElemento = Convert.ToInt32(reader["IdTablaElemento"]);
+                    comboProductoTerminado.IdTabla = reader["IdTabla"] != DBNull.Value ? Convert.ToInt32(reader["IdTabla"]) : (int?)null;
+                    comboProductoTerminado.Abreviatura = reader["Abreviatura"].ToString();
+                    comboProductoTerminado.DescTablaElemento = reader["DescTablaElemento"].ToString();
+                    comboProductoTerminado.IdTablaExterna = reader["IdTablaExterna"] != DBNull.Value ? Convert.ToInt32(reader["IdTablaExterna"]) : (int?)null;
+                    comboProductoTerminado.Valor = reader["Valor"] != DBNull.Value ? Convert.ToDecimal(reader["Valor"]) : (decimal?)null;
+                    comboProductoTerminado.FlagEstado = reader["FlagEstado"] != DBNull.Value ? Convert.ToBoolean(reader["FlagEstado"]) : (bool?)null;
+                    listaProductoterminado.Add(comboProductoTerminado);
+                }
+            }
+
+            return listaProductoterminado;
         }
 
 

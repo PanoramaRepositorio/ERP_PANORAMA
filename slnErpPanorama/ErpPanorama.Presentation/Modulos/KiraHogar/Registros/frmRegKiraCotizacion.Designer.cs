@@ -38,14 +38,12 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.txtNumero = new DevExpress.XtraEditors.TextEdit();
             this.txtPeriodo = new DevExpress.XtraEditors.TextEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.gridColumn26 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcCotizaciones = new DevExpress.XtraGrid.GridControl();
             this.gvCotizacion = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -55,18 +53,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn19 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn20 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn22 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn24 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn25 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.gridColumn26 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumero.Properties)).BeginInit();
@@ -159,6 +146,21 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.labelControl7.TabIndex = 46;
             this.labelControl7.Text = "Periodo:";
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // gridColumn26
+            // 
+            this.gridColumn26.Caption = "Fecha de Registro";
+            this.gridColumn26.FieldName = "Fecha";
+            this.gridColumn26.Name = "gridColumn26";
+            this.gridColumn26.OptionsColumn.AllowEdit = false;
+            this.gridColumn26.OptionsColumn.AllowFocus = false;
+            this.gridColumn26.Visible = true;
+            this.gridColumn26.VisibleIndex = 10;
+            this.gridColumn26.Width = 170;
+            // 
             // gcCotizaciones
             // 
             this.gcCotizaciones.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -166,19 +168,15 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gcCotizaciones.MainView = this.gvCotizacion;
             this.gcCotizaciones.Name = "gcCotizaciones";
             this.gcCotizaciones.Size = new System.Drawing.Size(1695, 474);
-            this.gcCotizaciones.TabIndex = 25;
+            this.gcCotizaciones.TabIndex = 26;
             this.gcCotizaciones.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvCotizacion});
             // 
             // gvCotizacion
             // 
             this.gvCotizacion.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn10,
-            this.gridColumn5,
-            this.gridColumn16,
             this.gridColumn12,
             this.gridColumn6,
-            this.gridColumn14,
             this.gridColumn2,
             this.gridColumn3,
             this.gridColumn1,
@@ -188,15 +186,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn11,
             this.gridColumn7,
             this.gridColumn13,
-            this.gridColumn15,
-            this.gridColumn17,
-            this.gridColumn18,
-            this.gridColumn19,
-            this.gridColumn21,
-            this.gridColumn20,
-            this.gridColumn22,
-            this.gridColumn23,
-            this.gridColumn24,
             this.gridColumn25});
             this.gvCotizacion.GridControl = this.gcCotizaciones;
             this.gvCotizacion.GroupPanelText = "Resultado de la Busqueda";
@@ -204,29 +193,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gvCotizacion.OptionsSelection.MultiSelect = true;
             this.gvCotizacion.OptionsView.ColumnAutoWidth = false;
             this.gvCotizacion.OptionsView.ShowGroupPanel = false;
-            this.gvCotizacion.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gvCotizacion_CustomDrawCell);
-            // 
-            // gridColumn10
-            // 
-            this.gridColumn10.Caption = "IdEmpresa";
-            this.gridColumn10.FieldName = "IdEmpresa";
-            this.gridColumn10.Name = "gridColumn10";
-            // 
-            // gridColumn5
-            // 
-            this.gridColumn5.Caption = "IdCambio";
-            this.gridColumn5.FieldName = "IdCambio";
-            this.gridColumn5.Name = "gridColumn5";
-            this.gridColumn5.OptionsColumn.AllowEdit = false;
-            this.gridColumn5.OptionsColumn.AllowFocus = false;
-            // 
-            // gridColumn16
-            // 
-            this.gridColumn16.Caption = "IdTienda";
-            this.gridColumn16.FieldName = "IdTienda";
-            this.gridColumn16.Name = "gridColumn16";
-            this.gridColumn16.OptionsColumn.AllowEdit = false;
-            this.gridColumn16.OptionsColumn.AllowFocus = false;
             // 
             // gridColumn12
             // 
@@ -245,14 +211,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 1;
             this.gridColumn6.Width = 214;
-            // 
-            // gridColumn14
-            // 
-            this.gridColumn14.Caption = "Periodo";
-            this.gridColumn14.FieldName = "Periodo";
-            this.gridColumn14.Name = "gridColumn14";
-            this.gridColumn14.OptionsColumn.AllowEdit = false;
-            this.gridColumn14.OptionsColumn.AllowFocus = false;
             // 
             // gridColumn2
             // 
@@ -336,84 +294,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn13.VisibleIndex = 10;
             this.gridColumn13.Width = 98;
             // 
-            // gridColumn15
-            // 
-            this.gridColumn15.Caption = "N° Nota de Credito";
-            this.gridColumn15.FieldName = "NumeroNotaCredito";
-            this.gridColumn15.Name = "gridColumn15";
-            this.gridColumn15.OptionsColumn.AllowEdit = false;
-            this.gridColumn15.OptionsColumn.AllowFocus = false;
-            this.gridColumn15.Width = 120;
-            // 
-            // gridColumn17
-            // 
-            this.gridColumn17.Caption = "Aplicación";
-            this.gridColumn17.FieldName = "DescTipoAplicacion";
-            this.gridColumn17.Name = "gridColumn17";
-            this.gridColumn17.OptionsColumn.AllowEdit = false;
-            this.gridColumn17.OptionsColumn.AllowFocus = false;
-            this.gridColumn17.Width = 104;
-            // 
-            // gridColumn18
-            // 
-            this.gridColumn18.Caption = "Supervisor";
-            this.gridColumn18.FieldName = "DescSupervisor";
-            this.gridColumn18.Name = "gridColumn18";
-            this.gridColumn18.OptionsColumn.AllowEdit = false;
-            this.gridColumn18.OptionsColumn.AllowFocus = false;
-            this.gridColumn18.Width = 247;
-            // 
-            // gridColumn19
-            // 
-            this.gridColumn19.Caption = "Tipo Cliente";
-            this.gridColumn19.FieldName = "DescTipoCliente";
-            this.gridColumn19.Name = "gridColumn19";
-            this.gridColumn19.OptionsColumn.AllowEdit = false;
-            this.gridColumn19.OptionsColumn.AllowFocus = false;
-            this.gridColumn19.Width = 111;
-            // 
-            // gridColumn21
-            // 
-            this.gridColumn21.Caption = "Usuario";
-            this.gridColumn21.FieldName = "Usuario";
-            this.gridColumn21.Name = "gridColumn21";
-            this.gridColumn21.OptionsColumn.AllowEdit = false;
-            this.gridColumn21.OptionsColumn.AllowFocus = false;
-            this.gridColumn21.Width = 183;
-            // 
-            // gridColumn20
-            // 
-            this.gridColumn20.Caption = "IdTipoDocumento";
-            this.gridColumn20.FieldName = "IdTipoDocumento";
-            this.gridColumn20.Name = "gridColumn20";
-            this.gridColumn20.OptionsColumn.AllowEdit = false;
-            this.gridColumn20.OptionsColumn.AllowFocus = false;
-            // 
-            // gridColumn22
-            // 
-            this.gridColumn22.AppearanceHeader.ForeColor = System.Drawing.Color.Red;
-            this.gridColumn22.AppearanceHeader.Options.UseForeColor = true;
-            this.gridColumn22.Caption = "Reajuste";
-            this.gridColumn22.FieldName = "FlagReajuste";
-            this.gridColumn22.Name = "gridColumn22";
-            this.gridColumn22.OptionsColumn.AllowEdit = false;
-            this.gridColumn22.OptionsColumn.AllowFocus = false;
-            this.gridColumn22.Width = 51;
-            // 
-            // gridColumn23
-            // 
-            this.gridColumn23.Caption = "Motivo";
-            this.gridColumn23.FieldName = "Motivo";
-            this.gridColumn23.Name = "gridColumn23";
-            this.gridColumn23.OptionsColumn.AllowEdit = false;
-            this.gridColumn23.OptionsColumn.AllowFocus = false;
-            // 
-            // gridColumn24
-            // 
-            this.gridColumn24.Caption = "Observacion";
-            this.gridColumn24.FieldName = "Observacion";
-            this.gridColumn24.Name = "gridColumn24";
-            // 
             // gridColumn25
             // 
             this.gridColumn25.Caption = "TIPO";
@@ -422,21 +302,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn25.Visible = true;
             this.gridColumn25.VisibleIndex = 11;
             this.gridColumn25.Width = 226;
-            // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // gridColumn26
-            // 
-            this.gridColumn26.Caption = "Fecha de Registro";
-            this.gridColumn26.FieldName = "Fecha";
-            this.gridColumn26.Name = "gridColumn26";
-            this.gridColumn26.OptionsColumn.AllowEdit = false;
-            this.gridColumn26.OptionsColumn.AllowFocus = false;
-            this.gridColumn26.Visible = true;
-            this.gridColumn26.VisibleIndex = 10;
-            this.gridColumn26.Width = 170;
             // 
             // frmRegKiraCotizacion
             // 
@@ -471,14 +336,12 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
         private DevExpress.XtraEditors.TextEdit txtNumero;
         public DevExpress.XtraEditors.TextEdit txtPeriodo;
         private DevExpress.XtraEditors.LabelControl labelControl7;
+        private System.Windows.Forms.Timer timer1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn26;
         private DevExpress.XtraGrid.GridControl gcCotizaciones;
         private DevExpress.XtraGrid.Views.Grid.GridView gvCotizacion;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
@@ -488,17 +351,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn17;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn18;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn19;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn21;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn20;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn22;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn23;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn24;
-        private System.Windows.Forms.Timer timer1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn25;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn26;
     }
 }

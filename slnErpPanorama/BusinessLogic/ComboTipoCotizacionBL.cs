@@ -66,5 +66,11 @@ namespace ErpPanorama.BusinessLogic
             return comboTipoCotizacionDL.ObtenerListadoCotizaciones();
         }
 
+        public List<ComboTipoCotizacionBE> ObtenerComboProductoTerminados()
+        {
+            ComboTipoCotizacionDL comboProductoTerminado = new ComboTipoCotizacionDL();
+            return comboProductoTerminado.ObtenerListaProductoTerminados();
+        }
+
     }
 }

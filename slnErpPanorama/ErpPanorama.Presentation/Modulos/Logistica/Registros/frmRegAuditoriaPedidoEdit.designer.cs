@@ -483,6 +483,7 @@
             // 
             // cboPersonaChequeo
             // 
+            this.cboPersonaChequeo.Enabled = false;
             this.cboPersonaChequeo.Location = new System.Drawing.Point(672, 28);
             this.cboPersonaChequeo.Name = "cboPersonaChequeo";
             this.cboPersonaChequeo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);

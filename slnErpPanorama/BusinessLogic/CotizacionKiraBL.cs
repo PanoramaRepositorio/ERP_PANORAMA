@@ -33,5 +33,15 @@ namespace ErpPanorama.BusinessLogic
         {
             cotizacionKiraDL.EliminarCotizacionPorCodigoProducto(codigoProducto);
         }
+
+        public int ObtenerSiguienteNumeroCotizacion()
+        {
+            return cotizacionKiraDL.ObtenerSiguienteNumeroCotizacion();
+        }
+
+        public int ObtenerSiguienteNumeroCotizacionProductoTerminado()
+        {
+            return cotizacionKiraDL.ObtenerSiguienteNumeroCotizacionProductoTerminado();
+        }
     }
 }
