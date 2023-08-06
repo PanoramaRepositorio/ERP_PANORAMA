@@ -5,14 +5,19 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Threading.Tasks;
 using DevExpress.XtraEditors;
+using DevExpress.Utils.Menu;
+using DevExpress.Utils;
 using System.Windows.Forms;
 using ErpPanorama.Presentation.Modulos.KiraHogar.Consultas;
 using ErpPanorama.BusinessEntity;
 using ErpPanorama.BusinessLogic;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
+using Microsoft.VisualBasic;
+
 
 
 namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
@@ -20,13 +25,14 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
     public partial class frmRegKiraCotizacion : DevExpress.XtraEditors.XtraForm
     {
         private Timer timer;
+        private List<CotizacionKiraBE> listaOriginalCotizaciones;
 
         public frmRegKiraCotizacion()
         {
             InitializeComponent();
             timerFilas();
         }
-
+        private ImageCollection imageCollection;
         private void frmRegKiraCotizacion_Load(object sender, EventArgs e)
         {
             frmRegKiraCotizacion formCotizacion = new frmRegKiraCotizacion();
@@ -35,11 +41,15 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             CargarListadoCotizaciones();
             ActualizarNumeroFilas();
             timerFilas();
+            imageCollection = new ImageCollection();
+            imageCollection.AddImage(Properties.Resources.Stop_2);
+            // Después de cargar la lista de cotizaciones original en el grid, hacemos una copia de la lista
+            //listaCotizacionesOriginal = new List<CotizacionKiraBE>((List<CotizacionKiraBE>)gcCotizaciones.DataSource);
 
         }
         private void timerFilas() {
             timer = new Timer();
-            timer.Interval = 5000; // 5 segundos
+            timer.Interval = 15000; // 5 segundos
             timer.Tick += timer1_Tick;
             timer.Start();
         }
@@ -57,7 +67,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                 lblTotalRegistros.Text = rowCount.ToString() + " Registros encontrados";
             }
         }
-
+        
         public void CargarListadoCotizaciones()
         {
             try
@@ -67,6 +77,8 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
 
                 // Asignar la lista de cotizaciones al control gcCotizaciones
                 gcCotizaciones.DataSource = listaCotizaciones;
+                // Almacenar una copia de la lista original
+                listaOriginalCotizaciones = new List<CotizacionKiraBE>(listaCotizaciones);
             }
             catch (Exception ex)
             {
@@ -192,5 +204,93 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             CargarListadoCotizaciones();
             ActualizarNumeroFilas();
         }
+
+
+        private void OnMenuItemEliminarClick(object sender, EventArgs e)
+        {
+            DXMenuItem menuItem = sender as DXMenuItem;
+            if (menuItem != null)
+            {
+                string codigoProducto = menuItem.Tag.ToString();
+
+                // Preguntar al usuario si está seguro de eliminar la cotización
+                DialogResult resultado = XtraMessageBox.Show("¿Estás seguro de eliminar la cotización?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (resultado == DialogResult.Yes)
+                {
+                    try
+                    {
+                        // Llamar al método para eliminar la cotización por CodigoProducto
+                        cotizacionKiraBL.EliminarCotizacionPorCodigoProducto(codigoProducto);
+                        // Actualizar la lista de cotizaciones en el grid
+                        CargarListadoCotizaciones();
+                        // Mostrar mensaje de éxito
+                        XtraMessageBox.Show("La cotización se eliminó correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        // Manejar el error si ocurre
+                        XtraMessageBox.Show("Error al eliminar la cotización: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void gvCotizacion_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            GridView gridView = sender as GridView;
+            if (e.MenuType == GridMenuType.Row && e.HitInfo.InRow)
+            {
+                int filaSeleccionada = e.HitInfo.RowHandle;
+                string codigoProducto = gridView.GetRowCellValue(filaSeleccionada, "CodigoProducto").ToString();
+
+                // Crear el DXMenuItem para la eliminación de la cotización
+                DXMenuItem menuItemEliminar = new DXMenuItem("Eliminar Cotización", OnMenuItemEliminarClick);
+                menuItemEliminar.ImageOptions.Image = imageCollection.Images[0]; // Agregar la imagen al elemento de menú
+                menuItemEliminar.Tag = codigoProducto;
+
+                // Agregar el DXMenuItem al menú
+                e.Menu.Items.Add(menuItemEliminar);
+            }
+        }
+
+        
+        private void tlbMenu_EditClick()
+        {
+            try
+            {
+                // Obtener los cambios realizados en el GridView antes de guardar
+                gvCotizacion.CloseEditor();
+                gvCotizacion.UpdateCurrentRow();
+
+                // Guardar los cambios en la base de datos
+                foreach (int rowHandle in gvCotizacion.GetSelectedRows())
+                {
+                    // Obtener el código del producto y descripción nuevos
+                    string nuevoCodigoProducto = gvCotizacion.GetRowCellValue(rowHandle, "CodigoProducto").ToString();
+                    string nuevaDescripcion = gvCotizacion.GetRowCellValue(rowHandle, "Descripcion").ToString();
+
+                    // Obtener el objeto CotizacionKiraBE de la lista original en base al índice de la fila actual
+                    CotizacionKiraBE cotizacionOriginal = listaOriginalCotizaciones[rowHandle];
+
+                    // Guardar los cambios en la base de datos
+                    cotizacionKiraBL.ActualizarCotizacionPorCodigoProducto(cotizacionOriginal.CodigoProducto, nuevoCodigoProducto, nuevaDescripcion);
+                }
+
+                // Actualizar la lista de cotizaciones en el grid
+                CargarListadoCotizaciones();
+
+                // Mostrar mensaje de éxito
+                MessageBox.Show("Los cambios se guardaron correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                // Manejar el error si ocurre
+                MessageBox.Show("Error al guardar los cambios: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
+      
     }
 }

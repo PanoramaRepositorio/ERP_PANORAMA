@@ -175,6 +175,59 @@ namespace ErpPanorama.DataLogic
             return siguienteNumero;
         }
 
+        public void ActualizarCotizacionPorCodigoProducto(string codigoProductoAntiguo, string nuevoCodigoProducto, string nuevaDescripcion)
+        {
+            using (var connection = db.CreateConnection())
+            {
+                connection.Open();
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        // Actualizamos el CodigoProducto y la Descripción utilizando el procedimiento almacenado
+                        var actualizarCotizacionCommand = db.GetStoredProcCommand("usp_ActualizarCotizacion");
+                        db.AddInParameter(actualizarCotizacionCommand, "@CodigoProductoAntiguo", DbType.String, codigoProductoAntiguo);
+                        db.AddInParameter(actualizarCotizacionCommand, "@NuevoCodigoProducto", DbType.String, nuevoCodigoProducto);
+                        db.AddInParameter(actualizarCotizacionCommand, "@NuevaDescripcion", DbType.String, nuevaDescripcion);
+                        db.ExecuteNonQuery(actualizarCotizacionCommand, transaction);
+
+                        // Confirmar la transacción
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw ex;
+                    }
+                }
+            }
+        }
+
+        // Método para verificar si el nuevo CodigoProducto ya existe en la base de datos
+        private bool ExisteCodigoProducto(string nuevoCodigoProducto)
+        {
+            bool existeCodigo = false;
+
+            using (var connection = db.CreateConnection())
+            {
+                connection.Open();
+                using (var command = db.GetStoredProcCommand("usp_ValidarCodigoProducto"))
+                {
+                    db.AddInParameter(command, "@CodigoProducto", DbType.String, nuevoCodigoProducto);
+                    db.AddOutParameter(command, "@ExisteCodigo", DbType.Boolean, 1);
+
+                    db.ExecuteNonQuery(command);
+
+                    existeCodigo = Convert.ToBoolean(db.GetParameterValue(command, "@ExisteCodigo"));
+                }
+            }
+
+            return existeCodigo;
+        }
+
+
+
+
 
     }
 }

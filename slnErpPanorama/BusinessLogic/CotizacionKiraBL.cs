@@ -43,5 +43,13 @@ namespace ErpPanorama.BusinessLogic
         {
             return cotizacionKiraDL.ObtenerSiguienteNumeroCotizacionProductoTerminado();
         }
+
+        // Método para actualizar una cotización por su CodigoProducto
+        public void ActualizarCotizacionPorCodigoProducto(string codigoProductoAntiguo, string nuevoCodigoProducto, string nuevaDescripcion)
+        {
+            cotizacionKiraDL.ActualizarCotizacionPorCodigoProducto(codigoProductoAntiguo, nuevoCodigoProducto, nuevaDescripcion);
+        }
+
+
     }
 }
