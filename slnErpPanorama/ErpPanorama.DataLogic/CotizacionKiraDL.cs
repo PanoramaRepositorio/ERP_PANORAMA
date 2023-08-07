@@ -175,7 +175,7 @@ namespace ErpPanorama.DataLogic
             return siguienteNumero;
         }
 
-        public void ActualizarCotizacionPorCodigoProducto(string codigoProductoAntiguo, string nuevoCodigoProducto, string nuevaDescripcion)
+        public void ActualizarCotizacionPorId(int idCotizacion, string nuevoCodigoProducto, string nuevaDescripcion)
         {
             using (var connection = db.CreateConnection())
             {
@@ -184,14 +184,12 @@ namespace ErpPanorama.DataLogic
                 {
                     try
                     {
-                        // Actualizamos el CodigoProducto y la Descripción utilizando el procedimiento almacenado
                         var actualizarCotizacionCommand = db.GetStoredProcCommand("usp_ActualizarCotizacion");
-                        db.AddInParameter(actualizarCotizacionCommand, "@CodigoProductoAntiguo", DbType.String, codigoProductoAntiguo);
+                        db.AddInParameter(actualizarCotizacionCommand, "@IdCotizacion", DbType.Int32, idCotizacion);
                         db.AddInParameter(actualizarCotizacionCommand, "@NuevoCodigoProducto", DbType.String, nuevoCodigoProducto);
                         db.AddInParameter(actualizarCotizacionCommand, "@NuevaDescripcion", DbType.String, nuevaDescripcion);
                         db.ExecuteNonQuery(actualizarCotizacionCommand, transaction);
 
-                        // Confirmar la transacción
                         transaction.Commit();
                     }
                     catch (Exception ex)
@@ -204,10 +202,8 @@ namespace ErpPanorama.DataLogic
         }
 
         // Método para verificar si el nuevo CodigoProducto ya existe en la base de datos
-        private bool ExisteCodigoProducto(string nuevoCodigoProducto)
+        public bool ExisteCodigoProducto(string nuevoCodigoProducto)
         {
-            bool existeCodigo = false;
-
             using (var connection = db.CreateConnection())
             {
                 connection.Open();
@@ -218,13 +214,50 @@ namespace ErpPanorama.DataLogic
 
                     db.ExecuteNonQuery(command);
 
-                    existeCodigo = Convert.ToBoolean(db.GetParameterValue(command, "@ExisteCodigo"));
+                    return Convert.ToBoolean(db.GetParameterValue(command, "@ExisteCodigo"));
+                }
+            }
+        }
+
+        public List<CotizacionKiraBE> FiltrarCotizacionesPorPeriodoYNumero(int periodo, int numeroCotizacion)
+        {
+            List<CotizacionKiraBE> cotizaciones = new List<CotizacionKiraBE>();
+
+            using (var connection = db.CreateConnection())
+            {
+                connection.Open();
+                using (var command = db.GetStoredProcCommand("usp_FiltrarCotizacionesPorPeriodoYNumero"))
+                {
+                    db.AddInParameter(command, "@Periodo", DbType.Int32, periodo);
+                    db.AddInParameter(command, "@NumeroCotizacion", DbType.Int32, numeroCotizacion);
+
+                    using (var reader = db.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            CotizacionKiraBE cotizacion = new CotizacionKiraBE();
+                            cotizacion.IdCotizacion = Convert.ToInt32(reader["IdCotizacion"]);
+                            cotizacion.CodigoProducto = reader["CodigoProducto"].ToString();
+                            cotizacion.Descripcion = reader["Descripcion"].ToString();
+                            cotizacion.CostoMateriales = reader["CostoMateriales"] != DBNull.Value ? Convert.ToDecimal(reader["CostoMateriales"]) : 0;
+                            cotizacion.CostoInsumos = reader["CostoInsumos"] != DBNull.Value ? Convert.ToDecimal(reader["CostoInsumos"]) : 0;
+                            cotizacion.CostoAccesorios = reader["CostoAccesorios"] != DBNull.Value ? Convert.ToDecimal(reader["CostoAccesorios"]) : 0;
+                            cotizacion.CostoManoObra = reader["CostoManoObra"] != DBNull.Value ? Convert.ToDecimal(reader["CostoManoObra"]) : 0;
+                            cotizacion.CostoMovilidad = reader["CostoMovilidad"] != DBNull.Value ? Convert.ToDecimal(reader["CostoMovilidad"]) : 0;
+                            cotizacion.CostoEquipos = reader["CostoEquipos"] != DBNull.Value ? Convert.ToDecimal(reader["CostoEquipos"]) : 0;
+                            cotizacion.TotalGastos = reader["TotalGastos"] != DBNull.Value ? Convert.ToDecimal(reader["TotalGastos"]) : 0;
+                            cotizacion.PrecioVenta = reader["PrecioVenta"] != DBNull.Value ? Convert.ToDecimal(reader["PrecioVenta"]) : 0;
+                            cotizacion.Fecha = reader["Fecha"] != DBNull.Value ? Convert.ToDateTime(reader["Fecha"]) : DateTime.MinValue;
+                            // Agregamos la columna DescTablaElemento a la entidad CotizacionKiraBE
+                            cotizacion.DescTablaElemento = reader["DescTablaElemento"].ToString();
+                            cotizaciones.Add(cotizacion);
+                        }
+                    }
                 }
             }
 
-            return existeCodigo;
+            return cotizaciones;
         }
-
 
 
 
