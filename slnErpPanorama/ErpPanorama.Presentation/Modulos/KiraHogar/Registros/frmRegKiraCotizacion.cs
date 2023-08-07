@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Threading.Tasks;
+using System.ComponentModel;
 using DevExpress.XtraEditors;
 using DevExpress.Utils.Menu;
 using DevExpress.Utils;
 using System.Windows.Forms;
 using ErpPanorama.Presentation.Modulos.KiraHogar.Consultas;
+using ErpPanorama.Presentation.Modulos.KiraHogar.Registros;
+using ErpPanorama.Presentation.Modulos.KiraHogar;
 using ErpPanorama.BusinessEntity;
 using ErpPanorama.BusinessLogic;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
 using Microsoft.VisualBasic;
+using System.Data.SqlClient;
 
 
 
@@ -49,7 +49,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
         }
         private void timerFilas() {
             timer = new Timer();
-            timer.Interval = 15000; // 5 segundos
+            timer.Interval = 60000; // 5 segundos
             timer.Tick += timer1_Tick;
             timer.Start();
         }
@@ -67,7 +67,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                 lblTotalRegistros.Text = rowCount.ToString() + " Registros encontrados";
             }
         }
-        
+
         public void CargarListadoCotizaciones()
         {
             try
@@ -86,13 +86,38 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                 MessageBox.Show("Error al cargar el listado de cotizaciones: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void tlbMenu_NewClick()
         {
 
-            frmCotizacion formCotizacion = new frmCotizacion();
-            formCotizacion.Dock = DockStyle.Fill; // Rellenar el área del contenedor
-            formCotizacion.StartPosition = FormStartPosition.CenterParent;
-            formCotizacion.Show(); // Mostrar el formulario
+            // Crear y mostrar el formulario de selección
+            using (frmSeleccionarFormulario formSeleccion = new frmSeleccionarFormulario())
+            {
+                DialogResult result = formSeleccion.ShowDialog(this);
+
+                // Verificar si el usuario hizo una selección
+                if (result == DialogResult.OK)
+                {
+                    if (formSeleccion.FormularioSeleccionado == "Cotizacion")
+                    {
+                        frmCotizacion formCotizacion = new frmCotizacion();
+                        formCotizacion.Dock = DockStyle.Fill;
+                        formCotizacion.StartPosition = FormStartPosition.CenterParent;
+                        formCotizacion.ShowDialog(); // Abre el formulario como cuadro de diálogo
+                    }
+                    else if (formSeleccion.FormularioSeleccionado == "ProductoTerminado")
+                    {
+                        frmRegKiraCotizacionProductoTerminado formProductoTerminado = new frmRegKiraCotizacionProductoTerminado();
+                        formProductoTerminado.Dock = DockStyle.Fill;
+                        formProductoTerminado.StartPosition = FormStartPosition.CenterParent;
+                        formProductoTerminado.ShowDialog(); // Abre el formulario como cuadro de diálogo
+                    }
+                }
+            }
+            //frmCotizacion formCotizacion = new frmCotizacion();
+            //formCotizacion.Dock = DockStyle.Fill; // Rellenar el área del contenedor
+            //formCotizacion.StartPosition = FormStartPosition.CenterParent;
+            //formCotizacion.Show(); // Mostrar el formulario
         }
 
         private void tlbMenu_ExitClick()
@@ -253,44 +278,55 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             }
         }
 
-        
+
+
         private void tlbMenu_EditClick()
         {
             try
             {
-                // Obtener los cambios realizados en el GridView antes de guardar
-                gvCotizacion.CloseEditor();
-                gvCotizacion.UpdateCurrentRow();
+                int rowHandle = gvCotizacion.FocusedRowHandle;
 
-                // Guardar los cambios en la base de datos
-                foreach (int rowHandle in gvCotizacion.GetSelectedRows())
-                {
-                    // Obtener el código del producto y descripción nuevos
-                    string nuevoCodigoProducto = gvCotizacion.GetRowCellValue(rowHandle, "CodigoProducto").ToString();
-                    string nuevaDescripcion = gvCotizacion.GetRowCellValue(rowHandle, "Descripcion").ToString();
+                string nuevoCodigoProducto = gvCotizacion.GetRowCellValue(rowHandle, "CodigoProducto").ToString();
+                string nuevaDescripcion = gvCotizacion.GetRowCellValue(rowHandle, "Descripcion").ToString();
 
-                    // Obtener el objeto CotizacionKiraBE de la lista original en base al índice de la fila actual
-                    CotizacionKiraBE cotizacionOriginal = listaOriginalCotizaciones[rowHandle];
+                CotizacionKiraBE cotizacionOriginal = listaOriginalCotizaciones[rowHandle];
 
-                    // Guardar los cambios en la base de datos
-                    cotizacionKiraBL.ActualizarCotizacionPorCodigoProducto(cotizacionOriginal.CodigoProducto, nuevoCodigoProducto, nuevaDescripcion);
-                }
+                cotizacionKiraBL.ActualizarCotizacionPorId(cotizacionOriginal.IdCotizacion, nuevoCodigoProducto, nuevaDescripcion);
 
-                // Actualizar la lista de cotizaciones en el grid
                 CargarListadoCotizaciones();
 
-                // Mostrar mensaje de éxito
                 MessageBox.Show("Los cambios se guardaron correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 50001)
+                {
+                    MessageBox.Show("El nuevo CodigoProducto ya existe en la base de datos. Por favor, elija otro.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    MessageBox.Show("Error al guardar los cambios: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {
-                // Manejar el error si ocurre
                 MessageBox.Show("Error al guardar los cambios: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
+        private void txtNumero_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                int periodo = Convert.ToInt32(txtPeriodo.Text);
+                int numeroCotizacion = Convert.ToInt32(txtNumero.Text);
 
+                List<CotizacionKiraBE> cotizacionesFiltradas = cotizacionKiraBL.FiltrarCotizacionesPorPeriodoYNumero(periodo, numeroCotizacion);
 
-      
+                gcCotizaciones.DataSource = cotizacionesFiltradas; // Asigna los nuevos datos
+                gvCotizacion.BestFitColumns(); // Ajusta el tamaño de las columnas
+            }
+        }
     }
 }
