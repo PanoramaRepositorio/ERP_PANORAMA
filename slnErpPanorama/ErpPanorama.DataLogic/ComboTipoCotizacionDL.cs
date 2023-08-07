@@ -234,6 +234,7 @@ namespace ErpPanorama.DataLogic
                 {
                     CotizacionKiraBE cotizacion = new CotizacionKiraBE();
 
+                    cotizacion.IdCotizacion = Convert.ToInt32(reader["IdCotizacion"]);
                     cotizacion.CodigoProducto = reader["CodigoProducto"].ToString();
                     cotizacion.Descripcion = reader["Descripcion"].ToString();
                     cotizacion.CostoMateriales = reader["CostoMateriales"] != DBNull.Value ? Convert.ToDecimal(reader["CostoMateriales"]) : 0;
