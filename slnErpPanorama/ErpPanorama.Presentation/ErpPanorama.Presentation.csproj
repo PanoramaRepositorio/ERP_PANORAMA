@@ -1664,6 +1664,12 @@
     <Compile Include="Modulos\Finanzas\Registros\frmVerDetalleCajaEgreso.Designer.cs">
       <DependentUpon>frmVerDetalleCajaEgreso.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modulos\KiraHogar\Consultas\frmSeleccionarFormulario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\KiraHogar\Consultas\frmSeleccionarFormulario.Designer.cs">
+      <DependentUpon>frmSeleccionarFormulario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modulos\KiraHogar\Registros\frmRegCotizacionPrecioProductoClienteStock.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4724,6 +4730,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Finanzas\Registros\frmVerDetalleCajaEgreso.resx">
       <DependentUpon>frmVerDetalleCajaEgreso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\KiraHogar\Consultas\frmSeleccionarFormulario.resx">
+      <DependentUpon>frmSeleccionarFormulario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\KiraHogar\Registros\frmRegCotizacionPrecioProductoClienteStock.resx">
       <DependentUpon>frmRegCotizacionPrecioProductoClienteStock.cs</DependentUpon>
@@ -11948,7 +11957,6 @@
     <Folder Include="Modulos\Finanzas\Otros\" />
     <Folder Include="Modulos\Finanzas\Reportes\" />
     <Folder Include="Modulos\Finanzas\Rpt\" />
-    <Folder Include="Modulos\KiraHogar\Consultas\" />
     <Folder Include="Modulos\MesaAyuda\Maestros\" />
   </ItemGroup>
   <ItemGroup>
