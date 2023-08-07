@@ -54,6 +54,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn25 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumero.Properties)).BeginInit();
@@ -68,7 +69,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.tlbMenu.Ensamblado = "";
             this.tlbMenu.Location = new System.Drawing.Point(0, 0);
             this.tlbMenu.Name = "tlbMenu";
-            this.tlbMenu.Size = new System.Drawing.Size(1695, 31);
+            this.tlbMenu.Size = new System.Drawing.Size(1748, 31);
             this.tlbMenu.TabIndex = 0;
             this.tlbMenu.NewClick += new ErpPanorama.Presentation.ControlUser.UIToolBar.delegateNewClick(this.tlbMenu_NewClick);
             this.tlbMenu.EditClick += new ErpPanorama.Presentation.ControlUser.UIToolBar.delegateEditClick(this.tlbMenu_EditClick);
@@ -89,7 +90,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupControl1.Location = new System.Drawing.Point(0, 31);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(1695, 52);
+            this.groupControl1.Size = new System.Drawing.Size(1748, 52);
             this.groupControl1.TabIndex = 24;
             this.groupControl1.Text = "Criterios de Búsqueda";
             // 
@@ -125,6 +126,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.txtNumero.Properties.MaxLength = 6;
             this.txtNumero.Size = new System.Drawing.Size(106, 20);
             this.txtNumero.TabIndex = 48;
+            this.txtNumero.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNumero_KeyDown);
             // 
             // txtPeriodo
             // 
@@ -168,7 +170,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gcCotizaciones.Location = new System.Drawing.Point(0, 83);
             this.gcCotizaciones.MainView = this.gvCotizacion;
             this.gcCotizaciones.Name = "gcCotizaciones";
-            this.gcCotizaciones.Size = new System.Drawing.Size(1695, 474);
+            this.gcCotizaciones.Size = new System.Drawing.Size(1748, 474);
             this.gcCotizaciones.TabIndex = 26;
             this.gcCotizaciones.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvCotizacion});
@@ -187,7 +189,8 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn11,
             this.gridColumn7,
             this.gridColumn13,
-            this.gridColumn25});
+            this.gridColumn25,
+            this.gridColumn5});
             this.gvCotizacion.GridControl = this.gcCotizaciones;
             this.gvCotizacion.GroupPanelText = "Resultado de la Busqueda";
             this.gvCotizacion.Name = "gvCotizacion";
@@ -195,7 +198,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gvCotizacion.OptionsView.ColumnAutoWidth = false;
             this.gvCotizacion.OptionsView.ShowGroupPanel = false;
             this.gvCotizacion.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.gvCotizacion_PopupMenuShowing);
-           
             // 
             // gridColumn12
             // 
@@ -220,6 +222,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn2.Caption = "Materiales";
             this.gridColumn2.FieldName = "CostoMateriales";
             this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 2;
             this.gridColumn2.Width = 96;
@@ -229,6 +232,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn3.Caption = "Insumos";
             this.gridColumn3.FieldName = "CostoInsumos";
             this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 3;
             this.gridColumn3.Width = 98;
@@ -238,6 +242,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn1.Caption = "Accesorios";
             this.gridColumn1.FieldName = "CostoAccesorios";
             this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 4;
             this.gridColumn1.Width = 102;
@@ -247,6 +252,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn4.Caption = "Mano de Obra";
             this.gridColumn4.FieldName = "CostoManoObra";
             this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 5;
             this.gridColumn4.Width = 118;
@@ -256,6 +262,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn8.Caption = "Movilidad y Viaticos";
             this.gridColumn8.FieldName = "CostoMovilidad";
             this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 6;
             this.gridColumn8.Width = 171;
@@ -265,6 +272,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn9.Caption = "Equipo y Herramientas";
             this.gridColumn9.FieldName = "CostoEquipos";
             this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.OptionsColumn.AllowEdit = false;
             this.gridColumn9.Visible = true;
             this.gridColumn9.VisibleIndex = 7;
             this.gridColumn9.Width = 138;
@@ -275,6 +283,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn11.FieldName = "TotalGastos";
             this.gridColumn11.Name = "gridColumn11";
+            this.gridColumn11.OptionsColumn.AllowEdit = false;
             this.gridColumn11.Visible = true;
             this.gridColumn11.VisibleIndex = 8;
             this.gridColumn11.Width = 156;
@@ -284,9 +293,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn7.Caption = "Precio de Venta Final";
             this.gridColumn7.FieldName = "PrecioVenta";
             this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.Visible = true;
             this.gridColumn7.VisibleIndex = 9;
-            this.gridColumn7.Width = 157;
+            this.gridColumn7.Width = 140;
             // 
             // gridColumn13
             // 
@@ -304,13 +314,22 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn25.Name = "gridColumn25";
             this.gridColumn25.Visible = true;
             this.gridColumn25.VisibleIndex = 11;
-            this.gridColumn25.Width = 226;
+            this.gridColumn25.Width = 140;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "Nro Cotizacion";
+            this.gridColumn5.FieldName = "IdCotizacion";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 12;
+            this.gridColumn5.Width = 98;
             // 
             // frmRegKiraCotizacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1695, 557);
+            this.ClientSize = new System.Drawing.Size(1748, 557);
             this.Controls.Add(this.gcCotizaciones);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.tlbMenu);
@@ -355,5 +374,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn25;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
     }
 }
