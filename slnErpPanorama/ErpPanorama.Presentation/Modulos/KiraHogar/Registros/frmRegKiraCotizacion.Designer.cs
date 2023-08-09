@@ -126,6 +126,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.txtNumero.Properties.MaxLength = 6;
             this.txtNumero.Size = new System.Drawing.Size(106, 20);
             this.txtNumero.TabIndex = 48;
+            this.txtNumero.EditValueChanged += new System.EventHandler(this.txtNumero_EditValueChanged);
             this.txtNumero.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNumero_KeyDown);
             // 
             // txtPeriodo
@@ -197,7 +198,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gvCotizacion.OptionsSelection.MultiSelect = true;
             this.gvCotizacion.OptionsView.ColumnAutoWidth = false;
             this.gvCotizacion.OptionsView.ShowGroupPanel = false;
+            this.gvCotizacion.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gvCotizacion_CustomDrawCell_1);
             this.gvCotizacion.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.gvCotizacion_PopupMenuShowing);
+            this.gvCotizacion.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gvCotizacion_FocusedRowChanged);
+            this.gvCotizacion.LostFocus += new System.EventHandler(this.gvCotizacion_LostFocus);
             // 
             // gridColumn12
             // 
@@ -265,7 +269,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 6;
-            this.gridColumn8.Width = 171;
+            this.gridColumn8.Width = 135;
             // 
             // gridColumn9
             // 
@@ -314,7 +318,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn25.Name = "gridColumn25";
             this.gridColumn25.Visible = true;
             this.gridColumn25.VisibleIndex = 11;
-            this.gridColumn25.Width = 140;
+            this.gridColumn25.Width = 244;
             // 
             // gridColumn5
             // 

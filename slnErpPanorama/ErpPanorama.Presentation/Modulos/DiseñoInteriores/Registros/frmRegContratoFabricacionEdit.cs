@@ -1436,7 +1436,7 @@ namespace ErpPanorama.Presentation.Modulos.DiseñoInteriores.Registros
 
         private void BloquearCabecera()
         {
-            cboVendedor.Properties.ReadOnly = true;
+            cboVendedor.Properties.ReadOnly = false;
             txtNumeroDocumento.Properties.ReadOnly = true;
             txtDescCliente.Properties.ReadOnly = true;
             btnNuevoCliente.Enabled = false;
@@ -1447,7 +1447,7 @@ namespace ErpPanorama.Presentation.Modulos.DiseñoInteriores.Registros
 
         private void BloquearTodo()
         {
-            cboVendedor.Properties.ReadOnly = true;
+            cboVendedor.Properties.ReadOnly = false;
             txtNumeroDocumento.Properties.ReadOnly = true;
             txtDescCliente.Properties.ReadOnly = true;
             btnNuevoCliente.Enabled = false;

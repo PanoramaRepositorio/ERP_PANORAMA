@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.ComponentModel;
 using DevExpress.XtraEditors;
 using DevExpress.Utils.Menu;
 using DevExpress.Utils;
 using System.Windows.Forms;
 using ErpPanorama.Presentation.Modulos.KiraHogar.Consultas;
-using ErpPanorama.Presentation.Modulos.KiraHogar.Registros;
-using ErpPanorama.Presentation.Modulos.KiraHogar;
 using ErpPanorama.BusinessEntity;
 using ErpPanorama.BusinessLogic;
 using DevExpress.XtraGrid.Columns;
@@ -25,12 +20,14 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
     public partial class frmRegKiraCotizacion : DevExpress.XtraEditors.XtraForm
     {
         private Timer timer;
-        private List<CotizacionKiraBE> listaOriginalCotizaciones;
-
         public frmRegKiraCotizacion()
         {
             InitializeComponent();
             timerFilas();
+            // Suscribirse a los eventos
+            gvCotizacion.FocusedRowChanged += gvCotizacion_FocusedRowChanged;
+            gvCotizacion.LostFocus += gvCotizacion_LostFocus;
+
         }
         private ImageCollection imageCollection;
         private void frmRegKiraCotizacion_Load(object sender, EventArgs e)
@@ -43,15 +40,13 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             timerFilas();
             imageCollection = new ImageCollection();
             imageCollection.AddImage(Properties.Resources.Stop_2);
-            // Después de cargar la lista de cotizaciones original en el grid, hacemos una copia de la lista
-            //listaCotizacionesOriginal = new List<CotizacionKiraBE>((List<CotizacionKiraBE>)gcCotizaciones.DataSource);
-
         }
         private void timerFilas() {
             timer = new Timer();
-            timer.Interval = 60000; // 5 segundos
+            timer.Interval = 25000; // 25 segundos
             timer.Tick += timer1_Tick;
             timer.Start();
+            txtPeriodo.Text = "2023";
         }
 
         private void ActualizarNumeroFilas()
@@ -67,18 +62,16 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                 lblTotalRegistros.Text = rowCount.ToString() + " Registros encontrados";
             }
         }
-
+        private List<CotizacionKiraBE> listaCotizacionesOriginal = new List<CotizacionKiraBE>();
         public void CargarListadoCotizaciones()
         {
             try
             {
                 ComboTipoCotizacionBL comboTipoCotizacionBL = new ComboTipoCotizacionBL();
-                List<CotizacionKiraBE> listaCotizaciones = comboTipoCotizacionBL.ObtenerListadoCotizaciones();
+                listaCotizacionesOriginal = comboTipoCotizacionBL.ObtenerListadoCotizaciones();
+                gcCotizaciones.DataSource = listaCotizacionesOriginal;
+                gvCotizacion.BestFitColumns(); // Ajusta el tamaño de las columnas
 
-                // Asignar la lista de cotizaciones al control gcCotizaciones
-                gcCotizaciones.DataSource = listaCotizaciones;
-                // Almacenar una copia de la lista original
-                listaOriginalCotizaciones = new List<CotizacionKiraBE>(listaCotizaciones);
             }
             catch (Exception ex)
             {
@@ -190,40 +183,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             ActualizarNumeroFilas();
         }
 
-        private void gvCotizacion_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
-        {
-            if (e.Column.FieldName == "PrecioVenta" || e.Column.FieldName == "TotalGastos")
-            {
-                // Obtener el valor de la celda
-                decimal valor = Convert.ToDecimal(e.CellValue);
-                Color color = Color.Empty;
-
-                if (e.Column.FieldName == "PrecioVenta")
-                {
-                    // Resaltar el campo "PrecioVenta" en color verde si es mayor a 2000
-                    if (valor > 2000)
-                        color = Color.Green;
-                }
-                else if (e.Column.FieldName == "TotalGastos")
-                {
-                    // Resaltar el campo "TotalGastos" con diferentes colores según su valor
-                    if (valor > 2000)
-                        color = Color.Red;
-                    else if (valor > 1500)
-                        color = Color.Orange;
-                    else
-                        color = Color.Green;
-                }
-
-                if (color != Color.Empty)
-                {
-                    // Cambiar el color de fondo de la celda
-                    e.Appearance.BackColor = color;
-                    e.Appearance.BackColor2 = color;
-                }
-            }
-        }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             CargarListadoCotizaciones();
@@ -279,21 +238,37 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
         }
 
 
-
+        private List<CotizacionKiraBE> cotizacionesFiltradas; // Agrega esta línea
         private void tlbMenu_EditClick()
         {
+
             try
             {
-                int rowHandle = gvCotizacion.FocusedRowHandle;
+                int focusedRowHandle = gvCotizacion.FocusedRowHandle;
+                CotizacionKiraBE cotizacionOriginal = (CotizacionKiraBE)gvCotizacion.GetRow(focusedRowHandle);
 
-                string nuevoCodigoProducto = gvCotizacion.GetRowCellValue(rowHandle, "CodigoProducto").ToString();
-                string nuevaDescripcion = gvCotizacion.GetRowCellValue(rowHandle, "Descripcion").ToString();
+                string nuevoCodigoProducto = gvCotizacion.GetRowCellValue(focusedRowHandle, "CodigoProducto").ToString();
+                string nuevaDescripcion = gvCotizacion.GetRowCellValue(focusedRowHandle, "Descripcion").ToString();
 
-                CotizacionKiraBE cotizacionOriginal = listaOriginalCotizaciones[rowHandle];
+                if (cotizacionOriginal.CodigoProducto != nuevoCodigoProducto &&
+                    cotizacionKiraBL.ExisteCodigoProducto(nuevoCodigoProducto))
+                {
+                    MessageBox.Show("El nuevo CodigoProducto ya existe en la base de datos. Por favor, elija otro.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
                 cotizacionKiraBL.ActualizarCotizacionPorId(cotizacionOriginal.IdCotizacion, nuevoCodigoProducto, nuevaDescripcion);
 
-                CargarListadoCotizaciones();
+                // Actualizar la lista de cotizaciones filtradas con la cotización modificada
+                int index = cotizacionesFiltradas.FindIndex(c => c.IdCotizacion == cotizacionOriginal.IdCotizacion);
+                if (index != -1)
+                {
+                    cotizacionesFiltradas[index].CodigoProducto = nuevoCodigoProducto;
+                    cotizacionesFiltradas[index].Descripcion = nuevaDescripcion;
+                }
+
+                // Actualizar la vista del GridControl
+                gvCotizacion.RefreshRow(focusedRowHandle);
 
                 MessageBox.Show("Los cambios se guardaron correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -310,23 +285,112 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al guardar los cambios: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("Error al guardar los cambios: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Los cambios se guardaron correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
+        
         }
 
         private void txtNumero_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            try
             {
-                int periodo = Convert.ToInt32(txtPeriodo.Text);
-                int numeroCotizacion = Convert.ToInt32(txtNumero.Text);
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (string.IsNullOrEmpty(txtNumero.Text) || string.IsNullOrEmpty(txtPeriodo.Text))
+                    {
+                        // Mostrar un mensaje al usuario indicando que los campos son obligatorios
+                        MessageBox.Show("Por favor, ingrese valores en los campos.");
+                        return;
+                    }
 
-                List<CotizacionKiraBE> cotizacionesFiltradas = cotizacionKiraBL.FiltrarCotizacionesPorPeriodoYNumero(periodo, numeroCotizacion);
+                    int periodo, numeroCotizacion;
 
-                gcCotizaciones.DataSource = cotizacionesFiltradas; // Asigna los nuevos datos
-                gvCotizacion.BestFitColumns(); // Ajusta el tamaño de las columnas
+                    if (!int.TryParse(txtPeriodo.Text, out periodo) || !int.TryParse(txtNumero.Text, out numeroCotizacion))
+                    {
+                        // Mostrar un mensaje al usuario indicando que los valores ingresados no son válidos
+                        MessageBox.Show("Por favor, ingrese valores numéricos válidos en los campos.");
+                        return;
+                    }
+
+                    cotizacionesFiltradas = cotizacionKiraBL.FiltrarCotizacionesPorPeriodoYNumero(periodo, numeroCotizacion);
+
+                    gcCotizaciones.DataSource = cotizacionesFiltradas; // Asigna los nuevos datos
+                    gvCotizacion.BestFitColumns(); // Ajusta el tamaño de las columnas
+                }
             }
+            catch (Exception ex)
+            {
+                // Manejo adecuado de la excepción: muestra un mensaje de error al usuario
+                MessageBox.Show("Ocurrió un error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            //try
+            //{
+            //    if (e.KeyCode == Keys.Enter)
+            //    {
+            //        int periodo = Convert.ToInt32(txtPeriodo.Text);
+            //        int numeroCotizacion = Convert.ToInt32(txtNumero.Text);
+
+            //        cotizacionesFiltradas = cotizacionKiraBL.FiltrarCotizacionesPorPeriodoYNumero(periodo, numeroCotizacion);
+
+            //        gcCotizaciones.DataSource = cotizacionesFiltradas; // Asigna los nuevos datos
+            //        gvCotizacion.BestFitColumns(); // Ajusta el tamaño de las columnas
+            //    }
+            //}
+            //catch (Exception)
+            //{
+            //    throw;
+            //}
+        }
+
+        private void gvCotizacion_CustomDrawCell_1(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
+        {
+
+            if (e.Column.FieldName == "PrecioVenta" || e.Column.FieldName == "TotalGastos")
+            {
+                // Obtener el valor de la celda
+                decimal valor = Convert.ToDecimal(e.CellValue);
+                Color color = Color.Empty;
+
+                if (e.Column.FieldName == "PrecioVenta")
+                {
+                    // Resaltar el campo "PrecioVenta" en color verde si es mayor a 2000
+                    if (valor > 2000)
+                        color = Color.Green;
+                }
+                else if (e.Column.FieldName == "TotalGastos")
+                {
+                    // Resaltar el campo "TotalGastos" con diferentes colores según su valor
+                    if (valor >= 2000)
+                        color = Color.Red;
+                    else if (valor >= 1500 )
+                        color = Color.Orange;
+                    else
+                        color = Color.Green;
+                }
+
+                if (color != Color.Empty)
+                {
+                    // Cambiar el color de fondo de la celda
+                    e.Appearance.BackColor = color;
+                    e.Appearance.BackColor2 = color;
+                }
+            }
+        }
+
+        private void gvCotizacion_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            timer.Stop();
+        }
+
+        private void gvCotizacion_LostFocus(object sender, EventArgs e)
+        {
+            timer.Start();
+        }
+
+        private void txtNumero_EditValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -5,12 +5,14 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.IO;
 using ErpPanorama.BusinessEntity;
 using ErpPanorama.BusinessLogic;
 using DevExpress.XtraEditors.Controls;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
+using DevExpress.Utils.Menu;
+using DevExpress.Utils;
 using ErpPanorama.Presentation.Funciones;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
@@ -30,7 +32,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
 
         private DataTable dtDatospestaña1;
         private DataTable dtDatosResumen;
-
+        private ImageCollection imageCollection;
         private void frmRegKiraCotizacionProductoTerminado_Load(object sender, EventArgs e)
         {
             ConfigurarComboBoxProductoTerminado();
@@ -40,7 +42,8 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             CrearDatable_GridControl();
             OcultarColumnasGridControlPestañas();
             calcularTotalGastospestaña2();
-
+            imageCollection = new ImageCollection();
+            imageCollection.AddImage(Properties.Resources.Stop_2);
         }
 
 
@@ -88,6 +91,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
         private void personalizacióncontrolesform()
         {
             int siguienteNumeroCotizacion = cotizacionKiraBL.ObtenerSiguienteNumeroCotizacionProductoTerminado();
+            txtNumeroCotizacion.Enabled = false;
             txtNumeroCotizacion.Text = siguienteNumeroCotizacion.ToString();
             Tabcontrol.TabPages[0].Text = "Producto Terminado";
             Tabcontrol.TabPages[1].Text = "Resumen";
@@ -582,6 +586,61 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             }
         }
 
-       
+        // Clase auxiliar para almacenar la información del menú contextual
+        private class MenuItemInfo
+        {
+            public GridView View { get; set; }
+            public int RowHandle { get; set; }
+
+            public MenuItemInfo(GridView view, int rowHandle)
+            {
+                View = view;
+                RowHandle = rowHandle;
+            }
+        }
+
+
+        // Evento que se activa cuando se hace clic en el elemento de menú "Eliminar Fila"
+        private void OnMenuItemClick(object sender, EventArgs e)
+        {
+            if (sender is DXMenuItem item)
+            {
+                if (item.Tag is MenuItemInfo menuItemInfo)
+                {
+                    if (menuItemInfo.View.IsValidRowHandle(menuItemInfo.RowHandle))
+                    {
+                        menuItemInfo.View.DeleteRow(menuItemInfo.RowHandle);
+                        // Obtener el DataTable asociado al gridControlPestaña1
+                        DataTable dt = (DataTable)gridControlPestaña1.DataSource;
+                        
+
+                        // Actualizar el resumen y el gridControlPestaña1
+                        AgregarDatosAlResumen();
+                        gridView1.RefreshData();
+
+                        // Calcular la suma de costos de la pestaña 1 y mostrarla en el textbox correspondiente
+                        decimal sumaCostosPestana1 = CalcularSumaCostosPestana1(dt);
+                        
+                        txtSumaCostosPestaña1.Text = sumaCostosPestana1.ToString("0.00");
+                       
+                    }
+                }
+            }
+        }
+        private void gridView1_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            if (e.MenuType == GridMenuType.Row)
+            {
+                int rowHandle = e.HitInfo.RowHandle;
+                GridView view = sender as GridView;
+                if (rowHandle >= 0 && view.IsDataRow(rowHandle))
+                {
+                    DXMenuItem menuItemEliminar = new DXMenuItem("Eliminar Fila", OnMenuItemClick);
+                    menuItemEliminar.ImageOptions.Image = imageCollection.Images[0]; // Agregar la imagen al elemento de menú
+                    menuItemEliminar.Tag = new MenuItemInfo(view, rowHandle);
+                    e.Menu.Items.Add(menuItemEliminar);
+                }
+            }
+        }
     }
 }
