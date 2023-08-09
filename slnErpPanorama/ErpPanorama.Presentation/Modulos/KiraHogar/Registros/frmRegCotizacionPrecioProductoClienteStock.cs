@@ -343,6 +343,12 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             txtMargen.Text = Parametros.margencontri.ToString();
             txtPrecioVenta.Enabled = false;
             txtMargen.Enabled = false;
+            btnActualizarPestaña1.Visible = false;
+            btnActualizarPestaña2.Visible = false;
+            btnActualizarPestaña3.Visible = false;
+            btnActualizarPestaña4.Visible = false;
+            btnActualizarPestaña5.Visible = false;
+
         }
 
         /// <summary>
@@ -350,7 +356,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         /// </summary>
         private void ConfigurarComboBoxTipoCotizacion()
         {
-            cboTipoCotizacion.Text = "Seleccione un Tipo";
+            //cboTipoCotizacion.Text = "Seleccione un Tipo";
             // Configurar propiedades del control ComboBoxEdit
             cboTipoCotizacion.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             // Crear instancia de ComboTipoCotizacionBL
@@ -363,6 +369,12 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             foreach (var item in listaComboTipoCotizacion)
             {
                 cboTipoCotizacion.Properties.Items.Add(item.DescTablaElemento);
+            }
+            // Seleccionar un valor por defecto (por ejemplo, el primer elemento de la lista)
+            if (listaComboTipoCotizacion.Count > 0)
+            {
+                cboTipoCotizacion.SelectedIndex = 0;
+                cboTipoCotizacion.Enabled = false; // Deshabilitar el ComboBox
             }
         }
         private void ConfigurarComboBoxMateriales()
@@ -1092,141 +1104,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             }
         }
 
-        private void btnguardar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                // Obtener el elemento ComboTipoCotizacionBE seleccionado en el ComboBox de Tipo de Cotización
-                ComboTipoCotizacionBE itemSeleccionado = comboTipoCotizacionBL.ObtenerComboTipoCotizacion()
-                    .FirstOrDefault(x => x.DescTablaElemento == cboTipoCotizacion.Text);
-
-                if (itemSeleccionado == null)
-                {
-                    MessageBox.Show("Debe seleccionar un tipo de cotización válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                // Obtener el elemento ComboTipoCotizacionBE seleccionado en el ComboBox de Tipo de Moneda
-                ComboTipoCotizacionBE itemMonedaSeleccionado = comboTipoCotizacionBL.ObtenerComboTipoMoneda()
-                    .FirstOrDefault(x => x.DescTablaElemento == cboTipoMoneda.Text);
-
-                if (itemMonedaSeleccionado == null)
-                {
-                    MessageBox.Show("Debe seleccionar un tipo de moneda válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                // Obtener el IdTablaElemento de los tipos de cotización y moneda seleccionados
-                int idTipoCotizacion = itemSeleccionado.IdTablaElemento;
-                int idMoneda = itemMonedaSeleccionado.IdTablaElemento;
-                // Crear objeto CotizacionKiraBE con los valores ingresados por el usuario
-                CotizacionKiraBE cotizacion = new CotizacionKiraBE
-                {
-                    IdTablaElemento = idTipoCotizacion, // IdTipoCotizacion obtenido del ComboBox de Tipo de Cotización
-                    Fecha = txtFecha.DateTime,
-                    CodigoProducto = txtCodigoProducto.Text,
-                    Descripcion = txtBreveDescripcion.Text,
-                    Caracteristicas = txtCaracteristicas.Text,
-                    Imagen = "",
-                    TotalGastos = decimal.TryParse(txtTotal.Text, out decimal totalGastos) ? totalGastos : 0.0m,
-                    PrecioVenta = decimal.TryParse(txtPrecioVenta.Text, out decimal precioVenta) ? precioVenta : 0.0m,
-                    IdMoneda = idMoneda, // IdMoneda obtenido del ComboBox de Tipo de Moneda
-                    FlagEstado = true
-                };
-
-                // Calcular las sumas de costos de cada pestaña y agregarlas al objeto CotizacionKiraBE
-                cotizacion.CostoMateriales = decimal.TryParse(txtSumaCostosPestaña1.Text, out decimal sumaCostosPestana1) ? sumaCostosPestana1 : 0.0m;
-                cotizacion.CostoInsumos = decimal.TryParse(txtSumaCostosPestaña2.Text, out decimal sumaCostosPestana2) ? sumaCostosPestana2 : 0.0m;
-                cotizacion.CostoAccesorios = decimal.TryParse(txtSumaCostosPestaña3.Text, out decimal sumaCostosPestana3) ? sumaCostosPestana3 : 0.0m;
-                cotizacion.CostoManoObra = decimal.TryParse(txtSumaCostosPestaña4.Text, out decimal sumaCostosPestana4) ? sumaCostosPestana4 : 0.0m;
-                cotizacion.CostoMovilidad = decimal.TryParse(txtSumaCostosPestaña5.Text, out decimal sumaCostosPestana5) ? sumaCostosPestana5 : 0.0m;
-                //cotizacion.CostoEquipos = decimal.TryParse(txtSumaCostosPestaña6.Text, out decimal sumaCostosPestana6) ? sumaCostosPestana6 : 0.0m;
-                cotizacion.CostoEquipos = decimal.Parse(txtEquipoyherramientas.Text);
-                // Guardar la imagen en el fileserver y obtener la ruta de destino
-                if (picImage.Image != null && !string.IsNullOrEmpty(openFile.FileName))
-                {
-                    string fileName = Path.GetFileName(openFile.FileName);
-                    string destinationPath = Path.Combine(@"\\172.16.0.155\Sistemas\Imagenes", fileName);
-                    try
-                    {
-                        File.Copy(openFile.FileName, destinationPath, true);
-                        cotizacion.Imagen = destinationPath;
-                    }
-                    catch (Exception ex)
-                    {
-                        // Manejar errores si ocurre algún problema al copiar la imagen
-                        MessageBox.Show("Error al guardar la imagen: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                }
-
-                // Crear un nuevo DataTable para el detalle completo con la estructura requerida
-                DataTable dtDetalleCompleto = new DataTable();
-                dtDetalleCompleto.Columns.Add("IdTablaElemento", typeof(int));
-                dtDetalleCompleto.Columns.Add("DescripcionGastos", typeof(string));
-                dtDetalleCompleto.Columns.Add("FlagAprobacion", typeof(bool));
-                dtDetalleCompleto.Columns.Add("FlagEstado", typeof(bool));
-                dtDetalleCompleto.Columns.Add("Costo" + " " + " S/.", typeof(decimal));
-                dtDetalleCompleto.Columns.Add("Item", typeof(int)); // Nueva columna para almacenar el número de item
-
-                // Agregar los datos de cada pestaña al DataTable dtDetalleCompleto
-                AgregarDatosDePestanaAlDetalle(dtDatospestaña1, dtDetalleCompleto);
-                AgregarDatosDePestanaAlDetalle(dtDatospestaña2, dtDetalleCompleto);
-                AgregarDatosDePestanaAlDetalle(dtDatospestaña3, dtDetalleCompleto);
-                AgregarDatosDePestanaAlDetalle(dtDatospestaña4, dtDetalleCompleto);
-                AgregarDatosDePestanaAlDetalle(dtDatospestaña5, dtDetalleCompleto);
-                AgregarDatosDePestanaAlDetalle(dtDatospestaña6, dtDetalleCompleto);
-
-
-                // Obtener la lista de detalles de cotización desde el dtDetalleCompleto
-                List<DetalleCotizacionBE> detallesCotizacion = new List<DetalleCotizacionBE>();
-                foreach (DataRow row in dtDetalleCompleto.Rows)
-                {
-                    DetalleCotizacionBE detalle = new DetalleCotizacionBE
-                    {
-                        IdTablaElemento = Convert.ToInt32(row["IdTablaElemento"]),
-                        Item = Convert.ToInt32(row["Item"]),
-                        DescripcionGastos = row["DescripcionGastos"].ToString(),
-                        FlagAprobacion = Convert.ToBoolean(row["FlagAprobacion"]),
-                        FlagEstado = Convert.ToBoolean(row["FlagEstado"]),
-                        Costo = Convert.ToDecimal(row["Costo" + " " + " S/."]) // Agregar el campo Costo
-                    };
-                    detallesCotizacion.Add(detalle);
-                }
-
-                // Llamada al procedimiento almacenado con la nueva estructura
-                int idCotizacion = 0;
-                cotizacionKiraBL.RegistrarCotizacionYDetalle(cotizacion, detallesCotizacion, out idCotizacion);
-
-                LimpiarControlesTextBox(this.Controls);
-                valorespredeterminadosdeloscbo();
-                lblCodigoExistente.Text = "";
-                DataTable dtVacio = new DataTable();
-                gridControlPestaña1.DataSource = dtVacio;
-                gridControlPestaña2.DataSource = dtVacio;
-                gridControlPestaña3.DataSource = dtVacio;
-                gridControlPestaña4.DataSource = dtVacio;
-                gridControlPestaña5.DataSource = dtVacio;
-                gridControlPestaña6.DataSource = dtVacio;
-                gridControlPestaña7Resumen.DataSource = dtVacio;
-                this.picImage.Image = ErpPanorama.Presentation.Properties.Resources.noImage;
-
-                MessageBox.Show("La cotización se registró correctamente. ID de cotización: " + idCotizacion, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                // Suponiendo que tienes una instancia de frmRegKiraCotizacion llamada formRegKiraCotizacion
-                if (formRegKiraCotizacion == null)
-                {
-                    // Crear una nueva instancia si no existe
-                    formRegKiraCotizacion = new frmRegKiraCotizacion();
-                }
-
-                // Llamar al método CargarListadoCotizaciones del formulario frmRegKiraCotizacion
-                formRegKiraCotizacion.CargarListadoCotizaciones();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ocurrió un error al guardar la cotización: " + ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                LimpiarControlesTextBox(this.Controls);
-            }
-        }
+        
         public void LimpiarControlesTextBox(Control.ControlCollection controls)
         {
             foreach (Control control in controls)
@@ -1571,6 +1449,153 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
                     e.Menu.Items.Add(menuItemEliminar);
                 }
             }
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Obtener el elemento ComboTipoCotizacionBE seleccionado en el ComboBox de Tipo de Cotización
+                ComboTipoCotizacionBE itemSeleccionado = comboTipoCotizacionBL.ObtenerComboTipoCotizacion()
+                    .FirstOrDefault(x => x.DescTablaElemento == cboTipoCotizacion.Text);
+
+                if (itemSeleccionado == null)
+                {
+                    MessageBox.Show("Debe seleccionar un tipo de cotización válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                // Obtener el elemento ComboTipoCotizacionBE seleccionado en el ComboBox de Tipo de Moneda
+                ComboTipoCotizacionBE itemMonedaSeleccionado = comboTipoCotizacionBL.ObtenerComboTipoMoneda()
+                    .FirstOrDefault(x => x.DescTablaElemento == cboTipoMoneda.Text);
+
+                if (itemMonedaSeleccionado == null)
+                {
+                    MessageBox.Show("Debe seleccionar un tipo de moneda válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Obtener el IdTablaElemento de los tipos de cotización y moneda seleccionados
+                int idTipoCotizacion = itemSeleccionado.IdTablaElemento;
+                int idMoneda = itemMonedaSeleccionado.IdTablaElemento;
+                // Crear objeto CotizacionKiraBE con los valores ingresados por el usuario
+                CotizacionKiraBE cotizacion = new CotizacionKiraBE
+                {
+                    IdTablaElemento = idTipoCotizacion, // IdTipoCotizacion obtenido del ComboBox de Tipo de Cotización
+                    Fecha = txtFecha.DateTime,
+                    CodigoProducto = txtCodigoProducto.Text,
+                    Descripcion = txtBreveDescripcion.Text,
+                    Caracteristicas = txtCaracteristicas.Text,
+                    Imagen = "",
+                    TotalGastos = decimal.TryParse(txtTotal.Text, out decimal totalGastos) ? totalGastos : 0.0m,
+                    PrecioVenta = decimal.TryParse(txtPrecioVenta.Text, out decimal precioVenta) ? precioVenta : 0.0m,
+                    IdMoneda = idMoneda, // IdMoneda obtenido del ComboBox de Tipo de Moneda
+                    FlagEstado = true
+                };
+
+                // Calcular las sumas de costos de cada pestaña y agregarlas al objeto CotizacionKiraBE
+                cotizacion.CostoMateriales = decimal.TryParse(txtSumaCostosPestaña1.Text, out decimal sumaCostosPestana1) ? sumaCostosPestana1 : 0.0m;
+                cotizacion.CostoInsumos = decimal.TryParse(txtSumaCostosPestaña2.Text, out decimal sumaCostosPestana2) ? sumaCostosPestana2 : 0.0m;
+                cotizacion.CostoAccesorios = decimal.TryParse(txtSumaCostosPestaña3.Text, out decimal sumaCostosPestana3) ? sumaCostosPestana3 : 0.0m;
+                cotizacion.CostoManoObra = decimal.TryParse(txtSumaCostosPestaña4.Text, out decimal sumaCostosPestana4) ? sumaCostosPestana4 : 0.0m;
+                cotizacion.CostoMovilidad = decimal.TryParse(txtSumaCostosPestaña5.Text, out decimal sumaCostosPestana5) ? sumaCostosPestana5 : 0.0m;
+                //cotizacion.CostoEquipos = decimal.TryParse(txtSumaCostosPestaña6.Text, out decimal sumaCostosPestana6) ? sumaCostosPestana6 : 0.0m;
+                cotizacion.CostoEquipos = decimal.Parse(txtEquipoyherramientas.Text);
+                // Guardar la imagen en el fileserver y obtener la ruta de destino
+                if (picImage.Image != null && !string.IsNullOrEmpty(openFile.FileName))
+                {
+                    string fileName = Path.GetFileName(openFile.FileName);
+                    string destinationPath = Path.Combine(@"\\172.16.0.155\Sistemas\Imagenes", fileName);
+                    try
+                    {
+                        File.Copy(openFile.FileName, destinationPath, true);
+                        cotizacion.Imagen = destinationPath;
+                    }
+                    catch (Exception ex)
+                    {
+                        // Manejar errores si ocurre algún problema al copiar la imagen
+                        MessageBox.Show("Error al guardar la imagen: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+
+                // Crear un nuevo DataTable para el detalle completo con la estructura requerida
+                DataTable dtDetalleCompleto = new DataTable();
+                dtDetalleCompleto.Columns.Add("IdTablaElemento", typeof(int));
+                dtDetalleCompleto.Columns.Add("DescripcionGastos", typeof(string));
+                dtDetalleCompleto.Columns.Add("FlagAprobacion", typeof(bool));
+                dtDetalleCompleto.Columns.Add("FlagEstado", typeof(bool));
+                dtDetalleCompleto.Columns.Add("Costo" + " " + " S/.", typeof(decimal));
+                dtDetalleCompleto.Columns.Add("Item", typeof(int)); // Nueva columna para almacenar el número de item
+
+                // Agregar los datos de cada pestaña al DataTable dtDetalleCompleto
+                AgregarDatosDePestanaAlDetalle(dtDatospestaña1, dtDetalleCompleto);
+                AgregarDatosDePestanaAlDetalle(dtDatospestaña2, dtDetalleCompleto);
+                AgregarDatosDePestanaAlDetalle(dtDatospestaña3, dtDetalleCompleto);
+                AgregarDatosDePestanaAlDetalle(dtDatospestaña4, dtDetalleCompleto);
+                AgregarDatosDePestanaAlDetalle(dtDatospestaña5, dtDetalleCompleto);
+                AgregarDatosDePestanaAlDetalle(dtDatospestaña6, dtDetalleCompleto);
+
+
+                // Obtener la lista de detalles de cotización desde el dtDetalleCompleto
+                List<DetalleCotizacionBE> detallesCotizacion = new List<DetalleCotizacionBE>();
+                foreach (DataRow row in dtDetalleCompleto.Rows)
+                {
+                    DetalleCotizacionBE detalle = new DetalleCotizacionBE
+                    {
+                        IdTablaElemento = Convert.ToInt32(row["IdTablaElemento"]),
+                        Item = Convert.ToInt32(row["Item"]),
+                        DescripcionGastos = row["DescripcionGastos"].ToString(),
+                        FlagAprobacion = Convert.ToBoolean(row["FlagAprobacion"]),
+                        FlagEstado = Convert.ToBoolean(row["FlagEstado"]),
+                        Costo = Convert.ToDecimal(row["Costo" + " " + " S/."]) // Agregar el campo Costo
+                    };
+                    detallesCotizacion.Add(detalle);
+                }
+
+                // Llamada al procedimiento almacenado con la nueva estructura
+                int idCotizacion = 0;
+                cotizacionKiraBL.RegistrarCotizacionYDetalle(cotizacion, detallesCotizacion, out idCotizacion);
+
+                LimpiarControlesTextBox(this.Controls);
+                valorespredeterminadosdeloscbo();
+                lblCodigoExistente.Text = "";
+                DataTable dtVacio = new DataTable();
+                gridControlPestaña1.DataSource = dtVacio;
+                gridControlPestaña2.DataSource = dtVacio;
+                gridControlPestaña3.DataSource = dtVacio;
+                gridControlPestaña4.DataSource = dtVacio;
+                gridControlPestaña5.DataSource = dtVacio;
+                gridControlPestaña6.DataSource = dtVacio;
+                gridControlPestaña7Resumen.DataSource = dtVacio;
+                this.picImage.Image = ErpPanorama.Presentation.Properties.Resources.noImage;
+
+                MessageBox.Show("La cotización se registró correctamente. ID de cotización: " + idCotizacion, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Suponiendo que tienes una instancia de frmRegKiraCotizacion llamada formRegKiraCotizacion
+                if (formRegKiraCotizacion == null)
+                {
+                    // Crear una nueva instancia si no existe
+                    formRegKiraCotizacion = new frmRegKiraCotizacion();
+                }
+
+                // Llamar al método CargarListadoCotizaciones del formulario frmRegKiraCotizacion
+                formRegKiraCotizacion.CargarListadoCotizaciones();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error al guardar la cotización: " + ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                LimpiarControlesTextBox(this.Controls);
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void labelControl3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

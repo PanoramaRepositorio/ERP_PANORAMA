@@ -167,11 +167,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // gcCotizaciones
             // 
-            this.gcCotizaciones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcCotizaciones.Location = new System.Drawing.Point(0, 83);
             this.gcCotizaciones.MainView = this.gvCotizacion;
             this.gcCotizaciones.Name = "gcCotizaciones";
-            this.gcCotizaciones.Size = new System.Drawing.Size(1748, 474);
+            this.gcCotizaciones.Size = new System.Drawing.Size(1748, 174);
             this.gcCotizaciones.TabIndex = 26;
             this.gcCotizaciones.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvCotizacion});
@@ -201,6 +200,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gvCotizacion.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gvCotizacion_CustomDrawCell_1);
             this.gvCotizacion.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.gvCotizacion_PopupMenuShowing);
             this.gvCotizacion.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gvCotizacion_FocusedRowChanged);
+            this.gvCotizacion.DoubleClick += new System.EventHandler(this.gvCotizacion_DoubleClick);
             this.gvCotizacion.LostFocus += new System.EventHandler(this.gvCotizacion_LostFocus);
             // 
             // gridColumn12

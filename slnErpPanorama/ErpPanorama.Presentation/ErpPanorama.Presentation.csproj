@@ -1676,6 +1676,12 @@
     <Compile Include="Modulos\KiraHogar\Registros\frmRegCotizacionPrecioProductoClienteStock.designer.cs">
       <DependentUpon>frmRegCotizacionPrecioProductoClienteStock.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modulos\KiraHogar\Registros\frmRegCotizacionPrecioProductoClienteStockEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\KiraHogar\Registros\frmRegCotizacionPrecioProductoClienteStockEdit.Designer.cs">
+      <DependentUpon>frmRegCotizacionPrecioProductoClienteStockEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modulos\KiraHogar\Registros\frmRegKiraCotizacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4736,6 +4742,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\KiraHogar\Registros\frmRegCotizacionPrecioProductoClienteStock.resx">
       <DependentUpon>frmRegCotizacionPrecioProductoClienteStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\KiraHogar\Registros\frmRegCotizacionPrecioProductoClienteStockEdit.resx">
+      <DependentUpon>frmRegCotizacionPrecioProductoClienteStockEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\KiraHogar\Registros\frmRegKiraCotizacion.resx">
       <DependentUpon>frmRegKiraCotizacion.cs</DependentUpon>

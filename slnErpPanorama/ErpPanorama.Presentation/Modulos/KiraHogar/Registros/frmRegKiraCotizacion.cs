@@ -244,51 +244,22 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
 
             try
             {
-                int focusedRowHandle = gvCotizacion.FocusedRowHandle;
-                CotizacionKiraBE cotizacionOriginal = (CotizacionKiraBE)gvCotizacion.GetRow(focusedRowHandle);
-
-                string nuevoCodigoProducto = gvCotizacion.GetRowCellValue(focusedRowHandle, "CodigoProducto").ToString();
-                string nuevaDescripcion = gvCotizacion.GetRowCellValue(focusedRowHandle, "Descripcion").ToString();
-
-                if (cotizacionOriginal.CodigoProducto != nuevoCodigoProducto &&
-                    cotizacionKiraBL.ExisteCodigoProducto(nuevoCodigoProducto))
+                int rowIndex = gvCotizacion.FocusedRowHandle;
+                if (rowIndex >= 0)
                 {
-                    MessageBox.Show("El nuevo CodigoProducto ya existe en la base de datos. Por favor, elija otro.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+                    CotizacionKiraBE cotizacion = (CotizacionKiraBE)gvCotizacion.GetRow(rowIndex);
 
-                cotizacionKiraBL.ActualizarCotizacionPorId(cotizacionOriginal.IdCotizacion, nuevoCodigoProducto, nuevaDescripcion);
-
-                // Actualizar la lista de cotizaciones filtradas con la cotización modificada
-                int index = cotizacionesFiltradas.FindIndex(c => c.IdCotizacion == cotizacionOriginal.IdCotizacion);
-                if (index != -1)
-                {
-                    cotizacionesFiltradas[index].CodigoProducto = nuevoCodigoProducto;
-                    cotizacionesFiltradas[index].Descripcion = nuevaDescripcion;
-                }
-
-                // Actualizar la vista del GridControl
-                gvCotizacion.RefreshRow(focusedRowHandle);
-
-                MessageBox.Show("Los cambios se guardaron correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (SqlException ex)
-            {
-                if (ex.Number == 50001)
-                {
-                    MessageBox.Show("El nuevo CodigoProducto ya existe en la base de datos. Por favor, elija otro.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                else
-                {
-                    MessageBox.Show("Error al guardar los cambios: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (cotizacion != null)
+                    {
+                        AbrirFormularioEdicion(cotizacion.IdCotizacion); // Utilizas el método existente para abrir el formulario de edición
+                    }
                 }
             }
             catch (Exception ex)
             {
-                //MessageBox.Show("Error al guardar los cambios: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                MessageBox.Show("Los cambios se guardaron correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Error al editar la cotización: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        
+
         }
 
         private void txtNumero_KeyDown(object sender, KeyEventArgs e)
@@ -391,6 +362,20 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
         private void txtNumero_EditValueChanged(object sender, EventArgs e)
         {
 
+        }
+     
+        private void AbrirFormularioEdicion(int idCotizacion)
+        {
+            frmRegCotizacionPrecioProductoClienteStockEdit frmEditar = new frmRegCotizacionPrecioProductoClienteStockEdit();
+            frmEditar.IdCotizacion = idCotizacion;
+            frmEditar.ShowDialog();
+        }
+        private void gvCotizacion_DoubleClick(object sender, EventArgs e)
+        {
+            if (gvCotizacion.GetFocusedRow() is CotizacionKiraBE cotizacion)
+            {
+                AbrirFormularioEdicion(cotizacion.IdCotizacion);
+            }
         }
     }
 }

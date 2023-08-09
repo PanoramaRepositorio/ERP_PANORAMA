@@ -69,8 +69,22 @@ namespace ErpPanorama.BusinessLogic
             return cotizacionKiraDL.ExisteCodigoProductoDuplicado(idCotizacion, nuevoCodigoProducto);
         }
 
+        // Método para actualizar una cotización
+        public void ActualizarCotizacion(CotizacionKiraBE cotizacion)
+        {
+            cotizacionKiraDL.ActualizarCotizacion(cotizacion);
+        }
 
 
+        public List<DetalleCotizacionBE> ObtenerDetallesCotizacionPorId(int idCotizacion)
+        {
+            return cotizacionKiraDL.ObtenerDetallesCotizacionPorId(idCotizacion);
+        }
+
+        public CotizacionKiraBE ObtenerCotizacionPorId(int idCotizacion)
+        {
+            return cotizacionKiraDL.ObtenerCotizacionPorId(idCotizacion);
+        }
 
     }
 }

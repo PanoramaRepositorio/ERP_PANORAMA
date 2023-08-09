@@ -64,5 +64,17 @@ namespace ErpPanorama.BusinessEntity
         public bool FlagEstado { get; set; }
         [DataMember]
         public string DescTablaElemento { get; set; }
+        // Nuevas propiedades para el detalle
+        [DataMember]
+        public string DescripcionGastos { get; set; }
+
+        [DataMember]
+        public bool FlagAprobacion { get; set; }
+
+        [DataMember]
+        public bool FlagEstadoDetalle { get; set; }
+
+        [DataMember]
+        public decimal CostoDetalle { get; set; }
     }
 }

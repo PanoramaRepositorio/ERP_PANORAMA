@@ -278,5 +278,125 @@ namespace ErpPanorama.DataLogic
         }
 
 
+        // Método para actualizar una cotización
+        public void ActualizarCotizacion(CotizacionKiraBE cotizacion)
+        {
+            using (DbCommand cmd = db.GetStoredProcCommand("usp_ActualizarCotizacion"))
+            {
+                db.AddInParameter(cmd, "@IdCotizacion", DbType.Int32, cotizacion.IdCotizacion);
+                db.AddInParameter(cmd, "@NuevoCodigoProducto", DbType.String, cotizacion.CodigoProducto);
+                db.AddInParameter(cmd, "@NuevaDescripcion", DbType.String, cotizacion.Descripcion);
+                db.AddInParameter(cmd, "@NuevoCaracteristicas", DbType.String, cotizacion.Caracteristicas);
+                db.AddInParameter(cmd, "@NuevoImagen", DbType.String, cotizacion.Imagen);
+                db.AddInParameter(cmd, "@NuevoCostoMateriales", DbType.Decimal, cotizacion.CostoMateriales);
+                db.AddInParameter(cmd, "@NuevoCostoInsumos", DbType.Decimal, cotizacion.CostoInsumos);
+                db.AddInParameter(cmd, "@NuevoCostoAccesorios", DbType.Decimal, cotizacion.CostoAccesorios);
+                db.AddInParameter(cmd, "@NuevoCostoManoObra", DbType.Decimal, cotizacion.CostoManoObra);
+                db.AddInParameter(cmd, "@NuevoCostoMovilidad", DbType.Decimal, cotizacion.CostoMovilidad);
+                db.AddInParameter(cmd, "@NuevoCostoEquipos", DbType.Decimal, cotizacion.CostoEquipos);
+                db.AddInParameter(cmd, "@NuevoTotalGastos", DbType.Decimal, cotizacion.TotalGastos);
+                db.AddInParameter(cmd, "@NuevoPrecioVenta", DbType.Decimal, cotizacion.PrecioVenta);
+                db.AddInParameter(cmd, "@NuevoMoneda", DbType.Int32, cotizacion.IdMoneda);
+                db.AddInParameter(cmd, "@NuevoFlagEstado", DbType.Boolean, cotizacion.FlagEstado);
+                db.AddInParameter(cmd, "@NuevaDescripcionGastos", DbType.String, cotizacion.DescripcionGastos);
+                db.AddInParameter(cmd, "@NuevoFlagAprobacion", DbType.Boolean, cotizacion.FlagAprobacion);
+                db.AddInParameter(cmd, "@NuevoFlagEstadoDetalle", DbType.Boolean, cotizacion.FlagEstadoDetalle);
+                db.AddInParameter(cmd, "@NuevoCosto", DbType.Decimal, cotizacion.CostoDetalle);
+
+                db.ExecuteNonQuery(cmd);
+            }
+        }
+
+
+        public List<DetalleCotizacionBE> ObtenerDetallesCotizacionPorId(int idCotizacion)
+        {
+            List<DetalleCotizacionBE> detalles = new List<DetalleCotizacionBE>();
+
+            try
+            {
+                Database db = DatabaseFactory.CreateDatabase("cnErpPanoramaBD");
+
+                using (DbCommand cmd = db.GetStoredProcCommand("usp_ObtenerDetallesCotizacionPorId"))
+                {
+                    db.AddInParameter(cmd, "@IdCotizacion", DbType.Int32, idCotizacion);
+
+                    using (IDataReader dr = db.ExecuteReader(cmd))
+                    {
+                        while (dr.Read())
+                        {
+                            DetalleCotizacionBE detalle = new DetalleCotizacionBE
+                            {
+                                IdTablaElemento = Convert.ToInt32(dr["IdTablaElemento"]),
+                                Item = Convert.ToInt32(dr["Item"]),
+                                DescripcionGastos = dr["DescripcionGastos"].ToString(),
+                                FlagAprobacion = Convert.ToBoolean(dr["FlagAprobacion"]),
+                                FlagEstado = Convert.ToBoolean(dr["FlagEstado"]),
+                                Costo = Convert.ToDecimal(dr["Costo"])
+                            };
+
+                            detalles.Add(detalle);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones
+            }
+
+            return detalles;
+        }
+
+        public CotizacionKiraBE ObtenerCotizacionPorId(int idCotizacion)
+        {
+            CotizacionKiraBE cotizacion = null;
+
+            try
+            {
+                using (DbCommand cmd = db.GetStoredProcCommand("usp_ObtenerCotizacionPorId"))
+                {
+                    db.AddInParameter(cmd, "@IdCotizacion", DbType.Int32, idCotizacion);
+
+                    using (IDataReader dr = db.ExecuteReader(cmd))
+                    {
+                        if (dr.Read())
+                        {
+                            cotizacion = new CotizacionKiraBE
+                            {
+                                IdCotizacion = Convert.ToInt32(dr["IdCotizacion"]),
+                                IdTablaElemento = Convert.ToInt32(dr["IdTablaElemento"]),
+                                Fecha = Convert.ToDateTime(dr["Fecha"]),
+                                CodigoProducto = dr["CodigoProducto"].ToString(),
+                                Descripcion = dr["Descripcion"].ToString(),
+                                Caracteristicas = dr["Caracteristicas"].ToString(),
+                                Imagen = dr["Imagen"].ToString(),
+                                CostoMateriales = Convert.ToDecimal(dr["CostoMateriales"]),
+                                CostoInsumos = Convert.ToDecimal(dr["CostoInsumos"]),
+                                CostoAccesorios = Convert.ToDecimal(dr["CostoAccesorios"]),
+                                CostoManoObra = Convert.ToDecimal(dr["CostoManoObra"]),
+                                CostoMovilidad = Convert.ToDecimal(dr["CostoMovilidad"]),
+                                CostoEquipos = Convert.ToDecimal(dr["CostoEquipos"]),
+                                TotalGastos = Convert.ToDecimal(dr["TotalGastos"]),
+                                PrecioVenta = Convert.ToDecimal(dr["PrecioVenta"]),
+                                IdMoneda = Convert.ToInt32(dr["Moneda"]), // Nueva columna Moneda
+                                FlagEstado = Convert.ToBoolean(dr["FlagEstado"]),
+                                DescTablaElemento = dr["DescTablaElemento"].ToString(),
+                                DescripcionGastos = dr["DescripcionGastos"].ToString(),
+                                FlagAprobacion = Convert.ToBoolean(dr["FlagAprobacion"]),
+                                FlagEstadoDetalle = Convert.ToBoolean(dr["FlagEstadoDetalle"]),
+                                CostoDetalle = Convert.ToDecimal(dr["CostoDetalle"])
+                            };
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones
+            }
+
+            return cotizacion;
+        }
+
     }
 }

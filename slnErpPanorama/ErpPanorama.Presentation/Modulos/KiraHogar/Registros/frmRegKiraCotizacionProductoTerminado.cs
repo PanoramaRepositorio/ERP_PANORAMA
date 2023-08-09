@@ -63,7 +63,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
 
         private void ConfigurarComboBoxTipoCotizacion()
         {
-            cboTipoCotizacion.Text = "Seleccione un Tipo";
+            //cboTipoCotizacion.Text = "Seleccione un Tipo";
             cboTipoCotizacion.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             comboTipoCotizacionBL = new ComboTipoCotizacionBL();
             List<ComboTipoCotizacionBE> listaComboTipoCotizacion = comboTipoCotizacionBL.ObtenerComboTipoCotizacion();
@@ -71,6 +71,12 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             foreach (var item in listaComboTipoCotizacion)
             {
                 cboTipoCotizacion.Properties.Items.Add(item.DescTablaElemento);
+            }
+            // Seleccionar un valor por defecto (por ejemplo, el primer elemento de la lista)
+            if (listaComboTipoCotizacion.Count > 0)
+            {
+                cboTipoCotizacion.SelectedIndex = 1;
+                cboTipoCotizacion.Enabled = false; // Deshabilitar el ComboBox
             }
         }
 
@@ -103,6 +109,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             txtMargen.Text = Parametros.margencontri.ToString();
             txtPrecioVenta.Enabled = false;
             txtMargen.Enabled = false;
+            btnActualizarPestaña1.Visible = false;
         }
 
         private void CrearDatable_GridControl()
@@ -475,8 +482,68 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             }
         }
 
-        private void btnguardar_Click(object sender, EventArgs e)
+       
+
+        // Clase auxiliar para almacenar la información del menú contextual
+        private class MenuItemInfo
         {
+            public GridView View { get; set; }
+            public int RowHandle { get; set; }
+
+            public MenuItemInfo(GridView view, int rowHandle)
+            {
+                View = view;
+                RowHandle = rowHandle;
+            }
+        }
+
+
+        // Evento que se activa cuando se hace clic en el elemento de menú "Eliminar Fila"
+        private void OnMenuItemClick(object sender, EventArgs e)
+        {
+            if (sender is DXMenuItem item)
+            {
+                if (item.Tag is MenuItemInfo menuItemInfo)
+                {
+                    if (menuItemInfo.View.IsValidRowHandle(menuItemInfo.RowHandle))
+                    {
+                        menuItemInfo.View.DeleteRow(menuItemInfo.RowHandle);
+                        // Obtener el DataTable asociado al gridControlPestaña1
+                        DataTable dt = (DataTable)gridControlPestaña1.DataSource;
+                        
+
+                        // Actualizar el resumen y el gridControlPestaña1
+                        AgregarDatosAlResumen();
+                        gridView1.RefreshData();
+
+                        // Calcular la suma de costos de la pestaña 1 y mostrarla en el textbox correspondiente
+                        decimal sumaCostosPestana1 = CalcularSumaCostosPestana1(dt);
+                        
+                        txtSumaCostosPestaña1.Text = sumaCostosPestana1.ToString("0.00");
+                       
+                    }
+                }
+            }
+        }
+        private void gridView1_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            if (e.MenuType == GridMenuType.Row)
+            {
+                int rowHandle = e.HitInfo.RowHandle;
+                GridView view = sender as GridView;
+                if (rowHandle >= 0 && view.IsDataRow(rowHandle))
+                {
+                    DXMenuItem menuItemEliminar = new DXMenuItem("Eliminar Fila", OnMenuItemClick);
+                    menuItemEliminar.ImageOptions.Image = imageCollection.Images[0]; // Agregar la imagen al elemento de menú
+                    menuItemEliminar.Tag = new MenuItemInfo(view, rowHandle);
+                    e.Menu.Items.Add(menuItemEliminar);
+                }
+            }
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+
             try
             {
                 // Obtener el elemento ComboTipoCotizacionBE seleccionado en el ComboBox de Tipo de Cotización
@@ -586,61 +653,14 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             }
         }
 
-        // Clase auxiliar para almacenar la información del menú contextual
-        private class MenuItemInfo
+        private void btnCancelar_Click(object sender, EventArgs e)
         {
-            public GridView View { get; set; }
-            public int RowHandle { get; set; }
-
-            public MenuItemInfo(GridView view, int rowHandle)
-            {
-                View = view;
-                RowHandle = rowHandle;
-            }
+            this.Close();
         }
 
-
-        // Evento que se activa cuando se hace clic en el elemento de menú "Eliminar Fila"
-        private void OnMenuItemClick(object sender, EventArgs e)
+        private void labelControl17_Click(object sender, EventArgs e)
         {
-            if (sender is DXMenuItem item)
-            {
-                if (item.Tag is MenuItemInfo menuItemInfo)
-                {
-                    if (menuItemInfo.View.IsValidRowHandle(menuItemInfo.RowHandle))
-                    {
-                        menuItemInfo.View.DeleteRow(menuItemInfo.RowHandle);
-                        // Obtener el DataTable asociado al gridControlPestaña1
-                        DataTable dt = (DataTable)gridControlPestaña1.DataSource;
-                        
 
-                        // Actualizar el resumen y el gridControlPestaña1
-                        AgregarDatosAlResumen();
-                        gridView1.RefreshData();
-
-                        // Calcular la suma de costos de la pestaña 1 y mostrarla en el textbox correspondiente
-                        decimal sumaCostosPestana1 = CalcularSumaCostosPestana1(dt);
-                        
-                        txtSumaCostosPestaña1.Text = sumaCostosPestana1.ToString("0.00");
-                       
-                    }
-                }
-            }
-        }
-        private void gridView1_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
-        {
-            if (e.MenuType == GridMenuType.Row)
-            {
-                int rowHandle = e.HitInfo.RowHandle;
-                GridView view = sender as GridView;
-                if (rowHandle >= 0 && view.IsDataRow(rowHandle))
-                {
-                    DXMenuItem menuItemEliminar = new DXMenuItem("Eliminar Fila", OnMenuItemClick);
-                    menuItemEliminar.ImageOptions.Image = imageCollection.Images[0]; // Agregar la imagen al elemento de menú
-                    menuItemEliminar.Tag = new MenuItemInfo(view, rowHandle);
-                    e.Menu.Items.Add(menuItemEliminar);
-                }
-            }
         }
     }
 }
