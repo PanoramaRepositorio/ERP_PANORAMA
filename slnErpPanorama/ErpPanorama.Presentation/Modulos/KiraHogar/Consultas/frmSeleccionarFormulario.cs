@@ -11,7 +11,7 @@ using ErpPanorama.Presentation.Modulos.KiraHogar.Registros;
 
 namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
 {
-    public partial class frmSeleccionarFormulario : Form
+    public partial class frmSeleccionarFormulario : DevExpress.XtraEditors.XtraForm
     {
         public frmSeleccionarFormulario()
         {
