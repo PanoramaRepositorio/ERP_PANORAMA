@@ -63,6 +63,14 @@ namespace ErpPanorama.BusinessLogic
             return cotizacionKiraDL.FiltrarCotizacionesPorPeriodoYNumero(periodo, numeroCotizacion);
         }
 
+        public bool ExisteCodigoProductoDuplicado(int idCotizacion, string nuevoCodigoProducto)
+        {
+            // Verifica si existe otro registro con el mismo CodigoProducto excepto el registro actual
+            return cotizacionKiraDL.ExisteCodigoProductoDuplicado(idCotizacion, nuevoCodigoProducto);
+        }
+
+
+
 
     }
 }
