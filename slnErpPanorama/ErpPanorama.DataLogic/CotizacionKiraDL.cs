@@ -248,7 +248,7 @@ namespace ErpPanorama.DataLogic
                             cotizacion.TotalGastos = reader["TotalGastos"] != DBNull.Value ? Convert.ToDecimal(reader["TotalGastos"]) : 0;
                             cotizacion.PrecioVenta = reader["PrecioVenta"] != DBNull.Value ? Convert.ToDecimal(reader["PrecioVenta"]) : 0;
                             cotizacion.Fecha = reader["Fecha"] != DBNull.Value ? Convert.ToDateTime(reader["Fecha"]) : DateTime.MinValue;
-                            // Agregamos la columna DescTablaElemento a la entidad CotizacionKiraBE
+                            //// Agregamos la columna DescTablaElemento a la entidad CotizacionKiraBE
                             cotizacion.DescTablaElemento = reader["DescTablaElemento"].ToString();
                             cotizaciones.Add(cotizacion);
                         }
@@ -259,7 +259,23 @@ namespace ErpPanorama.DataLogic
             return cotizaciones;
         }
 
+        public bool ExisteCodigoProductoDuplicado(int idCotizacion, string nuevoCodigoProducto)
+        {
+            using (var connection = db.CreateConnection())
+            {
+                connection.Open();
+                using (var command = db.GetStoredProcCommand("usp_ValidarCodigoProductoDuplicado"))
+                {
+                    db.AddInParameter(command, "@IdCotizacion", DbType.Int32, idCotizacion);
+                    db.AddInParameter(command, "@CodigoProducto", DbType.String, nuevoCodigoProducto);
+                    db.AddOutParameter(command, "@ExisteDuplicado", DbType.Boolean, 1);
 
+                    db.ExecuteNonQuery(command);
+
+                    return Convert.ToBoolean(db.GetParameterValue(command, "@ExisteDuplicado"));
+                }
+            }
+        }
 
 
     }
