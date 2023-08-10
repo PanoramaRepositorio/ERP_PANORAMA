@@ -295,7 +295,7 @@ namespace ErpPanorama.DataLogic
                 db.AddInParameter(cmd, "@NuevoCostoManoObra", DbType.Decimal, cotizacion.CostoManoObra);
                 db.AddInParameter(cmd, "@NuevoCostoMovilidad", DbType.Decimal, cotizacion.CostoMovilidad);
                 db.AddInParameter(cmd, "@NuevoCostoEquipos", DbType.Decimal, cotizacion.CostoEquipos);
-                db.AddInParameter(cmd, "@NuevoMoneda", DbType.Int32, cotizacion.IdMoneda);
+                //db.AddInParameter(cmd, "@NuevoMoneda", DbType.Int32, cotizacion.IdMoneda);
                 db.ExecuteNonQuery(cmd);
             }
         }
