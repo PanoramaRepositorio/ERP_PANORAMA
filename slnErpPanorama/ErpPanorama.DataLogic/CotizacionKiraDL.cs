@@ -259,6 +259,7 @@ namespace ErpPanorama.DataLogic
             return cotizaciones;
         }
 
+
         public bool ExisteCodigoProductoDuplicado(int idCotizacion, string nuevoCodigoProducto)
         {
             using (var connection = db.CreateConnection())
@@ -294,58 +295,13 @@ namespace ErpPanorama.DataLogic
                 db.AddInParameter(cmd, "@NuevoCostoManoObra", DbType.Decimal, cotizacion.CostoManoObra);
                 db.AddInParameter(cmd, "@NuevoCostoMovilidad", DbType.Decimal, cotizacion.CostoMovilidad);
                 db.AddInParameter(cmd, "@NuevoCostoEquipos", DbType.Decimal, cotizacion.CostoEquipos);
-                db.AddInParameter(cmd, "@NuevoTotalGastos", DbType.Decimal, cotizacion.TotalGastos);
-                db.AddInParameter(cmd, "@NuevoPrecioVenta", DbType.Decimal, cotizacion.PrecioVenta);
                 db.AddInParameter(cmd, "@NuevoMoneda", DbType.Int32, cotizacion.IdMoneda);
-                db.AddInParameter(cmd, "@NuevoFlagEstado", DbType.Boolean, cotizacion.FlagEstado);
-                db.AddInParameter(cmd, "@NuevaDescripcionGastos", DbType.String, cotizacion.DescripcionGastos);
-                db.AddInParameter(cmd, "@NuevoFlagAprobacion", DbType.Boolean, cotizacion.FlagAprobacion);
-                db.AddInParameter(cmd, "@NuevoFlagEstadoDetalle", DbType.Boolean, cotizacion.FlagEstadoDetalle);
-                db.AddInParameter(cmd, "@NuevoCosto", DbType.Decimal, cotizacion.CostoDetalle);
-
                 db.ExecuteNonQuery(cmd);
             }
         }
 
 
-        public List<DetalleCotizacionBE> ObtenerDetallesCotizacionPorId(int idCotizacion)
-        {
-            List<DetalleCotizacionBE> detalles = new List<DetalleCotizacionBE>();
 
-            try
-            {
-                Database db = DatabaseFactory.CreateDatabase("cnErpPanoramaBD");
-
-                using (DbCommand cmd = db.GetStoredProcCommand("usp_ObtenerDetallesCotizacionPorId"))
-                {
-                    db.AddInParameter(cmd, "@IdCotizacion", DbType.Int32, idCotizacion);
-
-                    using (IDataReader dr = db.ExecuteReader(cmd))
-                    {
-                        while (dr.Read())
-                        {
-                            DetalleCotizacionBE detalle = new DetalleCotizacionBE
-                            {
-                                IdTablaElemento = Convert.ToInt32(dr["IdTablaElemento"]),
-                                Item = Convert.ToInt32(dr["Item"]),
-                                DescripcionGastos = dr["DescripcionGastos"].ToString(),
-                                FlagAprobacion = Convert.ToBoolean(dr["FlagAprobacion"]),
-                                FlagEstado = Convert.ToBoolean(dr["FlagEstado"]),
-                                Costo = Convert.ToDecimal(dr["Costo"])
-                            };
-
-                            detalles.Add(detalle);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // Manejo de excepciones
-            }
-
-            return detalles;
-        }
 
         public CotizacionKiraBE ObtenerCotizacionPorId(int idCotizacion)
         {
@@ -396,6 +352,86 @@ namespace ErpPanorama.DataLogic
             }
 
             return cotizacion;
+        }
+
+
+        public List<CotizacionKiraBE> ObtenerCotizacionPorId2(int numeroCotizacion)
+        {
+            List<CotizacionKiraBE> cotizaciones = new List<CotizacionKiraBE>();
+
+            using (var connection = db.CreateConnection())
+            {
+                connection.Open();
+                using (var command = db.GetStoredProcCommand("usp_ObtenerCotizacionPorId2"))
+                {
+
+                    db.AddInParameter(command, "@IdCotizacion", DbType.Int32, numeroCotizacion);
+
+                    using (var reader = db.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            CotizacionKiraBE cotizacion = new CotizacionKiraBE();
+                            cotizacion.IdCotizacion = Convert.ToInt32(reader["IdCotizacion"]);
+                            cotizacion.CodigoProducto = reader["CodigoProducto"].ToString();
+                            cotizacion.Descripcion = reader["Descripcion"].ToString();
+                            cotizacion.CostoMateriales = reader["CostoMateriales"] != DBNull.Value ? Convert.ToDecimal(reader["CostoMateriales"]) : 0;
+                            cotizacion.CostoInsumos = reader["CostoInsumos"] != DBNull.Value ? Convert.ToDecimal(reader["CostoInsumos"]) : 0;
+                            cotizacion.CostoAccesorios = reader["CostoAccesorios"] != DBNull.Value ? Convert.ToDecimal(reader["CostoAccesorios"]) : 0;
+                            cotizacion.CostoManoObra = reader["CostoManoObra"] != DBNull.Value ? Convert.ToDecimal(reader["CostoManoObra"]) : 0;
+                            cotizacion.CostoMovilidad = reader["CostoMovilidad"] != DBNull.Value ? Convert.ToDecimal(reader["CostoMovilidad"]) : 0;
+                            cotizacion.CostoEquipos = reader["CostoEquipos"] != DBNull.Value ? Convert.ToDecimal(reader["CostoEquipos"]) : 0;
+                            cotizacion.TotalGastos = reader["TotalGastos"] != DBNull.Value ? Convert.ToDecimal(reader["TotalGastos"]) : 0;
+                            cotizacion.PrecioVenta = reader["PrecioVenta"] != DBNull.Value ? Convert.ToDecimal(reader["PrecioVenta"]) : 0;
+                            cotizacion.Fecha = reader["Fecha"] != DBNull.Value ? Convert.ToDateTime(reader["Fecha"]) : DateTime.MinValue;
+                            //// Agregamos la columna DescTablaElemento a la entidad CotizacionKiraBE
+                            cotizacion.DescTablaElemento = reader["DescTablaElemento"].ToString();
+                            cotizaciones.Add(cotizacion);
+                        }
+                    }
+                }
+            }
+
+            return cotizaciones;
+        }
+
+        public List<DetalleCotizacionBE> ObtenerDetallesCotizacionPorId(int idCotizacion)
+        {
+            List<DetalleCotizacionBE> detalles = new List<DetalleCotizacionBE>();
+
+            try
+            {
+                Database db = DatabaseFactory.CreateDatabase("cnErpPanoramaBD");
+
+                using (DbCommand cmd = db.GetStoredProcCommand("usp_ObtenerDetallesCotizacionPorId"))
+                {
+                    db.AddInParameter(cmd, "@IdCotizacion", DbType.Int32, idCotizacion);
+
+                    using (IDataReader dr = db.ExecuteReader(cmd))
+                    {
+                        while (dr.Read())
+                        {
+                            DetalleCotizacionBE detalle = new DetalleCotizacionBE
+                            {
+                                IdTablaElemento = Convert.ToInt32(dr["IdTablaElemento"]),
+                                Item = Convert.ToInt32(dr["Item"]),
+                                DescripcionGastos = dr["DescripcionGastos"].ToString(),
+                                FlagAprobacion = Convert.ToBoolean(dr["FlagAprobacion"]),
+                                FlagEstado = Convert.ToBoolean(dr["FlagEstado"]),
+                                Costo = Convert.ToDecimal(dr["Costo"])
+                            };
+
+                            detalles.Add(detalle);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones
+            }
+
+            return detalles;
         }
 
     }

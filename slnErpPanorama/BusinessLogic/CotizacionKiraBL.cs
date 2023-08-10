@@ -86,5 +86,10 @@ namespace ErpPanorama.BusinessLogic
             return cotizacionKiraDL.ObtenerCotizacionPorId(idCotizacion);
         }
 
+        public List<CotizacionKiraBE> ObtenerCotizacionPorId2(int idCotizacion)
+        {
+            return cotizacionKiraDL.ObtenerCotizacionPorId2(idCotizacion);
+        }
+
     }
 }

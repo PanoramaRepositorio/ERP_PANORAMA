@@ -107,10 +107,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                     }
                 }
             }
-            //frmCotizacion formCotizacion = new frmCotizacion();
-            //formCotizacion.Dock = DockStyle.Fill; // Rellenar el área del contenedor
-            //formCotizacion.StartPosition = FormStartPosition.CenterParent;
-            //formCotizacion.Show(); // Mostrar el formulario
+          
         }
 
         private void tlbMenu_ExitClick()
@@ -295,23 +292,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                 // Manejo adecuado de la excepción: muestra un mensaje de error al usuario
                 MessageBox.Show("Ocurrió un error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            //try
-            //{
-            //    if (e.KeyCode == Keys.Enter)
-            //    {
-            //        int periodo = Convert.ToInt32(txtPeriodo.Text);
-            //        int numeroCotizacion = Convert.ToInt32(txtNumero.Text);
-
-            //        cotizacionesFiltradas = cotizacionKiraBL.FiltrarCotizacionesPorPeriodoYNumero(periodo, numeroCotizacion);
-
-            //        gcCotizaciones.DataSource = cotizacionesFiltradas; // Asigna los nuevos datos
-            //        gvCotizacion.BestFitColumns(); // Ajusta el tamaño de las columnas
-            //    }
-            //}
-            //catch (Exception)
-            //{
-            //    throw;
-            //}
+        
         }
 
         private void gvCotizacion_CustomDrawCell_1(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
