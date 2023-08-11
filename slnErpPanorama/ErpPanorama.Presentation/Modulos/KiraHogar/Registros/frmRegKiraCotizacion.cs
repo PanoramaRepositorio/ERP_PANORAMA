@@ -64,6 +64,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             }
         }
         private List<CotizacionKiraBE> listaCotizacionesOriginal = new List<CotizacionKiraBE>();
+        private List<CotizacionKiraProductoTerminadoBE> listaCotizacionesOriginalproductos = new List<CotizacionKiraProductoTerminadoBE>();
         public void CargarListadoCotizaciones()
         {
             try
@@ -86,8 +87,8 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             try
             {
                 ComboTipoCotizacionBL comboTipoCotizacionBL = new ComboTipoCotizacionBL();
-                listaCotizacionesOriginal = comboTipoCotizacionBL.ObtenerListadoCotizacioneproductos();
-                gcCotizacionesProducto.DataSource = listaCotizacionesOriginal;
+                listaCotizacionesOriginalproductos = comboTipoCotizacionBL.ObtenerListadoCotizacioneproductos();
+                gcCotizacionesProducto.DataSource = listaCotizacionesOriginalproductos;
                 gvCotizacionProducto.BestFitColumns(); // Ajusta el tamaño de las columnas
 
             }
