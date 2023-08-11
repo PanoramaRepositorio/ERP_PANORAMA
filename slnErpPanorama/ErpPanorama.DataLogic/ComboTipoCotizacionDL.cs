@@ -256,9 +256,9 @@ namespace ErpPanorama.DataLogic
             return listaCotizaciones;
         }
 
-        public List<CotizacionKiraBE> ObtenerListadoCotizacionesproductos()
+        public List<CotizacionKiraProductoTerminadoBE> ObtenerListadoCotizacionesproductos()
         {
-            List<CotizacionKiraBE> listaCotizaciones = new List<CotizacionKiraBE>();
+            List<CotizacionKiraProductoTerminadoBE> listaCotizaciones = new List<CotizacionKiraProductoTerminadoBE>();
 
             Database db = DatabaseFactory.CreateDatabase("cnErpPanoramaBD");
             DbCommand cmd = db.GetStoredProcCommand("usp_ListarCotizacionesproductos");
@@ -267,12 +267,12 @@ namespace ErpPanorama.DataLogic
             {
                 while (reader.Read())
                 {
-                    CotizacionKiraBE cotizacion = new CotizacionKiraBE();
+                    CotizacionKiraProductoTerminadoBE cotizacion = new CotizacionKiraProductoTerminadoBE();
 
                     cotizacion.IdCotizacion = Convert.ToInt32(reader["IdCotizacion"]);
                     cotizacion.CodigoProducto = reader["CodigoProducto"].ToString();
                     cotizacion.Descripcion = reader["Descripcion"].ToString();
-                    cotizacion.CostoMateriales = reader["CostoProductos"] != DBNull.Value ? Convert.ToDecimal(reader["CostoProductos"]) : 0;
+                    cotizacion.CostoProductos = reader["CostoProductos"] != DBNull.Value ? Convert.ToDecimal(reader["CostoProductos"]) : 0;
                     cotizacion.TotalGastos = reader["TotalGastos"] != DBNull.Value ? Convert.ToDecimal(reader["TotalGastos"]) : 0;
                     cotizacion.PrecioVenta = reader["PrecioVenta"] != DBNull.Value ? Convert.ToDecimal(reader["PrecioVenta"]) : 0;
                     cotizacion.Fecha = reader["Fecha"] != DBNull.Value ? Convert.ToDateTime(reader["Fecha"]) : DateTime.MinValue;
