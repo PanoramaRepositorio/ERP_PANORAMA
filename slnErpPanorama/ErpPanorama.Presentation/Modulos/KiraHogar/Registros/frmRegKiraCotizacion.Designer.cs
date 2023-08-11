@@ -70,6 +70,13 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn24 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn27 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.lblTotalRegistrosProductos = new DevExpress.XtraEditors.LabelControl();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.txtNumeroProducto = new DevExpress.XtraEditors.TextEdit();
+            this.txtPeriodoProducto = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumero.Properties)).BeginInit();
@@ -78,6 +85,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             ((System.ComponentModel.ISupportInitialize)(this.gvCotizacion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcCotizacionesProducto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCotizacionProducto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
+            this.groupControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNumeroProducto.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPeriodoProducto.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // tlbMenu
@@ -109,7 +120,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Size = new System.Drawing.Size(1595, 52);
             this.groupControl1.TabIndex = 24;
-            this.groupControl1.Text = "Criterios de Búsqueda";
+            this.groupControl1.Text = "Criterios de Búsqueda Precio Producto Cliente Stock";
             // 
             // lblTotalRegistros
             // 
@@ -187,7 +198,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gcCotizaciones.Location = new System.Drawing.Point(0, 83);
             this.gcCotizaciones.MainView = this.gvCotizacion;
             this.gcCotizaciones.Name = "gcCotizaciones";
-            this.gcCotizaciones.Size = new System.Drawing.Size(1597, 381);
+            this.gcCotizaciones.Size = new System.Drawing.Size(1597, 360);
             this.gcCotizaciones.TabIndex = 26;
             this.gcCotizaciones.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvCotizacion});
@@ -365,10 +376,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // gcCotizacionesProducto
             // 
-            this.gcCotizacionesProducto.Location = new System.Drawing.Point(-2, 497);
+            this.gcCotizacionesProducto.Location = new System.Drawing.Point(-2, 501);
             this.gcCotizacionesProducto.MainView = this.gvCotizacionProducto;
             this.gcCotizacionesProducto.Name = "gcCotizacionesProducto";
-            this.gcCotizacionesProducto.Size = new System.Drawing.Size(1597, 381);
+            this.gcCotizacionesProducto.Size = new System.Drawing.Size(1080, 381);
             this.gcCotizacionesProducto.TabIndex = 27;
             this.gcCotizacionesProducto.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvCotizacionProducto});
@@ -529,11 +540,81 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn27.VisibleIndex = 7;
             this.gridColumn27.Width = 76;
             // 
+            // groupControl2
+            // 
+            this.groupControl2.Controls.Add(this.lblTotalRegistrosProductos);
+            this.groupControl2.Controls.Add(this.simpleButton1);
+            this.groupControl2.Controls.Add(this.labelControl3);
+            this.groupControl2.Controls.Add(this.txtNumeroProducto);
+            this.groupControl2.Controls.Add(this.txtPeriodoProducto);
+            this.groupControl2.Controls.Add(this.labelControl4);
+            this.groupControl2.Location = new System.Drawing.Point(0, 449);
+            this.groupControl2.Name = "groupControl2";
+            this.groupControl2.Size = new System.Drawing.Size(1595, 52);
+            this.groupControl2.TabIndex = 28;
+            this.groupControl2.Text = "Criterios de Búsqueda Precio Producto Terminado";
+            // 
+            // lblTotalRegistrosProductos
+            // 
+            this.lblTotalRegistrosProductos.Location = new System.Drawing.Point(961, 29);
+            this.lblTotalRegistrosProductos.Name = "lblTotalRegistrosProductos";
+            this.lblTotalRegistrosProductos.Size = new System.Drawing.Size(117, 13);
+            this.lblTotalRegistrosProductos.TabIndex = 59;
+            this.lblTotalRegistrosProductos.Text = "0 Registros encontrados";
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.ImageOptions.Image = global::ErpPanorama.Presentation.Properties.Resources.Consultar_16x16;
+            this.simpleButton1.Location = new System.Drawing.Point(1213, 24);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(118, 23);
+            this.simpleButton1.TabIndex = 58;
+            this.simpleButton1.Text = "Más Información";
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Location = new System.Drawing.Point(163, 29);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(71, 13);
+            this.labelControl3.TabIndex = 49;
+            this.labelControl3.Text = "N° Cotizacion :";
+            // 
+            // txtNumeroProducto
+            // 
+            this.txtNumeroProducto.Location = new System.Drawing.Point(256, 26);
+            this.txtNumeroProducto.Name = "txtNumeroProducto";
+            this.txtNumeroProducto.Properties.MaxLength = 6;
+            this.txtNumeroProducto.Size = new System.Drawing.Size(106, 20);
+            this.txtNumeroProducto.TabIndex = 48;
+            this.txtNumeroProducto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNumeroProducto_KeyDown);
+            // 
+            // txtPeriodoProducto
+            // 
+            this.txtPeriodoProducto.Location = new System.Drawing.Point(57, 26);
+            this.txtPeriodoProducto.Name = "txtPeriodoProducto";
+            this.txtPeriodoProducto.Properties.DisplayFormat.FormatString = "f0";
+            this.txtPeriodoProducto.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtPeriodoProducto.Properties.Mask.EditMask = "f0";
+            this.txtPeriodoProducto.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtPeriodoProducto.Properties.MaxLength = 4;
+            this.txtPeriodoProducto.Size = new System.Drawing.Size(65, 20);
+            this.txtPeriodoProducto.TabIndex = 47;
+            this.txtPeriodoProducto.ToolTip = "Periodo";
+            // 
+            // labelControl4
+            // 
+            this.labelControl4.Location = new System.Drawing.Point(11, 29);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(40, 13);
+            this.labelControl4.TabIndex = 46;
+            this.labelControl4.Text = "Periodo:";
+            // 
             // frmRegKiraCotizacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1595, 931);
+            this.Controls.Add(this.groupControl2);
             this.Controls.Add(this.gcCotizacionesProducto);
             this.Controls.Add(this.gcCotizaciones);
             this.Controls.Add(this.groupControl1);
@@ -551,6 +632,11 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             ((System.ComponentModel.ISupportInitialize)(this.gvCotizacion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcCotizacionesProducto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCotizacionProducto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
+            this.groupControl2.ResumeLayout(false);
+            this.groupControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNumeroProducto.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPeriodoProducto.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -597,5 +683,12 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn23;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn24;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn27;
+        private DevExpress.XtraEditors.GroupControl groupControl2;
+        private DevExpress.XtraEditors.LabelControl lblTotalRegistrosProductos;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.TextEdit txtNumeroProducto;
+        public DevExpress.XtraEditors.TextEdit txtPeriodoProducto;
+        private DevExpress.XtraEditors.LabelControl labelControl4;
     }
 }

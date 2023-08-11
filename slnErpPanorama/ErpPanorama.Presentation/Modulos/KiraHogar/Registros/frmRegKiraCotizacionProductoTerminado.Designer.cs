@@ -565,7 +565,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.Controls.Add(this.labelControl15);
             this.Controls.Add(this.Tabcontrol);
             this.Name = "frmRegKiraCotizacionProductoTerminado";
-            this.Text = "frmRegKiraCotizacionProductoTerminado";
+            this.Text = "Precio Producto Terminado";
             this.Load += new System.EventHandler(this.frmRegKiraCotizacionProductoTerminado_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtCodigoProducto.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTipoMoneda.Properties)).EndInit();

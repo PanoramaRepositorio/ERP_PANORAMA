@@ -272,7 +272,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.btnGuardar.ImageOptions.Image = global::ErpPanorama.Presentation.Properties.Resources.btn_grabar;
             this.btnGuardar.ImageOptions.ImageIndex = 0;
             this.btnGuardar.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.btnGuardar.Location = new System.Drawing.Point(674, 355);
+            this.btnGuardar.Location = new System.Drawing.Point(674, 274);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 208;
@@ -285,7 +285,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.btnCancelar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.ImageOptions.Image")));
             this.btnCancelar.ImageOptions.ImageIndex = 0;
             this.btnCancelar.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(755, 355);
+            this.btnCancelar.Location = new System.Drawing.Point(755, 274);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 207;
@@ -297,7 +297,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gcCotizacionesEdit.Location = new System.Drawing.Point(25, 205);
             this.gcCotizacionesEdit.MainView = this.gvCotizacionEdit;
             this.gcCotizacionesEdit.Name = "gcCotizacionesEdit";
-            this.gcCotizacionesEdit.Size = new System.Drawing.Size(805, 145);
+            this.gcCotizacionesEdit.Size = new System.Drawing.Size(805, 67);
             this.gcCotizacionesEdit.TabIndex = 209;
             this.gcCotizacionesEdit.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvCotizacionEdit});
@@ -456,7 +456,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(840, 390);
+            this.ClientSize = new System.Drawing.Size(840, 309);
             this.Controls.Add(this.btnEliminarimg);
             this.Controls.Add(this.btnAgregarimg);
             this.Controls.Add(this.gcCotizacionesEdit);

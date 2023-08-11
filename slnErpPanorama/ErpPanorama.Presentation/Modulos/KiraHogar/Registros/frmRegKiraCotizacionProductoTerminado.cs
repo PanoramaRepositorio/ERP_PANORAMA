@@ -648,6 +648,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                 this.picImage.Image = ErpPanorama.Presentation.Properties.Resources.noImage;
 
                 MessageBox.Show("La cotización se registró correctamente. ID de cotización: " + idCotizacion, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
             }
             catch (Exception ex)
             {

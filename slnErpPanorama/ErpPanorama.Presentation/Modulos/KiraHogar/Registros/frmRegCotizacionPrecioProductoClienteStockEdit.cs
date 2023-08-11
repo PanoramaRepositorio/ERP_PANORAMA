@@ -57,6 +57,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             txtBreveDescripcion.ScrollBars = ScrollBars.Horizontal;
             txtNumeroCotizacion.Enabled = false;
             txtCodigoProducto.TextChanged += txtCodigoProducto_TextChanged;
+            
         }
         private string originalImagePath;
         private void CargarCotizacion()
@@ -92,9 +93,18 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                         cboTipoMoneda.EditValue = "SOLES";
                     }
                     cboTipoMoneda.ReadOnly = true; // Deshabilitar la edición
-                    picImage.Image = LoadImageFromPath(cotizacion.Imagen); // Cargar la imagen desde cotizacion.Imagen si es necesario
-                                                                           // Almacenar la ruta original de la imagen
-                    originalImagePath = cotizacion.Imagen;
+
+                    if (picImage.Image == null)
+                    {
+                        this.picImage.Image = ErpPanorama.Presentation.Properties.Resources.noImage;
+                    }
+                    else
+                    {
+                        picImage.Image = LoadImageFromPath(cotizacion.Imagen); // Cargar la imagen desde cotizacion.Imagen si es necesario
+                                                                               // Almacenar la ruta original de la imagen
+                        originalImagePath = cotizacion.Imagen;
+                    }
+                   
                     // Cargar los detalles de cotización en el GridView gvCotizacionEdit
                     gvCotizacionEdit.GridControl.DataSource = cotizacionKiraBL.ObtenerCotizacionPorId2(idCotizacion);
                 }

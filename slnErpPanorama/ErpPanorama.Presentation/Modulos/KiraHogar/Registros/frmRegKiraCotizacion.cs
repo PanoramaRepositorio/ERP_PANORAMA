@@ -38,16 +38,19 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             CargarListadoCotizaciones();
             CargarListadoCotizacionesProducto();
             ActualizarNumeroFilas();
+            ActualizarNumeroFilasProductos();
             timerFilas();
             imageCollection = new ImageCollection();
             imageCollection.AddImage(Properties.Resources.Stop_2);
         }
-        private void timerFilas() {
+        private void timerFilas()
+        {
             timer = new Timer();
             timer.Interval = 15000; //3 segundos
             timer.Tick += timer1_Tick;
             timer.Start();
             txtPeriodo.Text = "2023";
+            txtPeriodoProducto.Text = "2023";
         }
 
         private void ActualizarNumeroFilas()
@@ -63,6 +66,21 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                 lblTotalRegistros.Text = rowCount.ToString() + " Registros encontrados";
             }
         }
+
+        private void ActualizarNumeroFilasProductos()
+        {
+            // Obtener la vista asociada al control "gcCotizaciones"
+            GridView gridView = gcCotizacionesProducto.MainView as GridView;
+            if (gridView != null)
+            {
+                // Obtener el número de filas en la vista
+                int rowCount = gridView.RowCount;
+
+                // Actualizar el texto del label "lblTotalRegistros" con el número de filas
+                lblTotalRegistrosProductos.Text = rowCount.ToString() + " Registros encontrados";
+            }
+        }
+
         private List<CotizacionKiraBE> listaCotizacionesOriginal = new List<CotizacionKiraBE>();
         private List<CotizacionKiraProductoTerminadoBE> listaCotizacionesOriginalproductos = new List<CotizacionKiraProductoTerminadoBE>();
         public void CargarListadoCotizaciones()
@@ -86,8 +104,8 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
         {
             try
             {
-                ComboTipoCotizacionBL comboTipoCotizacionBL = new ComboTipoCotizacionBL();
-                listaCotizacionesOriginalproductos = comboTipoCotizacionBL.ObtenerListadoCotizacioneproductos();
+                ComboTipoCotizacionBL comboTipoCotizacionBL2 = new ComboTipoCotizacionBL();
+                listaCotizacionesOriginalproductos = comboTipoCotizacionBL2.ObtenerListadoCotizacioneproductos();
                 gcCotizacionesProducto.DataSource = listaCotizacionesOriginalproductos;
                 gvCotizacionProducto.BestFitColumns(); // Ajusta el tamaño de las columnas
 
@@ -126,7 +144,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                     }
                 }
             }
-          
+
         }
 
         private void tlbMenu_ExitClick()
@@ -191,18 +209,22 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
         private void tlbMenu_Load(object sender, EventArgs e)
         {
             CargarListadoCotizaciones();
+            CargarListadoCotizacionesProducto();
         }
 
         private void tlbMenu_RefreshClick()
         {
             CargarListadoCotizaciones();
             ActualizarNumeroFilas();
+            ActualizarNumeroFilasProductos();
+            CargarListadoCotizacionesProducto();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             CargarListadoCotizaciones();
             ActualizarNumeroFilas();
+            ActualizarNumeroFilasProductos();
         }
 
 
@@ -255,6 +277,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
 
 
         private List<CotizacionKiraBE> cotizacionesFiltradas; // Agrega esta línea
+        
         private void tlbMenu_EditClick()
         {
 
@@ -276,6 +299,97 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                 MessageBox.Show("Error al editar la cotización: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+
+
+        private void gvCotizacion_CustomDrawCell_1(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
+        {
+            // Verificar si la celda es de una de las columnas de gastos
+            if (e.Column.FieldName == "CostoMateriales" ||
+                e.Column.FieldName == "CostoInsumos" ||
+                e.Column.FieldName == "CostoAccesorios" ||
+                e.Column.FieldName == "CostoManoObra" ||
+                e.Column.FieldName == "CostoMovilidad")
+            {
+                // Obtener los valores de la celda actual y de la fila actual
+                decimal costo = Convert.ToDecimal(e.CellValue);
+                decimal precioVenta = Convert.ToDecimal(gvCotizacion.GetRowCellValue(e.RowHandle, "PrecioVenta"));
+
+                // Comparar los valores y mostrar una alerta si los gastos superan el precio de venta
+                if (costo > precioVenta)
+                {
+                    e.Appearance.BackColor = Color.Red;  // Cambiar el color de fondo de la celda a rojo
+                    e.Appearance.ForeColor = Color.White;  // Cambiar el color de texto a blanco
+                    e.DisplayText = "Gastos > PrecioVenta";  // Cambiar el texto que se muestra en la celda
+                }
+            }
+
+        }
+
+        private void gvCotizacion_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            timer.Stop();
+        }
+
+        private void gvCotizacion_LostFocus(object sender, EventArgs e)
+        {
+            timer.Start();
+        }
+
+        private void txtNumero_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AbrirFormularioEdicion(int idCotizacion)
+        {
+            frmRegCotizacionPrecioProductoClienteStockEdit frmEditar = new frmRegCotizacionPrecioProductoClienteStockEdit();
+            frmEditar.IdCotizacion = idCotizacion;
+            frmEditar.ShowDialog();
+        }
+        private void gvCotizacion_DoubleClick(object sender, EventArgs e)
+        {
+            if (gvCotizacion.GetFocusedRow() is CotizacionKiraBE cotizacion)
+            {
+                AbrirFormularioEdicion(cotizacion.IdCotizacion);
+            }
+        }
+
+        private List<CotizacionKiraProductoTerminadoBE> cotizacionesFiltradasproducto; // Agrega esta línea
+        private void txtNumeroProducto_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (string.IsNullOrEmpty(txtNumeroProducto.Text) || string.IsNullOrEmpty(txtPeriodo.Text))
+                    {
+                        // Mostrar un mensaje al usuario indicando que los campos son obligatorios
+                        MessageBox.Show("Por favor, ingrese valores en los campos.");
+                        return;
+                    }
+
+                    int periodo, numeroCotizacion;
+
+                    if (!int.TryParse(txtPeriodoProducto.Text, out periodo) || !int.TryParse(txtNumeroProducto.Text, out numeroCotizacion))
+                    {
+                        // Mostrar un mensaje al usuario indicando que los valores ingresados no son válidos
+                        MessageBox.Show("Por favor, ingrese valores numéricos válidos en los campos.");
+                        return;
+                    }
+
+                    cotizacionesFiltradasproducto = cotizacionKiraBL.FiltrarCotizacionesPorPeriodoYNumeroproducto(periodo, numeroCotizacion);
+
+                    gcCotizacionesProducto.DataSource = cotizacionesFiltradasproducto; // Asigna los nuevos datos
+                    gvCotizacionProducto.BestFitColumns(); // Ajusta el tamaño de las columnas
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo adecuado de la excepción: muestra un mensaje de error al usuario
+                MessageBox.Show("Ocurrió un error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void txtNumero_KeyDown(object sender, KeyEventArgs e)
@@ -311,60 +425,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                 // Manejo adecuado de la excepción: muestra un mensaje de error al usuario
                 MessageBox.Show("Ocurrió un error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        
-        }
 
-        private void gvCotizacion_CustomDrawCell_1(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
-        {
-            // Verificar si la celda es de una de las columnas de gastos
-            if (e.Column.FieldName == "CostoMateriales" ||
-                e.Column.FieldName == "CostoInsumos" ||
-                e.Column.FieldName == "CostoAccesorios" ||
-                e.Column.FieldName == "CostoManoObra" ||
-                e.Column.FieldName == "CostoMovilidad")
-            {
-                // Obtener los valores de la celda actual y de la fila actual
-                decimal costo = Convert.ToDecimal(e.CellValue);
-                decimal precioVenta = Convert.ToDecimal(gvCotizacion.GetRowCellValue(e.RowHandle, "PrecioVenta"));
-
-                // Comparar los valores y mostrar una alerta si los gastos superan el precio de venta
-                if (costo > precioVenta)
-                {
-                    e.Appearance.BackColor = Color.Red;  // Cambiar el color de fondo de la celda a rojo
-                    e.Appearance.ForeColor = Color.White;  // Cambiar el color de texto a blanco
-                    e.DisplayText = "Gastos > PrecioVenta";  // Cambiar el texto que se muestra en la celda
-                }
-            }
-           
-        }
-
-        private void gvCotizacion_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
-        {
-            timer.Stop();
-        }
-
-        private void gvCotizacion_LostFocus(object sender, EventArgs e)
-        {
-            timer.Start();
-        }
-
-        private void txtNumero_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
-     
-        private void AbrirFormularioEdicion(int idCotizacion)
-        {
-            frmRegCotizacionPrecioProductoClienteStockEdit frmEditar = new frmRegCotizacionPrecioProductoClienteStockEdit();
-            frmEditar.IdCotizacion = idCotizacion;
-            frmEditar.ShowDialog();
-        }
-        private void gvCotizacion_DoubleClick(object sender, EventArgs e)
-        {
-            if (gvCotizacion.GetFocusedRow() is CotizacionKiraBE cotizacion)
-            {
-                AbrirFormularioEdicion(cotizacion.IdCotizacion);
-            }
         }
     }
 }

@@ -1599,5 +1599,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
         {
 
         }
+
+        private void picImage_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
