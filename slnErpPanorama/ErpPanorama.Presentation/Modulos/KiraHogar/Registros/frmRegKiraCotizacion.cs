@@ -20,6 +20,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
     public partial class frmRegKiraCotizacion : DevExpress.XtraEditors.XtraForm
     {
         private Timer timer;
+        private frmRegKiraCotizacionProductoTerminado formRegKiraCotizacionProductoTerminado;
         public frmRegKiraCotizacion()
         {
             InitializeComponent();
@@ -27,16 +28,28 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // Suscribirse a los eventos
             gvCotizacion.FocusedRowChanged += gvCotizacion_FocusedRowChanged;
             gvCotizacion.LostFocus += gvCotizacion_LostFocus;
+            // Crear una nueva instancia del formulario frmRegKiraCotizacionProductoTerminado
+            formRegKiraCotizacionProductoTerminado = new frmRegKiraCotizacionProductoTerminado();
+            formRegKiraCotizacionProductoTerminado.CotizacionProductoGuardada += CotizacionProductoGuardadaEventHandler;
 
         }
         private ImageCollection imageCollection;
+
+        private void CotizacionProductoGuardadaEventHandler(object sender, EventArgs e)
+        {
+            // Actualizar los GridView o realizar otras actualizaciones necesarias
+            CargarListadoCotizacionesProducto();
+            CargarListadoCotizaciones();
+            ActualizarNumeroFilas();
+            ActualizarNumeroFilasProductos();
+        }
         private void frmRegKiraCotizacion_Load(object sender, EventArgs e)
         {
             frmRegKiraCotizacion formCotizacion = new frmRegKiraCotizacion();
             formCotizacion.WindowState = FormWindowState.Maximized;
             tlbMenu.Ensamblado = this.Tag.ToString();
-            CargarListadoCotizaciones();
             CargarListadoCotizacionesProducto();
+            CargarListadoCotizaciones();
             ActualizarNumeroFilas();
             ActualizarNumeroFilasProductos();
             timerFilas();
@@ -46,7 +59,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
         private void timerFilas()
         {
             timer = new Timer();
-            timer.Interval = 15000; //3 segundos
+            timer.Interval = 5000; //3 segundos
             timer.Tick += timer1_Tick;
             timer.Start();
             txtPeriodo.Text = "2023";
@@ -212,12 +225,14 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             CargarListadoCotizacionesProducto();
         }
 
-        private void tlbMenu_RefreshClick()
+
+        public void tlbMenu_RefreshClick()
         {
+            CargarListadoCotizacionesProducto();
             CargarListadoCotizaciones();
             ActualizarNumeroFilas();
             ActualizarNumeroFilasProductos();
-            CargarListadoCotizacionesProducto();
+            
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -225,54 +240,55 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             CargarListadoCotizaciones();
             ActualizarNumeroFilas();
             ActualizarNumeroFilasProductos();
+            CargarListadoCotizacionesProducto();
         }
 
 
         private void OnMenuItemEliminarClick(object sender, EventArgs e)
         {
-            DXMenuItem menuItem = sender as DXMenuItem;
-            if (menuItem != null)
-            {
-                string codigoProducto = menuItem.Tag.ToString();
+            //DXMenuItem menuItem = sender as DXMenuItem;
+            //if (menuItem != null)
+            //{
+            //    string codigoProducto = menuItem.Tag.ToString();
 
-                // Preguntar al usuario si está seguro de eliminar la cotización
-                DialogResult resultado = XtraMessageBox.Show("¿Estás seguro de eliminar la cotización?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (resultado == DialogResult.Yes)
-                {
-                    try
-                    {
-                        // Llamar al método para eliminar la cotización por CodigoProducto
-                        cotizacionKiraBL.EliminarCotizacionPorCodigoProducto(codigoProducto);
-                        // Actualizar la lista de cotizaciones en el grid
-                        CargarListadoCotizaciones();
-                        // Mostrar mensaje de éxito
-                        XtraMessageBox.Show("La cotización se eliminó correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    catch (Exception ex)
-                    {
-                        // Manejar el error si ocurre
-                        XtraMessageBox.Show("Error al eliminar la cotización: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
+            //    // Preguntar al usuario si está seguro de eliminar la cotización
+            //    DialogResult resultado = XtraMessageBox.Show("¿Estás seguro de eliminar la cotización?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            //    if (resultado == DialogResult.Yes)
+            //    {
+            //        try
+            //        {
+            //            // Llamar al método para eliminar la cotización por CodigoProducto
+            //            cotizacionKiraBL.EliminarCotizacionPorCodigoProducto(codigoProducto);
+            //            // Actualizar la lista de cotizaciones en el grid
+            //            CargarListadoCotizaciones();
+            //            // Mostrar mensaje de éxito
+            //            XtraMessageBox.Show("La cotización se eliminó correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            // Manejar el error si ocurre
+            //            XtraMessageBox.Show("Error al eliminar la cotización: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        }
+            //    }
+            //}
         }
 
         private void gvCotizacion_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
         {
-            GridView gridView = sender as GridView;
-            if (e.MenuType == GridMenuType.Row && e.HitInfo.InRow)
-            {
-                int filaSeleccionada = e.HitInfo.RowHandle;
-                string codigoProducto = gridView.GetRowCellValue(filaSeleccionada, "CodigoProducto").ToString();
+            //GridView gridView = sender as GridView;
+            //if (e.MenuType == GridMenuType.Row && e.HitInfo.InRow)
+            //{
+            //    int filaSeleccionada = e.HitInfo.RowHandle;
+            //    string codigoProducto = gridView.GetRowCellValue(filaSeleccionada, "CodigoProducto").ToString();
 
-                // Crear el DXMenuItem para la eliminación de la cotización
-                DXMenuItem menuItemEliminar = new DXMenuItem("Eliminar Cotización", OnMenuItemEliminarClick);
-                menuItemEliminar.ImageOptions.Image = imageCollection.Images[0]; // Agregar la imagen al elemento de menú
-                menuItemEliminar.Tag = codigoProducto;
+            //    // Crear el DXMenuItem para la eliminación de la cotización
+            //    DXMenuItem menuItemEliminar = new DXMenuItem("Eliminar Cotización", OnMenuItemEliminarClick);
+            //    menuItemEliminar.ImageOptions.Image = imageCollection.Images[0]; // Agregar la imagen al elemento de menú
+            //    menuItemEliminar.Tag = codigoProducto;
 
-                // Agregar el DXMenuItem al menú
-                e.Menu.Items.Add(menuItemEliminar);
-            }
+            //    // Agregar el DXMenuItem al menú
+            //    e.Menu.Items.Add(menuItemEliminar);
+            //}
         }
 
 
@@ -318,12 +334,20 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
         {
             isCotizacionProductoFocused = true; // La vista gvCotizacionProducto está enfocada
             gvCotizacion.ClearSelection(); // DDesactivar la selección en gvCotizacion
+            timer.Stop();
         }
         private void gvCotizacion_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             timer.Stop();
             isCotizacionProductoFocused = false; // La vista gvCotizacion está enfocada
             gvCotizacionProducto.ClearSelection(); // Desactivar la selección en gvCotizacionProducto
+        }
+
+        private void gvCotizacionProducto_LostFocus(object sender, EventArgs e)
+        {
+            timer.Start();
+            CargarListadoCotizacionesProducto();
+            CargarListadoCotizaciones();
         }
         private void gvCotizacion_CustomDrawCell_1(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
         {
@@ -354,6 +378,8 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
         private void gvCotizacion_LostFocus(object sender, EventArgs e)
         {
             timer.Start();
+            CargarListadoCotizacionesProducto();
+            CargarListadoCotizaciones();
         }
 
         private void txtNumero_EditValueChanged(object sender, EventArgs e)

@@ -23,7 +23,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
     {
         public ComboTipoCotizacionBL comboTipoCotizacionBL;
         private CotizacionKiraBL cotizacionKiraBL = new CotizacionKiraBL();
-       
+        private frmRegKiraCotizacion formRegKiraCotizacion;
         // Variable para almacenar el cuadro de diálogo de selección de archivos
         private OpenFileDialog openFile = new OpenFileDialog();
         public frmRegKiraCotizacionProductoTerminado()
@@ -435,7 +435,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
         private void txtCodigoProducto_TextChanged(object sender, EventArgs e)
         {
             CotizacionKiraBL cotizacionKiraBLs = new CotizacionKiraBL();
-            if (cotizacionKiraBLs.ValidarCodigoProducto(txtCodigoProducto.Text))
+            if (cotizacionKiraBLs.ValidarCodigoProductoproducto(txtCodigoProducto.Text))
             {
                 lblCodigoExistente.Text = "El código de producto ya existe en la base de datos.";
                 lblCodigoExistente.ForeColor = Color.Red;
@@ -544,6 +544,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             }
         }
 
+        public event EventHandler CotizacionProductoGuardada;
         private void btnGuardar_Click(object sender, EventArgs e)
         {
 
@@ -638,7 +639,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                 // Llamada al procedimiento almacenado con la nueva estructura
                 int idCotizacion = 0;
                 cotizacionKiraBL.RegistrarCotizacionYDetalleProductos(cotizacion, detallesCotizacion, out idCotizacion);
-
+                CotizacionProductoGuardada?.Invoke(this, EventArgs.Empty);
                 LimpiarControlesTextBox(this.Controls);
                 valorespredeterminadosdeloscbo();
                 lblCodigoExistente.Text = "";
@@ -648,6 +649,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                 this.picImage.Image = ErpPanorama.Presentation.Properties.Resources.noImage;
 
                 MessageBox.Show("La cotización se registró correctamente. ID de cotización: " + idCotizacion, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
                 this.Close();
             }
             catch (Exception ex)

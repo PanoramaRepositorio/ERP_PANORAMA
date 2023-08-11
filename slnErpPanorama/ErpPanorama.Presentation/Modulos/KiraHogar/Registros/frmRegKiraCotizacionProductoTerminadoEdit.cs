@@ -22,6 +22,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
         private OpenFileDialog openFile = new OpenFileDialog();
         private CotizacionKiraBL cotizacionKiraBL = new CotizacionKiraBL();
         private ComboTipoCotizacionBL comboTipoCotizacionBL = new ComboTipoCotizacionBL();
+        private frmRegKiraCotizacion formRegKiraCotizacion;
         public CotizacionKiraProductoTerminadoBE Cotizacion { get; set; }
         public int IdCotizacion
         {
@@ -210,6 +211,15 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
 
                 // Mostrar mensaje de éxito
                 MessageBox.Show("Cotización actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (formRegKiraCotizacion == null)
+                {
+                    // Crear una nueva instancia si no existe
+                    formRegKiraCotizacion = new frmRegKiraCotizacion();
+                }
+
+                // Llamar al método CargarListadoCotizaciones del formulario frmRegKiraCotizacion
+                formRegKiraCotizacion.CargarListadoCotizaciones();
+                formRegKiraCotizacion.CargarListadoCotizacionesProducto();
                 this.Close();
                 CargarCotizacion();
             }
@@ -251,6 +261,21 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void txtCodigoProducto_TextChanged(object sender, EventArgs e)
+        {
+            CotizacionKiraBL cotizacionKiraBLs = new CotizacionKiraBL();
+            if (cotizacionKiraBLs.ValidarCodigoProductoproducto(txtCodigoProducto.Text))
+            {
+                lblCodigoExistente.Text = "Codigo registrado";
+                lblCodigoExistente.ForeColor = Color.Red;
+            }
+            else
+            {
+                lblCodigoExistente.Text = "Código disponible.";
+                lblCodigoExistente.ForeColor = Color.Green;
+            }
         }
     }
 }

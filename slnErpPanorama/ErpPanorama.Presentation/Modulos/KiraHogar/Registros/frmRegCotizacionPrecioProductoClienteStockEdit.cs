@@ -25,7 +25,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
         private OpenFileDialog openFile = new OpenFileDialog();
         private CotizacionKiraBL cotizacionKiraBL = new CotizacionKiraBL();
         private ComboTipoCotizacionBL comboTipoCotizacionBL = new ComboTipoCotizacionBL();
-
+        private frmRegKiraCotizacion formRegKiraCotizacion;
         // listaCotizacionesOriginal = comboTipoCotizacionBL.ObtenerListadoCotizaciones();
         public CotizacionKiraBE Cotizacion { get; set; }
         public int IdCotizacion
@@ -223,6 +223,15 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
 
                 // Mostrar mensaje de éxito
                 MessageBox.Show("Cotización actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (formRegKiraCotizacion == null)
+                {
+                    // Crear una nueva instancia si no existe
+                    formRegKiraCotizacion = new frmRegKiraCotizacion();
+                }
+
+                // Llamar al método CargarListadoCotizaciones del formulario frmRegKiraCotizacion
+                formRegKiraCotizacion.CargarListadoCotizaciones();
+                formRegKiraCotizacion.CargarListadoCotizacionesProducto();
                 this.Close();
                 CargarCotizacion();
             }
@@ -271,7 +280,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             CotizacionKiraBL cotizacionKiraBLs = new CotizacionKiraBL();
             if (cotizacionKiraBLs.ValidarCodigoProducto(txtCodigoProducto.Text))
             {
-                lblCodigoExistente.Text = "Código NO disponible.";
+                lblCodigoExistente.Text = "Codigo registrado";
                 lblCodigoExistente.ForeColor = Color.Red;
             }
             else

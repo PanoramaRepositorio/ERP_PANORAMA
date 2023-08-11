@@ -1694,6 +1694,12 @@
     <Compile Include="Modulos\KiraHogar\Registros\frmRegKiraCotizacionProductoTerminado.Designer.cs">
       <DependentUpon>frmRegKiraCotizacionProductoTerminado.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modulos\KiraHogar\Registros\frmRegKiraCotizacionProductoTerminadoEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\KiraHogar\Registros\frmRegKiraCotizacionProductoTerminadoEdit.Designer.cs">
+      <DependentUpon>frmRegKiraCotizacionProductoTerminadoEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modulos\Logistica\Consultas\frmConCierrePedidos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4751,6 +4757,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\KiraHogar\Registros\frmRegKiraCotizacionProductoTerminado.resx">
       <DependentUpon>frmRegKiraCotizacionProductoTerminado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\KiraHogar\Registros\frmRegKiraCotizacionProductoTerminadoEdit.resx">
+      <DependentUpon>frmRegKiraCotizacionProductoTerminadoEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Logistica\Consultas\frmConCierrePedidos.resx">
       <DependentUpon>frmConCierrePedidos.cs</DependentUpon>

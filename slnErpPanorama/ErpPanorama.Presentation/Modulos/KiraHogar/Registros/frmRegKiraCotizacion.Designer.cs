@@ -365,7 +365,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // gridColumn5
             // 
-            this.gridColumn5.Caption = "Nro Cotizacion";
+            this.gridColumn5.Caption = "N° Cotizacion";
             this.gridColumn5.FieldName = "IdCotizacion";
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.OptionsColumn.AllowEdit = false;
@@ -379,7 +379,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gcCotizacionesProducto.Location = new System.Drawing.Point(-2, 501);
             this.gcCotizacionesProducto.MainView = this.gvCotizacionProducto;
             this.gcCotizacionesProducto.Name = "gcCotizacionesProducto";
-            this.gcCotizacionesProducto.Size = new System.Drawing.Size(1080, 381);
+            this.gcCotizacionesProducto.Size = new System.Drawing.Size(1093, 381);
             this.gcCotizacionesProducto.TabIndex = 27;
             this.gcCotizacionesProducto.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvCotizacionProducto});
@@ -408,6 +408,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gvCotizacionProducto.OptionsView.ShowGroupPanel = false;
             this.gvCotizacionProducto.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gvCotizacionProducto_FocusedRowChanged);
             this.gvCotizacionProducto.DoubleClick += new System.EventHandler(this.gvCotizacionProducto_DoubleClick);
+            this.gvCotizacionProducto.LostFocus += new System.EventHandler(this.gvCotizacionProducto_LostFocus);
             // 
             // gridColumn10
             // 
@@ -533,7 +534,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // gridColumn27
             // 
-            this.gridColumn27.Caption = "Nro Cotizacion";
+            this.gridColumn27.Caption = "N° Cotizacion";
             this.gridColumn27.FieldName = "IdCotizacion";
             this.gridColumn27.Name = "gridColumn27";
             this.gridColumn27.OptionsColumn.AllowEdit = false;
