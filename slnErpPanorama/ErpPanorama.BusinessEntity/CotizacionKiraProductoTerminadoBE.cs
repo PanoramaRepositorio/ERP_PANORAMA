@@ -48,5 +48,7 @@ namespace ErpPanorama.BusinessEntity
         // Nueva propiedad para el FlagEstado
         [DataMember]
         public bool FlagEstado { get; set; }
+        [DataMember]
+        public string DescTablaElemento { get; set; }
     }
 }
