@@ -64,7 +64,9 @@
     <Compile Include="BancoProductoBE.cs" />
     <Compile Include="ComboTipoCotizacionBE.cs" />
     <Compile Include="CotizacionKiraBE.cs" />
+    <Compile Include="CotizacionKiraProductoTerminadoBE.cs" />
     <Compile Include="DetalleCotizacionBE.cs" />
+    <Compile Include="DetalleCotizacionProductoBE.cs" />
     <Compile Include="ReservaSalaBE.cs" />
     <Compile Include="CajaEgresoDetalleDocumentosBE.cs" />
     <Compile Include="CajaEgresoDetalleBE.cs" />

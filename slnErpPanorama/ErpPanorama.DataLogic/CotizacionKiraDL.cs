@@ -95,6 +95,77 @@ namespace ErpPanorama.DataLogic
             return dt;
         }
 
+        private DataTable ConvertToDataTable(List<DetalleCotizacionProductoBE> detallesCotizacion)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("IdTablaElemento", typeof(int));
+            dt.Columns.Add("Item", typeof(int));
+            dt.Columns.Add("DescripcionGastos", typeof(string));
+            dt.Columns.Add("FlagAprobacion", typeof(bool));
+            dt.Columns.Add("FlagEstado", typeof(bool));
+            dt.Columns.Add("Costo", typeof(decimal)); // Agregar la columna para el costo
+
+            foreach (var detalle in detallesCotizacion)
+            {
+                dt.Rows.Add(detalle.IdTablaElemento, detalle.Item, detalle.DescripcionGastos, detalle.FlagAprobacion, detalle.FlagEstado, detalle.Costo);
+            }
+
+            return dt;
+        }
+
+        public void RegistrarCotizacionYDetalleProducto(CotizacionKiraProductoTerminadoBE cotizacion, List<DetalleCotizacionProductoBE> detallesCotizacion, out int idCotizacion)
+        {
+            using (var connection = db.CreateConnection())
+            {
+                connection.Open();
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        // Insertar la cotización en la tabla "CotizacionKIRA"
+                        var cotizacionCommand = db.GetStoredProcCommand("usp_RegistrarCotizacionYDetalleProductosTerminados");
+                        db.AddInParameter(cotizacionCommand, "@IdTablaElemento", DbType.Int32, cotizacion.IdTablaElemento);
+                        db.AddInParameter(cotizacionCommand, "@Fecha", DbType.Date, cotizacion.Fecha);
+                        db.AddInParameter(cotizacionCommand, "@CodigoProducto", DbType.String, cotizacion.CodigoProducto);
+                        db.AddInParameter(cotizacionCommand, "@Descripcion", DbType.String, cotizacion.Descripcion);
+                        db.AddInParameter(cotizacionCommand, "@Caracteristicas", DbType.String, cotizacion.Caracteristicas);
+                        db.AddInParameter(cotizacionCommand, "@CostoProductos", DbType.Decimal, cotizacion.CostoProductos);
+                        db.AddInParameter(cotizacionCommand, "@TotalGastos", DbType.Decimal, cotizacion.TotalGastos);
+                        db.AddInParameter(cotizacionCommand, "@PrecioVenta", DbType.Decimal, cotizacion.PrecioVenta);
+                        db.AddInParameter(cotizacionCommand, "@Moneda", DbType.Int32, cotizacion.IdMoneda); // Nuevo parámetro para la moneda
+                        db.AddInParameter(cotizacionCommand, "@FlagEstado", DbType.Boolean, cotizacion.FlagEstado); // Nuevo parámetro para el FlagEstado de la Cotización
+                        db.AddOutParameter(cotizacionCommand, "@IdCotizacion", DbType.Int32, 4);
+
+                        // Agregar el parámetro @Imagen si se necesita almacenar en la base de datos
+                        db.AddInParameter(cotizacionCommand, "@Imagen", DbType.String, cotizacion.Imagen);
+
+                        // Agregar los parámetros de tabla estructurada para los detalles de cotización
+                        var tvpParam = new SqlParameter("@DetalleCotizacion", SqlDbType.Structured)
+                        {
+                            TypeName = "dbo.DetalleCotizacionType",
+                            Value = ConvertToDataTable(detallesCotizacion)
+                        };
+                        cotizacionCommand.Parameters.Add(tvpParam);
+
+                        db.ExecuteNonQuery(cotizacionCommand, transaction);
+
+                        // Obtener el ID de la cotización recién insertada
+                        idCotizacion = Convert.ToInt32(db.GetParameterValue(cotizacionCommand, "@IdCotizacion"));
+
+                        // Confirmar la transacción
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw ex;
+                    }
+                }
+            }
+        }
+
+    
+
         public bool ValidarCodigoProducto(string codigoProducto)
         {
             bool existeCodigo = false;

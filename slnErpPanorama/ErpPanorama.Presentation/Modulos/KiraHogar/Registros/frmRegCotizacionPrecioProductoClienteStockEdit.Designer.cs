@@ -82,7 +82,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // lblCodigoExistente
             // 
-            this.lblCodigoExistente.Location = new System.Drawing.Point(230, 52);
+            this.lblCodigoExistente.Location = new System.Drawing.Point(194, 52);
             this.lblCodigoExistente.Name = "lblCodigoExistente";
             this.lblCodigoExistente.Size = new System.Drawing.Size(0, 13);
             this.lblCodigoExistente.TabIndex = 182;
@@ -94,6 +94,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.txtCodigoProducto.Properties.MaxLength = 7;
             this.txtCodigoProducto.Size = new System.Drawing.Size(104, 20);
             this.txtCodigoProducto.TabIndex = 181;
+            this.txtCodigoProducto.TextChanged += new System.EventHandler(this.txtCodigoProducto_TextChanged);
             // 
             // lblmoneda
             // 
@@ -141,7 +142,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // txtBreveDescripcion
             // 
-            this.txtBreveDescripcion.Location = new System.Drawing.Point(120, 67);
+            this.txtBreveDescripcion.Location = new System.Drawing.Point(120, 71);
             this.txtBreveDescripcion.Multiline = true;
             this.txtBreveDescripcion.Name = "txtBreveDescripcion";
             this.txtBreveDescripcion.Size = new System.Drawing.Size(263, 27);
@@ -149,15 +150,15 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // txtCaracteristicas
             // 
-            this.txtCaracteristicas.Location = new System.Drawing.Point(120, 93);
+            this.txtCaracteristicas.Location = new System.Drawing.Point(120, 100);
             this.txtCaracteristicas.Multiline = true;
             this.txtCaracteristicas.Name = "txtCaracteristicas";
-            this.txtCaracteristicas.Size = new System.Drawing.Size(263, 43);
+            this.txtCaracteristicas.Size = new System.Drawing.Size(263, 61);
             this.txtCaracteristicas.TabIndex = 174;
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(12, 96);
+            this.labelControl5.Location = new System.Drawing.Point(12, 103);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(78, 13);
             this.labelControl5.TabIndex = 173;
@@ -165,7 +166,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(12, 67);
+            this.labelControl4.Location = new System.Drawing.Point(12, 71);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(92, 13);
             this.labelControl4.TabIndex = 172;
@@ -237,6 +238,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.btnEditar.Size = new System.Drawing.Size(67, 23);
             this.btnEditar.TabIndex = 184;
             this.btnEditar.Text = "Editar";
+            this.btnEditar.Visible = false;
             // 
             // btnEliminar
             // 
@@ -249,6 +251,8 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.btnEliminar.Size = new System.Drawing.Size(75, 23);
             this.btnEliminar.TabIndex = 185;
             this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.Visible = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnNuevo
             // 
@@ -260,6 +264,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.btnNuevo.Size = new System.Drawing.Size(73, 23);
             this.btnNuevo.TabIndex = 183;
             this.btnNuevo.Text = "&Nuevo";
+            this.btnNuevo.Visible = false;
             // 
             // btnGuardar
             // 
@@ -267,7 +272,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.btnGuardar.ImageOptions.Image = global::ErpPanorama.Presentation.Properties.Resources.btn_grabar;
             this.btnGuardar.ImageOptions.ImageIndex = 0;
             this.btnGuardar.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.btnGuardar.Location = new System.Drawing.Point(674, 325);
+            this.btnGuardar.Location = new System.Drawing.Point(674, 355);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 208;
@@ -280,18 +285,19 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.btnCancelar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.ImageOptions.Image")));
             this.btnCancelar.ImageOptions.ImageIndex = 0;
             this.btnCancelar.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(755, 325);
+            this.btnCancelar.Location = new System.Drawing.Point(755, 355);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 207;
             this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // gcCotizacionesEdit
             // 
             this.gcCotizacionesEdit.Location = new System.Drawing.Point(25, 205);
             this.gcCotizacionesEdit.MainView = this.gvCotizacionEdit;
             this.gcCotizacionesEdit.Name = "gcCotizacionesEdit";
-            this.gcCotizacionesEdit.Size = new System.Drawing.Size(805, 114);
+            this.gcCotizacionesEdit.Size = new System.Drawing.Size(805, 145);
             this.gcCotizacionesEdit.TabIndex = 209;
             this.gcCotizacionesEdit.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvCotizacionEdit});
@@ -338,50 +344,45 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn2.Caption = "Materiales";
             this.gridColumn2.FieldName = "CostoMateriales";
             this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 0;
-            this.gridColumn2.Width = 82;
+            this.gridColumn2.Width = 141;
             // 
             // gridColumn3
             // 
             this.gridColumn3.Caption = "Insumos";
             this.gridColumn3.FieldName = "CostoInsumos";
             this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 1;
-            this.gridColumn3.Width = 81;
+            this.gridColumn3.Width = 134;
             // 
             // gridColumn1
             // 
             this.gridColumn1.Caption = "Accesorios";
             this.gridColumn1.FieldName = "CostoAccesorios";
             this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 2;
-            this.gridColumn1.Width = 77;
+            this.gridColumn1.Width = 122;
             // 
             // gridColumn4
             // 
             this.gridColumn4.Caption = "Mano de Obra";
             this.gridColumn4.FieldName = "CostoManoObra";
             this.gridColumn4.Name = "gridColumn4";
-            this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 3;
-            this.gridColumn4.Width = 86;
+            this.gridColumn4.Width = 120;
             // 
             // gridColumn8
             // 
             this.gridColumn8.Caption = "Movilidad y Viaticos";
             this.gridColumn8.FieldName = "CostoMovilidad";
             this.gridColumn8.Name = "gridColumn8";
-            this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 4;
-            this.gridColumn8.Width = 106;
+            this.gridColumn8.Width = 140;
             // 
             // gridColumn9
             // 
@@ -399,9 +400,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn11.FieldName = "TotalGastos";
             this.gridColumn11.Name = "gridColumn11";
-            this.gridColumn11.OptionsColumn.AllowEdit = false;
-            this.gridColumn11.Visible = true;
-            this.gridColumn11.VisibleIndex = 6;
             this.gridColumn11.Width = 109;
             // 
             // gridColumn7
@@ -410,8 +408,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn7.FieldName = "PrecioVenta";
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.OptionsColumn.AllowEdit = false;
-            this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 7;
             this.gridColumn7.Width = 115;
             // 
             // gridColumn13
@@ -460,7 +456,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(840, 360);
+            this.ClientSize = new System.Drawing.Size(840, 390);
             this.Controls.Add(this.btnEliminarimg);
             this.Controls.Add(this.btnAgregarimg);
             this.Controls.Add(this.gcCotizacionesEdit);

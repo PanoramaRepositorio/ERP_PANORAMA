@@ -47,8 +47,18 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
         private void frmRegCotizacionPrecioProductoClienteStockEdit_Load(object sender, EventArgs e)
         {
             CargarCotizacion();
+            // Establecer la propiedad MaxLength a 0 para permitir una cantidad ilimitada de caracteres
+            txtCodigoProducto.Properties.MaxLength = 0;
+            txtCaracteristicas.ScrollBars = ScrollBars.Vertical;
+            txtCaracteristicas.ScrollBars = ScrollBars.Horizontal;
+            txtCaracteristicas.ScrollBars = ScrollBars.Both;
+            txtBreveDescripcion.ScrollBars = ScrollBars.Both;
+            txtBreveDescripcion.ScrollBars = ScrollBars.Vertical;
+            txtBreveDescripcion.ScrollBars = ScrollBars.Horizontal;
+            txtNumeroCotizacion.Enabled = false;
+            txtCodigoProducto.TextChanged += txtCodigoProducto_TextChanged;
         }
-
+        private string originalImagePath;
         private void CargarCotizacion()
         {
             try
@@ -83,7 +93,8 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                     }
                     cboTipoMoneda.ReadOnly = true; // Deshabilitar la edición
                     picImage.Image = LoadImageFromPath(cotizacion.Imagen); // Cargar la imagen desde cotizacion.Imagen si es necesario
-
+                                                                           // Almacenar la ruta original de la imagen
+                    originalImagePath = cotizacion.Imagen;
                     // Cargar los detalles de cotización en el GridView gvCotizacionEdit
                     gvCotizacionEdit.GridControl.DataSource = cotizacionKiraBL.ObtenerCotizacionPorId2(idCotizacion);
                 }
@@ -143,103 +154,72 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+        
             try
             {
-                // Crear una instancia de CotizacionKiraBE con valores estáticos
-                CotizacionKiraBE cotizacion = new CotizacionKiraBE
+                // Obtener los datos de la cotización desde los controles
+                CotizacionKiraBE cotizacion = new CotizacionKiraBE();
+                cotizacion.IdCotizacion = Convert.ToInt32(txtNumeroCotizacion.Text);
+                cotizacion.CodigoProducto = txtCodigoProducto.Text;
+                cotizacion.Descripcion = txtBreveDescripcion.Text;
+                cotizacion.Caracteristicas = txtCaracteristicas.Text;
+                // Verificar si la imagen se ha modificado antes de intentar copiarla y actualizar la ruta
+                bool imagenModificada = false;
+
+                if (picImage.Image != null && !string.IsNullOrEmpty(openFile.FileName))
                 {
-                    IdCotizacion = 4,  // Cambia esto al valor correcto
-                    CodigoProducto = "PRODUCTO123",
-                    Descripcion = "Descripción de prueba",
-                    Caracteristicas = "Características de prueba",
-                    Imagen = @"\\172.16.0.155\Sistemas\Imagenes\imagen_prueba.jpg",
-                    CostoMateriales = 100.00M,
-                    CostoInsumos = 50.00M,
-                    CostoAccesorios = 20.00M,
-                    CostoManoObra = 80.00M,
-                    CostoMovilidad = 10.00M,
-                    CostoEquipos = 30.00M
-                };
+                    string fileName = Path.GetFileName(openFile.FileName);
+                    string destinationPath = Path.Combine(@"\\172.16.0.155\Sistemas\Imagenes", fileName);
+                    try
+                    {
+                        File.Copy(openFile.FileName, destinationPath, true);
+                        cotizacion.Imagen = destinationPath;
+                        imagenModificada = true; // Establecer la bandera en true si la imagen se ha modificado
+                    }
+                    catch (Exception ex)
+                    {
+                        // Manejar errores si ocurre algún problema al copiar la imagen
+                        MessageBox.Show("Error al guardar la imagen: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                else if (!string.IsNullOrEmpty(originalImagePath) && !imagenModificada)
+                {
+                    cotizacion.Imagen = originalImagePath; // Restaurar la ruta original de la imagen
+                }
+
+                try
+                {
+                    for (int i = 0; i < gvCotizacionEdit.RowCount; i++)
+                    {
+                        cotizacion.CostoMateriales += Convert.ToDecimal(gvCotizacionEdit.GetRowCellValue(i, "CostoMateriales"));
+                        cotizacion.CostoInsumos += Convert.ToDecimal(gvCotizacionEdit.GetRowCellValue(i, "CostoInsumos"));
+                        cotizacion.CostoAccesorios += Convert.ToDecimal(gvCotizacionEdit.GetRowCellValue(i, "CostoAccesorios"));
+                        cotizacion.CostoManoObra += Convert.ToDecimal(gvCotizacionEdit.GetRowCellValue(i, "CostoManoObra"));
+                        cotizacion.CostoMovilidad += Convert.ToDecimal(gvCotizacionEdit.GetRowCellValue(i, "CostoMovilidad"));
+                        cotizacion.CostoEquipos += Convert.ToDecimal(gvCotizacionEdit.GetRowCellValue(i, "CostoEquipos"));
+                    }
+                }
+                catch (FormatException ex)
+                {
+                    MessageBox.Show("Error de formato al convertir valor numérico: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                //cotizacion.IdMoneda = Convert.ToInt32(((DataRowView)cboTipoMoneda.SelectedItem)["IdMoneda"]);
 
                 // Actualizar la cotización en la capa de negocios
                 cotizacionKiraBL.ActualizarCotizacion(cotizacion);
 
                 // Mostrar mensaje de éxito
                 MessageBox.Show("Cotización actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // Recargar la cotización actualizada
+                this.Close();
                 CargarCotizacion();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al actualizar la cotización: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            //try
-            //{
-            //    // Obtener los datos de la cotización desde los controles
-            //    CotizacionKiraBE cotizacion = new CotizacionKiraBE();
-            //    cotizacion.IdCotizacion = Convert.ToInt32(txtNumeroCotizacion.Text);
-            //    cotizacion.CodigoProducto = txtCodigoProducto.Text;
-            //    cotizacion.Descripcion = txtBreveDescripcion.Text;
-            //    cotizacion.Caracteristicas = txtCaracteristicas.Text;
-
-            //    // Guardar la imagen en el fileserver y obtener la ruta de destino
-            //    if (picImage.Image != null && !string.IsNullOrEmpty(openFile.FileName))
-            //    {
-            //        string fileName = Path.GetFileName(openFile.FileName);
-            //        string destinationPath = Path.Combine(@"\\172.16.0.155\Sistemas\Imagenes", fileName);
-            //        try
-            //        {
-            //            File.Copy(openFile.FileName, destinationPath, true);
-            //            cotizacion.Imagen = destinationPath;
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            // Manejar errores si ocurre algún problema al copiar la imagen
-            //            MessageBox.Show("Error al guardar la imagen: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //            return;
-            //        }
-            //    }
-
-            //    try
-            //    {
-            //        for (int i = 0; i < gvCotizacionEdit.RowCount; i++)
-            //        {
-            //            cotizacion.CostoMateriales += Convert.ToDecimal(gvCotizacionEdit.GetRowCellValue(i, "CostoMateriales"));
-            //            cotizacion.CostoInsumos += Convert.ToDecimal(gvCotizacionEdit.GetRowCellValue(i, "CostoInsumos"));
-            //            cotizacion.CostoAccesorios += Convert.ToDecimal(gvCotizacionEdit.GetRowCellValue(i, "CostoAccesorios"));
-            //            cotizacion.CostoManoObra += Convert.ToDecimal(gvCotizacionEdit.GetRowCellValue(i, "CostoManoObra"));
-            //            cotizacion.CostoMovilidad += Convert.ToDecimal(gvCotizacionEdit.GetRowCellValue(i, "CostoMovilidad"));
-            //            cotizacion.CostoEquipos += Convert.ToDecimal(gvCotizacionEdit.GetRowCellValue(i, "CostoEquipos"));
-            //            Console.WriteLine("Fila: " + i);
-            //            Console.WriteLine("CostoMateriales: " + gvCotizacionEdit.GetRowCellValue(i, "CostoMateriales"));
-            //            Console.WriteLine("CostoInsumos: " + gvCotizacionEdit.GetRowCellValue(i, "CostoInsumos"));
-            //            Console.WriteLine("CostoAccesorios: " + gvCotizacionEdit.GetRowCellValue(i, "CostoAccesorios"));
-            //            Console.WriteLine("CostoMovilidad: " + gvCotizacionEdit.GetRowCellValue(i, "CostoMovilidad"));
-            //            Console.WriteLine("CostoEquipos: " + gvCotizacionEdit.GetRowCellValue(i, "CostoEquipos"));
-            //        }
-            //    }
-            //    catch (FormatException ex)
-            //    {
-            //        MessageBox.Show("Error de formato al convertir valor numérico: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //        return;
-            //    }
-
-            //      //cotizacion.IdMoneda = Convert.ToInt32(((DataRowView)cboTipoMoneda.SelectedItem)["IdMoneda"]);
-
-            //    // Actualizar la cotización en la capa de negocios
-            //    cotizacionKiraBL.ActualizarCotizacion(cotizacion);
-
-            //    // Mostrar mensaje de éxito
-            //    MessageBox.Show("Cotización actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            //    // Recargar la cotización actualizada
-            //    CargarCotizacion();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Error al actualizar la cotización: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
         }
 
         private void btnAgregarimg_Click(object sender, EventArgs e)
@@ -269,6 +249,31 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
         private void btnEliminarimg_Click(object sender, EventArgs e)
         {
             this.picImage.Image = ErpPanorama.Presentation.Properties.Resources.noImage;
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void txtCodigoProducto_TextChanged(object sender, EventArgs e)
+        {
+            CotizacionKiraBL cotizacionKiraBLs = new CotizacionKiraBL();
+            if (cotizacionKiraBLs.ValidarCodigoProducto(txtCodigoProducto.Text))
+            {
+                lblCodigoExistente.Text = "Código NO disponible.";
+                lblCodigoExistente.ForeColor = Color.Red;
+            }
+            else
+            {
+                lblCodigoExistente.Text = "Código disponible.";
+                lblCodigoExistente.ForeColor = Color.Green;
+            }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

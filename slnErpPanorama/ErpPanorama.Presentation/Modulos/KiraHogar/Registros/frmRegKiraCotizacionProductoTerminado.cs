@@ -23,6 +23,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
     {
         public ComboTipoCotizacionBL comboTipoCotizacionBL;
         private CotizacionKiraBL cotizacionKiraBL = new CotizacionKiraBL();
+       
         // Variable para almacenar el cuadro de diálogo de selección de archivos
         private OpenFileDialog openFile = new OpenFileDialog();
         public frmRegKiraCotizacionProductoTerminado()
@@ -44,6 +45,8 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             calcularTotalGastospestaña2();
             imageCollection = new ImageCollection();
             imageCollection.AddImage(Properties.Resources.Stop_2);
+            // Establecer la propiedad MaxLength a 0 para permitir una cantidad ilimitada de caracteres
+            txtCodigoProducto.Properties.MaxLength = 0;
         }
 
 
@@ -569,7 +572,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                 int idTipoCotizacion = itemSeleccionado.IdTablaElemento;
                 int idMoneda = itemMonedaSeleccionado.IdTablaElemento;
                 // Crear objeto CotizacionKiraBE con los valores ingresados por el usuario
-                CotizacionKiraBE cotizacion = new CotizacionKiraBE
+                CotizacionKiraProductoTerminadoBE cotizacion = new CotizacionKiraProductoTerminadoBE
                 {
                     IdTablaElemento = idTipoCotizacion, // IdTipoCotizacion obtenido del ComboBox de Tipo de Cotización
                     Fecha = txtFecha.DateTime,
@@ -584,7 +587,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                 };
 
                 // CAMBIAR 
-                cotizacion.CostoMateriales = decimal.TryParse(txtSumaCostosPestaña1.Text, out decimal sumaCostosPestana1) ? sumaCostosPestana1 : 0.0m;
+                cotizacion.CostoProductos = decimal.TryParse(txtSumaCostosPestaña1.Text, out decimal sumaCostosPestana1) ? sumaCostosPestana1 : 0.0m;
 
                 // Guardar la imagen en el fileserver y obtener la ruta de destino
                 if (picImage.Image != null && !string.IsNullOrEmpty(openFile.FileName))
@@ -617,10 +620,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                 AgregarDatosDePestanaAlDetalle(dtDatospestaña1, dtDetalleCompleto);
 
                 // Obtener la lista de detalles de cotización desde el dtDetalleCompleto
-                List<DetalleCotizacionBE> detallesCotizacion = new List<DetalleCotizacionBE>();
+                List<DetalleCotizacionProductoBE> detallesCotizacion = new List<DetalleCotizacionProductoBE>();
                 foreach (DataRow row in dtDetalleCompleto.Rows)
                 {
-                    DetalleCotizacionBE detalle = new DetalleCotizacionBE
+                    DetalleCotizacionProductoBE detalle = new DetalleCotizacionProductoBE
                     {
                         IdTablaElemento = Convert.ToInt32(row["IdTablaElemento"]),
                         Item = Convert.ToInt32(row["Item"]),
@@ -634,7 +637,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
 
                 // Llamada al procedimiento almacenado con la nueva estructura
                 int idCotizacion = 0;
-                cotizacionKiraBL.RegistrarCotizacionYDetalle(cotizacion, detallesCotizacion, out idCotizacion);
+                cotizacionKiraBL.RegistrarCotizacionYDetalleProductos(cotizacion, detallesCotizacion, out idCotizacion);
 
                 LimpiarControlesTextBox(this.Controls);
                 valorespredeterminadosdeloscbo();

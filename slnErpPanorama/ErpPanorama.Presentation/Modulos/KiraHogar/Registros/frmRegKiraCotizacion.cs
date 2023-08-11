@@ -43,7 +43,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
         }
         private void timerFilas() {
             timer = new Timer();
-            timer.Interval = 25000; // 25 segundos
+            timer.Interval = 15000; //3 segundos
             timer.Tick += timer1_Tick;
             timer.Start();
             txtPeriodo.Text = "2023";
@@ -297,37 +297,26 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
 
         private void gvCotizacion_CustomDrawCell_1(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
         {
-
-            if (e.Column.FieldName == "PrecioVenta" || e.Column.FieldName == "TotalGastos")
+            // Verificar si la celda es de una de las columnas de gastos
+            if (e.Column.FieldName == "CostoMateriales" ||
+                e.Column.FieldName == "CostoInsumos" ||
+                e.Column.FieldName == "CostoAccesorios" ||
+                e.Column.FieldName == "CostoManoObra" ||
+                e.Column.FieldName == "CostoMovilidad")
             {
-                // Obtener el valor de la celda
-                decimal valor = Convert.ToDecimal(e.CellValue);
-                Color color = Color.Empty;
+                // Obtener los valores de la celda actual y de la fila actual
+                decimal costo = Convert.ToDecimal(e.CellValue);
+                decimal precioVenta = Convert.ToDecimal(gvCotizacion.GetRowCellValue(e.RowHandle, "PrecioVenta"));
 
-                if (e.Column.FieldName == "PrecioVenta")
+                // Comparar los valores y mostrar una alerta si los gastos superan el precio de venta
+                if (costo > precioVenta)
                 {
-                    // Resaltar el campo "PrecioVenta" en color verde si es mayor a 2000
-                    if (valor > 2000)
-                        color = Color.Green;
-                }
-                else if (e.Column.FieldName == "TotalGastos")
-                {
-                    // Resaltar el campo "TotalGastos" con diferentes colores según su valor
-                    if (valor >= 2000)
-                        color = Color.Red;
-                    else if (valor >= 1500 )
-                        color = Color.Orange;
-                    else
-                        color = Color.Green;
-                }
-
-                if (color != Color.Empty)
-                {
-                    // Cambiar el color de fondo de la celda
-                    e.Appearance.BackColor = color;
-                    e.Appearance.BackColor2 = color;
+                    e.Appearance.BackColor = Color.Red;  // Cambiar el color de fondo de la celda a rojo
+                    e.Appearance.ForeColor = Color.White;  // Cambiar el color de texto a blanco
+                    e.DisplayText = "Gastos > PrecioVenta";  // Cambiar el texto que se muestra en la celda
                 }
             }
+           
         }
 
         private void gvCotizacion_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
@@ -357,6 +346,11 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             {
                 AbrirFormularioEdicion(cotizacion.IdCotizacion);
             }
+        }
+
+        private void gcCotizacionesProducto_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

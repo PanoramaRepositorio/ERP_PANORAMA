@@ -334,8 +334,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             txtFecha.Properties.MinValue = DateTime.Today;
             txtFecha.DateTime = DateTime.Today;
             txtCaracteristicas.ScrollBars = ScrollBars.Vertical;
+            txtCaracteristicas.ScrollBars = ScrollBars.Horizontal;
             txtCaracteristicas.ScrollBars = ScrollBars.Both;
             txtBreveDescripcion.ScrollBars = ScrollBars.Both;
+            txtBreveDescripcion.ScrollBars = ScrollBars.Horizontal;
             txtEquipoyherramientas.Text = "50";
             txtEquipoyherramientas.Enabled = false;
             txtequipos.Text = "50";
