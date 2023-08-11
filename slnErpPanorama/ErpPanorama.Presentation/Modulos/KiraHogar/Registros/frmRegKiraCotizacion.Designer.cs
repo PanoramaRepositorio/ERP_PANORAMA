@@ -406,6 +406,8 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gvCotizacionProducto.OptionsSelection.MultiSelect = true;
             this.gvCotizacionProducto.OptionsView.ColumnAutoWidth = false;
             this.gvCotizacionProducto.OptionsView.ShowGroupPanel = false;
+            this.gvCotizacionProducto.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gvCotizacionProducto_FocusedRowChanged);
+            this.gvCotizacionProducto.DoubleClick += new System.EventHandler(this.gvCotizacionProducto_DoubleClick);
             // 
             // gridColumn10
             // 

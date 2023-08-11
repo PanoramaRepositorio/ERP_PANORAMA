@@ -277,20 +277,34 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
 
 
         private List<CotizacionKiraBE> cotizacionesFiltradas; // Agrega esta línea
-        
+
         private void tlbMenu_EditClick()
         {
 
             try
             {
-                int rowIndex = gvCotizacion.FocusedRowHandle;
-                if (rowIndex >= 0)
+                if (isCotizacionProductoFocused)
                 {
-                    CotizacionKiraBE cotizacion = (CotizacionKiraBE)gvCotizacion.GetRow(rowIndex);
-
-                    if (cotizacion != null)
+                    int rowIndex = gvCotizacionProducto.FocusedRowHandle;
+                    if (rowIndex >= 0)
                     {
-                        AbrirFormularioEdicion(cotizacion.IdCotizacion); // Utilizas el método existente para abrir el formulario de edición
+                        CotizacionKiraProductoTerminadoBE cotizacionpro = (CotizacionKiraProductoTerminadoBE)gvCotizacionProducto.GetRow(rowIndex);
+                        if (cotizacionpro != null)
+                        {
+                            AbrirFormularioProductoEdicion(cotizacionpro.IdCotizacion); // Utilizas el método para abrir el formulario de edición de productos
+                        }
+                    }
+                }
+                else
+                {
+                    int rowIndex = gvCotizacion.FocusedRowHandle;
+                    if (rowIndex >= 0)
+                    {
+                        CotizacionKiraBE cotizacion = (CotizacionKiraBE)gvCotizacion.GetRow(rowIndex);
+                        if (cotizacion != null)
+                        {
+                            AbrirFormularioEdicion(cotizacion.IdCotizacion); // Utilizas el método para abrir el formulario de edición normal
+                        }
                     }
                 }
             }
@@ -298,11 +312,19 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             {
                 MessageBox.Show("Error al editar la cotización: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
-
-
-
+        private bool isCotizacionProductoFocused = false;
+        private void gvCotizacionProducto_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            isCotizacionProductoFocused = true; // La vista gvCotizacionProducto está enfocada
+            gvCotizacion.ClearSelection(); // DDesactivar la selección en gvCotizacion
+        }
+        private void gvCotizacion_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            timer.Stop();
+            isCotizacionProductoFocused = false; // La vista gvCotizacion está enfocada
+            gvCotizacionProducto.ClearSelection(); // Desactivar la selección en gvCotizacionProducto
+        }
         private void gvCotizacion_CustomDrawCell_1(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
         {
             // Verificar si la celda es de una de las columnas de gastos
@@ -327,10 +349,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
 
         }
 
-        private void gvCotizacion_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
-        {
-            timer.Stop();
-        }
+     
 
         private void gvCotizacion_LostFocus(object sender, EventArgs e)
         {
@@ -348,11 +367,25 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             frmEditar.IdCotizacion = idCotizacion;
             frmEditar.ShowDialog();
         }
+        private void AbrirFormularioProductoEdicion(int idCotizacion)
+        {
+            frmRegKiraCotizacionProductoTerminadoEdit frmEditar = new frmRegKiraCotizacionProductoTerminadoEdit();
+            frmEditar.IdCotizacion = idCotizacion;
+            frmEditar.ShowDialog();
+        }
         private void gvCotizacion_DoubleClick(object sender, EventArgs e)
         {
             if (gvCotizacion.GetFocusedRow() is CotizacionKiraBE cotizacion)
             {
                 AbrirFormularioEdicion(cotizacion.IdCotizacion);
+            }
+        }
+
+        private void gvCotizacionProducto_DoubleClick(object sender, EventArgs e)
+        {
+            if (gvCotizacionProducto.GetFocusedRow() is CotizacionKiraProductoTerminadoBE cotizacion)
+            {
+                AbrirFormularioProductoEdicion(cotizacion.IdCotizacion);
             }
         }
 
@@ -427,5 +460,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             }
 
         }
+
+      
     }
 }
