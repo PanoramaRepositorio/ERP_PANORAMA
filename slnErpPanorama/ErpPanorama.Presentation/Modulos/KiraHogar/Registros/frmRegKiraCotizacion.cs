@@ -36,6 +36,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             formCotizacion.WindowState = FormWindowState.Maximized;
             tlbMenu.Ensamblado = this.Tag.ToString();
             CargarListadoCotizaciones();
+            CargarListadoCotizacionesProducto();
             ActualizarNumeroFilas();
             timerFilas();
             imageCollection = new ImageCollection();
@@ -71,6 +72,23 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                 listaCotizacionesOriginal = comboTipoCotizacionBL.ObtenerListadoCotizaciones();
                 gcCotizaciones.DataSource = listaCotizacionesOriginal;
                 gvCotizacion.BestFitColumns(); // Ajusta el tamaño de las columnas
+
+            }
+            catch (Exception ex)
+            {
+                // Manejar el error si ocurre
+                MessageBox.Show("Error al cargar el listado de cotizaciones: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void CargarListadoCotizacionesProducto()
+        {
+            try
+            {
+                ComboTipoCotizacionBL comboTipoCotizacionBL = new ComboTipoCotizacionBL();
+                listaCotizacionesOriginal = comboTipoCotizacionBL.ObtenerListadoCotizacioneproductos();
+                gcCotizacionesProducto.DataSource = listaCotizacionesOriginal;
+                gvCotizacionProducto.BestFitColumns(); // Ajusta el tamaño de las columnas
 
             }
             catch (Exception ex)
@@ -346,11 +364,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             {
                 AbrirFormularioEdicion(cotizacion.IdCotizacion);
             }
-        }
-
-        private void gcCotizacionesProducto_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
