@@ -331,6 +331,41 @@ namespace ErpPanorama.DataLogic
         }
 
 
+        public List<CotizacionKiraProductoTerminadoBE> FiltrarCotizacionesPorPeriodoYNumeroproducto(int periodo, int numeroCotizacion)
+        {
+            List<CotizacionKiraProductoTerminadoBE> cotizaciones = new List<CotizacionKiraProductoTerminadoBE>();
+
+            using (var connection = db.CreateConnection())
+            {
+                connection.Open();
+                using (var command = db.GetStoredProcCommand("usp_FiltrarCotizacionesPorPeriodoYNumeroproducto"))
+                {
+                    db.AddInParameter(command, "@Periodo", DbType.Int32, periodo);
+                    db.AddInParameter(command, "@NumeroCotizacion", DbType.Int32, numeroCotizacion);
+
+                    using (var reader = db.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            CotizacionKiraProductoTerminadoBE cotizacion = new CotizacionKiraProductoTerminadoBE();
+                            cotizacion.IdCotizacion = Convert.ToInt32(reader["IdCotizacion"]);
+                            cotizacion.CodigoProducto = reader["CodigoProducto"].ToString();
+                            cotizacion.Descripcion = reader["Descripcion"].ToString();
+                            cotizacion.CostoProductos = reader["CostoProductos"] != DBNull.Value ? Convert.ToDecimal(reader["CostoProductos"]) : 0;
+                            cotizacion.TotalGastos = reader["TotalGastos"] != DBNull.Value ? Convert.ToDecimal(reader["TotalGastos"]) : 0;
+                            cotizacion.PrecioVenta = reader["PrecioVenta"] != DBNull.Value ? Convert.ToDecimal(reader["PrecioVenta"]) : 0;
+                            cotizacion.Fecha = reader["Fecha"] != DBNull.Value ? Convert.ToDateTime(reader["Fecha"]) : DateTime.MinValue;
+                            //// Agregamos la columna DescTablaElemento a la entidad CotizacionKiraBE
+                            cotizacion.DescTablaElemento = reader["DescTablaElemento"].ToString();
+                            cotizaciones.Add(cotizacion);
+                        }
+                    }
+                }
+            }
+
+            return cotizaciones;
+        }
+
         public bool ExisteCodigoProductoDuplicado(int idCotizacion, string nuevoCodigoProducto)
         {
             using (var connection = db.CreateConnection())
