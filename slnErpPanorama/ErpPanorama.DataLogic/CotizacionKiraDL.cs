@@ -406,6 +406,23 @@ namespace ErpPanorama.DataLogic
             }
         }
 
+        public void ActualizarCotizacionProductos(CotizacionKiraProductoTerminadoBE cotizacion)
+        {
+            using (DbCommand cmd = db.GetStoredProcCommand("usp_ActualizarCotizacionProductos"))
+            {
+                db.AddInParameter(cmd, "@IdCotizacion", DbType.Int32, cotizacion.IdCotizacion);
+                db.AddInParameter(cmd, "@NuevoCodigoProducto", DbType.String, cotizacion.CodigoProducto);
+                db.AddInParameter(cmd, "@NuevaDescripcion", DbType.String, cotizacion.Descripcion);
+                db.AddInParameter(cmd, "@NuevoCaracteristicas", DbType.String, cotizacion.Caracteristicas);
+                db.AddInParameter(cmd, "@NuevoImagen", DbType.String, cotizacion.Imagen);
+                db.AddInParameter(cmd, "@NuevoCostoProductos", DbType.Decimal, cotizacion.CostoProductos);
+                //db.AddInParameter(cmd, "@NuevoMoneda", DbType.Int32, cotizacion.IdMoneda);
+                db.ExecuteNonQuery(cmd);
+            }
+        }
+
+
+
 
 
 
@@ -460,6 +477,52 @@ namespace ErpPanorama.DataLogic
             return cotizacion;
         }
 
+        public CotizacionKiraProductoTerminadoBE ObtenerCotizacionProductoPorId(int idCotizacion)
+        {
+            CotizacionKiraProductoTerminadoBE cotizacion = null;
+
+            try
+            {
+                using (DbCommand cmd = db.GetStoredProcCommand("usp_ObtenerCotizacionProductoPorId"))
+                {
+                    db.AddInParameter(cmd, "@IdCotizacion", DbType.Int32, idCotizacion);
+
+                    using (IDataReader dr = db.ExecuteReader(cmd))
+                    {
+                        if (dr.Read())
+                        {
+                            cotizacion = new CotizacionKiraProductoTerminadoBE
+                            {
+                                IdCotizacion = Convert.ToInt32(dr["IdCotizacion"]),
+                                IdTablaElemento = Convert.ToInt32(dr["IdTablaElemento"]),
+                                Fecha = Convert.ToDateTime(dr["Fecha"]),
+                                CodigoProducto = dr["CodigoProducto"].ToString(),
+                                Descripcion = dr["Descripcion"].ToString(),
+                                Caracteristicas = dr["Caracteristicas"].ToString(),
+                                Imagen = dr["Imagen"].ToString(),
+                                CostoProductos = Convert.ToDecimal(dr["CostoProductos"]),
+                                TotalGastos = Convert.ToDecimal(dr["TotalGastos"]),
+                                PrecioVenta = Convert.ToDecimal(dr["PrecioVenta"]),
+                                IdMoneda = Convert.ToInt32(dr["Moneda"]), // Nueva columna Moneda
+                                FlagEstado = Convert.ToBoolean(dr["FlagEstado"]),
+                                DescTablaElemento = dr["DescTablaElemento"].ToString(),
+                                DescripcionGastos = dr["DescripcionGastos"].ToString(),
+                                FlagAprobacion = Convert.ToBoolean(dr["FlagAprobacion"]),
+                                FlagEstadoDetalle = Convert.ToBoolean(dr["FlagEstadoDetalle"]),
+                                CostoDetalle = Convert.ToDecimal(dr["CostoDetalle"])
+                            };
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones
+            }
+
+            return cotizacion;
+        }
+
 
         public List<CotizacionKiraBE> ObtenerCotizacionPorId2(int numeroCotizacion)
         {
@@ -487,6 +550,40 @@ namespace ErpPanorama.DataLogic
                             cotizacion.CostoManoObra = reader["CostoManoObra"] != DBNull.Value ? Convert.ToDecimal(reader["CostoManoObra"]) : 0;
                             cotizacion.CostoMovilidad = reader["CostoMovilidad"] != DBNull.Value ? Convert.ToDecimal(reader["CostoMovilidad"]) : 0;
                             cotizacion.CostoEquipos = reader["CostoEquipos"] != DBNull.Value ? Convert.ToDecimal(reader["CostoEquipos"]) : 0;
+                            cotizacion.TotalGastos = reader["TotalGastos"] != DBNull.Value ? Convert.ToDecimal(reader["TotalGastos"]) : 0;
+                            cotizacion.PrecioVenta = reader["PrecioVenta"] != DBNull.Value ? Convert.ToDecimal(reader["PrecioVenta"]) : 0;
+                            cotizacion.Fecha = reader["Fecha"] != DBNull.Value ? Convert.ToDateTime(reader["Fecha"]) : DateTime.MinValue;
+                            //// Agregamos la columna DescTablaElemento a la entidad CotizacionKiraBE
+                            cotizacion.DescTablaElemento = reader["DescTablaElemento"].ToString();
+                            cotizaciones.Add(cotizacion);
+                        }
+                    }
+                }
+            }
+
+            return cotizaciones;
+        }
+        public List<CotizacionKiraProductoTerminadoBE> ObtenerCotizacionProductoPorId2(int numeroCotizacion)
+        {
+            List<CotizacionKiraProductoTerminadoBE> cotizaciones = new List<CotizacionKiraProductoTerminadoBE>();
+
+            using (var connection = db.CreateConnection())
+            {
+                connection.Open();
+                using (var command = db.GetStoredProcCommand("usp_ObtenerCotizacionproductoPorId2"))
+                {
+
+                    db.AddInParameter(command, "@IdCotizacion", DbType.Int32, numeroCotizacion);
+
+                    using (var reader = db.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            CotizacionKiraProductoTerminadoBE cotizacion = new CotizacionKiraProductoTerminadoBE();
+                            cotizacion.IdCotizacion = Convert.ToInt32(reader["IdCotizacion"]);
+                            cotizacion.CodigoProducto = reader["CodigoProducto"].ToString();
+                            cotizacion.Descripcion = reader["Descripcion"].ToString();
+                            cotizacion.CostoProductos = reader["CostoProductos"] != DBNull.Value ? Convert.ToDecimal(reader["CostoProductos"]) : 0;
                             cotizacion.TotalGastos = reader["TotalGastos"] != DBNull.Value ? Convert.ToDecimal(reader["TotalGastos"]) : 0;
                             cotizacion.PrecioVenta = reader["PrecioVenta"] != DBNull.Value ? Convert.ToDecimal(reader["PrecioVenta"]) : 0;
                             cotizacion.Fecha = reader["Fecha"] != DBNull.Value ? Convert.ToDateTime(reader["Fecha"]) : DateTime.MinValue;

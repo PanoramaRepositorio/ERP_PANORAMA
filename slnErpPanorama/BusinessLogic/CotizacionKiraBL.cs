@@ -85,6 +85,11 @@ namespace ErpPanorama.BusinessLogic
             cotizacionKiraDL.ActualizarCotizacion(cotizacion);
         }
 
+        public void ActualizarCotizacionProductos(CotizacionKiraProductoTerminadoBE cotizacion)
+        {
+            cotizacionKiraDL.ActualizarCotizacionProductos(cotizacion);
+        }
+
 
         public List<DetalleCotizacionBE> ObtenerDetallesCotizacionPorId(int idCotizacion)
         {
@@ -99,6 +104,17 @@ namespace ErpPanorama.BusinessLogic
         public List<CotizacionKiraBE> ObtenerCotizacionPorId2(int idCotizacion)
         {
             return cotizacionKiraDL.ObtenerCotizacionPorId2(idCotizacion);
+        }
+
+        public CotizacionKiraProductoTerminadoBE ObtenerCotizacionProductoPorId(int idCotizacion)
+        {
+            return cotizacionKiraDL.ObtenerCotizacionProductoPorId(idCotizacion);
+        }
+
+
+        public List<CotizacionKiraProductoTerminadoBE> ObtenerCotizacionproductoPorId2(int idCotizacion)
+        {
+            return cotizacionKiraDL.ObtenerCotizacionProductoPorId2(idCotizacion);
         }
 
     }
