@@ -729,7 +729,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
 
             cboMaterial.Text = "Seleccione Materiales";
             txtPrecio.Text = string.Empty;
-            gridControlPestaña5.RefreshDataSource();
+            gridControlPestaña1.RefreshDataSource();
             //calcularTotalGastospestaña1();
             // Después de agregar los datos a la pestaña 1, actualiza el resumen
 

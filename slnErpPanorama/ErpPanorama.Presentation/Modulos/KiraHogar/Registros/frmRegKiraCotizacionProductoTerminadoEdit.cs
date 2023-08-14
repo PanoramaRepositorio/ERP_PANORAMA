@@ -18,6 +18,12 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
     {
 
         private int idCotizacion;
+
+
+
+
+
+
         private CotizacionKiraProductoTerminadoBE cotizacion;
         private OpenFileDialog openFile = new OpenFileDialog();
         private CotizacionKiraBL cotizacionKiraBL = new CotizacionKiraBL();

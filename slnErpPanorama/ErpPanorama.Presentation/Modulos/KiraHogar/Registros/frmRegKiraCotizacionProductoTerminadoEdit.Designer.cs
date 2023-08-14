@@ -418,7 +418,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.Controls.Add(this.txtNumeroCotizacion);
             this.Controls.Add(this.labelControl15);
             this.Name = "frmRegKiraCotizacionProductoTerminadoEdit";
-            this.Text = "Cotización Costo Productos - Modificar (COSTOS)";
+            this.Text = "Cotización Precio Producto Terminado - Modificar (COSTOS)";
             this.Load += new System.EventHandler(this.frmRegKiraCotizacionProductoTerminadoEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gcCotizacionesProductoEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCotizacionProductoEdit)).EndInit();
