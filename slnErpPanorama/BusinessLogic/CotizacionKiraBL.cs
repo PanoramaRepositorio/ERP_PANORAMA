@@ -90,6 +90,11 @@ namespace ErpPanorama.BusinessLogic
             cotizacionKiraDL.ActualizarCotizacion(cotizacion);
         }
 
+        public void ActualizarCotizacionDetalle(CotizacionKiraBE cotizacion)
+        {
+            cotizacionKiraDL.ActualizarCotizacion(cotizacion);
+        }
+
         public void ActualizarCotizacionProductos(CotizacionKiraProductoTerminadoBE cotizacion)
         {
             cotizacionKiraDL.ActualizarCotizacionProductos(cotizacion);
@@ -110,7 +115,6 @@ namespace ErpPanorama.BusinessLogic
         {
             return cotizacionKiraDL.ObtenerCotizacionPorId2(idCotizacion);
         }
-
         public CotizacionKiraProductoTerminadoBE ObtenerCotizacionProductoPorId(int idCotizacion)
         {
             return cotizacionKiraDL.ObtenerCotizacionProductoPorId(idCotizacion);
@@ -120,6 +124,63 @@ namespace ErpPanorama.BusinessLogic
         public List<CotizacionKiraProductoTerminadoBE> ObtenerCotizacionproductoPorId2(int idCotizacion)
         {
             return cotizacionKiraDL.ObtenerCotizacionProductoPorId2(idCotizacion);
+        }
+        public List<DetalleCotizacionBE> ObtenerDetelaleCotizacionMateriales(int idCotizacion)
+        {
+            return cotizacionKiraDL.ObtenerCotizacionDetalleMaterialesPorid(idCotizacion);
+        }
+
+        public List<DetalleCotizacionBE> ObtenerDetelaleCotizacionInsumos(int idCotizacion)
+        {
+            return cotizacionKiraDL.ObtenerCotizacionDetalleInsumosPorid(idCotizacion);
+        }
+
+        public List<DetalleCotizacionBE> ObtenerDetelaleCotizacionAccesorios(int idCotizacion)
+        {
+            return cotizacionKiraDL.ObtenerCotizacionDetalleAccesoriosPorid(idCotizacion);
+        }
+
+        public List<DetalleCotizacionBE> ObtenerDetelaleCotizacionManoObra(int idCotizacion)
+        {
+            return cotizacionKiraDL.ObtenerCotizacionDetalleManoObraPorid(idCotizacion);
+        }
+
+        public List<DetalleCotizacionBE> ObtenerDetelaleCotizacionMovilidad(int idCotizacion)
+        {
+            return cotizacionKiraDL.ObtenerCotizacionDetalleMovilidadid(idCotizacion);
+        }
+
+        public List<DetalleCotizacionBE> ObtenerDetelaleEquipos(int idCotizacion)
+        {
+            return cotizacionKiraDL.ObtenerCotizacionDetalleEquiposid(idCotizacion);
+        }
+
+        public void ActualizarDetalleCotizacion(List<DetalleCotizacionBE> detallesCotizacion)
+        {
+            try
+            {
+                cotizacionKiraDL.ActualizarDetalleCotizacion(detallesCotizacion);
+            }
+            catch (Exception ex)
+            {
+                // Manejar el error o propagarlo si es necesario
+                throw ex;
+            }
+        }
+
+        public void AgregarDetalleCotizacion(int idCotizacion, int idTablaElemento, string descripcionGastos, decimal costo)
+        {
+            cotizacionKiraDL.AgregarDetalleCotizacion(idCotizacion, idTablaElemento, descripcionGastos, costo);
+        }
+
+        public void EliminarDetalleCotizacion(int idCotizacionDetalle)
+        {
+            cotizacionKiraDL.EliminarDetalleCotizacion(idCotizacionDetalle);
+        }
+
+        public DetalleCotizacionBE ObtenerUltimoDetalleCotizacion(int idCotizacion)
+        {
+            return cotizacionKiraDL.ObtenerUltimoDetalleCotizacion(idCotizacion);
         }
 
     }

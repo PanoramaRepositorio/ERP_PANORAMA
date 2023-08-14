@@ -444,6 +444,18 @@ namespace ErpPanorama.DataLogic
 
 
 
+        public void ActualizarCotizaciondetalle(DetalleCotizacionBE cotizacion)
+        {
+            using (DbCommand cmd = db.GetStoredProcCommand("usp_ActualizarCotizaciondetalle"))
+            {
+                db.AddInParameter(cmd, "@IdCotizacion", DbType.Int32, cotizacion.IdCotizacion);
+                db.AddInParameter(cmd, "@NuevoDescripcionGastos", DbType.String, cotizacion.DescripcionGastos);
+                db.AddInParameter(cmd, "@NuevoCosto", DbType.Decimal, cotizacion.Costo);
+                //db.AddInParameter(cmd, "@NuevoMoneda", DbType.Int32, cotizacion.IdMoneda);
+                db.ExecuteNonQuery(cmd);
+            }
+        }
+
 
 
 
@@ -544,6 +556,205 @@ namespace ErpPanorama.DataLogic
             return cotizacion;
         }
 
+
+        public List<DetalleCotizacionBE> ObtenerCotizacionDetalleMaterialesPorid(int numeroCotizacion)
+        {
+            List<DetalleCotizacionBE> detallesCotizacion = new List<DetalleCotizacionBE>();
+
+            using (var connection = db.CreateConnection())
+            {
+                connection.Open();
+                using (var command = db.GetStoredProcCommand("ObtenerDetallesCotizacionMateriales"))
+                {
+                    db.AddInParameter(command, "@IdCotizacion", DbType.Int32, numeroCotizacion);
+
+                    using (var reader = db.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            CotizacionKiraBE cotizacion = new CotizacionKiraBE();
+                            DetalleCotizacionBE detalle = new DetalleCotizacionBE();
+                            detalle.IdCotizacionDetalle = reader["IdCotizacionDetalle"] != DBNull.Value ? Convert.ToInt32(reader["IdCotizacionDetalle"]) : 0;
+                            cotizacion.IdCotizacion = reader["IdCotizacion"] != DBNull.Value ? Convert.ToInt32(reader["IdCotizacion"]) : 0;
+                            cotizacion.IdTablaElemento = reader["IdTablaElemento"] != DBNull.Value ? Convert.ToInt32(reader["IdTablaElemento"]) : 0;
+                            detalle.DescTabla = reader["DescTabla"].ToString();
+                            detalle.DescripcionGastos = reader["DescripcionGastos"].ToString();
+                            detalle.Costo = reader["Costo"] != DBNull.Value ? Convert.ToDecimal(reader["Costo"]) : 0;
+                            detalle.CotizacionKira = cotizacion;
+                            detallesCotizacion.Add(detalle);
+                        }
+                    }
+                }
+            }
+
+            return detallesCotizacion;
+        }
+
+
+        public List<DetalleCotizacionBE> ObtenerCotizacionDetalleInsumosPorid(int numeroCotizacion)
+        {
+            List<DetalleCotizacionBE> detallesCotizacion = new List<DetalleCotizacionBE>();
+
+            using (var connection = db.CreateConnection())
+            {
+                connection.Open();
+                using (var command = db.GetStoredProcCommand("ObtenerDetallesCotizacionIsumos"))
+                {
+                    db.AddInParameter(command, "@IdCotizacion", DbType.Int32, numeroCotizacion);
+
+                    using (var reader = db.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            CotizacionKiraBE cotizacion = new CotizacionKiraBE();
+                            DetalleCotizacionBE detalle = new DetalleCotizacionBE();
+                            detalle.IdCotizacionDetalle = reader["IdCotizacionDetalle"] != DBNull.Value ? Convert.ToInt32(reader["IdCotizacionDetalle"]) : 0;
+                            cotizacion.IdCotizacion = reader["IdCotizacion"] != DBNull.Value ? Convert.ToInt32(reader["IdCotizacion"]) : 0;
+                            cotizacion.IdTablaElemento = reader["IdTablaElemento"] != DBNull.Value ? Convert.ToInt32(reader["IdTablaElemento"]) : 0;
+                            detalle.DescTabla = reader["DescTabla"].ToString();
+                            detalle.DescripcionGastos = reader["DescripcionGastos"].ToString();
+                            detalle.Costo = reader["Costo"] != DBNull.Value ? Convert.ToDecimal(reader["Costo"]) : 0;
+                            detalle.CotizacionKira = cotizacion;
+                            detallesCotizacion.Add(detalle);
+                        }
+                    }
+                }
+            }
+
+            return detallesCotizacion;
+        }
+
+        public List<DetalleCotizacionBE> ObtenerCotizacionDetalleAccesoriosPorid(int numeroCotizacion)
+        {
+            List<DetalleCotizacionBE> detallesCotizacion = new List<DetalleCotizacionBE>();
+
+            using (var connection = db.CreateConnection())
+            {
+                connection.Open();
+                using (var command = db.GetStoredProcCommand("ObtenerDetallesCotizacionAccesorios"))
+                {
+                    db.AddInParameter(command, "@IdCotizacion", DbType.Int32, numeroCotizacion);
+
+                    using (var reader = db.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            CotizacionKiraBE cotizacion = new CotizacionKiraBE();
+                            DetalleCotizacionBE detalle = new DetalleCotizacionBE();
+                            detalle.IdCotizacionDetalle = reader["IdCotizacionDetalle"] != DBNull.Value ? Convert.ToInt32(reader["IdCotizacionDetalle"]) : 0;
+                            cotizacion.IdCotizacion = reader["IdCotizacion"] != DBNull.Value ? Convert.ToInt32(reader["IdCotizacion"]) : 0;
+                            cotizacion.IdTablaElemento = reader["IdTablaElemento"] != DBNull.Value ? Convert.ToInt32(reader["IdTablaElemento"]) : 0;
+                            detalle.DescTabla = reader["DescTabla"].ToString();
+                            detalle.DescripcionGastos = reader["DescripcionGastos"].ToString();
+                            detalle.Costo = reader["Costo"] != DBNull.Value ? Convert.ToDecimal(reader["Costo"]) : 0;
+                            detalle.CotizacionKira = cotizacion;
+                            detallesCotizacion.Add(detalle);
+                        }
+                    }
+                }
+            }
+
+            return detallesCotizacion;
+        }
+
+        public List<DetalleCotizacionBE> ObtenerCotizacionDetalleManoObraPorid(int numeroCotizacion)
+        {
+            List<DetalleCotizacionBE> detallesCotizacion = new List<DetalleCotizacionBE>();
+
+            using (var connection = db.CreateConnection())
+            {
+                connection.Open();
+                using (var command = db.GetStoredProcCommand("ObtenerDetallesCotizacionManoObra"))
+                {
+                    db.AddInParameter(command, "@IdCotizacion", DbType.Int32, numeroCotizacion);
+
+                    using (var reader = db.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            CotizacionKiraBE cotizacion = new CotizacionKiraBE();
+                            DetalleCotizacionBE detalle = new DetalleCotizacionBE();
+                            detalle.IdCotizacionDetalle = reader["IdCotizacionDetalle"] != DBNull.Value ? Convert.ToInt32(reader["IdCotizacionDetalle"]) : 0;
+                            cotizacion.IdCotizacion = reader["IdCotizacion"] != DBNull.Value ? Convert.ToInt32(reader["IdCotizacion"]) : 0;
+                            cotizacion.IdTablaElemento = reader["IdTablaElemento"] != DBNull.Value ? Convert.ToInt32(reader["IdTablaElemento"]) : 0;
+                            detalle.DescTabla = reader["DescTabla"].ToString();
+                            detalle.DescripcionGastos = reader["DescripcionGastos"].ToString();
+                            detalle.Costo = reader["Costo"] != DBNull.Value ? Convert.ToDecimal(reader["Costo"]) : 0;
+                            detalle.CotizacionKira = cotizacion;
+                            detallesCotizacion.Add(detalle);
+                        }
+                    }
+                }
+            }
+
+            return detallesCotizacion;
+        }
+
+        public List<DetalleCotizacionBE> ObtenerCotizacionDetalleMovilidadid(int numeroCotizacion)
+        {
+            List<DetalleCotizacionBE> detallesCotizacion = new List<DetalleCotizacionBE>();
+
+            using (var connection = db.CreateConnection())
+            {
+                connection.Open();
+                using (var command = db.GetStoredProcCommand("ObtenerDetallesCotizacionMovilidad"))
+                {
+                    db.AddInParameter(command, "@IdCotizacion", DbType.Int32, numeroCotizacion);
+
+                    using (var reader = db.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            CotizacionKiraBE cotizacion = new CotizacionKiraBE();
+                            DetalleCotizacionBE detalle = new DetalleCotizacionBE();
+                            detalle.IdCotizacionDetalle = reader["IdCotizacionDetalle"] != DBNull.Value ? Convert.ToInt32(reader["IdCotizacionDetalle"]) : 0;
+                            cotizacion.IdCotizacion = reader["IdCotizacion"] != DBNull.Value ? Convert.ToInt32(reader["IdCotizacion"]) : 0;
+                            cotizacion.IdTablaElemento = reader["IdTablaElemento"] != DBNull.Value ? Convert.ToInt32(reader["IdTablaElemento"]) : 0;
+                            detalle.DescTabla = reader["DescTabla"].ToString();
+                            detalle.DescripcionGastos = reader["DescripcionGastos"].ToString();
+                            detalle.Costo = reader["Costo"] != DBNull.Value ? Convert.ToDecimal(reader["Costo"]) : 0;
+                            detalle.CotizacionKira = cotizacion;
+                            detallesCotizacion.Add(detalle);
+                        }
+                    }
+                }
+            }
+
+            return detallesCotizacion;
+        }
+
+        public List<DetalleCotizacionBE> ObtenerCotizacionDetalleEquiposid(int numeroCotizacion)
+        {
+            List<DetalleCotizacionBE> detallesCotizacion = new List<DetalleCotizacionBE>();
+
+            using (var connection = db.CreateConnection())
+            {
+                connection.Open();
+                using (var command = db.GetStoredProcCommand("ObtenerDetallesCotizacionEquipos"))
+                {
+                    db.AddInParameter(command, "@IdCotizacion", DbType.Int32, numeroCotizacion);
+
+                    using (var reader = db.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            CotizacionKiraBE cotizacion = new CotizacionKiraBE();
+                            DetalleCotizacionBE detalle = new DetalleCotizacionBE();
+                            detalle.IdCotizacionDetalle = reader["IdCotizacionDetalle"] != DBNull.Value ? Convert.ToInt32(reader["IdCotizacionDetalle"]) : 0;
+                            cotizacion.IdCotizacion = reader["IdCotizacion"] != DBNull.Value ? Convert.ToInt32(reader["IdCotizacion"]) : 0;
+                            cotizacion.IdTablaElemento = reader["IdTablaElemento"] != DBNull.Value ? Convert.ToInt32(reader["IdTablaElemento"]) : 0;
+                            detalle.DescTabla = reader["DescTabla"].ToString();
+                            detalle.DescripcionGastos = reader["DescripcionGastos"].ToString();
+                            detalle.Costo = reader["Costo"] != DBNull.Value ? Convert.ToDecimal(reader["Costo"]) : 0;
+                            detalle.CotizacionKira = cotizacion;
+                            detallesCotizacion.Add(detalle);
+                        }
+                    }
+                }
+            }
+
+            return detallesCotizacion;
+        }
 
         public List<CotizacionKiraBE> ObtenerCotizacionPorId2(int numeroCotizacion)
         {
@@ -657,6 +868,141 @@ namespace ErpPanorama.DataLogic
 
             return detalles;
         }
+
+
+        public void ActualizarDetalleCotizacion(List<DetalleCotizacionBE> detallesCotizacion)
+        {
+            using (var connection = db.CreateConnection())
+            {
+                connection.Open();
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        var detalleCommand = db.GetStoredProcCommand("usp_ActualizarCotizacionDetalle");
+
+                        // Agregar los parámetros de tabla estructurada para los detalles de cotización
+                        var tvpParam = new SqlParameter("@NuevoDetalleCotizacionActualizado", SqlDbType.Structured);
+                        tvpParam.TypeName = "dbo.NuevoDetalleCotizacionType";
+                        tvpParam.Value = ConvertToDataTabledetalle(detallesCotizacion);
+                        detalleCommand.Parameters.Add(tvpParam);
+
+                        db.ExecuteNonQuery(detalleCommand, transaction);
+
+                        // Confirmar la transacción
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw ex;
+                    }
+                }
+            }
+        }
+
+
+        private DataTable ConvertToDataTabledetalle(List<DetalleCotizacionBE> detallesCotizacion)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("IdCotizacion", typeof(int));
+            dt.Columns.Add("IdCotizacionDetalle", typeof(int));
+            dt.Columns.Add("DescripcionGastos", typeof(string));
+            dt.Columns.Add("Costo", typeof(decimal));
+
+            foreach (var detalle in detallesCotizacion)
+            {
+                dt.Rows.Add(detalle.IdCotizacion, detalle.IdCotizacionDetalle, detalle.DescripcionGastos, detalle.Costo);
+            }
+
+            return dt;
+        }
+
+
+        public void AgregarDetalleCotizacion(int idCotizacion, int idTablaElemento, string descripcionGastos, decimal costo)
+        {
+            using (var connection = db.CreateConnection())
+            {
+                connection.Open();
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        var detalleCommand = db.GetStoredProcCommand("usp_AgregarDetalleCotizacion");
+                        db.AddInParameter(detalleCommand, "@IdCotizacion", DbType.Int32, idCotizacion);
+                        db.AddInParameter(detalleCommand, "@IdTablaElemento", DbType.Int32, idTablaElemento); // Agregado
+                        db.AddInParameter(detalleCommand, "@DescripcionGastos", DbType.String, descripcionGastos);
+                        db.AddInParameter(detalleCommand, "@Costo", DbType.Decimal, costo);
+
+                        db.ExecuteNonQuery(detalleCommand, transaction);
+
+                        // Confirmar la transacción
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw ex;
+                    }
+                }
+            }
+        }
+
+
+        public void EliminarDetalleCotizacion(int idCotizacionDetalle)
+        {
+            using (var connection = db.CreateConnection())
+            {
+                connection.Open();
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        var detalleCommand = db.GetStoredProcCommand("usp_EliminarDetalleCotizacion");
+                        db.AddInParameter(detalleCommand, "@IdCotizacionDetalle", DbType.Int32, idCotizacionDetalle);
+
+                        db.ExecuteNonQuery(detalleCommand, transaction);
+
+                        // Confirmar la transacción
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw ex;
+                    }
+                }
+            }
+        }
+
+        public DetalleCotizacionBE ObtenerUltimoDetalleCotizacion(int idCotizacion)
+        {
+            DetalleCotizacionBE detalle = null;
+
+            using (var connection = db.CreateConnection())
+            {
+                connection.Open();
+
+                var command = db.GetStoredProcCommand("usp_ObtenerUltimoDetalleCotizacion");
+                db.AddInParameter(command, "@IdCotizacion", DbType.Int32, idCotizacion);
+
+                using (var reader = db.ExecuteReader(command))
+                {
+                    if (reader.Read())
+                    {
+                        detalle = new DetalleCotizacionBE();
+                        detalle.IdCotizacionDetalle = reader.GetInt32(reader.GetOrdinal("IdCotizacionDetalle"));
+                        detalle.IdCotizacion = reader.GetInt32(reader.GetOrdinal("IdCotizacion"));
+                        detalle.IdTablaElemento = reader.GetInt32(reader.GetOrdinal("IdTablaElemento"));
+                        detalle.DescripcionGastos = reader.GetString(reader.GetOrdinal("DescripcionGastos"));
+                        detalle.Costo = reader.GetDecimal(reader.GetOrdinal("Costo"));
+                    }
+                }
+            }
+
+            return detalle;
+        }
+
 
     }
 }
