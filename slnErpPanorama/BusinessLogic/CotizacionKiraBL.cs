@@ -44,6 +44,11 @@ namespace ErpPanorama.BusinessLogic
             cotizacionKiraDL.EliminarCotizacionPorCodigoProducto(codigoProducto);
         }
 
+        public void EliminarCotizacionProductoPorCodigoProducto(string codigoProducto)
+        {
+            cotizacionKiraDL.EliminarCotizacionProductoPorCodigoProducto(codigoProducto);
+        }
+
         public int ObtenerSiguienteNumeroCotizacion()
         {
             return cotizacionKiraDL.ObtenerSiguienteNumeroCotizacion();
@@ -130,6 +135,11 @@ namespace ErpPanorama.BusinessLogic
             return cotizacionKiraDL.ObtenerCotizacionDetalleMaterialesPorid(idCotizacion);
         }
 
+        public List<DetalleCotizacionProductoBE> ObtenerDetelaleCotizacionCostoProducto(int idCotizacion)
+        {
+            return cotizacionKiraDL.ObtenerCotizacionDetalleCostoProductoPorid(idCotizacion);
+        }
+
         public List<DetalleCotizacionBE> ObtenerDetelaleCotizacionInsumos(int idCotizacion)
         {
             return cotizacionKiraDL.ObtenerCotizacionDetalleInsumosPorid(idCotizacion);
@@ -168,9 +178,28 @@ namespace ErpPanorama.BusinessLogic
             }
         }
 
+        public void ActualizarDetalleCotizacionProducto(List<DetalleCotizacionProductoBE> detallesCotizacion)
+        {
+            try
+            {
+                cotizacionKiraDL.ActualizarDetalleCotizacionProducto(detallesCotizacion);
+            }
+            catch (Exception ex)
+            {
+                // Manejar el error o propagarlo si es necesario
+                throw ex;
+            }
+        }
+
+
         public void AgregarDetalleCotizacion(int idCotizacion, int idTablaElemento, string descripcionGastos, decimal costo)
         {
             cotizacionKiraDL.AgregarDetalleCotizacion(idCotizacion, idTablaElemento, descripcionGastos, costo);
+        }
+
+        public void AgregarDetalleCotizacionProducto(int idCotizacion, int idTablaElemento, string descripcionGastos, decimal costo)
+        {
+            cotizacionKiraDL.AgregarDetalleCotizacionProducto(idCotizacion, idTablaElemento, descripcionGastos, costo);
         }
 
         public void EliminarDetalleCotizacion(int idCotizacionDetalle)
@@ -178,9 +207,19 @@ namespace ErpPanorama.BusinessLogic
             cotizacionKiraDL.EliminarDetalleCotizacion(idCotizacionDetalle);
         }
 
+        public void EliminarDetalleCotizacionProducto(int idCotizacionDetalle)
+        {
+            cotizacionKiraDL.EliminarDetalleCotizacionProducto(idCotizacionDetalle);
+        }
+
         public DetalleCotizacionBE ObtenerUltimoDetalleCotizacion(int idCotizacion)
         {
             return cotizacionKiraDL.ObtenerUltimoDetalleCotizacion(idCotizacion);
+        }
+
+        public DetalleCotizacionProductoBE ObtenerUltimoDetalleCotizacionProducto(int idCotizacion)
+        {
+            return cotizacionKiraDL.ObtenerUltimoDetalleCotizacionProducto(idCotizacion);
         }
 
     }
