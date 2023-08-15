@@ -1183,5 +1183,42 @@ namespace ErpPanorama.DataLogic
             return detalle;
         }
 
+        public List<CotizacionKiraBE> Listado(int IdCotizacion)
+        {
+            Database db = DatabaseFactory.CreateDatabase("cnErpPanoramaBD");
+            DbCommand dbCommand = db.GetStoredProcCommand("usp_rptCotizacionKira");
+            //db.AddInParameter(dbCommand, "pIdEmpresa", DbType.Int32, IdEmpresa);
+            db.AddInParameter(dbCommand, "IdCotizacion", DbType.Int32, IdCotizacion);
+
+            IDataReader reader = db.ExecuteReader(dbCommand);
+            List<CotizacionKiraBE> cotizazionalist = new List<CotizacionKiraBE>();
+            List<DetalleCotizacionBE> Detacotizazionalist = new List<DetalleCotizacionBE>();
+            CotizacionKiraBE cot;
+            while (reader.Read())
+            {
+                cot = new CotizacionKiraBE();
+                cot.IdCotizacion = Int32.Parse(reader["IdCotizacion"].ToString());
+                cot.IdTablaElemento = Int32.Parse(reader["IdTablaElemento"].ToString());
+                cot.Fecha = DateTime.Parse(reader["Fecha"].ToString());
+                cot.Descripcion = reader["Descripcion"].ToString();
+                cot.CodigoProducto = reader["CodigoProducto"].ToString();
+                cot.Caracteristicas = reader["Caracteristicas"].ToString();
+                cot.TotalGastos = Decimal.Parse(reader["TotalGastos"].ToString());
+                cot.PrecioVenta = Decimal.Parse(reader["PrecioVenta"].ToString());
+                cot.IdMoneda = Int32.Parse(reader["IdMoneda"].ToString());
+                cot.CostoMateriales = Decimal.Parse(reader["CostoMateriales"].ToString());
+                cot.CostoInsumos = Decimal.Parse(reader["CostoInsumos"].ToString());
+                cot.CostoAccesorios = Decimal.Parse(reader["CostoAccesorios"].ToString());
+                cot.CostoManoObra = Decimal.Parse(reader["CostoManoObra"].ToString());
+                cot.CostoMovilidad = Decimal.Parse(reader["CostoMovilidad"].ToString());
+                cot.CostoEquipos = Decimal.Parse(reader["CostoEquipos"].ToString());
+                cot.DescTablaElemento = reader["DescTablaElemento"].ToString();
+                cotizazionalist.Add(cot);
+            }
+            reader.Close();
+            reader.Dispose();
+            return cotizazionalist;
+        }
+
     }
 }

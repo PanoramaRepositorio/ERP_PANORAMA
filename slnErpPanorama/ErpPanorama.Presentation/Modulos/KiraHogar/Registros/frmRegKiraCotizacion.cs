@@ -286,46 +286,46 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             {
                 MessageBox.Show("Error al editar la cotización: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            //// Obtener la fila seleccionada en el GridView
-            //int filaSeleccionada = gvCotizacion.FocusedRowHandle;
-            //// Verificar que haya una fila seleccionada
-            //if (filaSeleccionada >= 0)
-            //{
-            //    // Obtener el valor del CodigoProducto de la fila seleccionada
-            //    string codigoProducto = gvCotizacion.GetRowCellValue(filaSeleccionada, "CodigoProducto").ToString();
-
-            //    // Preguntar al usuario si está seguro de eliminar la cotización
-            //    DialogResult resultado = MessageBox.Show("¿Estás seguro de eliminar la cotización?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            //    if (resultado == DialogResult.Yes)
-            //    {
-            //        try
-            //        {
-            //            // Llamar al método para eliminar la cotización por CodigoProducto
-            //            cotizacionKiraBL.EliminarCotizacionPorCodigoProducto(codigoProducto);
-            //            // Actualizar la lista de cotizaciones en el grid
-            //            CargarListadoCotizaciones();
-            //            // Mostrar mensaje de éxito
-            //            MessageBox.Show("La cotización se eliminó correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            // Manejar el error si ocurre
-            //            MessageBox.Show("Error al eliminar la cotización: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    // Si no hay una fila seleccionada, mostrar un mensaje
-            //    MessageBox.Show("Selecciona una cotización para eliminar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
         }
+
+        private void tlbMenu_PrintClick()
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                if (listaCotizacionesOriginal.Count > 0)
+                {
+                    CotizacionKiraBE objE_Coti = new CotizacionKiraBE();
+                    objE_Coti.IdCotizacion = int.Parse(gvCotizacion.GetFocusedRowCellValue("IdCotizacion").ToString());
+                    List<CotizacionKiraBE> lstReporte = null;
+                    lstReporte = new CotizacionKiraBL().Listado(objE_Coti.IdCotizacion);
+                    if (lstReporte != null)
+                    {
+                        if (lstReporte.Count > 0)
+                        {
+                            RptVistaReportes objRptFacturaCompra = new RptVistaReportes();
+                            objRptFacturaCompra.VerRptCotizacionKira(lstReporte);
+                            objRptFacturaCompra.ShowDialog();
+                        }
+                        else
+                            XtraMessageBox.Show("No hay información para el periodo seleccionado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+
+                }
+                Cursor = Cursors.Default;
+            }
+            catch (Exception ex)
+            {
+                Cursor = Cursors.Default;
+                XtraMessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void tlbMenu_Load(object sender, EventArgs e)
         {
             CargarListadoCotizaciones();
             CargarListadoCotizacionesProducto();
         }
-
 
         public void tlbMenu_RefreshClick()
         {
@@ -333,7 +333,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             CargarListadoCotizaciones();
             ActualizarNumeroFilas();
             ActualizarNumeroFilasProductos();
-            
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -343,7 +342,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             ActualizarNumeroFilasProductos();
             CargarListadoCotizacionesProducto();
         }
-
 
         private void OnMenuItemEliminarClick(object sender, EventArgs e)
         {
@@ -393,10 +391,8 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
         }
 
 
-        private List<CotizacionKiraBE> cotizacionesFiltradas; // Agrega esta línea
+        private List<CotizacionKiraBE> cotizacionesFiltradas; 
 
-   
-       
         private void gvCotizacionProducto_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             isCotizacionProductoFocused = true; 
@@ -552,6 +548,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
 
         }
 
-      
+        
+       
     }
 }

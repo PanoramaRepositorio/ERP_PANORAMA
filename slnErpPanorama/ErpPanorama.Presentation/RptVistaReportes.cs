@@ -18,6 +18,7 @@ using ErpPanorama.Presentation.Modulos.ComercioExterior.Rpt;
 using ErpPanorama.Presentation.Modulos.Contabilidad.Rpt;
 using ErpPanorama.Presentation.Modulos.DiseñoInteriores.Rpt;
 using ErpPanorama.Presentation.Modulos.RecursosHumanos.Rpt;
+using ErpPanorama.Presentation.Modulos.KiraHogar.Rpt;
 using ErpPanorama.BusinessEntity;
 using ErpPanorama.BusinessLogic;
 using ErpPanorama.BusinessEntity.Reportes;
@@ -264,6 +265,14 @@ namespace ErpPanorama.Presentation
             objReporte.SetDataSource(lstReporte);
             this.crystalReportViewer1.ReportSource = objReporte;
         }
+
+        public void VerRptCotizacionKira(List<CotizacionKiraBE> lstReporte)
+        {
+            rptCotizacionkira objReporte = new rptCotizacionkira();
+            objReporte.SetDataSource(lstReporte);
+            this.crystalReportViewer1.ReportSource = objReporte;
+        }
+
 
         public void VerRptFacturaCompraStock(List<ReporteFacturaCompraBE> lstReporte)
         {

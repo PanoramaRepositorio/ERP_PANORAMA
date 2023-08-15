@@ -1700,6 +1700,12 @@
     <Compile Include="Modulos\KiraHogar\Registros\frmRegKiraCotizacionProductoTerminadoEdit.Designer.cs">
       <DependentUpon>frmRegKiraCotizacionProductoTerminadoEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modulos\KiraHogar\Rpt\rptCotizacionkira.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptCotizacionkira.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Modulos\Logistica\Consultas\frmConCierrePedidos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4760,6 +4766,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\KiraHogar\Registros\frmRegKiraCotizacionProductoTerminadoEdit.resx">
       <DependentUpon>frmRegKiraCotizacionProductoTerminadoEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\KiraHogar\Rpt\rptCotizacionkira.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptCotizacionkira.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Logistica\Consultas\frmConCierrePedidos.resx">
       <DependentUpon>frmConCierrePedidos.cs</DependentUpon>
@@ -10620,6 +10630,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Modulos\Ecommerce\Rpt\reporteVentas.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Modulos\KiraHogar\Rpt\reportecotizacion.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Modulos\Logistica\Rpt\reportebultooperador.xsd">
