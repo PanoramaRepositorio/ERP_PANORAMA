@@ -56,10 +56,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
         private void frmRegCotizacionPrecioProductoClienteStockEdit_Load(object sender, EventArgs e)
         {
             
-
-           
-
-
             CargarCotizacion();
             personalizacióncontrolesform();
             ConfigurarComboBoxTipoCotizacion();
@@ -84,8 +80,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
 
         private void personalizacióncontrolesform()
         {
-            //int siguienteNumeroCotizacion = cotizacionKiraBL.ObtenerSiguienteNumeroCotizacion();
-            //txtNumeroCotizacion.Text = siguienteNumeroCotizacion.ToString();
+            
             gridView7.OptionsView.GroupDrawMode = DevExpress.XtraGrid.Views.Grid.GroupDrawMode.Office;
             gridView7.Columns["DescTabla"].GroupIndex = 0; // Establecer la columna "DescTabla" como columna de agrupación
             txtNumeroCotizacion.Enabled = false;
@@ -877,7 +872,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                     cotizacion.Imagen = originalImagePath; // Restaurar la ruta original de la imagen
                 }
 
-                // Calcular las sumas de costos de cada pestaña y agregarlas al objeto CotizacionKiraBE
+                // Calcular las sumas de costos de cada pestaña 
                 cotizacion.CostoMateriales = decimal.TryParse(txtSumaCostosPestaña1.Text, out decimal sumaCostosPestana1) ? sumaCostosPestana1 : 0.0m;
                 cotizacion.CostoInsumos = decimal.TryParse(txtSumaCostosPestaña2.Text, out decimal sumaCostosPestana2) ? sumaCostosPestana2 : 0.0m;
                 cotizacion.CostoAccesorios = decimal.TryParse(txtSumaCostosPestaña3.Text, out decimal sumaCostosPestana3) ? sumaCostosPestana3 : 0.0m;
@@ -905,7 +900,8 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                 cotizacionKiraBL.ActualizarDetalleCotizacion(detallesCotizacion);
 
                 // Mostrar mensaje de éxito
-                MessageBox.Show("Cotización actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DevExpress.XtraEditors.XtraMessageBox.Show("Cotización Precio Producto Cliente Stock actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 if (formRegKiraCotizacion == null)
                 {
                     // Crear una nueva instancia si no existe
@@ -1326,6 +1322,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
 
                     // Refrescar el gridControlPestaña1
                     gridControlPestaña1.RefreshDataSource();
+                    AgregarDatosAlResumen();
                     decimal sumaCostosPestana1 = CalcularSumaCostosPestana1(dt);
                     txtSumaCostosPestaña1.Text = sumaCostosPestana1.ToString("0.00");
                 }
@@ -1349,12 +1346,11 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                     cotizacionKiraBL.EliminarDetalleCotizacion(idCotizacionDetalle);
 
                     // Actualizar el resumen y el gridControlPestaña1
-                    AgregarDatosAlResumen();
                     gridView.RefreshData();
 
                     // Eliminar la fila del DataTable
                     dt.Rows.RemoveAt(selectedRowHandle);
-
+                    AgregarDatosAlResumen();
                     // Refrescar el gridControlPestaña1
                     gridControlPestaña2.RefreshDataSource();
                     decimal sumaCostosPestana2 = CalcularSumaCostosPestana2(dt);
@@ -1378,10 +1374,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                     int idCotizacionDetalle = Convert.ToInt32(dt.Rows[selectedRowHandle]["IdCotizacionDetalle"]);
                     // Llamar al método de la capa de negocio para eliminar el detalle
                     cotizacionKiraBL.EliminarDetalleCotizacion(idCotizacionDetalle);
-                    AgregarDatosAlResumen();
                     gridView.RefreshData();
                     dt.Rows.RemoveAt(selectedRowHandle);
                     gridControlPestaña3.RefreshDataSource();
+                    AgregarDatosAlResumen();
                     decimal sumaCostosPestana3 = CalcularSumaCostosPestana3(dt);
                     txtSumaCostosPestaña3.Text = sumaCostosPestana3.ToString("0.00");
                 }
@@ -1400,10 +1396,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                     DataTable dt = (DataTable)gridView.GridControl.DataSource;
                     int idCotizacionDetalle = Convert.ToInt32(dt.Rows[selectedRowHandle]["IdCotizacionDetalle"]);
                     cotizacionKiraBL.EliminarDetalleCotizacion(idCotizacionDetalle);
-                    AgregarDatosAlResumen();
                     gridView.RefreshData();
                     dt.Rows.RemoveAt(selectedRowHandle);
                     gridControlPestaña4.RefreshDataSource();
+                    AgregarDatosAlResumen();
                     decimal sumaCostosPestana4 = CalcularSumaCostosPestana4(dt);
                     txtSumaCostosPestaña4.Text = sumaCostosPestana4.ToString("0.00");
                 }
@@ -1422,10 +1418,11 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                     DataTable dt = (DataTable)gridView.GridControl.DataSource;
                     int idCotizacionDetalle = Convert.ToInt32(dt.Rows[selectedRowHandle]["IdCotizacionDetalle"]);
                     cotizacionKiraBL.EliminarDetalleCotizacion(idCotizacionDetalle);
-                    AgregarDatosAlResumen();
                     gridView.RefreshData();
                     dt.Rows.RemoveAt(selectedRowHandle);
                     gridControlPestaña5.RefreshDataSource();
+                    gridControlPestaña7Resumen.RefreshDataSource();
+                    AgregarDatosAlResumen();
                     decimal sumaCostosPestana5 = CalcularSumaCostosPestana5(dt);
                     txtSumaCostosPestaña5.Text = sumaCostosPestana5.ToString("0.00");
                 }

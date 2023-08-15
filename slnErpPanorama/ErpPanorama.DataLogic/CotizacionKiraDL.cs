@@ -547,16 +547,16 @@ namespace ErpPanorama.DataLogic
                                 Descripcion = dr["Descripcion"].ToString(),
                                 Caracteristicas = dr["Caracteristicas"].ToString(),
                                 Imagen = dr["Imagen"].ToString(),
-                                CostoProductos = Convert.ToDecimal(dr["CostoProductos"]),
-                                TotalGastos = Convert.ToDecimal(dr["TotalGastos"]),
-                                PrecioVenta = Convert.ToDecimal(dr["PrecioVenta"]),
+                                //CostoProductos = Convert.ToDecimal(dr["CostoProductos"]),
+                                //TotalGastos = Convert.ToDecimal(dr["TotalGastos"]),
+                                //PrecioVenta = Convert.ToDecimal(dr["PrecioVenta"]),
                                 IdMoneda = Convert.ToInt32(dr["Moneda"]), // Nueva columna Moneda
-                                FlagEstado = Convert.ToBoolean(dr["FlagEstado"]),
-                                DescTablaElemento = dr["DescTablaElemento"].ToString(),
-                                DescripcionGastos = dr["DescripcionGastos"].ToString(),
-                                FlagAprobacion = Convert.ToBoolean(dr["FlagAprobacion"]),
-                                FlagEstadoDetalle = Convert.ToBoolean(dr["FlagEstadoDetalle"]),
-                                CostoDetalle = Convert.ToDecimal(dr["CostoDetalle"])
+                                //FlagEstado = Convert.ToBoolean(dr["FlagEstado"]),
+                                DescTablaElemento = dr["DescTablaElemento"].ToString()
+                                //DescripcionGastos = dr["DescripcionGastos"].ToString(),
+                                //FlagAprobacion = Convert.ToBoolean(dr["FlagAprobacion"]),
+                                //FlagEstadoDetalle = Convert.ToBoolean(dr["FlagEstadoDetalle"]),
+                                //CostoDetalle = Convert.ToDecimal(dr["CostoDetalle"])
                             };
                         }
                     }
@@ -1182,23 +1182,6 @@ namespace ErpPanorama.DataLogic
 
             return detalle;
         }
-
-        public bool EsUltimoDetalleCotizacion(int idCotizacionDetalle, int idCotizacion)
-        {
-            using (var connection = db.CreateConnection())
-            {
-                connection.Open();
-
-                var command = db.GetStoredProcCommand("usp_EsUltimoDetalleCotizacion");
-                db.AddInParameter(command, "@IdCotizacionDetalle", DbType.Int32, idCotizacionDetalle);
-                db.AddInParameter(command, "@IdCotizacion", DbType.Int32, idCotizacion);
-
-                int result = Convert.ToInt32(db.ExecuteScalar(command));
-
-                return result == 1;
-            }
-        }
-
 
     }
 }

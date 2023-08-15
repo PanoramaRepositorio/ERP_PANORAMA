@@ -183,41 +183,142 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
 
         }
         CotizacionKiraBL cotizacionKiraBL = new CotizacionKiraBL();
-        private void tlbMenu_DeleteClick()
+        private bool isCotizacionProductoFocused = false;
+        private void tlbMenu_EditClick()
         {
-            // Obtener la fila seleccionada en el GridView
-            int filaSeleccionada = gvCotizacion.FocusedRowHandle;
-            // Verificar que haya una fila seleccionada
-            if (filaSeleccionada >= 0)
-            {
-                // Obtener el valor del CodigoProducto de la fila seleccionada
-                string codigoProducto = gvCotizacion.GetRowCellValue(filaSeleccionada, "CodigoProducto").ToString();
 
-                // Preguntar al usuario si está seguro de eliminar la cotización
-                DialogResult resultado = MessageBox.Show("¿Estás seguro de eliminar la cotización?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (resultado == DialogResult.Yes)
+            try
+            {
+                if (isCotizacionProductoFocused)
                 {
-                    try
+                    int rowIndex = gvCotizacionProducto.FocusedRowHandle;
+                    if (rowIndex >= 0)
                     {
-                        // Llamar al método para eliminar la cotización por CodigoProducto
-                        cotizacionKiraBL.EliminarCotizacionPorCodigoProducto(codigoProducto);
-                        // Actualizar la lista de cotizaciones en el grid
-                        CargarListadoCotizaciones();
-                        // Mostrar mensaje de éxito
-                        MessageBox.Show("La cotización se eliminó correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        CotizacionKiraProductoTerminadoBE cotizacionpro = (CotizacionKiraProductoTerminadoBE)gvCotizacionProducto.GetRow(rowIndex);
+                        if (cotizacionpro != null)
+                        {
+                            AbrirFormularioProductoEdicion(cotizacionpro.IdCotizacion); // Utilizas el método para abrir el formulario de edición de productos
+                        }
                     }
-                    catch (Exception ex)
+                }
+                else
+                {
+                    int rowIndex = gvCotizacion.FocusedRowHandle;
+                    if (rowIndex >= 0)
                     {
-                        // Manejar el error si ocurre
-                        MessageBox.Show("Error al eliminar la cotización: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        CotizacionKiraBE cotizacion = (CotizacionKiraBE)gvCotizacion.GetRow(rowIndex);
+                        if (cotizacion != null)
+                        {
+                            AbrirFormularioEdicion(cotizacion.IdCotizacion); // Utilizas el método para abrir el formulario de edición normal
+                        }
                     }
                 }
             }
-            else
+            catch (Exception ex)
             {
-                // Si no hay una fila seleccionada, mostrar un mensaje
-                MessageBox.Show("Selecciona una cotización para eliminar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al editar la cotización: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+
+        private void tlbMenu_DeleteClick()
+        {
+            try
+            {
+                int rowIndex;
+
+                if (isCotizacionProductoFocused)
+                {
+                    rowIndex = gvCotizacionProducto.FocusedRowHandle;
+                    if (rowIndex >= 0)
+                    {
+                        CotizacionKiraProductoTerminadoBE cotizacionpro = (CotizacionKiraProductoTerminadoBE)gvCotizacionProducto.GetRow(rowIndex);
+                        if (cotizacionpro != null)
+                        {
+                            string codigoProducto = cotizacionpro.CodigoProducto;
+                            DialogResult resultado = MessageBox.Show("¿Estás seguro de eliminar la cotización Producto Terminado?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (resultado == DialogResult.Yes)
+                            {
+                                try
+                                {
+                                    cotizacionKiraBL.EliminarCotizacionProductoPorCodigoProducto(codigoProducto);
+                                    CargarListadoCotizaciones();
+                                    MessageBox.Show("La cotización se eliminó correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                                catch (Exception ex)
+                                {
+                                    // Manejar el error si ocurre
+                                    MessageBox.Show("Error al eliminar la cotización: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    rowIndex = gvCotizacion.FocusedRowHandle;
+                    if (rowIndex >= 0)
+                    {
+                        CotizacionKiraBE cotizacion = (CotizacionKiraBE)gvCotizacion.GetRow(rowIndex);
+                        if (cotizacion != null)
+                        {
+                            string codigoProducto = cotizacion.CodigoProducto;
+                            DialogResult resultado = MessageBox.Show("¿Estás seguro de eliminar la cotización Precio Producto?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (resultado == DialogResult.Yes)
+                            {
+                                try
+                                {
+                                    cotizacionKiraBL.EliminarCotizacionPorCodigoProducto(codigoProducto);
+                                    CargarListadoCotizaciones();
+                                    MessageBox.Show("La cotización se eliminó correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                                catch (Exception ex)
+                                {
+                                    // Manejar el error si ocurre
+                                    MessageBox.Show("Error al eliminar la cotización: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al editar la cotización: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            //// Obtener la fila seleccionada en el GridView
+            //int filaSeleccionada = gvCotizacion.FocusedRowHandle;
+            //// Verificar que haya una fila seleccionada
+            //if (filaSeleccionada >= 0)
+            //{
+            //    // Obtener el valor del CodigoProducto de la fila seleccionada
+            //    string codigoProducto = gvCotizacion.GetRowCellValue(filaSeleccionada, "CodigoProducto").ToString();
+
+            //    // Preguntar al usuario si está seguro de eliminar la cotización
+            //    DialogResult resultado = MessageBox.Show("¿Estás seguro de eliminar la cotización?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            //    if (resultado == DialogResult.Yes)
+            //    {
+            //        try
+            //        {
+            //            // Llamar al método para eliminar la cotización por CodigoProducto
+            //            cotizacionKiraBL.EliminarCotizacionPorCodigoProducto(codigoProducto);
+            //            // Actualizar la lista de cotizaciones en el grid
+            //            CargarListadoCotizaciones();
+            //            // Mostrar mensaje de éxito
+            //            MessageBox.Show("La cotización se eliminó correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            // Manejar el error si ocurre
+            //            MessageBox.Show("Error al eliminar la cotización: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    // Si no hay una fila seleccionada, mostrar un mensaje
+            //    MessageBox.Show("Selecciona una cotización para eliminar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
         private void tlbMenu_Load(object sender, EventArgs e)
         {
@@ -294,52 +395,18 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
 
         private List<CotizacionKiraBE> cotizacionesFiltradas; // Agrega esta línea
 
-        private void tlbMenu_EditClick()
-        {
-
-            try
-            {
-                if (isCotizacionProductoFocused)
-                {
-                    int rowIndex = gvCotizacionProducto.FocusedRowHandle;
-                    if (rowIndex >= 0)
-                    {
-                        CotizacionKiraProductoTerminadoBE cotizacionpro = (CotizacionKiraProductoTerminadoBE)gvCotizacionProducto.GetRow(rowIndex);
-                        if (cotizacionpro != null)
-                        {
-                            AbrirFormularioProductoEdicion(cotizacionpro.IdCotizacion); // Utilizas el método para abrir el formulario de edición de productos
-                        }
-                    }
-                }
-                else
-                {
-                    int rowIndex = gvCotizacion.FocusedRowHandle;
-                    if (rowIndex >= 0)
-                    {
-                        CotizacionKiraBE cotizacion = (CotizacionKiraBE)gvCotizacion.GetRow(rowIndex);
-                        if (cotizacion != null)
-                        {
-                            AbrirFormularioEdicion(cotizacion.IdCotizacion); // Utilizas el método para abrir el formulario de edición normal
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al editar la cotización: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        private bool isCotizacionProductoFocused = false;
+   
+       
         private void gvCotizacionProducto_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            isCotizacionProductoFocused = true; // La vista gvCotizacionProducto está enfocada
-            gvCotizacion.ClearSelection(); // DDesactivar la selección en gvCotizacion
+            isCotizacionProductoFocused = true; 
+            gvCotizacion.ClearSelection(); // Desactivar la selección en gvCotizacion
             timer.Stop();
         }
         private void gvCotizacion_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             timer.Stop();
-            isCotizacionProductoFocused = false; // La vista gvCotizacion está enfocada
+            isCotizacionProductoFocused = false; // 
             gvCotizacionProducto.ClearSelection(); // Desactivar la selección en gvCotizacionProducto
         }
 
@@ -372,8 +439,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             }
 
         }
-
-     
 
         private void gvCotizacion_LostFocus(object sender, EventArgs e)
         {

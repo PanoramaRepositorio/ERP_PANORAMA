@@ -648,8 +648,9 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                 gridControlPestañaResumen.DataSource = dtVacio;
                 this.picImage.Image = ErpPanorama.Presentation.Properties.Resources.noImage;
 
-                MessageBox.Show("La cotización se registró correctamente. ID de cotización: " + idCotizacion, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
+               // MessageBox.Show("La cotización se registró correctamente. ID de cotización: " + idCotizacion, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DevExpress.XtraEditors.XtraMessageBox.Show("La cotización se registró correctamente. ID de cotización Precio Producto Terminado : " + idCotizacion, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 this.Close();
             }
             catch (Exception ex)
