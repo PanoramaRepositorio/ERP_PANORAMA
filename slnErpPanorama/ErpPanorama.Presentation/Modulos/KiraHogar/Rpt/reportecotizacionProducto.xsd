@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportecotizacionProducto"
+    targetNamespace="http://tempuri.org/reportecotizacionProducto.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportecotizacionProducto.xsd"
+    xmlns:mstns="http://tempuri.org/reportecotizacionProducto.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reportecotizacionProducto">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdCotizacion" type="xs:int" />
+      <xs:attribute name="IdTablaElemento" type="xs:int" />
+      <xs:attribute name="Fecha" type="xs:date" />
+      <xs:attribute name="CodigoProducto" type="xs:string" />
+      <xs:attribute name="Descripcion" type="xs:string" />
+      <xs:attribute name="Caracteristicas" type="xs:string" />
+      <xs:attribute name="TotalGastos" type="xs:decimal" />
+      <xs:attribute name="PrecioVenta" type="xs:decimal" />
+      <xs:attribute name="IdMoneda" type="xs:int" />
+      <xs:attribute name="CostoProductos" type="xs:decimal" />
+      <xs:attribute name="DescTablaElemento" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

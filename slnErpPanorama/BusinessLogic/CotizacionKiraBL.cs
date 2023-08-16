@@ -222,13 +222,25 @@ namespace ErpPanorama.BusinessLogic
             return cotizacionKiraDL.ObtenerUltimoDetalleCotizacionProducto(idCotizacion);
         }
 
-        public List<CotizacionKiraBE> Listado( int IdCotizacion)
+        public List<CotizacionKiraBE> Listado(int IdCotizacion)
         {
             try
             {
                 CotizacionKiraDL reporteCotizacion = new CotizacionKiraDL();
                 return reporteCotizacion.Listado(IdCotizacion);
-              
+
+            }
+            catch (Exception ex)
+            { throw ex; }
+        }
+
+        public List<CotizacionKiraProductoTerminadoBE> ListadoProducto(int IdCotizacion)
+        {
+            try
+            {
+                CotizacionKiraDL reporteCotizacion = new CotizacionKiraDL();
+                return reporteCotizacion.ListadoProducto(IdCotizacion);
+
             }
             catch (Exception ex)
             { throw ex; }

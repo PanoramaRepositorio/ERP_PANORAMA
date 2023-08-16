@@ -167,21 +167,41 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
 
         private void tlbMenu_ExportClick()
         {
-            string _msg = "Se genero el archivo excel de forma satisfactoria en la siguiente ubicación.\n{0}";
+
+            string _msg = "Se generó el archivo Excel de forma satisfactoria en la siguiente ubicación:\n{0}\n\nExportado desde: {1}\n\n¿Desea continuar?";
             string _fileName = "Listado de cotizaciones KIRA";
             FolderBrowserDialog f = new FolderBrowserDialog();
             f.ShowDialog(this);
+
             if (f.SelectedPath != "")
             {
                 Cursor = Cursors.AppStarting;
-                gcCotizaciones.ExportToXls(f.SelectedPath + @"\" + _fileName + ".xls");
-                string _nM = string.Format(_msg, f.SelectedPath + @"\" + _fileName + ".xls");
-                XtraMessageBox.Show(_nM, "Exportar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                string exportFrom = isCotizacionProductoFocused ? "Cotización Productos Terminados" : "Cotizaciones Precio Producto"; // Determina el origen de exportación
+
+                if (isCotizacionProductoFocused)
+                {
+                    if (DialogResult.Yes == XtraMessageBox.Show(string.Format(_msg, f.SelectedPath + @"\" + _fileName + "_ProductoTerminado.xls", exportFrom), "Exportar", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                    {
+                        gcCotizacionesProducto.ExportToXls(f.SelectedPath + @"\" + _fileName + "_Producto.xls");
+                        string _nM = string.Format("Archivo exportado desde {0}.", exportFrom);
+                        XtraMessageBox.Show(_nM, "Exportar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    if (DialogResult.Yes == XtraMessageBox.Show(string.Format(_msg, f.SelectedPath + @"\" + _fileName + ".xls", exportFrom), "Exportar", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                    {
+                        gcCotizaciones.ExportToXls(f.SelectedPath + @"\" + _fileName + "_Precio_Producto_Stock.xls");
+                        string _nM = string.Format("Archivo exportado desde {0}.", exportFrom);
+                        XtraMessageBox.Show(_nM, "Exportar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
 
                 Cursor = Cursors.Default;
             }
-
         }
+
         CotizacionKiraBL cotizacionKiraBL = new CotizacionKiraBL();
         private bool isCotizacionProductoFocused = false;
         private void tlbMenu_EditClick()
@@ -292,34 +312,104 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
         {
             try
             {
-                Cursor = Cursors.WaitCursor;
-                if (listaCotizacionesOriginal.Count > 0)
-                {
-                    CotizacionKiraBE objE_Coti = new CotizacionKiraBE();
-                    objE_Coti.IdCotizacion = int.Parse(gvCotizacion.GetFocusedRowCellValue("IdCotizacion").ToString());
-                    List<CotizacionKiraBE> lstReporte = null;
-                    lstReporte = new CotizacionKiraBL().Listado(objE_Coti.IdCotizacion);
-                    if (lstReporte != null)
-                    {
-                        if (lstReporte.Count > 0)
-                        {
-                            RptVistaReportes objRptFacturaCompra = new RptVistaReportes();
-                            objRptFacturaCompra.VerRptCotizacionKira(lstReporte);
-                            objRptFacturaCompra.ShowDialog();
-                        }
-                        else
-                            XtraMessageBox.Show("No hay información para el periodo seleccionado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
+                int rowIndex;
 
+                if (isCotizacionProductoFocused)
+                {
+                    rowIndex = gvCotizacionProducto.FocusedRowHandle;
+                    if (rowIndex >= 0)
+                    {
+                        CotizacionKiraProductoTerminadoBE cotizacionpro = (CotizacionKiraProductoTerminadoBE)gvCotizacionProducto.GetRow(rowIndex);
+                        if (cotizacionpro != null)
+                        {
+                            int idCotizacion = cotizacionpro.IdCotizacion;
+                            GenerarInformeProductoTerminado(idCotizacion);
+                        }
+                    }
                 }
+                else
+                {
+                    rowIndex = gvCotizacion.FocusedRowHandle;
+                    if (rowIndex >= 0)
+                    {
+                        CotizacionKiraBE cotizacion = (CotizacionKiraBE)gvCotizacion.GetRow(rowIndex);
+                        if (cotizacion != null)
+                        {
+                            int idCotizacion = cotizacion.IdCotizacion;
+                            GenerarInforme(idCotizacion);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al generar el informe: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void GenerarInformeProductoTerminado(int idCotizacion)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+
+                if (listaCotizacionesOriginalproductos.Count > 0)
+                {
+                    List<CotizacionKiraProductoTerminadoBE> lstReporte = new CotizacionKiraBL().ListadoProducto(idCotizacion);
+                    if (lstReporte != null && lstReporte.Count > 0)
+                    {
+                        RptVistaReportes objRptProductoTerminado = new RptVistaReportes();
+                        objRptProductoTerminado.VerRptCotizacionKiraProductoTerminado(lstReporte);
+                        objRptProductoTerminado.ShowDialog();
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show("No hay información de productos terminados para la cotización seleccionada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+
                 Cursor = Cursors.Default;
             }
             catch (Exception ex)
             {
                 Cursor = Cursors.Default;
-                XtraMessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+        private void GenerarInforme(int idCotizacion)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+
+                if (listaCotizacionesOriginal.Count > 0)
+                {
+                    List<CotizacionKiraBE> lstReporte = new CotizacionKiraBL().Listado(idCotizacion);
+                    if (lstReporte != null && lstReporte.Count > 0)
+                    {
+                        RptVistaReportes objRptFacturaCompra = new RptVistaReportes();
+                        objRptFacturaCompra.VerRptCotizacionKira(lstReporte);
+                        objRptFacturaCompra.ShowDialog();
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show("No hay información para el periodo seleccionado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+
+                Cursor = Cursors.Default;
+            }
+            catch (Exception ex)
+            {
+                Cursor = Cursors.Default;
+                MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
 
         private void tlbMenu_Load(object sender, EventArgs e)
         {

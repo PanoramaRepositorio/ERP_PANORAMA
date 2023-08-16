@@ -1220,5 +1220,35 @@ namespace ErpPanorama.DataLogic
             return cotizazionalist;
         }
 
+        public List<CotizacionKiraProductoTerminadoBE> ListadoProducto(int IdCotizacion)
+        {
+            Database db = DatabaseFactory.CreateDatabase("cnErpPanoramaBD");
+            DbCommand dbCommand = db.GetStoredProcCommand("usp_rptCotizacionKiraProductoTerminado");
+            db.AddInParameter(dbCommand, "IdCotizacion", DbType.Int32, IdCotizacion);
+
+            IDataReader reader = db.ExecuteReader(dbCommand);
+            List<CotizacionKiraProductoTerminadoBE> cotizazionalist = new List<CotizacionKiraProductoTerminadoBE>();
+            CotizacionKiraProductoTerminadoBE cot;
+            while (reader.Read())
+            {
+                cot = new CotizacionKiraProductoTerminadoBE();
+                cot.IdCotizacion = Int32.Parse(reader["IdCotizacion"].ToString());
+                cot.IdTablaElemento = Int32.Parse(reader["IdTablaElemento"].ToString());
+                cot.Fecha = DateTime.Parse(reader["Fecha"].ToString());
+                cot.Descripcion = reader["Descripcion"].ToString();
+                cot.CodigoProducto = reader["CodigoProducto"].ToString();
+                cot.Caracteristicas = reader["Caracteristicas"].ToString();
+                cot.TotalGastos = Decimal.Parse(reader["TotalGastos"].ToString());
+                cot.PrecioVenta = Decimal.Parse(reader["PrecioVenta"].ToString());
+                cot.IdMoneda = Int32.Parse(reader["IdMoneda"].ToString());
+                cot.CostoProductos = Decimal.Parse(reader["CostoProductos"].ToString());
+                cot.DescTablaElemento = reader["DescTablaElemento"].ToString();
+                cotizazionalist.Add(cot);
+            }
+            reader.Close();
+            reader.Dispose();
+            return cotizazionalist;
+        }
+
     }
 }
