@@ -85,7 +85,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
 
         public void ConfigurarComboBoxTipoMoneda()
         {
-            cboTipoMoneda.Text = "Seleccione Moneda";
+            //cboTipoMoneda.Text = "Seleccione Moneda";
             cboTipoMoneda.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             List<ComboTipoCotizacionBE> listamone = comboTipoCotizacionBL.ObtenerComboTipoMoneda();
             // Configurar el ComboBox
@@ -93,6 +93,12 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             foreach (ComboTipoCotizacionBE item in listamone)
             {
                 cboTipoMoneda.Properties.Items.Add(item.DescTablaElemento);
+            }
+
+            if (listamone.Count > 0)
+            {
+                cboTipoMoneda.SelectedIndex = 0;
+               // cboTipoMoneda.Enabled = false; // Deshabilitar el ComboBox
             }
         }
 
