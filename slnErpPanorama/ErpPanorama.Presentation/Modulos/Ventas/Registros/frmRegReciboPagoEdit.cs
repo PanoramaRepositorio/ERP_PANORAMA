@@ -2809,6 +2809,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                 return;
             }
 
+
             // Obtener el contenido actual del TextBox
             string contenido = txtNumeroDocumento.Text;
 
