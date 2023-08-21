@@ -3260,6 +3260,12 @@
     <Compile Include="Modulos\Ventas\Maestros\XtraForm2.Designer.cs">
       <DependentUpon>XtraForm2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modulos\Ventas\Otros\AlertForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\Ventas\Otros\AlertForm.Designer.cs">
+      <DependentUpon>AlertForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modulos\Ventas\Otros\frmAsignarPersona.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5601,6 +5607,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Ventas\Maestros\XtraForm2.resx">
       <DependentUpon>XtraForm2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\Ventas\Otros\AlertForm.resx">
+      <DependentUpon>AlertForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Ventas\Otros\frmAsignarPersona.resx">
       <DependentUpon>frmAsignarPersona.cs</DependentUpon>
