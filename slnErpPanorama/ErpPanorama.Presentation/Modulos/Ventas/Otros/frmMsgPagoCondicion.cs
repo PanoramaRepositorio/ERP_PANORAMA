@@ -102,7 +102,6 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Otros
 
         private void frmMsgPagoCondicion_Load(object sender, EventArgs e)
         {
-            //BSUtils.LoaderLook(cboEmpresa, new EmpresaBL().ListaTodosActivo(0), "RazonSocial", "IdEmpresa", true);
             BSUtils.LoaderLook(cboEmpresa, new CajaEmpresaBL().ListaTodosActivo(Parametros.intEmpresaId, Parametros.intTiendaId, Parametros.intCajaId), "RazonSocial", "IdEmpresa", true);
             cboEmpresa.EditValue = IdEmpresa;
 
@@ -114,9 +113,6 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Otros
             cboDocumento.EditValue = IdTipoDocumento;
             BSUtils.LoaderLook(cboDocumentoGenerarRCP, new TalonBL().ListaCaja(Parametros.intEmpresaId, Parametros.intCajaId), "CodTipoDocumento", "IdTipoDocumento", true);
             cboDocumentoGenerarRCP.EditValue = IdTipoDocumento;
-
-            //BSUtils.LoaderLook(cboDocumentoCR, new ModuloDocumentoBL().ListaDevolucion(Parametros.intModVentas, 0), "CodTipoDocumento", "IdTipoDocumento", true);
-            //cboDocumentoCR.EditValue = Parametros.intTipoDocNotaCredito;
             BSUtils.LoaderLook(cboDocumentoCR, CargarTipoDocumentoPago(), "Descripcion", "Id", false);
             cboDocumentoCR.EditValue = Parametros.intTipoDocNotaCredito;
 
@@ -201,8 +197,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Otros
 
         private void txtEfectivo_EditValueChanged(object sender, EventArgs e)
         {
-            //txtResta.EditValue = Math.Round(Convert.ToDecimal(txtTotalResumen.EditValue) - (Convert.ToDecimal(txtEfectivo.EditValue) + Convert.ToDecimal(txtVisa.EditValue) + Convert.ToDecimal(txtMastercard.EditValue) + Convert.ToDecimal(txtImporteNCSoles.EditValue)), 2);
-            //txtResta.EditValue = Math.Round(Convert.ToDecimal(txtTotalResumen.EditValue) - (Convert.ToDecimal(txtEfectivo.EditValue) + Convert.ToDecimal(txtVisa.EditValue) + Convert.ToDecimal(txtMastercard.EditValue) + Convert.ToDecimal(txtVisaPuntosVida.EditValue) + Convert.ToDecimal(txtMastercardPuntosVida.EditValue) + Convert.ToDecimal(txtImporteNCSoles.EditValue)), 2);
+        
             CalcularPago();
         }
 
@@ -210,44 +205,12 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Otros
         {
             CalcularPago();
 
-            ////txtResta.EditValue = Math.Round(Convert.ToDecimal(txtTotalResumen.EditValue) - (Convert.ToDecimal(txtEfectivo.EditValue) + Convert.ToDecimal(txtVisa.EditValue) + Convert.ToDecimal(txtMastercard.EditValue) + Convert.ToDecimal(txtImporteNCSoles.EditValue)), 2);
-            //txtResta.EditValue = Math.Round(Convert.ToDecimal(txtTotalResumen.EditValue) - (Convert.ToDecimal(txtEfectivo.EditValue) + Convert.ToDecimal(txtVisa.EditValue) + Convert.ToDecimal(txtMastercard.EditValue) + Convert.ToDecimal(txtVisaPuntosVida.EditValue) + Convert.ToDecimal(txtMastercardPuntosVida.EditValue) + Convert.ToDecimal(txtImporteNCSoles.EditValue)), 2);
-            //if (Convert.ToDecimal(txtVisa.EditValue) > 0 || Convert.ToDecimal(txtMastercard.EditValue) > 0) //add 180216
-            //{
-            //    if (IdTipoCliente == Parametros.intTipClienteMayorista)
-            //    {
-            //        lblMensaje.Text = "COBRAR EL 5% POR\nRECARGO DE TARJETA";
-            //        gcReciboPago.Visible = true;
-            //        this.Size = new Size(534, 539);
-            //        txtTotalResumenRCP.EditValue =  (Convert.ToDecimal(txtVisa.EditValue) + Convert.ToDecimal(txtMastercard.EditValue))* Convert.ToDecimal("0.05"); //5% por Tarjeta
-            //    }
-            //}
-            //else
-            //{
-            //    lblMensaje.Text = "";
-            //}
         }
 
         private void txtMastercard_EditValueChanged(object sender, EventArgs e)
         {
             CalcularPago();
 
-            ////txtResta.EditValue = Math.Round(Convert.ToDecimal(txtTotalResumen.EditValue) - (Convert.ToDecimal(txtEfectivo.EditValue) + Convert.ToDecimal(txtVisa.EditValue) + Convert.ToDecimal(txtMastercard.EditValue) + Convert.ToDecimal(txtImporteNCSoles.EditValue)), 2);
-            //txtResta.EditValue = Math.Round(Convert.ToDecimal(txtTotalResumen.EditValue) - (Convert.ToDecimal(txtEfectivo.EditValue) + Convert.ToDecimal(txtVisa.EditValue) + Convert.ToDecimal(txtMastercard.EditValue) + Convert.ToDecimal(txtVisaPuntosVida.EditValue) + Convert.ToDecimal(txtMastercardPuntosVida.EditValue) + Convert.ToDecimal(txtImporteNCSoles.EditValue)), 2);
-            //if (Convert.ToDecimal(txtVisa.EditValue) > 0 || Convert.ToDecimal(txtMastercard.EditValue) > 0) //add 180216
-            //{
-            //    if (IdTipoCliente == Parametros.intTipClienteMayorista)
-            //    {
-            //        lblMensaje.Text = "COBRAR EL 5% POR\nRECARGO DE TARJETA";
-            //        gcReciboPago.Visible = true;
-            //        this.Size = new Size(534, 539);
-            //        txtTotalResumenRCP.EditValue = (Convert.ToDecimal(txtVisa.EditValue) + Convert.ToDecimal(txtMastercard.EditValue)) * Convert.ToDecimal("0.05"); //5% por Tarjeta
-            //    }
-            //}
-            //else
-            //{
-            //    lblMensaje.Text = "";
-            //}
         }
 
         private void txtImporteNCSoles_EditValueChanged(object sender, EventArgs e)
@@ -305,14 +268,6 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Otros
                         txtDni.Focus();
                         return;
                     }
-
-                    ////10% de la promocíón -- Add 13-01-2019
-                    //if ((Convert.ToInt32(txtCupon.EditValue) / Convert.ToInt32(txtTotalResumen.EditValue)) * 100 > 10)
-                    //{
-                    //    XtraMessageBox.Show("Verificar el monto del vale ingresado, Para referidos sólo se puede aplicar el 10% del total.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    //    txtCupon.Focus();
-                    //    return;
-                    //}
 
                     //10% de la promocíón -- Add 13-01-2019
                     if (cboCupon.Text != "COMERCIO AMIGO")
@@ -1177,15 +1132,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Otros
                 cboEmpresaOrigen.Properties.ReadOnly = false;
             }
 
-            //if (Parametros.dtFechaHoraServidor == Convert.ToDateTime("08/11/2014") && Parametros.intTiendaId == Parametros.intTiendaPrescott)
-            //{
-            //    if (Convert.ToInt32(cboDocumentoCR.EditValue) == Parametros.intTipoDocValeDescuento)
-            //    {
-            //        txtImporteNCSoles.EditValue = 50;
-            //        txtNumeroDocumento.Text = "VALE";
-            //        txtEfectivo.Focus();
-            //    }
-            //}
+          
 
 
         }
@@ -1253,48 +1200,12 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Otros
                             if (Convert.ToInt32(cboDocumentoCR.EditValue) == Parametros.intTipoDocNotaCreditoElectronica)
                             {
                                 #region "Motivos excepcionales"
-                                //if (objE_DocumentoVenta.CodigoNC == "01")
-                                //{
-                                //    XtraMessageBox.Show("No se puede aplicar una Nota de crédito con motivo: ANULACIÓN DE LA OPERACION.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                                //    return;
-                                //}
-                                //else if (objE_DocumentoVenta.CodigoNC == "02")
-                                //{
-                                //    XtraMessageBox.Show("No se puede aplicar una Nota de crédito con motivo: ANULACIÓN POR ERROR EN EL RUC.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                                //    return;
-                                //}
-                                //else if (objE_DocumentoVenta.CodigoNC == "03")
-                                //{
-                                //    XtraMessageBox.Show("No se puede aplicar una Nota de crédito con motivo: CORRECCIÓN POR ERROR EN LA DESCRIPCION.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                                //    return;
-                                //}
+                            
 
                                 #endregion
                             }
 
-                            ////Mayorista en Estado de cuenta
-                            //EstadoCuentaBE objE_EstadoCuenta = new EstadoCuentaBE();
-                            //objE_EstadoCuenta = new EstadoCuentaBL().SeleccionaDocumentoVenta(objE_DocumentoVenta.IdDocumentoVenta);
-
-                            //if (objE_EstadoCuenta != null)
-                            //{
-                            //    if (XtraMessageBox.Show("La nota de crédito " + txtSerie.Text + "-" + txtNumeroDocumento.Text + " ya existe cómo saldo a favor en el estado de Cuenta\nDesea Eliminar el cobro.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Stop) == DialogResult.Yes)
-                            //    {
-                            //        //Eliminar del Estado de cuenta
-                            //    }
-                            //    else
-                            //    {
-                            //        LimpiarPago();
-                            //        return;
-                            //    }
-                            //}
-
-                            //////if (objE_DocumentoVenta.IdTipoCliente == Parametros.intTipClienteMayorista)
-                            //////{
-                            //////    XtraMessageBox.Show("La nota de crédito " + txtSerie.Text + "-" + txtNumeroDocumento.Text + " No se puede aplicar, El Cliente es Mayorista.\nPor lo tanto tiene u", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            //////    //LimpiarPago();
-                            //////    //return;
-                            //////}
+                         
 
                             //De aqui el documento
                             IdDocumentoNC = objE_DocumentoVenta.IdDocumentoVenta;
@@ -1393,40 +1304,13 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Otros
         private void txtMastercardPuntosVida_EditValueChanged(object sender, EventArgs e)
         {
             CalcularPago();
-            ////txtResta.EditValue = Math.Round(Convert.ToDecimal(txtTotalResumen.EditValue) - (Convert.ToDecimal(txtEfectivo.EditValue) + Convert.ToDecimal(txtVisa.EditValue) + Convert.ToDecimal(txtMastercard.EditValue) + Convert.ToDecimal(txtImporteNCSoles.EditValue)), 2);
-            //txtResta.EditValue = Math.Round(Convert.ToDecimal(txtTotalResumen.EditValue) - (Convert.ToDecimal(txtEfectivo.EditValue) + Convert.ToDecimal(txtVisa.EditValue) + Convert.ToDecimal(txtMastercard.EditValue) + Convert.ToDecimal(txtVisaPuntosVida.EditValue) + Convert.ToDecimal(txtMastercardPuntosVida.EditValue) + Convert.ToDecimal(txtImporteNCSoles.EditValue)), 2);
-            //if (Convert.ToDecimal(txtVisa.EditValue) > 0 || Convert.ToDecimal(txtMastercard.EditValue) > 0) //add 180216
-            //{
-            //    if (IdTipoCliente == Parametros.intTipClienteMayorista)
-            //    {
-            //        lblMensaje.Text = "COBRAR EL 5% POR\nRECARGO DE TARJETA";
-            //        txtTotalResumenRCP.EditValue = (Convert.ToDecimal(txtVisa.EditValue) + Convert.ToDecimal(txtMastercard.EditValue)) * Convert.ToDecimal("0.05"); //5% por Tarjeta
-            //    }
-            //}
-            //else
-            //{
-            //    lblMensaje.Text = "";
-            //}
+        
         }
 
         private void txtVisaPuntosVida_EditValueChanged(object sender, EventArgs e)
         {
             CalcularPago();
-            ////txtResta.EditValue = Math.Round(Convert.ToDecimal(txtTotalResumen.EditValue) - (Convert.ToDecimal(txtEfectivo.EditValue) + Convert.ToDecimal(txtVisa.EditValue) + Convert.ToDecimal(txtMastercard.EditValue) + Convert.ToDecimal(txtImporteNCSoles.EditValue)), 2);
-            //txtResta.EditValue = Math.Round(Convert.ToDecimal(txtTotalResumen.EditValue) - (Convert.ToDecimal(txtEfectivo.EditValue) + Convert.ToDecimal(txtVisa.EditValue) + Convert.ToDecimal(txtMastercard.EditValue) + Convert.ToDecimal(txtVisaPuntosVida.EditValue) + Convert.ToDecimal(txtMastercardPuntosVida.EditValue) + Convert.ToDecimal(txtImporteNCSoles.EditValue)), 2);
-            //if (Convert.ToDecimal(txtVisa.EditValue) > 0 || Convert.ToDecimal(txtMastercard.EditValue) > 0) //add 180216
-            //{
-            //    if (IdTipoCliente == Parametros.intTipClienteMayorista)
-            //    {
-            //        lblMensaje.Text = "COBRAR EL 5% POR\nRECARGO DE TARJETA";
-            //        txtTotalResumenRCP.EditValue = (Convert.ToDecimal(txtVisa.EditValue) + Convert.ToDecimal(txtMastercard.EditValue)) * Convert.ToDecimal("0.05"); //5% por Tarjeta
-            //    }
-            //}
-            //else
-            //{
-            //    lblMensaje.Text = "";
-            //}
-        }
+         }
 
         private void txtEfectivoRCP_EditValueChanged(object sender, EventArgs e)
         {
@@ -1938,19 +1822,13 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Otros
                     }
                     else
                     {
-                        ////Cliente
-                        //ClienteBE objE_Cliente = new ClienteBE();
-                        //objE_Cliente = new ClienteBL().Selecciona(Parametros.intEmpresaId, IdCliente);
-
+                    
                         objDocumentoVenta.NumeroDocumento = NumeroDocumento;
                         objDocumentoVenta.DescCliente = DescCliente;
                         objDocumentoVenta.Direccion = Direccion;
                     }
 
 
-                    ////Cliente
-                    //ClienteBE objE_Cliente = new ClienteBE();
-                    //objE_Cliente = new ClienteBL().Selecciona(Parametros.intEmpresaId, IdCliente);
 
                     decimal deTotal = Math.Round(Convert.ToDecimal(txtTotalResumenRCP.EditValue), 2);
                     decimal deSubTotal = Math.Round(deTotal / decimal.Parse(Parametros.dblIGV.ToString()), 2);
@@ -1962,9 +1840,6 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Otros
                     objDocumentoVenta.FechaVencimiento = Convert.ToDateTime(deFecha.DateTime.ToShortDateString());
                     objDocumentoVenta.IdCliente = IdCliente;
 
-                    //objDocumentoVenta.NumeroDocumento = objE_Cliente.NumeroDocumento;
-                    //objDocumentoVenta.DescCliente = objE_Cliente.DescCliente;
-                    //objDocumentoVenta.Direccion = objE_Cliente.Direccion;
                     objDocumentoVenta.IdMoneda = Parametros.intSoles;//Convert.ToInt32(cboMoneda.EditValue);
                     objDocumentoVenta.TipoCambio = Convert.ToDecimal(txtTC.EditValue);//Convert.ToDecimal(txtTipoCambio.EditValue);
                     objDocumentoVenta.IdFormaPago = Parametros.intContado; //Convert.ToInt32(cboFormaPago.EditValue);
@@ -2026,7 +1901,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Otros
                         objE_MovimientoCaja.IdTipoDocumento = IdTipoDocumentoRCP;// Convert.ToInt32(cboDocumento.EditValue);
                         objE_MovimientoCaja.NumeroDocumento = Serie + "-" + Numero;
                         objE_MovimientoCaja.IdFormaPago = Parametros.intContado; //Convert.ToInt32(cboFormaPago.EditValue);
-                        objE_MovimientoCaja.IdCondicionPago = 98;//
+                        objE_MovimientoCaja.IdCondicionPago = IdTipoMaster;
                         objE_MovimientoCaja.TipoTarjeta = null;
                         objE_MovimientoCaja.TipoMovimiento = "I";
                         objE_MovimientoCaja.IdMoneda = Convert.ToInt32(cboMonedaPago.EditValue);
@@ -2046,7 +1921,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Otros
                         objE_MovimientoCaja.IdTipoDocumento = IdTipoDocumentoRCP;// Convert.ToInt32(cboDocumento.EditValue);
                         objE_MovimientoCaja.NumeroDocumento = Serie + "-" + Numero;
                         objE_MovimientoCaja.IdFormaPago = Parametros.intContado; //Convert.ToInt32(cboFormaPago.EditValue);
-                        objE_MovimientoCaja.IdCondicionPago = 99;
+                        objE_MovimientoCaja.IdCondicionPago = IdTipoMaster;
                         objE_MovimientoCaja.TipoTarjeta = TipoVisa;
                         objE_MovimientoCaja.TipoMovimiento = "I";
                         objE_MovimientoCaja.IdMoneda = Convert.ToInt32(cboMonedaPago.EditValue);
@@ -2069,7 +1944,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Otros
                         objE_MovimientoCaja.IdTipoDocumento = IdTipoDocumentoRCP;//Convert.ToInt32(cboDocumento.EditValue);
                         objE_MovimientoCaja.NumeroDocumento = Serie + "-" + Numero;
                         objE_MovimientoCaja.IdFormaPago = Parametros.intContado; //Convert.ToInt32(cboFormaPago.EditValue);
-                        objE_MovimientoCaja.IdCondicionPago = 100;
+                        objE_MovimientoCaja.IdCondicionPago = IdTipoMaster;
                         objE_MovimientoCaja.TipoTarjeta = TipoMaster;
                         objE_MovimientoCaja.TipoMovimiento = "I";
                         objE_MovimientoCaja.IdMoneda = Convert.ToInt32(cboMonedaPago.EditValue);
@@ -2093,7 +1968,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Otros
                         objE_MovimientoCaja.IdTipoDocumento = IdTipoDocumentoRCP;// Convert.ToInt32(cboDocumento.EditValue);
                         objE_MovimientoCaja.NumeroDocumento = Serie + "-" + Numero;
                         objE_MovimientoCaja.IdFormaPago = Parametros.intContado; //Convert.ToInt32(cboFormaPago.EditValue);
-                        objE_MovimientoCaja.IdCondicionPago = Parametros.intVisaPuntosVida;
+                        objE_MovimientoCaja.IdCondicionPago = IdTipoMaster;
                         objE_MovimientoCaja.TipoTarjeta = TipoVisa;
                         objE_MovimientoCaja.TipoMovimiento = "I";
                         objE_MovimientoCaja.IdMoneda = Convert.ToInt32(cboMonedaPago.EditValue);
@@ -2116,7 +1991,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Otros
                         objE_MovimientoCaja.IdTipoDocumento = IdTipoDocumentoRCP;// Convert.ToInt32(cboDocumento.EditValue);
                         objE_MovimientoCaja.NumeroDocumento = Serie + "-" + Numero;
                         objE_MovimientoCaja.IdFormaPago = Parametros.intContado; //Convert.ToInt32(cboFormaPago.EditValue);
-                        objE_MovimientoCaja.IdCondicionPago = Parametros.intMasterCardPuntosVida; ;
+                        objE_MovimientoCaja.IdCondicionPago = IdTipoMaster;
                         objE_MovimientoCaja.TipoTarjeta = TipoMaster;
                         objE_MovimientoCaja.TipoMovimiento = "I";
                         objE_MovimientoCaja.IdMoneda = Convert.ToInt32(cboMonedaPago.EditValue);
@@ -2865,6 +2740,11 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Otros
             dr["Id"] = "573";
             dr["Descripcion"] = "TARJETAS FORANEAS";
             dt.Rows.Add(dr);
+
+            dr = dt.NewRow();
+            dr["Id"] = "757";
+            dr["Descripcion"] = "BBVA PROMOCION";
+            dt.Rows.Add(dr);
             #endregion
             return dt;
         }
@@ -3524,18 +3404,6 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Otros
                 txtDni.Focus();
                 txtDni.SelectAll();
             }
-            //else if (cboCupon.Text == "GIFT CARD")
-            //{
-            //    gcClienteReferido.Visible = false;
-            //    gcClienteReferido.Text = "Cliente referido";
-            //    txtNumeroCupon.Enabled = true;
-            //    txtCupon.Enabled = true;
-            //    txtDni.Text = "";
-            //    txtDescClienteRef.Text = "";
-            //    IdClienteRef = 0;
-            //    txtNumeroCupon.Focus();
-            //    txtNumeroCupon.SelectAll();
-            //}
             else
             {
                 gcClienteReferido.Text = "Cliente referido";

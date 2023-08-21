@@ -2715,6 +2715,12 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
             dr["Id"] = "573";
             dr["Descripcion"] = "TARJETAS FORANEAS";
             dt.Rows.Add(dr);
+
+
+            dr = dt.NewRow();
+            dr["Id"] = "757";
+            dr["Descripcion"] = "BBVA PROMOCION";
+            dt.Rows.Add(dr);
             #endregion
             return dt;
         }
@@ -2796,10 +2802,38 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
 
         private void txtNumeroDocumento_KeyPress(object sender, KeyPressEventArgs e)
         {
+            // Si se presionó la tecla Enter, mover el enfoque al siguiente control
             if (e.KeyChar == (char)Keys.Enter)
             {
                 txtConcepto.Focus();
+                return;
             }
+
+            // Obtener el contenido actual del TextBox
+            string contenido = txtNumeroDocumento.Text;
+
+            // Verificar si el primer carácter ingresado es un cero
+            if (e.KeyChar == '0' && string.IsNullOrEmpty(contenido))
+            {
+                // Cancelar el evento para evitar que se ingrese el cero
+                e.Handled = true;
+                return;
+            }
+
+            // Verificar si el documento inicia con "F" o "B"
+            if (contenido.StartsWith("F") || contenido.StartsWith("B"))
+            {
+                // Permitir cualquier ingreso en este caso
+                return;
+            }
+
+            // Si no inicia con "F" o "B", verificar si el primer carácter ingresado es un cero
+            if (e.KeyChar == '0')
+            {
+                // Cancelar el evento para evitar que se ingrese el cero
+                e.Handled = true;
+            }
+
         }
 
         private void txtConcepto_KeyPress(object sender, KeyPressEventArgs e)
