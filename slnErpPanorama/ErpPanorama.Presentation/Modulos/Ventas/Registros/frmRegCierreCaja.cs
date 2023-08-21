@@ -49,6 +49,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
 
         private void frmRegCierreCaja_Load(object sender, EventArgs e)
         {
+            
             deFecha.EditValue = DateTime.Now;
             TipoCambioBE objE_TipoCambio = null;
             objE_TipoCambio = new TipoCambioBL().Selecciona(Parametros.intEmpresaId, Convert.ToDateTime(deFecha.EditValue));
@@ -77,13 +78,27 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
 
                 cboMoneda.Select();
 
-                    XtraMessageBox.Show("RECORDATORIO: \n \n - Realizar el cierre de LOTE", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                string mensaje = "RECORDATORIO: \n \n - Realizar el cierre de LOTE";
+
+
+                // Crea una instancia del formulario de alerta personalizado y muestra el mensaje.
+                using (AlertForm alertForm = new AlertForm(mensaje))
+                {
+                    alertForm.ShowDialog(); // Muestra el formulario como un cuadro de diálogo modal.
+                }
 
 
                 if (Parametros.intPerfilId == Parametros.intPerCajeroCentral || Parametros.intPerfilId == Parametros.intPerCajeroSucursal
                     || Parametros.intPerfilId == Parametros.intPerCajeroSucursal || Parametros.intPerfilId == Parametros.intPerAdministradorTienda)
                 {
-                        XtraMessageBox.Show("RECORDATORIO: \n \n - Realizar el cierre de LOTE", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+   
+                    XtraMessageBox.Show(mensaje, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    // Crea una instancia del formulario de alerta personalizado y muestra el mensaje.
+                    using (AlertForm alertForm = new AlertForm(mensaje))
+                    {
+                        alertForm.ShowDialog(); // Muestra el formulario como un cuadro de diálogo modal.
+                    }
                 }
 
 
@@ -142,10 +157,27 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
         {
             Cargar();
 
-            if (deFecha.DateTime > Convert.ToDateTime("01/01/2000"))
+            DateEdit dateEdit = sender as DateEdit;
+
+            if (dateEdit != null)
             {
-                ValidarCierre();
+                DateTime selectedDate = Convert.ToDateTime(dateEdit.EditValue);
+
+                List<CajaCierreBE> Obj_CajaCierre = new List<CajaCierreBE>();
+                Obj_CajaCierre = new CajaCierreBL().ListaFechaCaja(Convert.ToDateTime(selectedDate.ToShortDateString()), Convert.ToDateTime(selectedDate.ToShortDateString()), Convert.ToInt32(cboCaja.EditValue));
+
+                if (selectedDate < DateTime.Today || Obj_CajaCierre.Count > 0)
+                {
+                    gcDenominacion.Enabled = false;
+                    DesHabilitarBotones();
+                }
+                else
+                {
+                    gcDenominacion.Enabled = true;
+                }
             }
+
+
         }
 
         private void cboCaja_EditValueChanged(object sender, EventArgs e)
@@ -244,7 +276,12 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
 
                 objBL_DocumentoVenta.Actualiza(lstCajaValorFijo);
                 XtraMessageBox.Show("Datos guardados correctamente", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                string mensaje = "RECORDATORIO: \n\n-Realizar el cierre de LOTE";
+                // Crea una instancia del formulario de alerta personalizado y muestra el mensaje.
+                using (AlertForm alertForm = new AlertForm(mensaje))
+                {
+                    alertForm.ShowDialog(); // Muestra el formulario como un cuadro de diálogo modal.
+                }
         }
 
         private bool ValidarIngreso()
@@ -279,6 +316,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                 {
                     XtraMessageBox.Show("La Caja está Cerrada!, no se puede modificar, Consulte con su administrador", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     DesHabilitarBotones();
+                    
                 }
                 else
                 {
@@ -297,7 +335,8 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
         {
             btnGrabar.Enabled = true;
             btnCerrarCaja.Enabled = true;
-            btnEliminarCierre.Enabled = false;
+            btnEliminarCierre.Enabled = true;
+            gcDenominacion.Enabled = true;
         }
 
         private void DesHabilitarBotones()
@@ -305,6 +344,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
             btnGrabar.Enabled = false;
             btnCerrarCaja.Enabled = false;
             btnEliminarCierre.Enabled = true;
+            gcDenominacion.Enabled = false;
         }
 
 
@@ -318,7 +358,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
 
             if (frmAutoriza.Edita)
             {
-                if (frmAutoriza.Usuario == "rcastañeda" || frmAutoriza.Usuario == "master")
+                if (frmAutoriza.Usuario == "rcastañeda" || frmAutoriza.Usuario == "master" || frmAutoriza.Usuario == "mmurrugarra")
                 {
                     CajaCierreBL objBL_CajaCierre = new CajaCierreBL();
                     CajaCierreBE objE_CajaCierre = new CajaCierreBE();
@@ -385,7 +425,52 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
 
         }
 
+        private void btnCerrarCaja_DoubleClick(object sender, EventArgs e)
+        {
 
+            try
+            {
+                Cursor = Cursors.WaitCursor;
 
+                if (!btnGrabar.Enabled) // Cambiado el operador de asignación (=) a comparación (!=)
+                {
+                    frmAutorizacionUsuario frmAutoriza = new frmAutorizacionUsuario();
+                    frmAutoriza.StartPosition = FormStartPosition.CenterParent;
+                    frmAutoriza.ShowDialog();
+
+                    if (frmAutoriza.Edita)
+                    {
+                        List<string> usuariosAutorizados = new List<string>
+                {
+                    "rcastañeda", "master", "ygomez", "mmurrugarra", "ltapia", "etapia"
+                };
+
+                        int[] perfilesAutorizados = new int[]
+                        {
+                    Parametros.intPerAdministrador, Parametros.intPerHelpDesk
+                        };
+
+                        if (usuariosAutorizados.Contains(frmAutoriza.Usuario) || perfilesAutorizados.Contains(frmAutoriza.IdPerfil))
+                        {
+                            gcDenominacion.Enabled = true;
+                            btnGrabar.Enabled = true;
+                            // Aquí también puedes habilitar otros botones si es necesario
+                        }
+                        else
+                        {
+                            XtraMessageBox.Show("Ud. no está autorizado para realizar esta operación", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
+
+                Cursor = Cursors.Default;
+            }
+            catch (Exception ex)
+            {
+                Cursor = Cursors.Default;
+                XtraMessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
     }
 }

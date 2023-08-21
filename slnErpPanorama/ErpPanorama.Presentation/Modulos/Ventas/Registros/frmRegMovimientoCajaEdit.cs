@@ -11,6 +11,7 @@ using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
 using ErpPanorama.Presentation.Utils;
 using ErpPanorama.Presentation.Modulos.Creditos.Registros;
+using ErpPanorama.Presentation.Modulos.Ventas.Otros;
 using ErpPanorama.BusinessEntity;
 using ErpPanorama.BusinessLogic;
 
@@ -216,13 +217,23 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
             try
             {
 
-               if (     Parametros.intPerfilId == Parametros.intPerCajeroCentral || Parametros.intPerfilId == Parametros.intPerCajeroSucursal 
-                    || Parametros.intPerfilId == Parametros.intPerCajeroSucursal || Parametros.intPerfilId == Parametros.intPerAdministradorTienda)
+                if (Parametros.intPerfilId == Parametros.intPerCajeroCentral || Parametros.intPerfilId == Parametros.intPerCajeroSucursal
+                     || Parametros.intPerfilId == Parametros.intPerCajeroSucursal || Parametros.intPerfilId == Parametros.intPerAdministradorTienda)
                 {
                     if (Convert.ToInt32(cboDocumento.EditValue) == Parametros.intTipoDocAperturaCaja)
                     {
-                        XtraMessageBox.Show("RECORDATORIO: \n \n - Realizar el cierre de LOTE", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        string mensaje = "RECORDATORIO: \n \n - Realizar el cierre de LOTE";
+
+                        XtraMessageBox.Show(mensaje, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        // Crea una instancia del formulario de alerta personalizado y muestra el mensaje.
+                        using (AlertForm alertForm = new AlertForm(mensaje))
+                        {
+                            alertForm.ShowDialog(); // Muestra el formulario como un cuadro de diálogo modal.
+                        }
+
                     }
+
                 }
 
 

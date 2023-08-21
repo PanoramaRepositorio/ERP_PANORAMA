@@ -141,7 +141,7 @@
             this.xtraTabPage1.Controls.Add(this.deFecha);
             this.xtraTabPage1.Controls.Add(this.labelControl4);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(383, 392);
+            this.xtraTabPage1.Size = new System.Drawing.Size(387, 395);
             this.xtraTabPage1.Text = "Cierre Caja";
             // 
             // txtTotaMastercard
@@ -266,9 +266,9 @@
             // 
             // btnEliminarCierre
             // 
-            this.btnEliminarCierre.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminarCierre.Image")));
-            this.btnEliminarCierre.ImageIndex = 1;
-            this.btnEliminarCierre.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.btnEliminarCierre.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminarCierre.ImageOptions.Image")));
+            this.btnEliminarCierre.ImageOptions.ImageIndex = 1;
+            this.btnEliminarCierre.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
             this.btnEliminarCierre.Location = new System.Drawing.Point(14, 364);
             this.btnEliminarCierre.Name = "btnEliminarCierre";
             this.btnEliminarCierre.Size = new System.Drawing.Size(30, 23);
@@ -295,6 +295,7 @@
             // labelControl10
             // 
             this.labelControl10.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.labelControl10.Appearance.Options.UseFont = true;
             this.labelControl10.Location = new System.Drawing.Point(199, 364);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(35, 13);
@@ -499,14 +500,14 @@
             // 
             this.tsmMenuSelText.Name = "tsmMenuSelText";
             this.tsmMenuSelText.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.tsmMenuSelText.Size = new System.Drawing.Size(56, 20);
+            this.tsmMenuSelText.Size = new System.Drawing.Size(55, 20);
             this.tsmMenuSelText.Text = "SelText";
             // 
             // btnGrabar
             // 
-            this.btnGrabar.Image = ((System.Drawing.Image)(resources.GetObject("btnGrabar.Image")));
-            this.btnGrabar.ImageIndex = 1;
-            this.btnGrabar.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.btnGrabar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGrabar.ImageOptions.Image")));
+            this.btnGrabar.ImageOptions.ImageIndex = 1;
+            this.btnGrabar.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
             this.btnGrabar.Location = new System.Drawing.Point(214, 426);
             this.btnGrabar.Name = "btnGrabar";
             this.btnGrabar.Size = new System.Drawing.Size(75, 23);
@@ -516,9 +517,9 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
-            this.btnCancelar.ImageIndex = 0;
-            this.btnCancelar.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.btnCancelar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.ImageOptions.Image")));
+            this.btnCancelar.ImageOptions.ImageIndex = 0;
+            this.btnCancelar.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
             this.btnCancelar.Location = new System.Drawing.Point(295, 426);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
@@ -528,21 +529,22 @@
             // 
             // btnCerrarCaja
             // 
-            this.btnCerrarCaja.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrarCaja.Image")));
-            this.btnCerrarCaja.ImageIndex = 1;
-            this.btnCerrarCaja.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.btnCerrarCaja.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrarCaja.ImageOptions.Image")));
+            this.btnCerrarCaja.ImageOptions.ImageIndex = 1;
+            this.btnCerrarCaja.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
             this.btnCerrarCaja.Location = new System.Drawing.Point(12, 421);
             this.btnCerrarCaja.Name = "btnCerrarCaja";
             this.btnCerrarCaja.Size = new System.Drawing.Size(40, 38);
             this.btnCerrarCaja.TabIndex = 113;
             this.btnCerrarCaja.ToolTip = "Cerrar caja";
             this.btnCerrarCaja.Click += new System.EventHandler(this.btnCerrarCaja_Click);
+            this.btnCerrarCaja.DoubleClick += new System.EventHandler(this.btnCerrarCaja_DoubleClick);
             // 
             // btnVer
             // 
-            this.btnVer.Image = ((System.Drawing.Image)(resources.GetObject("btnVer.Image")));
-            this.btnVer.ImageIndex = 1;
-            this.btnVer.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.btnVer.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnVer.ImageOptions.Image")));
+            this.btnVer.ImageOptions.ImageIndex = 1;
+            this.btnVer.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
             this.btnVer.Location = new System.Drawing.Point(60, 426);
             this.btnVer.Name = "btnVer";
             this.btnVer.Size = new System.Drawing.Size(109, 23);
