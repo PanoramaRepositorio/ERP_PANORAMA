@@ -14,8 +14,11 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using ErpPanorama.Presentation.Utils;
 using ErpPanorama.Presentation.Funciones;
+using ErpPanorama.Presentation.Modulos.Ventas.Otros;
 using ErpPanorama.BusinessEntity;
 using ErpPanorama.BusinessLogic;
+using DevExpress.Utils.Menu;
+using DevExpress.Utils;
 
 namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
 {
@@ -35,10 +38,13 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
         public frmRegReciboPago()
         {
             InitializeComponent();
+            //gvReciboPago.PopupMenuShowing += gvReciboPago_PopupMenuShowing;
         }
-
+        private ImageCollection imageCollection;
         private void frmRegReciboPago_Load(object sender, EventArgs e)
         {
+            imageCollection = new ImageCollection();
+            imageCollection.AddImage(Properties.Resources.Stop_2);
             tlbMenu.Ensamblado = this.Tag.ToString();
             BSUtils.LoaderLook(cboEmpresa, new EmpresaBL().ListaCombo(), "RazonSocial", "IdEmpresa", true);
             cboEmpresa.EditValue = Parametros.intEmpresaId;
@@ -465,6 +471,90 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
         private void tlbMenu_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void OnMenuItemEliminarClick(object sender, EventArgs e)
+        {
+
+            DXMenuItem menuItem = sender as DXMenuItem;
+            if (menuItem != null)
+            {
+                string IdEmpresa = menuItem.Tag.ToString();
+
+                // Preguntar al usuario si está seguro de eliminar el registro
+                DialogResult resultado = XtraMessageBox.Show("¿Estás seguro de eliminar el registro? Esto podría afectar el estado de cuenta", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (resultado == DialogResult.Yes)
+                {
+                    try
+                    {;
+                        frmAutorizacionUsuario frmAutoriza = new frmAutorizacionUsuario();
+                        frmAutoriza.StartPosition = FormStartPosition.CenterParent;
+                        frmAutoriza.ShowDialog();
+
+                        // string[] usuariosAutorizados = { "master", "rcastañeda", "liliana", "dhuaman", "ytorres", "dcortez", "dvasquez", "mmurrugarra" }; // Agrega aquí los usuarios autorizados
+
+                        string[] usuariosAutorizados = { "mmurrugarra", "rcastañeda","master","ygomez" };
+
+                        if (usuariosAutorizados.Contains(frmAutoriza.Usuario) || frmAutoriza.IdPerfil == Parametros.intPerAdministradorTienda || frmAutoriza.IdPerfil == Parametros.intPerAdministrador)
+                        {
+                            //XtraMessageBox.Show("eres perfil " + frmAutoriza.IdPerfil);
+                            if (!ValidarIngreso())
+                            {
+                                if (XtraMessageBox.Show("¿Estás seguro de eliminar el registro? Esto podría afectar el estado de cuenta.", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                {
+                                    Cursor = Cursors.WaitCursor;
+
+                                    // Datos del Recibo de Pago
+                                    PagosBE objE_Pagos = new PagosBE();
+                                    objE_Pagos.IdPago = int.Parse(gvReciboPago.GetFocusedRowCellValue("IdPago").ToString());
+                                    objE_Pagos.Usuario = Parametros.strUsuarioLogin;
+                                    objE_Pagos.Maquina = WindowsIdentity.GetCurrent().Name.ToString();
+                                    objE_Pagos.IdEmpresa = Parametros.intEmpresaId;
+
+                                    // Datos del Movimiento de Caja
+                                    MovimientoCajaBE objE_MovimientoCaja = null;
+                                    objE_MovimientoCaja = new MovimientoCajaBL().SeleccionaNumero(int.Parse(gvReciboPago.GetFocusedRowCellValue("IdEmpresa").ToString()), Parametros.intTipoDocReciboPago, gvReciboPago.GetFocusedRowCellValue("NumeroDocumento").ToString());
+                                    objE_MovimientoCaja.Usuario = objE_Pagos.Usuario;
+
+                                    PagosBL objBL_Pagos = new PagosBL();
+                                    objBL_Pagos.Elimina(objE_Pagos, objE_MovimientoCaja);
+                                    XtraMessageBox.Show("El registro se eliminó correctamente", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    Cargar();
+
+                                    Cursor = Cursors.Default;
+                                }
+                            }
+                        }
+
+                        else 
+                        {
+                            XtraMessageBox.Show("No tiene acceso para eliminar el documento de venta. Comuníquese con el Supervisor de Tienda.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            frmAutoriza.Close();
+                            return;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Cursor = Cursors.Default;
+                        XtraMessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+
+        }
+
+        private void gvReciboPago_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            GridView gridView = sender as GridView;
+            if (e.MenuType == GridMenuType.Row && e.HitInfo.InRow)
+            {
+                int filaSeleccionada = e.HitInfo.RowHandle;
+                string IdEmpresa = gridView.GetRowCellValue(filaSeleccionada, "IdEmpresa").ToString();
+                DXMenuItem menuItemEliminar = new DXMenuItem("Eliminar", OnMenuItemEliminarClick);
+                menuItemEliminar.ImageOptions.Image = imageCollection.Images[0]; // Agregar la imagen al elemento de menú
+                menuItemEliminar.Tag = IdEmpresa;
+                e.Menu.Items.Add(menuItemEliminar);
+            }
         }
     }
 }

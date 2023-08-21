@@ -265,6 +265,7 @@
             this.gvReciboPago.Name = "gvReciboPago";
             this.gvReciboPago.OptionsView.ColumnAutoWidth = false;
             this.gvReciboPago.OptionsView.ShowGroupPanel = false;
+            this.gvReciboPago.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.gvReciboPago_PopupMenuShowing);
             this.gvReciboPago.DoubleClick += new System.EventHandler(this.gvReciboPago_DoubleClick);
             // 
             // gridColumn25
