@@ -1565,3 +1565,54 @@ exec usp_ObtenerCotizacionproductoPorId 2
 --EQUIPOS Y HERRAMIENTAS 111
 --PRODUCTO TERMINADO  1111
 
+
+alter PROCEDURE usp_rptCotizacionKira
+    @IdCotizacion INT
+AS
+BEGIN
+    SELECT
+        c.IdCotizacion,
+        c.IdTablaElemento,
+        c.Fecha,
+        c.CodigoProducto,
+        c.Descripcion,
+        c.Caracteristicas,
+        c.CostoMateriales,
+        c.CostoInsumos,
+        c.CostoAccesorios,
+        c.CostoManoObra,
+        c.CostoMovilidad,
+        c.CostoEquipos,
+        c.TotalGastos,
+        c.PrecioVenta,
+        c.Moneda as IdMoneda , -- Columna Moneda agregada
+        ce.DescTablaElemento
+    FROM CotizacionKIRA c
+    INNER JOIN TablaElemento ce ON c.IdTablaElemento = ce.IdTablaElemento
+    WHERE c.IdCotizacion = @IdCotizacion;
+END;
+
+exec usp_rptCotizacionKira 2
+
+CREATE PROCEDURE usp_rptCotizacionKiraProductoTerminado
+    @IdCotizacion INT
+AS
+BEGIN
+    SELECT
+        c.IdCotizacion,
+        c.IdTablaElemento,
+        c.Fecha,
+        c.CodigoProducto,
+        c.Descripcion,
+        c.Caracteristicas,
+        c.CostoProductos,
+        c.TotalGastos,
+        c.PrecioVenta,
+        c.Moneda as IdMoneda , -- Columna Moneda agregada
+        ce.DescTablaElemento
+    FROM CotizacionKIRATerminado c
+    INNER JOIN TablaElemento ce ON c.IdTablaElemento = ce.IdTablaElemento
+    WHERE c.IdCotizacion = @IdCotizacion;
+END;
+
+usp_rptCotizacionKiraProductoTerminado 1
