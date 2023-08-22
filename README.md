@@ -9,10 +9,16 @@ El sistema ERP de la empresa Panorama Hogar ofrece varios módulos, incluyendo:
 - Créditos y Cobranzas
 - Contabilidad
 - Recursos Humanos
-- Diseño y Fabricación, entre otros.
+- Diseño y Fabricación, 
+- Modulo KIRA (Control de Gastos de fabricacion)
+- entre otros.
 
 ![Logo de Panorama Hogar](https://panoramahogar.com/modules/whfooterlogo/footer-logo.png)
 
 **Tecnología:**
 
-El lenguaje de programación utilizado es **C# (Escritorio)**.
+- El lenguaje de programación utilizado es **C# (Escritorio)**.
+- DevExpress Utilizado para las interfaces **GUI Form**.
+- Crystal Reports para los reportes **(Boletas -Facturas- Guias- Documentos para imprimir)**
+- BD **SQL SERVER**
+
