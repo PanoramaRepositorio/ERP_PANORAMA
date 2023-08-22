@@ -177,7 +177,7 @@ BEGIN
   C.DescCaja,          
   MC.Fecha          
         
- DELETE FROM #TmpMovimientoCaja WHERE IdCaja = 21 --ECOM        
+ --DELETE FROM #TmpMovimientoCaja WHERE IdCaja = 21 --ECOM    //comentamos esta linea   
         
  --TIPO DE TARJETAS          
  UPDATE #TmpMovimientoCaja SET Comision = ImporteSoles *0.0215 WHERE IdCondicionPago = 99  AND TipoTarjeta = 'D'  --Visa        
