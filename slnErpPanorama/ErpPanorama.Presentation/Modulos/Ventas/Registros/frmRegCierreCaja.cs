@@ -174,6 +174,9 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                 else
                 {
                     gcDenominacion.Enabled = true;
+                    btnGrabar.Enabled = true;
+                    btnCerrarCaja.Enabled = true;
+                        
                 }
             }
 

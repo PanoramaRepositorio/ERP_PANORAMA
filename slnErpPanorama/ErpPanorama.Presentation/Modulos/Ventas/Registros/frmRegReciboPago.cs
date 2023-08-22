@@ -26,11 +26,11 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
     {
         #region "Propiedades"
 
-        
+
         private List<PagosBE> mLista = new List<PagosBE>();
 
         DataTable dt = new DataTable();
-        
+
         #endregion
 
         #region "Eventos"
@@ -77,7 +77,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
             try
             {
                 frmRegReciboPagoEdit objManReciboPago = new frmRegReciboPagoEdit();
-                objManReciboPago.lstPago = new PagosBL().ListaTodosActivo(Parametros.intEmpresaId, Convert.ToInt32(cboCaja.EditValue), Convert.ToDateTime(deFecha.EditValue),Convert.ToDateTime(deFecha.EditValue), Parametros.intTipoDocReciboPago);
+                objManReciboPago.lstPago = new PagosBL().ListaTodosActivo(Parametros.intEmpresaId, Convert.ToInt32(cboCaja.EditValue), Convert.ToDateTime(deFecha.EditValue), Convert.ToDateTime(deFecha.EditValue), Parametros.intTipoDocReciboPago);
                 objManReciboPago.pOperacion = frmRegReciboPagoEdit.Operacion.Nuevo;
                 objManReciboPago.IdPago = 0;
                 objManReciboPago.FechaD = Convert.ToDateTime(deFecha.DateTime.ToShortDateString());
@@ -107,7 +107,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                     if (!ValidarIngreso())
                     {
                         //Datos del Recibo de Pago
-                       PagosBE objE_Pagos = new PagosBE();
+                        PagosBE objE_Pagos = new PagosBE();
                         objE_Pagos.IdPago = int.Parse(gvReciboPago.GetFocusedRowCellValue("IdPago").ToString());
                         objE_Pagos.Usuario = Parametros.strUsuarioLogin;
                         objE_Pagos.Maquina = WindowsIdentity.GetCurrent().Name.ToString();
@@ -142,10 +142,10 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
         {
             if (gvReciboPago.RowCount > 0)
             {
-                int IdPagoDocumento =  int.Parse(gvReciboPago.GetFocusedRowCellValue("IdPago").ToString());
+                int IdPagoDocumento = int.Parse(gvReciboPago.GetFocusedRowCellValue("IdPago").ToString());
                 //Imprimir(IdPagoDocumento);
             }
-         
+
         }
 
         private void tlbMenu_ExportClick()
@@ -422,7 +422,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                 //}
 
 
-                ticket.TextoDerecha("Total " + objE_Pago.CodMoneda +" "+ Math.Round(Convert.ToDouble(ImportePago), 2)); // imprime linea con total
+                ticket.TextoDerecha("Total " + objE_Pago.CodMoneda + " " + Math.Round(Convert.ToDouble(ImportePago), 2)); // imprime linea con total
                 ticket.TextoIzquierda("");
                 ticket.TextoIzquierda("");
                 ticket.TextoIzquierda("");
@@ -486,16 +486,16 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                 if (resultado == DialogResult.Yes)
                 {
                     try
-                    {;
+                    {
                         frmAutorizacionUsuario frmAutoriza = new frmAutorizacionUsuario();
                         frmAutoriza.StartPosition = FormStartPosition.CenterParent;
                         frmAutoriza.ShowDialog();
 
                         // string[] usuariosAutorizados = { "master", "rcastañeda", "liliana", "dhuaman", "ytorres", "dcortez", "dvasquez", "mmurrugarra" }; // Agrega aquí los usuarios autorizados
 
-                        string[] usuariosAutorizados = { "mmurrugarra", "rcastañeda","master","ygomez" };
+                        string[] usuariosAutorizados = { "mmurrugarra", "rcastañeda", "master", "ygomez" };
 
-                        if (usuariosAutorizados.Contains(frmAutoriza.Usuario) || frmAutoriza.IdPerfil == Parametros.intPerAdministradorTienda || frmAutoriza.IdPerfil == Parametros.intPerAdministrador)
+                        if (usuariosAutorizados.Contains(frmAutoriza.Usuario) || frmAutoriza.IdPerfil == Parametros.intPerAdministradorTienda || frmAutoriza.IdPerfil == Parametros.intPerAdministrador || frmAutoriza.IdPerfil == Parametros.intPerAuditorCajaDespacho)
                         {
                             //XtraMessageBox.Show("eres perfil " + frmAutoriza.IdPerfil);
                             if (!ValidarIngreso())
@@ -526,7 +526,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                             }
                         }
 
-                        else 
+                        else
                         {
                             XtraMessageBox.Show("No tiene acceso para eliminar el documento de venta. Comuníquese con el Supervisor de Tienda.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                             frmAutoriza.Close();
