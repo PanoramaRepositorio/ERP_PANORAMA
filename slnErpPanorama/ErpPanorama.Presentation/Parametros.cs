@@ -31,14 +31,14 @@ namespace ErpPanorama.Presentation
         public static string sIdDepartamento = "15"; //LIMA
         public static string sIdProvincia = "01"; //LIMA
         public static string sIdDistrito = "01"; //LIMA
-            
+
         public static int intPerfilId = 0;
         public static int intMenuId = 23;
 
         public static string strNomPerfil = "";
-        public static int intUsuarioId = 0; 
+        public static int intUsuarioId = 0;
         public static int intPeriodo = DateTime.Today.Year;
-        public static int intMes = DateTime.Today.Month;                                                                                                                                                                                                                                                                                                                                                                       
+        public static int intMes = DateTime.Today.Month;
         public static string strUsuarioLogin = "";
         public static string strUsuarioNombres = "";
         public static string strUsuarioApellidos = "";
@@ -47,12 +47,12 @@ namespace ErpPanorama.Presentation
         public static int intTiendaId = 1;
         public static string strDescTienda = "";
         public static string strEmpresaNombre = "";
-        public static string strEmpresaRuc= "";
+        public static string strEmpresaRuc = "";
         public static int intCajaId = 0;
         public static string strDescCaja = "<No Asignada>";
 
-        public static int intTblMotivoCheque = 100 ;
-        public static int intChequeVigente  =640 ;
+        public static int intTblMotivoCheque = 100;
+        public static int intChequeVigente = 640;
         public static int intChequeCobrado = 641;
         public static int intChequeAnulado = 642;
 
@@ -86,7 +86,7 @@ namespace ErpPanorama.Presentation
         public static int intHEAprobado = 477;
         public static int intHEGenerado = 476;
 
- 
+
 
         //Almacenes Ucayali
         public static int intAlmCentralUcayali = 1;
@@ -168,9 +168,9 @@ namespace ErpPanorama.Presentation
         public static int intGestorCartera = 37;
         public static int intSupervisoraVentaPiso = 51;
         public static int intSupervisoraVentaPisoDiseno = 38;
-        public static int intDisenadorInteriorMaster = 120;  
-        public static int intDisenadorInteriorSenior = 469;  
-        public static int intDisenadorInteriorJunior = 467;  
+        public static int intDisenadorInteriorMaster = 120;
+        public static int intDisenadorInteriorSenior = 469;
+        public static int intDisenadorInteriorJunior = 467;
 
         public static int intAsesorVentaPisoJunior = 35;
         public static int intAsesorVentaPisoSenior = 44;
@@ -239,7 +239,7 @@ namespace ErpPanorama.Presentation
         public static int intTblTicketPrioridad = 38;
         public static int intTblTicketSituacion = 39;
         public static int intTblMotivoAnulacioDocumento = 54;
-        public static int intTblTipoAplicacionNotaCredito= 55;
+        public static int intTblTipoAplicacionNotaCredito = 55;
         public static int intTblMotivoSituacionCliente = 56;
         public static int intTblSituacionPago = 57;
         public static int intTblTipoCuentaBanco = 58;
@@ -264,7 +264,7 @@ namespace ErpPanorama.Presentation
         public static int intRegular = 107;
         public static int intRiesgo = 108;
         public static int intMoroso = 109;
-        
+
         //Motivo Movimiento Almacen
         public static int intMovTranferenciaDirecta = 79;
         public static int intMovTransferenciaAndahuaylas = 80;
@@ -274,7 +274,7 @@ namespace ErpPanorama.Presentation
         public static int intMovAjusteInventario = 85;
         public static int intMovMermas = 115;
         public static int intMovReparacionTaller = 119;
-     
+
         public static int intMovMuestrasAndahuaylas = 132;
         public static int intAutoservicioUcayali = 133;
         public static int intMovAutoservicioAndahuaylas = 134;
@@ -341,7 +341,7 @@ namespace ErpPanorama.Presentation
         public static int intMasterCardPuntosVida = 193;
         public static int intCheque = 193;
         public static int intCupon = 298;
-        
+
 
         //Situacion Documento Venta
         public static int intDVGenerado = 102;
@@ -436,13 +436,13 @@ namespace ErpPanorama.Presentation
         //Familia Producto
         public static int intFamiliaRegular = 1;
         public static int intFamiliaNavidad = 2;
-                public static int intFamiliaReligioso = 4;
+        public static int intFamiliaReligioso = 4;
 
         //Linea Producto
         public static int intLineaNavidad = 10;
         public static int intLineaReligioso = 2;
 
-         //Marca Producto
+        //Marca Producto
         public static int intIdMarcaKira = 153;
 
         //Regimen Tributario
@@ -496,7 +496,7 @@ namespace ErpPanorama.Presentation
 
         //Parametros Situacion Pago
         public static int intSITPagoPendiente = 283;
-        public static int intSITPagoCancelado = 284;       
+        public static int intSITPagoCancelado = 284;
 
         //Parametros Codigo Delivery
         public static int intIdProductoDelivery = 44651;
@@ -524,9 +524,6 @@ namespace ErpPanorama.Presentation
 
         //Parametros Comisión Club Design
         public static decimal dmlClubDesign = 0;
-
-        //Parametros MARGEN DE CONTRIBUCION
-        public static decimal margencontri = 0.4m;
 
         //Parametros Stock Negativo
         public static bool bStockNegativo = true;
@@ -661,6 +658,144 @@ namespace ErpPanorama.Presentation
 
         //Parametros Hora Extra
         public static decimal intPorcentajeAsigFamiliar = Convert.ToDecimal("0.1");
+
+        //Parametros MARGEN DE CONTRIBUCION modulo KIRA (Costo gastos)
+        public static decimal margencontri = 0.4m;
+
+        //Parametros TABLA ELEMENTOS modulo KIRA (Costo gastos Materiales)
+        public static int idACERO = 714;
+        public static string idACEROedit = "714";
+
+        public static int idBRONCE = 715;
+        public static string idBRONCEedit = "715";
+
+        public static int idCASO = 716;
+        public static string idCASOedit = "716";
+
+        public static int idESPUMA = 717;
+        public static string idESPUMAedit = "717";
+
+        public static int idESPEJO = 718;
+        public static string idESPEJOedit = "718";
+
+        public static int idFIERRO = 719;
+        public static string idFIERROedit = "719";
+
+        public static int idMADERA = 720;
+        public static string idMADERAedit = "720";
+
+        public static int idMDF = 721;
+        public static string idMDFedit = "721";
+
+        public static int idMELAMINE = 722;
+        public static string idMELAMINEedit = "722";
+
+        public static int idNAPA = 723;
+        public static string idNAPAedit = "723";
+
+        public static int idNOTEX = 724;
+        public static string idNOTEXedit = "724";
+
+        public static int idPIEDRA = 725;
+        public static string idPIEDRAedit = "725";
+
+        public static int idTELA = 726;
+        public static string idTELAedit = "726";
+
+        public static int idVIDRIO = 727;
+        public static string idVIDRIOedit = "727";
+
+        public static int idENCHAPE = 728;
+        public static string idENCHAPEedit = "728";
+
+        //Parametros TABLA ELEMENTOS modulo KIRA (Costo gastos INSUMOS)
+        public static int idCARTON_PRENSADO = 729;
+        public static string idCARTON_PRENSADOedit = "729";
+
+        public static int idCRUDO = 730;
+        public static string idCRUDOedit = "730";
+
+        public static int idNOSAG = 731;
+        public static string idNOSAGedit = "731";
+
+        public static int idPINTURA = 732;
+        public static string iidPINTURAedit = "732";
+
+        public static int idPOLISEA = 733;
+        public static string idPOLISEAedit = "733";
+
+        //Parametros TABLA ELEMENTOS modulo KIRA (Costo gastos ACCESORIOS)
+        public static int idBISAGRAS = 734;
+        public static string idBISAGRASedit = "734";
+
+        public static int idCORREDERAS = 735;
+        public static string idCORREDERASedit = "735";
+
+        public static int idTIRADORES = 736;
+        public static string idTIRADORESedit = "736";
+
+        public static int idILUMINACION = 737;
+        public static string idILUMINACIONedit = "737";
+
+        public static int idPATASZOCALO = 738;
+        public static string idPATASZOCALOedit = "738";
+
+        public static int idPATASMADERA = 739;
+        public static string idPATASMADERAedit = "739";
+
+        public static int idPATASMETALICAS = 740;
+        public static string idPATASMETALICASedit = "740";
+
+
+        //Parametros TABLA ELEMENTOS modulo KIRA (Costo gastos MANODEOBRA)
+        public static int idCARPINTERIA = 741;
+        public static string idCARPINTERIAedit = "741";
+
+        public static int idCOSTURERO = 742;
+        public static string idCOSTUREROEDIT = "742";
+
+        public static int idELECTRICISTA = 743;
+        public static string idELECTRICISTAedit = "743";
+
+        public static int idESAMBLADOR = 744;
+        public static string idESAMBLADORedit = "744";
+
+        public static int idPINTURAS = 745;
+        public static string idPINTURASedit = "745";
+
+        public static int idSOLDADOR = 746;
+        public static string idSOLDADORedit = "746";
+
+        public static int idTAPICERO = 747;
+        public static string idTAPICEROedit = "747";
+
+        public static int idVIDRIERO = 748;
+        public static string idVIDRIEROedit = "748";
+
+        //Parametros TABLA ELEMENTOS modulo KIRA (Costo gastos MOVILIDADYVIATICOS)
+        public static int idPASAJEDISENADORA = 749;
+        public static string idPASAJEDISENADORAedit = "749";
+
+        public static int idPASAJEPARAENTREGA = 750;
+        public static string idPASAJEPARAENTREGAedit = "750";
+
+        public static int idPASAJEPRODUCCION = 751;
+        public static string idPASAJEPRODUCCIONedit = "751";
+
+        public static int idVIATICOS = 752;
+        public static string idVIATICOSedit = "752";
+
+        //Parametros TABLA ELEMENTOS modulo KIRA (Costo gastos EquiposYHerramientas)
+        public static int idequiposHerramientas = 753;
+
+       
+        //Parametros TABLA ELEMENTOS modulo KIRA-Productos Terminados (Costo gastos ProductoTerminado)
+        public static int idCostoINC_IGV = 754;
+        public static string idCostoINC_IGVedit = "754";
+        public static int idMovilidad = 755;
+        public static string idMovilidadedit = "755";
+        public static int idServiciosAdicionales = 756;
+        public static string idServiciosAdicionalesedit = "756";
 
     }
 

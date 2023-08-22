@@ -170,9 +170,9 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // Valores y nombres correspondientes
             Dictionary<string, string> nombresTablaElemento = new Dictionary<string, string>
                 {
-                    { "754", "COSTO INC. IGV" },
-                    { "755", "MOVILIDAD" },
-                    { "756", "SERVICIOS ADICIONALES" },
+                    { Parametros.idCostoINC_IGVedit, "COSTO INC. IGV" },
+                    { Parametros.idMovilidadedit, "MOVILIDAD" },
+                    { Parametros.idServiciosAdicionalesedit, "SERVICIOS ADICIONALES" },
                     // Agrega aquí más valores y nombres correspondientes
                 };
 
