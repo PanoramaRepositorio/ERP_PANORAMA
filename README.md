@@ -17,8 +17,8 @@ El sistema ERP de la empresa Panorama Hogar ofrece varios módulos, incluyendo:
 
 **Tecnología:**
 
-El lenguaje de programación utilizado es **C# (Escritorio)**.
-DevExpress Utilizado para las interfaces **GUI Form**.
-Crystal Reports para los reportes **(Boletas -Facturas- Guias- Documentos para imprimir)**
-BD **SQL SERVER**
+- El lenguaje de programación utilizado es **C# (Escritorio)**.
+- DevExpress Utilizado para las interfaces **GUI Form**.
+- Crystal Reports para los reportes **(Boletas -Facturas- Guias- Documentos para imprimir)**
+- BD **SQL SERVER**
 
