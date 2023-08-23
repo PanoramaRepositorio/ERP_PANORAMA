@@ -241,3 +241,90 @@ BEGIN
           
  SET NOCOUNT OFF          
 END 
+
+---Recibo pagos (punto 7)
+
+alter PROCEDURE [dbo].[usp_Pagos_ListaTodosActivo]
+(
+	@pIdEmpresa int,
+	@pIdCaja int,
+	@pFecha datetime,
+	@pFechaHasta datetime,
+	@pIdTipoDocumento int
+)
+AS
+BEGIN
+
+	SET NOCOUNT ON
+	
+	IF(@pIdCaja = 0)SELECT @pIdCaja = NULL
+
+	SELECT 
+		PG.IdEmpresa,
+		PG.IdPago,
+		PG.IdPedido,
+		P.Numero AS NumeroPedido,
+		CL.DescCliente,
+		MP.Abreviatura AS CodMonedaPedido,
+		ISNULL(P.Total,0) AS Total,
+		TDA.DescTienda,
+		PG.IdCaja,
+		C.DescCaja,
+		PG.Fecha,
+		PG.IdTipoDocumento,
+		TD.CodTipoDocumento,
+		PG.NumeroDocumento,
+		PG.IdCondicionPago,
+		CP.DescTablaElemento AS DescCondicionPago,
+		PG.Concepto,
+		PG.IdMoneda,
+		M.Abreviatura AS CodMoneda,
+		PG.TipoCambio,
+		PG.ImporteSoles,
+		PG.ImporteDolares,
+		PG.TipoMovimiento,
+		PG.IdVendedor,
+		ISNULL(PER.ApeNom,'') AS DescVendedor,
+		PG.IdDis_ProyectoServicio,
+		ISNULL(DPS.Numero,'') AS NumeroProyectoServicio,
+		PG.IdDis_ContratoFabricacion,
+		ISNULL(DCF.Numero,'') AS NumeroContrato,
+		PG.IdCliente,
+		ISNULL(TCL.DescTablaElemento,'') AS TipoCliente,
+		PG.FlagEstado,
+		ISNULL(CodigoGiftCard, '') AS CodigoGiftCard
+	FROM 
+		Pagos PG
+	LEFT JOIN
+		Pedido P ON PG.IdPedido = P.IdPedido	
+	LEFT JOIN
+		TablaElemento MP ON P.IdMoneda = MP.IdTablaElemento
+	LEFT JOIN
+		Caja C ON PG.IdCaja = C.IdCaja
+	LEFT JOIN 
+		Tienda TDA ON C.IdTienda = TDA.IdTienda
+	LEFT JOIN
+		TipoDocumento TD ON PG.IdTipoDocumento = TD.IdTipoDocumento
+	LEFT JOIN
+		TablaElemento CP ON PG.IdCondicionPago = CP.IdTablaElemento
+	LEFT JOIN
+		TablaElemento M ON PG.IdMoneda = M.IdTablaElemento
+	LEFT JOIN 
+		Persona PER ON PG.IdVendedor = PER.IdPersona 
+	LEFT JOIN 
+		Cliente CL ON PG.IdCliente = CL.IdCliente 
+	LEFT JOIN
+		TablaElemento TCL ON CL.IdTipoCliente = TCL.IdTablaElemento
+	LEFT JOIN 
+		Dis_ProyectoServicio DPS ON PG.IdDis_ProyectoServicio = DPS.IdDis_ProyectoServicio
+	LEFT JOIN
+		Dis_ContratoFabricacion DCF ON PG.IdDis_ContratoFabricacion = DCF.IdDis_ContratoFabricacion
+	WHERE 
+		PG.IdEmpresa = @pIdEmpresa AND
+		PG.IdCaja = Coalesce(@pIdCaja,PG.IdCaja) AND
+		PG.Fecha BETWEEN convert(varchar,@pFecha,112) AND convert(varchar,@pFechaHasta,112) AND
+		PG.IdTipoDocumento = @pIdTipoDocumento 
+		--AND PG.FlagEstado = 1 
+
+	SET NOCOUNT OFF
+END
