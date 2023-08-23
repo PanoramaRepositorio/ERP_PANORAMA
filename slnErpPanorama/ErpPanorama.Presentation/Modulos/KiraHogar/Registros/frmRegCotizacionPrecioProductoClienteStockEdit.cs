@@ -1513,9 +1513,18 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             return sumaCostos;
         }
 
-       
+        private void Tabcontrol_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            TabPage tabPage = Tabcontrol.TabPages[e.Index];
 
-       
+            // Cambiar el color de fondo de las pestañas
+            e.Graphics.FillRectangle(new SolidBrush(Color.AliceBlue), e.Bounds);
 
+            // Cambiar el color del texto de las pestañas
+            using (Brush textBrush = new SolidBrush(Color.DarkBlue))
+            {
+                e.Graphics.DrawString(tabPage.Text, Tabcontrol.Font, textBrush, e.Bounds.X + 3, e.Bounds.Y + 3);
+            }
+        }
     }
 }

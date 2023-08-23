@@ -191,11 +191,14 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             this.Tabcontrol.Controls.Add(this.tabPage5);
             this.Tabcontrol.Controls.Add(this.tabPage6);
             this.Tabcontrol.Controls.Add(this.tabPage7);
-            this.Tabcontrol.Location = new System.Drawing.Point(29, 215);
+            this.Tabcontrol.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.Tabcontrol.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.Tabcontrol.Location = new System.Drawing.Point(27, 229);
             this.Tabcontrol.Name = "Tabcontrol";
             this.Tabcontrol.SelectedIndex = 0;
             this.Tabcontrol.Size = new System.Drawing.Size(596, 398);
             this.Tabcontrol.TabIndex = 53;
+            this.Tabcontrol.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.Tabcontrol_DrawItem);
             // 
             // tabPage1
             // 
@@ -209,10 +212,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             this.tabPage1.Controls.Add(this.cboMaterial);
             this.tabPage1.Controls.Add(this.labelControl7);
             this.tabPage1.Controls.Add(this.labelControl6);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(588, 372);
+            this.tabPage1.Size = new System.Drawing.Size(588, 369);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -322,10 +325,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             this.tabPage2.Controls.Add(this.btnAgregarPestaña2);
             this.tabPage2.Controls.Add(this.cboInsumos);
             this.tabPage2.Controls.Add(this.labelControl11);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(588, 372);
+            this.tabPage2.Size = new System.Drawing.Size(588, 369);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -428,10 +431,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             this.tabPage3.Controls.Add(this.btnAgregarPestaña3);
             this.tabPage3.Controls.Add(this.cboAccesorios);
             this.tabPage3.Controls.Add(this.labelControl14);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(588, 372);
+            this.tabPage3.Size = new System.Drawing.Size(588, 369);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -534,10 +537,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             this.tabPage4.Controls.Add(this.btnAgregarPestaña4);
             this.tabPage4.Controls.Add(this.cboManoObra);
             this.tabPage4.Controls.Add(this.labelControl18);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(588, 372);
+            this.tabPage4.Size = new System.Drawing.Size(588, 369);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -640,10 +643,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             this.tabPage5.Controls.Add(this.btnAgregarPestaña5);
             this.tabPage5.Controls.Add(this.cboSeleccionaMovilidad);
             this.tabPage5.Controls.Add(this.labelControl21);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(588, 372);
+            this.tabPage5.Size = new System.Drawing.Size(588, 369);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "tabPage5";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -744,10 +747,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             this.tabPage6.Controls.Add(this.btnAgregarPestaña6);
             this.tabPage6.Controls.Add(this.cboequipos);
             this.tabPage6.Controls.Add(this.labelControl20);
-            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Location = new System.Drawing.Point(4, 25);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(588, 372);
+            this.tabPage6.Size = new System.Drawing.Size(588, 369);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "tabPage6";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -829,10 +832,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             this.tabPage7.Controls.Add(this.labelControl17);
             this.tabPage7.Controls.Add(this.txtTotal);
             this.tabPage7.Controls.Add(this.txtPrecioVenta);
-            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Location = new System.Drawing.Point(4, 25);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(588, 372);
+            this.tabPage7.Size = new System.Drawing.Size(588, 369);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "tabPage7";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -1120,7 +1123,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             this.btnGuardar.ImageOptions.Image = global::ErpPanorama.Presentation.Properties.Resources.btn_grabar;
             this.btnGuardar.ImageOptions.ImageIndex = 0;
             this.btnGuardar.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.btnGuardar.Location = new System.Drawing.Point(467, 619);
+            this.btnGuardar.Location = new System.Drawing.Point(467, 633);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 206;
@@ -1133,7 +1136,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             this.btnCancelar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.ImageOptions.Image")));
             this.btnCancelar.ImageOptions.ImageIndex = 0;
             this.btnCancelar.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(548, 619);
+            this.btnCancelar.Location = new System.Drawing.Point(548, 633);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 205;
@@ -1144,7 +1147,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(650, 643);
+            this.ClientSize = new System.Drawing.Size(650, 657);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.lblCodigoExistente);
