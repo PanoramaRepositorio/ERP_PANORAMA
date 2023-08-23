@@ -2802,7 +2802,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
 
         private void txtNumeroDocumento_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Si se presionó la tecla Enter, mover el enfoque al siguiente control
+            // Si se presionó la tecla Enter, mover el enfoque al siguiente control .
             if (e.KeyChar == (char)Keys.Enter)
             {
                 txtConcepto.Focus();
