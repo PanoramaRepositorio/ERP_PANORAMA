@@ -163,7 +163,7 @@
             this.gcEstadoCuenta.Location = new System.Drawing.Point(0, 103);
             this.gcEstadoCuenta.MainView = this.gvEstadoCuenta;
             this.gcEstadoCuenta.Name = "gcEstadoCuenta";
-            this.gcEstadoCuenta.Size = new System.Drawing.Size(1230, 383);
+            this.gcEstadoCuenta.Size = new System.Drawing.Size(1233, 383);
             this.gcEstadoCuenta.TabIndex = 67;
             this.gcEstadoCuenta.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvEstadoCuenta});
@@ -318,13 +318,13 @@
             // 
             // gridColumn7
             // 
-            this.gridColumn7.Caption = "Ingresado Por";
+            this.gridColumn7.Caption = "Usuario";
             this.gridColumn7.FieldName = "Usuario";
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.OptionsColumn.AllowFocus = false;
             this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 8;
+            this.gridColumn7.VisibleIndex = 10;
             this.gridColumn7.Width = 125;
             // 
             // gridColumn11
@@ -335,7 +335,7 @@
             this.gridColumn11.OptionsColumn.AllowEdit = false;
             this.gridColumn11.OptionsColumn.AllowFocus = false;
             this.gridColumn11.Visible = true;
-            this.gridColumn11.VisibleIndex = 9;
+            this.gridColumn11.VisibleIndex = 8;
             // 
             // gridColumn12
             // 
@@ -345,7 +345,7 @@
             this.gridColumn12.OptionsColumn.AllowEdit = false;
             this.gridColumn12.OptionsColumn.AllowFocus = false;
             this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 10;
+            this.gridColumn12.VisibleIndex = 9;
             this.gridColumn12.Width = 52;
             // 
             // gridColumn13
@@ -378,7 +378,7 @@
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupControl1.Location = new System.Drawing.Point(0, 25);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(1230, 76);
+            this.groupControl1.Size = new System.Drawing.Size(1233, 76);
             this.groupControl1.TabIndex = 65;
             this.groupControl1.Text = "Criterios de Búsqueda";
             // 
@@ -508,7 +508,7 @@
             this.toolstpSalir});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1230, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1233, 25);
             this.toolStrip1.TabIndex = 64;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -571,7 +571,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1230, 513);
+            this.ClientSize = new System.Drawing.Size(1233, 513);
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.txtSaldo);
             this.Controls.Add(this.txtTotalAbono);
