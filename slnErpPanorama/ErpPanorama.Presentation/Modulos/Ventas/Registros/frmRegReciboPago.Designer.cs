@@ -63,6 +63,7 @@
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboTienda.Properties)).BeginInit();
@@ -82,7 +83,7 @@
             this.tlbMenu.Ensamblado = "";
             this.tlbMenu.Location = new System.Drawing.Point(0, 0);
             this.tlbMenu.Name = "tlbMenu";
-            this.tlbMenu.Size = new System.Drawing.Size(1238, 24);
+            this.tlbMenu.Size = new System.Drawing.Size(1483, 24);
             this.tlbMenu.TabIndex = 0;
             this.tlbMenu.NewClick += new ErpPanorama.Presentation.ControlUser.UIToolBar.delegateNewClick(this.tlbMenu_NewClick);
             this.tlbMenu.EditClick += new ErpPanorama.Presentation.ControlUser.UIToolBar.delegateEditClick(this.tlbMenu_EditClick);
@@ -109,7 +110,7 @@
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupControl1.Location = new System.Drawing.Point(0, 24);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(1238, 55);
+            this.groupControl1.Size = new System.Drawing.Size(1483, 55);
             this.groupControl1.TabIndex = 50;
             this.groupControl1.Text = "Criterios de Busqueda";
             // 
@@ -234,7 +235,7 @@
             this.gcReciboPago.Location = new System.Drawing.Point(0, 79);
             this.gcReciboPago.MainView = this.gvReciboPago;
             this.gcReciboPago.Name = "gcReciboPago";
-            this.gcReciboPago.Size = new System.Drawing.Size(1238, 417);
+            this.gcReciboPago.Size = new System.Drawing.Size(1483, 417);
             this.gcReciboPago.TabIndex = 51;
             this.gcReciboPago.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvReciboPago});
@@ -242,6 +243,7 @@
             // gvReciboPago
             // 
             this.gvReciboPago.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn17,
             this.gridColumn25,
             this.gridColumn24,
             this.gridColumn2,
@@ -340,7 +342,7 @@
             this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.OptionsColumn.AllowFocus = false;
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 8;
+            this.gridColumn4.VisibleIndex = 9;
             this.gridColumn4.Width = 51;
             // 
             // gridColumn8
@@ -355,7 +357,7 @@
             this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.OptionsColumn.AllowFocus = false;
             this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 9;
+            this.gridColumn8.VisibleIndex = 10;
             this.gridColumn8.Width = 50;
             // 
             // gridColumn5
@@ -368,7 +370,7 @@
             this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.OptionsColumn.AllowFocus = false;
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 10;
+            this.gridColumn5.VisibleIndex = 11;
             this.gridColumn5.Width = 80;
             // 
             // gridColumn6
@@ -383,7 +385,7 @@
             this.gridColumn6.OptionsColumn.AllowEdit = false;
             this.gridColumn6.OptionsColumn.AllowFocus = false;
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 11;
+            this.gridColumn6.VisibleIndex = 12;
             this.gridColumn6.Width = 80;
             // 
             // gridColumn7
@@ -394,7 +396,7 @@
             this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.OptionsColumn.AllowFocus = false;
             this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 7;
+            this.gridColumn7.VisibleIndex = 8;
             // 
             // gridColumn9
             // 
@@ -452,7 +454,7 @@
             this.gridColumn15.OptionsColumn.AllowEdit = false;
             this.gridColumn15.OptionsColumn.AllowFocus = false;
             this.gridColumn15.Visible = true;
-            this.gridColumn15.VisibleIndex = 12;
+            this.gridColumn15.VisibleIndex = 13;
             this.gridColumn15.Width = 150;
             // 
             // gridColumn16
@@ -461,11 +463,19 @@
             this.gridColumn16.FieldName = "CodigoGiftCard";
             this.gridColumn16.Name = "gridColumn16";
             // 
+            // gridColumn17
+            // 
+            this.gridColumn17.Caption = "Estado";
+            this.gridColumn17.FieldName = "FlagEstado";
+            this.gridColumn17.Name = "gridColumn17";
+            this.gridColumn17.Visible = true;
+            this.gridColumn17.VisibleIndex = 7;
+            // 
             // frmRegReciboPago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1238, 496);
+            this.ClientSize = new System.Drawing.Size(1483, 496);
             this.Controls.Add(this.gcReciboPago);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.tlbMenu);
@@ -525,5 +535,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn17;
     }
 }
