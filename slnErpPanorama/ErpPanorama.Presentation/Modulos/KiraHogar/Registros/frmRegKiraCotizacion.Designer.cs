@@ -110,6 +110,12 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // groupControl1
             // 
+            this.groupControl1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.groupControl1.Appearance.Options.UseBackColor = true;
+            this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
+            this.groupControl1.AppearanceCaption.ForeColor = System.Drawing.Color.Blue;
+            this.groupControl1.AppearanceCaption.Options.UseFont = true;
+            this.groupControl1.AppearanceCaption.Options.UseForeColor = true;
             this.groupControl1.Controls.Add(this.lblTotalRegistros);
             this.groupControl1.Controls.Add(this.btnConsultarMasInformacion);
             this.groupControl1.Controls.Add(this.labelControl1);
@@ -546,6 +552,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // groupControl2
             // 
+            this.groupControl2.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
+            this.groupControl2.AppearanceCaption.ForeColor = System.Drawing.Color.Blue;
+            this.groupControl2.AppearanceCaption.Options.UseFont = true;
+            this.groupControl2.AppearanceCaption.Options.UseForeColor = true;
             this.groupControl2.Controls.Add(this.lblTotalRegistrosProductos);
             this.groupControl2.Controls.Add(this.simpleButton1);
             this.groupControl2.Controls.Add(this.labelControl3);

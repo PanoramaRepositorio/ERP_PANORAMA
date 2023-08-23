@@ -35,21 +35,27 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             // 
             // btnAbrirCotizacion
             // 
+            this.btnAbrirCotizacion.Image = global::ErpPanorama.Presentation.Properties.Resources.UnidadMedida_16x16;
+            this.btnAbrirCotizacion.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAbrirCotizacion.Location = new System.Drawing.Point(12, 12);
             this.btnAbrirCotizacion.Name = "btnAbrirCotizacion";
-            this.btnAbrirCotizacion.Size = new System.Drawing.Size(171, 23);
+            this.btnAbrirCotizacion.Size = new System.Drawing.Size(171, 52);
             this.btnAbrirCotizacion.TabIndex = 0;
             this.btnAbrirCotizacion.Text = "Precio Producto Cliente Stock";
+            this.btnAbrirCotizacion.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnAbrirCotizacion.UseVisualStyleBackColor = true;
             this.btnAbrirCotizacion.Click += new System.EventHandler(this.btnAbrirCotizacion_Click);
             // 
             // btnAbrirProductoTerminado
             // 
+            this.btnAbrirProductoTerminado.Image = global::ErpPanorama.Presentation.Properties.Resources.Silla_32x32;
+            this.btnAbrirProductoTerminado.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAbrirProductoTerminado.Location = new System.Drawing.Point(189, 12);
             this.btnAbrirProductoTerminado.Name = "btnAbrirProductoTerminado";
-            this.btnAbrirProductoTerminado.Size = new System.Drawing.Size(162, 23);
+            this.btnAbrirProductoTerminado.Size = new System.Drawing.Size(162, 52);
             this.btnAbrirProductoTerminado.TabIndex = 1;
             this.btnAbrirProductoTerminado.Text = "Precio Producto Terminado";
+            this.btnAbrirProductoTerminado.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnAbrirProductoTerminado.UseVisualStyleBackColor = true;
             this.btnAbrirProductoTerminado.Click += new System.EventHandler(this.btnAbrirProductoTerminado_Click);
             // 
@@ -57,7 +63,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(362, 46);
+            this.ClientSize = new System.Drawing.Size(360, 76);
             this.Controls.Add(this.btnAbrirProductoTerminado);
             this.Controls.Add(this.btnAbrirCotizacion);
             this.Name = "frmSeleccionarFormulario";
