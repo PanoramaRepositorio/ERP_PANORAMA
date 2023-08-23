@@ -55,7 +55,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
 
         private void frmRegCotizacionPrecioProductoClienteStockEdit_Load(object sender, EventArgs e)
         {
-            
+
             CargarCotizacion();
             personalizacióncontrolesform();
             ConfigurarComboBoxTipoCotizacion();
@@ -80,7 +80,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
 
         private void personalizacióncontrolesform()
         {
-            
+
             gridView7.OptionsView.GroupDrawMode = DevExpress.XtraGrid.Views.Grid.GroupDrawMode.Office;
             gridView7.Columns["DescTabla"].GroupIndex = 0; // Establecer la columna "DescTabla" como columna de agrupación
             txtNumeroCotizacion.Enabled = false;
@@ -249,7 +249,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                 fila["Costo"] = dt.Costo;
                 dtDatospestaña1.Rows.Add(fila);
             }
-            
+
             decimal sumaCostosPestana1 = CalcularSumaCostosPestana1(dtDatospestaña1);
             txtSumaCostosPestaña1.Text = sumaCostosPestana1.ToString("0.00");
             gridControlPestaña1.DataSource = dtDatospestaña1;
@@ -385,49 +385,50 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // Valores y nombres correspondientes
             Dictionary<string, string> nombresTablaElemento = new Dictionary<string, string>
                 {
-                    { Parametros.idACEROedit, "MATERIALES" },
-                    { Parametros.idBRONCEedit, "MATERIALES" },
-                    { Parametros.idCASOedit, "MATERIALES" },
-                    { Parametros.idESPUMAedit, "MATERIALES" },
-                    { Parametros.idESPEJOedit, "MATERIALES" },
-                    { Parametros.idFIERROedit, "MATERIALES" },
-                    { Parametros.idMADERAedit, "MATERIALES" },
-                    { Parametros.idMDFedit, "MATERIALES" },
-                    { Parametros.idMELAMINEedit, "MATERIALES" },
-                    { Parametros.idNAPAedit, "MATERIALES" },
-                    { Parametros.idNOTEXedit, "MATERIALES" },
-                    { Parametros.idPIEDRAedit, "MATERIALES" },
-                    { Parametros.idTELAedit, "MATERIALES" },
-                    { Parametros.idENCHAPEedit, "MATERIALES" },
-                    //{ Parametros.idENCHAPEedit, "MATERIALES" },
+                    { Parametros.idACEROedit, Parametros.materiales},
+                    { Parametros.idBRONCEedit, Parametros.materiales},
+                    { Parametros.idCASOedit, Parametros.materiales},
+                    { Parametros.idESPUMAedit, Parametros.materiales },
+                    { Parametros.idESPEJOedit, Parametros.materiales },
+                    { Parametros.idFIERROedit, Parametros.materiales },
+                    { Parametros.idMADERAedit, Parametros.materiales },
+                    { Parametros.idMDFedit, Parametros.materiales},
+                    { Parametros.idMELAMINEedit, Parametros.materiales },
+                    { Parametros.idNAPAedit, Parametros.materiales},
+                    { Parametros.idNOTEXedit, Parametros.materiales },
+                    { Parametros.idPIEDRAedit, Parametros.materiales },
+                    { Parametros.idTELAedit, Parametros.materiales },
+                    { Parametros.idVIDRIOedit, Parametros.materiales },
+                    { Parametros.idENCHAPEedit, Parametros.materiales },
 
-                    { Parametros.idCARTON_PRENSADOedit, "INSUMOS" },
-                    { Parametros.idCRUDOedit, "INSUMOS" },
-                    { Parametros.idNOSAGedit, "INSUMOS" },
-                    { Parametros.iidPINTURAedit, "INSUMOS" },
-                    { Parametros.idPOLISEAedit, "INSUMOS" },
 
-                    { Parametros.idBISAGRASedit, "ACCESORIOS" },
-                    { Parametros.idCORREDERASedit, "ACCESORIOS" },
-                    { Parametros.idTIRADORESedit, "ACCESORIOS" },
-                    { Parametros.idILUMINACIONedit, "ACCESORIOS" },
-                    { Parametros.idPATASZOCALOedit, "ACCESORIOS" },
-                    { Parametros.idPATASMADERAedit, "ACCESORIOS" },
-                    { Parametros.idPATASMETALICASedit, "ACCESORIOS" },
+                    { Parametros.idCARTON_PRENSADOedit, Parametros.insumos },
+                    { Parametros.idCRUDOedit, Parametros.insumos  },
+                    { Parametros.idNOSAGedit, Parametros.insumos  },
+                    { Parametros.iidPINTURAedit, Parametros.insumos  },
+                    { Parametros.idPOLISEAedit, Parametros.insumos },
 
-                    { Parametros.idCARPINTERIAedit, "MANO DE OBRA" },
-                    { Parametros.idCOSTUREROEDIT, "MANO DE OBRA" },
-                    { Parametros.idELECTRICISTAedit, "MANO DE OBRA" },
-                    { Parametros.idESAMBLADORedit, "MANO DE OBRA" },
-                    { Parametros.idPINTURASedit, "MANO DE OBRA" },
-                    { Parametros.idSOLDADORedit, "MANO DE OBRA" },
-                    { Parametros.idTAPICEROedit, "MANO DE OBRA" },
-                    { Parametros.idVIDRIEROedit, "MANO DE OBRA" },
+                    { Parametros.idBISAGRASedit, Parametros.accesorios},
+                    { Parametros.idCORREDERASedit, Parametros.accesorios },
+                    { Parametros.idTIRADORESedit, Parametros.accesorios },
+                    { Parametros.idILUMINACIONedit, Parametros.accesorios },
+                    { Parametros.idPATASZOCALOedit, Parametros.accesorios },
+                    { Parametros.idPATASMADERAedit, Parametros.accesorios },
+                    { Parametros.idPATASMETALICASedit,Parametros.accesorios},
 
-                    { Parametros.idPASAJEDISENADORAedit, "MOVILIDAD Y VIATICOS" },
-                    { Parametros.idPASAJEPARAENTREGAedit, "MOVILIDAD Y VIATICOS" },
-                    { Parametros.idPASAJEPRODUCCIONedit, "MOVILIDAD Y VIATICOS" },
-                    { Parametros.idVIATICOSedit, "MOVILIDAD Y VIATICOS" },
+                    { Parametros.idCARPINTERIAedit, Parametros.manodeobra},
+                    { Parametros.idCOSTUREROEDIT, Parametros.manodeobra },
+                    { Parametros.idELECTRICISTAedit, Parametros.manodeobra},
+                    { Parametros.idESAMBLADORedit, Parametros.manodeobra},
+                    { Parametros.idPINTURASedit, Parametros.manodeobra},
+                    { Parametros.idSOLDADORedit, Parametros.manodeobra},
+                    { Parametros.idTAPICEROedit, Parametros.manodeobra },
+                    { Parametros.idVIDRIEROedit, Parametros.manodeobra },
+
+                    { Parametros.idPASAJEDISENADORAedit, Parametros.movilidadyViatios },
+                    { Parametros.idPASAJEPARAENTREGAedit, Parametros.movilidadyViatios},
+                    { Parametros.idPASAJEPRODUCCIONedit, Parametros.movilidadyViatios },
+                    { Parametros.idVIATICOSedit, Parametros.movilidadyViatios },
                     //{ 753, "EQUIPOS Y HERRAMIENTAS" },
                     // Agrega aquí más valores y nombres correspondientes
                 };
@@ -701,7 +702,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
 
                     // Cargar los detalles de cotización en el GridView gvCotizacionEdit
                     //gvCotizacionEdit.GridControl.DataSource = cotizacionKiraBL.ObtenerCotizacionPorId2(idCotizacion);
-                  
+
                 }
             }
             catch (Exception ex)

@@ -663,6 +663,8 @@ namespace ErpPanorama.Presentation
         public static decimal margencontri = 0.4m;
 
         //Parametros TABLA ELEMENTOS modulo KIRA (Costo gastos Materiales)
+
+        public static string materiales = "MATERIALES";
         public static int idACERO = 714;
         public static string idACEROedit = "714";
 
@@ -709,6 +711,7 @@ namespace ErpPanorama.Presentation
         public static string idENCHAPEedit = "728";
 
         //Parametros TABLA ELEMENTOS modulo KIRA (Costo gastos INSUMOS)
+        public static string insumos = "INSUMOS";
         public static int idCARTON_PRENSADO = 729;
         public static string idCARTON_PRENSADOedit = "729";
 
@@ -725,6 +728,7 @@ namespace ErpPanorama.Presentation
         public static string idPOLISEAedit = "733";
 
         //Parametros TABLA ELEMENTOS modulo KIRA (Costo gastos ACCESORIOS)
+        public static string accesorios = "ACCESORIOS";
         public static int idBISAGRAS = 734;
         public static string idBISAGRASedit = "734";
 
@@ -748,6 +752,7 @@ namespace ErpPanorama.Presentation
 
 
         //Parametros TABLA ELEMENTOS modulo KIRA (Costo gastos MANODEOBRA)
+        public static string manodeobra = "MANO DE OBRA";
         public static int idCARPINTERIA = 741;
         public static string idCARPINTERIAedit = "741";
 
@@ -773,6 +778,7 @@ namespace ErpPanorama.Presentation
         public static string idVIDRIEROedit = "748";
 
         //Parametros TABLA ELEMENTOS modulo KIRA (Costo gastos MOVILIDADYVIATICOS)
+        public static string movilidadyViatios = "MOVILIDAD Y VIATICOS";
         public static int idPASAJEDISENADORA = 749;
         public static string idPASAJEDISENADORAedit = "749";
 
@@ -786,14 +792,18 @@ namespace ErpPanorama.Presentation
         public static string idVIATICOSedit = "752";
 
         //Parametros TABLA ELEMENTOS modulo KIRA (Costo gastos EquiposYHerramientas)
+        public static string dequiposHerramientas = "EQUIPOS Y HERRAMIENTAS";
         public static int idequiposHerramientas = 753;
 
-       
+
         //Parametros TABLA ELEMENTOS modulo KIRA-Productos Terminados (Costo gastos ProductoTerminado)
+        public static string costo_inc_igv = "COSTO INC.IGV";
         public static int idCostoINC_IGV = 754;
         public static string idCostoINC_IGVedit = "754";
+        public static string movilidad = "MOVILIDAD";
         public static int idMovilidad = 755;
         public static string idMovilidadedit = "755";
+        public static string serviciosadciones = "SERVICIOS ADICIONALES";
         public static int idServiciosAdicionales = 756;
         public static string idServiciosAdicionalesedit = "756";
 

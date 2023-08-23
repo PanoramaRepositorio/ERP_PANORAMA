@@ -386,7 +386,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gcCotizacionesProducto.Location = new System.Drawing.Point(-2, 501);
             this.gcCotizacionesProducto.MainView = this.gvCotizacionProducto;
             this.gcCotizacionesProducto.Name = "gcCotizacionesProducto";
-            this.gcCotizacionesProducto.Size = new System.Drawing.Size(1093, 381);
+            this.gcCotizacionesProducto.Size = new System.Drawing.Size(1191, 381);
             this.gcCotizacionesProducto.TabIndex = 27;
             this.gcCotizacionesProducto.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvCotizacionProducto});
@@ -537,7 +537,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn24.OptionsColumn.AllowFocus = false;
             this.gridColumn24.Visible = true;
             this.gridColumn24.VisibleIndex = 7;
-            this.gridColumn24.Width = 175;
+            this.gridColumn24.Width = 258;
             // 
             // gridColumn27
             // 

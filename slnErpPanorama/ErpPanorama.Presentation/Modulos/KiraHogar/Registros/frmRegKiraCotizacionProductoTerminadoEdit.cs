@@ -170,9 +170,9 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // Valores y nombres correspondientes
             Dictionary<string, string> nombresTablaElemento = new Dictionary<string, string>
                 {
-                    { Parametros.idCostoINC_IGVedit, "COSTO INC. IGV" },
-                    { Parametros.idMovilidadedit, "MOVILIDAD" },
-                    { Parametros.idServiciosAdicionalesedit, "SERVICIOS ADICIONALES" },
+                    { Parametros.idCostoINC_IGVedit, Parametros.costo_inc_igv},
+                    { Parametros.idMovilidadedit, Parametros.movilidad},
+                    { Parametros.idServiciosAdicionalesedit, Parametros.serviciosadciones },
                     // Agrega aquí más valores y nombres correspondientes
                 };
 
@@ -602,34 +602,20 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                 decimal sumaCostosPestana1 = CalcularSumaCostosPestana1(dt);
                 txtSumaCostosPestaña1.Text = sumaCostosPestana1.ToString("0.00");
             }
-            //GridView gridView = gridView1;
-            //int selectedRowHandle = gridView.FocusedRowHandle;
-            //if (selectedRowHandle >= 0)
-            //{
-            //    DialogResult result = MessageBox.Show("¿Estás seguro de eliminar este registro?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            //    if (result == DialogResult.Yes)
-            //    {
-            //        // Obtener el IdCotizacionDetalle desde el DataTable del DataSource
-            //        DataTable dt = (DataTable)gridView.GridControl.DataSource;
-            //        int idCotizacionDetalle = Convert.ToInt32(dt.Rows[selectedRowHandle]["IdCotizacionDetalle"]);
+        }
 
-            //        // Llamar al método de la capa de negocio para eliminar el detalle
-            //        cotizacionKiraBL.EliminarDetalleCotizacionProducto(idCotizacionDetalle);
+        private void Tabcontrol_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            TabPage tabPage = Tabcontrol.TabPages[e.Index];
 
-            //        // Actualizar el resumen y el gridControlPestaña1
+            // Cambiar el color de fondo de las pestañas
+            e.Graphics.FillRectangle(new SolidBrush(Color.AliceBlue), e.Bounds);
 
-            //        gridView.RefreshData();
-
-            //        // Eliminar la fila del DataTable
-            //        dt.Rows.RemoveAt(selectedRowHandle);
-
-            //        // Refrescar el gridControlPestaña1
-            //        gridControlPestaña1.RefreshDataSource();
-            //        AgregarDatosAlResumen();
-            //        decimal sumaCostosPestana1 = CalcularSumaCostosPestana1(dt);
-            //        txtSumaCostosPestaña1.Text = sumaCostosPestana1.ToString("0.00");
-            //    }
-            //}
+            // Cambiar el color del texto de las pestañas
+            using (Brush textBrush = new SolidBrush(Color.DarkBlue))
+            {
+                e.Graphics.DrawString(tabPage.Text, Tabcontrol.Font, textBrush, e.Bounds.X + 3, e.Bounds.Y + 3);
+            }
         }
     }
 }

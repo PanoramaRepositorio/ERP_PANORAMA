@@ -324,10 +324,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.tabPage1.Controls.Add(this.cboProductoTerminado);
             this.tabPage1.Controls.Add(this.labelControl7);
             this.tabPage1.Controls.Add(this.labelControl6);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(573, 392);
+            this.tabPage1.Size = new System.Drawing.Size(573, 389);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -414,11 +414,14 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             this.Tabcontrol.Controls.Add(this.tabPage1);
             this.Tabcontrol.Controls.Add(this.tabPage2);
+            this.Tabcontrol.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.Tabcontrol.Font = new System.Drawing.Font("Tahoma", 10F);
             this.Tabcontrol.Location = new System.Drawing.Point(36, 238);
             this.Tabcontrol.Name = "Tabcontrol";
             this.Tabcontrol.SelectedIndex = 0;
             this.Tabcontrol.Size = new System.Drawing.Size(581, 418);
             this.Tabcontrol.TabIndex = 201;
+            this.Tabcontrol.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.Tabcontrol_DrawItem);
             // 
             // tabPage2
             // 

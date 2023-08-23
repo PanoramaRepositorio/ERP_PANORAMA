@@ -187,9 +187,9 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // Valores y nombres correspondientes
             Dictionary<int, string> nombresTablaElemento = new Dictionary<int, string>
                 {
-                    { Parametros.idCostoINC_IGV, "COSTO INC. IGV" },
-                    { Parametros.idMovilidad, "MOVILIDAD" },
-                    { Parametros.idServiciosAdicionales, "SERVICIOS ADICIONALES" },
+                    { Parametros.idCostoINC_IGV, Parametros.costo_inc_igv },
+                    { Parametros.idMovilidad, Parametros.movilidad },
+                    { Parametros.idServiciosAdicionales, Parametros.serviciosadciones},
                     // Agrega aquí más valores y nombres correspondientes
                 };
 
@@ -674,6 +674,20 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
         private void labelControl17_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Tabcontrol_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            TabPage tabPage = Tabcontrol.TabPages[e.Index];
+
+            // Cambiar el color de fondo de las pestañas
+            e.Graphics.FillRectangle(new SolidBrush(Color.AliceBlue), e.Bounds);
+
+            // Cambiar el color del texto de las pestañas
+            using (Brush textBrush = new SolidBrush(Color.DarkBlue))
+            {
+                e.Graphics.DrawString(tabPage.Text, Tabcontrol.Font, textBrush, e.Bounds.X + 3, e.Bounds.Y + 3);
+            }
         }
     }
 }
