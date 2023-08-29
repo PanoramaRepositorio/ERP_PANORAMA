@@ -61,7 +61,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
         int IdEmpresa = 0;
         int IdTienda = 0;
         int IdCliente = 0;
-        private string SerieRUS="0";
+        private string SerieRUS = "0";
         private string Serie;
         private string Numero;
         private int IdTamanoHoja = 0;
@@ -122,7 +122,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
             {
                 liberarpedidotoolStripMenuItem.Visible = false;
             }
-                
+
         }
 
         private void frmRegVentaContado_Shown(object sender, EventArgs e)
@@ -184,7 +184,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                 IdAsesorExterno = int.Parse(dr["IdAsesorExterno"].ToString());
 
                 txtIngresa.Focus();
-                
+
             }
         }
 
@@ -299,7 +299,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
 
         private void txtIngresa_EditValueChanged(object sender, EventArgs e)
         {
-            if (Convert.ToDecimal(txtIngresa.EditValue.ToString()) > Convert.ToDecimal(txtTotal.EditValue)) 
+            if (Convert.ToDecimal(txtIngresa.EditValue.ToString()) > Convert.ToDecimal(txtTotal.EditValue))
             {
                 txtVuelto.EditValue = Convert.ToDecimal(txtIngresa.EditValue.ToString()) - Convert.ToDecimal(txtTotal.EditValue.ToString());
             }
@@ -341,7 +341,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                 //Diferencia de Totales
                 if (objE_Pedido.Total != Convert.ToDecimal(txtTotal.EditValue))
                 {
-                    XtraMessageBox.Show("El total del Pedido es " + objE_Pedido.Total + " es diferente al actual "+ txtTotal.EditValue + ", Verificar", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    XtraMessageBox.Show("El total del Pedido es " + objE_Pedido.Total + " es diferente al actual " + txtTotal.EditValue + ", Verificar", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     Cargar();
                     return;
                 }
@@ -368,30 +368,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
             string NumDocumentoAsociado = objE_Pedido.NumeroDocumentoAsociado;
             TotalImprimir = objE_Pedido.Total;
 
-            //if (objE_Pedido.NumeroDocumento.Trim() == Parametros.strNumeroCliente && TotalImprimir >= 700)
-            //{
-            //    XtraMessageBox.Show("No se puede imprimir un comprobante como " + txtDescCliente.Text + ", el importe es mayor a S/700\nConsulte con su Administrador", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            //    return;
-            //}
-
-            //if (NumeroDocumento.Trim().Length < 11 && Convert.ToInt32(cboDocumento.EditValue) == Parametros.intTipoDocTicketFactura && txtDescClienteAsociado.Text == "") // Validar RUC DE ASOCIADO .. FALTA
-            //{
-            //    XtraMessageBox.Show("No se puede imprimir una factura con un ruc no válido: " + cboEmpresa.Text + ",  \nConsulte con su Administrador", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return;
-            //}
-            //if (NumeroDocumento.Trim().Length < 11 && Convert.ToInt32(cboDocumento.EditValue) == Parametros.intTipoDocFacturaElectronica && txtDescClienteAsociado.Text == "") // Validar RUC DE ASOCIADO .. FALTA
-            //{
-            //    XtraMessageBox.Show("No se puede imprimir una factura con un ruc no válido: " + cboEmpresa.Text + ",  \nConsulte con su Administrador", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return;
-            //}
-
             #region "Consulta RUC Data Local"
-            //Boleta con RUC
-            //if (NumDocumento.Trim().Length == 8 || NumDocumento.Trim().Length == 11)
-            //{
-            //    XtraMessageBox.Show("No se puede imprimir una factura con un ruc no válido: " + cboEmpresa.Text + ",  \nConsulte con su Administrador", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return;
-            //}
 
             string NumDocumentoFac = "";
 
@@ -402,7 +379,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                 NumDocumentoFac = NumDocumentoAsociado;
 
             int TipoDocFact = Convert.ToInt32(cboDocumento.EditValue);
-            if(TipoDocFact == Parametros.intTipoDocBoletaElectronica)
+            if (TipoDocFact == Parametros.intTipoDocBoletaElectronica)
             {
                 if (NumDocumentoFac.Trim().Length == 11)
                 {
@@ -419,8 +396,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                     objE_Cliente = new ClienteBL().SeleccionaNumeroSunat(Parametros.intEmpresaId, NumDocumentoFac.Trim());
                     if (objE_Cliente != null)
                     {
-                        //txtDireccion.Text = objE_Cliente.AbrevDomicilio + " " + objE_Cliente.Direccion + objE_Cliente.NomDpto + " - " + objE_Cliente.NomProv + " - " + objE_Cliente.NomDist;
-                        //txtDescCliente.Text = objE_Cliente.DescCliente;
+                        
                         if (objE_Cliente.DescCategoria != "ACTIVO")//Estado contribuyente
                         {
                             XtraMessageBox.Show("- El RUC seleccionado se encuentra en condición de " + objE_Cliente.DescCategoria, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -448,7 +424,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
             #endregion
 
 
-            CajaEmpresaBE objCajaEmpresa = null;     
+            CajaEmpresaBE objCajaEmpresa = null;
             objCajaEmpresa = new CajaEmpresaBL().Selecciona(IdEmpresa, Parametros.intTiendaId, Parametros.intCajaId);
 
             if (objCajaEmpresa == null)
@@ -456,30 +432,15 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                 XtraMessageBox.Show("No se puede imprimir en esta Caja, pedido de " + cboEmpresa.Text + ",  \nConsulte con su Administrador", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            //SerieRUS =  Convert.ToInt32(objCajaEmpresa.SerieBoleta);
+            
 
             mListaDetalle = null;
             mListaDetalle = new PedidoDetalleBL().ListaTodosActivo(IdPedido);
 
             //add 250319 temporal
             #region "Agregar Promocion 2x1 y Otros" 
-            //bool bFlagPromocion2 = false;
-            //foreach(var item in mListaDetalle)
-            //{
-            //    if(item.DescPromocion.Length>0)
-            //    {
-            //        bFlagPromocion2 = true;
-            //        break;
-            //    }
-            //}
-            //if(bFlagPromocion2)
-            //{
-            //    mListaPedidoDetalleOrigen = mListaDetalle;
-            //    CalculaTotalPromocion2x1_Total();
-            //}
-                
+            
             #endregion
-
 
             #region "Promocion Cliente 22"
             //CLIENTE N° 22
@@ -494,111 +455,19 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                         if (objE_DocumentoVG.TotalCantidad == 100)
                         {
                             CodigoNC = "10";
-                            //#region "Impresión Vale"
-                            //TalonBE objTalon = null;
-                            //objTalon = new TalonBL().SeleccionaCajaDocumento(Parametros.intEmpresaId, Parametros.intTiendaId, Parametros.intCajaId, Convert.ToInt32(cboDocumento.EditValue));
-
-                            //CreaTicket ticket = new CreaTicket();
-
-                            //#region "Busca Impresora"
-                            //bool found = false;
-                            //PrinterSettings prtSetting = new PrinterSettings();
-                            //foreach (string prtName in PrinterSettings.InstalledPrinters)
-                            //{
-                            //    string printer = "";
-                            //    if (prtName.StartsWith("\\\\"))
-                            //    {
-                            //        printer = prtName.Substring(3);
-                            //        printer = printer.Substring(printer.IndexOf("\\") + 1);
-                            //    }
-                            //    else
-                            //        printer = prtName;
-
-                            //    if (printer.ToUpper().StartsWith(objTalon.Impresora)) //("(T)"))
-                            //    {
-                            //        found = true;
-                            //        ticket.impresora = @printer;
-                            //    }
-                            //}
-
-                            //if (!found)
-                            //{
-                            //    MessageBox.Show("La impresora " + objTalon.Impresora + " Nombre para Ticket no ha sido encontrada.");
-                            //}
-                            //#endregion
-                            //ticket.TextoCentro("¡¡¡¡GANASTE!!!!");
-                            //ticket.TextoIzquierdaNLineas("VALE DE S/50.00, CANJE VALIDO SÓLO EL LUNES 15 DE OCTUBRE EN TIENDA UCAYALI. PRESENTAR ESTE VOUCHER Y SU COMPROBANTE DE VENTA PARA HACER EFECTIVO.");
-                            //ticket.CortaTicket();
-                            //#endregion
-
                             frmMensajePromocion frmMsg = new frmMensajePromocion();
                             frmMsg.ShowDialog();
                         }
                         if (objE_DocumentoVG.TotalCantidad == 200)
                         {
                             CodigoNC = "20";
-                            //#region "Impresión Vale"
-                            //TalonBE objTalon = null;
-                            //objTalon = new TalonBL().SeleccionaCajaDocumento(Parametros.intEmpresaId, Parametros.intTiendaId, Parametros.intCajaId, Convert.ToInt32(cboDocumento.EditValue));
-
-                            //CreaTicket ticket = new CreaTicket();
-
-                            //#region "Busca Impresora"
-                            //bool found = false;
-                            //PrinterSettings prtSetting = new PrinterSettings();
-                            //foreach (string prtName in PrinterSettings.InstalledPrinters)
-                            //{
-                            //    string printer = "";
-                            //    if (prtName.StartsWith("\\\\"))
-                            //    {
-                            //        printer = prtName.Substring(3);
-                            //        printer = printer.Substring(printer.IndexOf("\\") + 1);
-                            //    }
-                            //    else
-                            //        printer = prtName;
-
-                            //    if (printer.ToUpper().StartsWith(objTalon.Impresora)) //("(T)"))
-                            //    {
-                            //        found = true;
-                            //        ticket.impresora = @printer;
-                            //    }
-                            //}
-
-                            //if (!found)
-                            //{
-                            //    MessageBox.Show("La impresora " + objTalon.Impresora + " Nombre para Ticket no ha sido encontrada.");
-                            //}
-                            //#endregion
-                            //ticket.TextoCentro("¡¡¡¡GANASTE!!!!");
-                            //ticket.TextoIzquierdaNLineas("VALE DE S/50.00, CANJE VALIDO SÓLO EL LUNES 15 DE OCTUBRE EN TIENDA UCAYALI. PRESENTAR ESTE VOUCHER Y SU COMPROBANTE DE VENTA PARA HACER EFECTIVO.");
-                            //ticket.CortaTicket();
-                            //#endregion
                             frmMensajePromocion frmMsg = new frmMensajePromocion();
                             frmMsg.ShowDialog();
                         }
                     }
-
-                    //if (Parametros.intTiendaId == Parametros.intTiendaMegaplaza || Parametros.intTiendaId == Parametros.intTiendaPrescott)
-                    //{
-                    //    if (objE_DocumentoVG.TotalCantidad == 11)
-                    //    {
-                    //        CodigoNC = "22";
-                    //        frmMensajePromocion frmMsg = new frmMensajePromocion();
-                    //        frmMsg.ShowDialog();
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    if (objE_DocumentoVG.TotalCantidad == 21)
-                    //    {
-                    //        CodigoNC = "22";
-                    //        frmMensajePromocion frmMsg = new frmMensajePromocion();
-                    //        frmMsg.ShowDialog();
-                    //    }
-                    //}
                 }
             }
-           #endregion
+            #endregion
 
             if (IdEmpresa != Parametros.intEmpresaId) //Parametros.intIdPanoramaDistribuidores;
             {
@@ -661,23 +530,23 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
 
                         //if (Convert.ToInt32(cboDocumento.EditValue) == Parametros.intTipoDocBoletaVenta) //CUANDO ES BOLETA DE VENTA
                         //{
-                            if (mListaDetalle.Count <= 6)
-                            {
-                                InsertarEstadoCuentaDiseñador();
-                                InsertarDocumentoVenta(IdEmpresa,"BOV");
-                                ImpresionDirecta("BOV", objCajaEmpresa.IdTipoFormato);
-                                Cargar();
-                                return;
+                        if (mListaDetalle.Count <= 6)
+                        {
+                            InsertarEstadoCuentaDiseñador();
+                            InsertarDocumentoVenta(IdEmpresa, "BOV");
+                            ImpresionDirecta("BOV", objCajaEmpresa.IdTipoFormato);
+                            Cargar();
+                            return;
 
-                            }
-                            else
-                            {
-                                InsertarEstadoCuentaDiseñador();
-                                InsertarDocumentoVentaVarios(6, IdEmpresa,"BOV");
-                                ImpresionDirecta("BOV", objCajaEmpresa.IdTipoFormato);
-                                Cargar();
-                                return;
-                            }
+                        }
+                        else
+                        {
+                            InsertarEstadoCuentaDiseñador();
+                            InsertarDocumentoVentaVarios(6, IdEmpresa, "BOV");
+                            ImpresionDirecta("BOV", objCajaEmpresa.IdTipoFormato);
+                            Cargar();
+                            return;
+                        }
                         //}
                         #endregion
                     }
@@ -687,7 +556,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
             //Obtener la serie del documento relacionado a la caja
             TalonBE objE_Talon = null;
             //objE_Talon = new TalonBL().SeleccionaCajaDocumento(Parametros.intEmpresaId, Parametros.intTiendaId, Parametros.intCajaId, Convert.ToInt32(cboDocumento.EditValue));
-            objE_Talon = new TalonBL().SeleccionaCajaDocumento( Convert.ToInt32(cboEmpresa.EditValue), Parametros.intTiendaId, Parametros.intCajaId, Convert.ToInt32(cboDocumento.EditValue));
+            objE_Talon = new TalonBL().SeleccionaCajaDocumento(Convert.ToInt32(cboEmpresa.EditValue), Parametros.intTiendaId, Parametros.intCajaId, Convert.ToInt32(cboDocumento.EditValue));
             if (objE_Talon != null)
             {
                 Serie = "";
@@ -706,12 +575,14 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
             {
                 if (mListaDetalle.Count <= 6)
                 {
+                    //InsertarEstadoCuenta(); //Estado de Cuenta
                     InsertarEstadoCuentaDiseñador();
                     InsertarDocumentoVenta(IdEmpresa, "BOV");
                     ImpresionDirecta("BOV", objE_Talon.IdTipoFormato);
                 }
                 else
                 {
+                    //InsertarEstadoCuenta(); //Estado de Cuenta
                     InsertarEstadoCuentaDiseñador();
                     InsertarDocumentoVentaVarios(6, IdEmpresa, "BOV");
                     ImpresionDirecta("BOV", objE_Talon.IdTipoFormato);
@@ -736,20 +607,20 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                         ImpresionDirecta("FAV", objE_Talon.IdTipoFormato);
                     }
                 }
-                else if (IdTipoDocumentoClienteAsociado == Parametros.intTipoDocumentoRUC) 
+                else if (IdTipoDocumentoClienteAsociado == Parametros.intTipoDocumentoRUC)
                 {
                     if (mListaDetalle.Count <= 10)
                     {
                         InsertarEstadoCuentaDiseñador();
-                        InsertarDocumentoVenta(IdEmpresa,"FAV");
+                        InsertarDocumentoVenta(IdEmpresa, "FAV");
                         ImpresionDirecta("FAV", objE_Talon.IdTipoFormato);
                     }
                     else
                     {
                         InsertarEstadoCuentaDiseñador();
-                        InsertarDocumentoVentaVarios(10, IdEmpresa,"FAV");
+                        InsertarDocumentoVentaVarios(10, IdEmpresa, "FAV");
                         ImpresionDirecta("FAV", objE_Talon.IdTipoFormato);
-                    }                    
+                    }
                 }
 
                 else
@@ -758,9 +629,9 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                 }
             }
             if (Convert.ToInt32(cboDocumento.EditValue) == Parametros.intTipoDocTicketBoleta)
-           {
+            {
                 //InsertarEstadoCuentaDiseñador();
-                InsertarDocumentoVenta(IdEmpresa,"TKV");
+                InsertarDocumentoVenta(IdEmpresa, "TKV");
                 ImpresionDirecta("TKV", objE_Talon.IdTipoFormato);
             }
             if (Convert.ToInt32(cboDocumento.EditValue) == Parametros.intTipoDocTicketFactura)
@@ -768,13 +639,13 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                 if (IdTipoDocumentoCliente == Parametros.intTipoDocumentoRUC && IdTipoDocumentoClienteAsociado == 0) //Add 050615
                 {
                     InsertarEstadoCuentaDiseñador();
-                    InsertarDocumentoVenta(IdEmpresa,"TKF");
+                    InsertarDocumentoVenta(IdEmpresa, "TKF");
                     ImpresionDirecta("TKF", objE_Talon.IdTipoFormato);
                 }
                 else if (IdTipoDocumentoClienteAsociado == Parametros.intTipoDocumentoRUC)
                 {
                     InsertarEstadoCuentaDiseñador();
-                    InsertarDocumentoVenta(IdEmpresa,"TKF");
+                    InsertarDocumentoVenta(IdEmpresa, "TKF");
                     ImpresionDirecta("TKF", objE_Talon.IdTipoFormato);
                 }
                 else
@@ -787,11 +658,11 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                 #region "Diferencia cabecera vs detalle"
                 if (objE_Pedido.TotalDiferencia != 0)
                 {
-                    XtraMessageBox.Show("No se puede generar un comprobante electrónico\nLa suma de cabecera y detalle tiene diferencia de:" + objE_Pedido.TotalDiferencia.ToString(), this.Text,MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    XtraMessageBox.Show("No se puede generar un comprobante electrónico\nLa suma de cabecera y detalle tiene diferencia de:" + objE_Pedido.TotalDiferencia.ToString(), this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 #endregion
-
+                InsertarEstadoCuenta(); //Estado de Cuenta
                 InsertarEstadoCuentaDiseñador();
                 InsertarDocumentoVenta(IdEmpresa, "TEB");
                 //ImpresionDirecta("TEB", objE_Talon.IdTipoFormato);
@@ -809,6 +680,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
 
                 if (IdTipoDocumentoCliente == Parametros.intTipoDocumentoRUC && IdTipoDocumentoClienteAsociado == 0) //Add 050615
                 {
+                    InsertarEstadoCuenta(); //Estado de Cuenta
                     InsertarEstadoCuentaDiseñador();
                     InsertarDocumentoVenta(IdEmpresa, "TEF");
                     //ImpresionDirecta("TEF", objE_Talon.IdTipoFormato);
@@ -842,6 +714,147 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
             btnConsultar.Focus();
         }
 
+        private int IdTipoCliente = 0;
+        private int IdClasificacionCliente = 0;
+        private int IdDocumentoReferencia = 0;
+        private int IdCambio = 0;
+        private string NumeroDevolucion = "";
+        private int IdMonedaPedido = 0;
+        private decimal decTotalPedido = 0;
+        private int IdNumeracionDocumento = 0;
+        decimal decTotalVentaDolares = 0;
+        private Int32 NumeroCaracter = 6;
+        private int IdSituacion = 0;
+        private decimal TipoCambioPedido = 0;
+        int _IdEstadoCuenta2 = 0;
+        public int IdEstadoCuenta2
+        {
+            get { return _IdEstadoCuenta2; }
+            set { _IdEstadoCuenta2 = value; }
+        }
+
+        private void ObtenerCorrelativoCredito()
+        {
+            try
+            {
+                List<NumeracionDocumentoBE> mListaNumero = new List<NumeracionDocumentoBE>();
+                string sNumero = "";
+                string sSerie = "";
+                mListaNumero = new NumeracionDocumentoBL().ObtenerCorrelativoPeriodo(Parametros.intEmpresaId, Parametros.intTipoDocFacturaCredito, Parametros.intPeriodo);
+                if (mListaNumero.Count > 0)
+                {
+                    sNumero = FuncionBase.AgregarCaracter((mListaNumero[0].Numero + 1).ToString(), "0", 6);
+                    sSerie = FuncionBase.AgregarCaracter((mListaNumero[0].Serie).ToString(), "0", 3);
+                }
+
+                NumeroCredito = "CR" + sNumero;
+            }
+
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void InsertarEstadoCuenta()
+        {
+
+            ObtenerCorrelativoCredito();
+            EstadoCuentaBE objE_EstadoCuenta = null;
+            SeparacionBE objE_Separacion = null;
+
+            //Datos del estado de cuenta
+            //agregar t.cambio
+            //agregar  mondeda
+
+            objE_EstadoCuenta = new EstadoCuentaBE();
+            objE_EstadoCuenta.IdEstadoCuenta = 0;
+            objE_EstadoCuenta.IdEmpresa = Parametros.intEmpresaId;
+            objE_EstadoCuenta.Periodo = Parametros.intPeriodo;
+            objE_EstadoCuenta.IdCliente = IdCliente;
+            objE_EstadoCuenta.NumeroDocumento = NumeroCredito;//txtNumero.Text;
+            objE_EstadoCuenta.FechaCredito = Convert.ToDateTime(deFecha.DateTime.ToShortDateString());
+            objE_EstadoCuenta.FechaDeposito = Convert.ToDateTime(deFecha.DateTime.ToShortDateString());
+            objE_EstadoCuenta.Concepto = "PAGO CONTRAENTREGA" + " N° " + lblPedido.Text;
+            objE_EstadoCuenta.FechaVencimiento = null;
+            //objE_EstadoCuenta.Importe = Convert.ToInt32(5) == 5 ? Math.Round(Convert.ToDecimal(txtTotal.EditValue) / Convert.ToDecimal(3.78), 2) : Convert.ToDecimal(txtTotal.EditValue);
+            //objE_EstadoCuenta.ImporteAnt = Convert.ToInt32(5) == 5 ? Math.Round(Convert.ToDecimal(txtTotal.EditValue) / Convert.ToDecimal(3.78), 2) : Convert.ToDecimal(txtTotal.EditValue);
+            objE_EstadoCuenta.Importe = Convert.ToDecimal(txtTotal.EditValue);
+            objE_EstadoCuenta.ImporteAnt = Convert.ToDecimal(txtTotal.EditValue);
+            objE_EstadoCuenta.TipoMovimiento = "C";
+            objE_EstadoCuenta.IdMotivo = 170;
+            objE_EstadoCuenta.IdDocumentoVenta = (int?)null;
+            objE_EstadoCuenta.IdUsuario = Parametros.intUsuarioId;
+            objE_EstadoCuenta.IdPedido = IdPedido;
+            objE_EstadoCuenta.Origen = "ECOMMERCE";
+            objE_EstadoCuenta.FlagEstado = true;
+            objE_EstadoCuenta.Usuario = Parametros.strUsuarioLogin;
+            objE_EstadoCuenta.Maquina = WindowsIdentity.GetCurrent().Name.ToString();
+
+            //Datos de la separación
+            objE_Separacion = new SeparacionBE();
+            objE_Separacion.IdSeparacion = 0;
+            objE_Separacion.IdEmpresa = Parametros.intEmpresaId;
+            objE_Separacion.Periodo = Parametros.intPeriodo;
+            objE_Separacion.IdCliente = IdCliente;
+            objE_Separacion.NumeroDocumento = NumeroCredito;
+            objE_Separacion.FechaSeparacion = Convert.ToDateTime(deFecha.DateTime.ToShortDateString());
+            objE_Separacion.FechaPago = Convert.ToDateTime(deFecha.DateTime.ToShortDateString());
+            objE_Separacion.Concepto = "PAGO CONTRAENTREGA" + " N° " + lblPedido.Text;
+            objE_Separacion.FechaVencimiento = null;
+            objE_Separacion.Importe = Convert.ToDecimal(txtTotal.EditValue);
+            objE_Separacion.ImporteAnt = Convert.ToDecimal(txtTotal.EditValue);
+            objE_Separacion.TipoMovimiento = "C";
+            objE_Separacion.IdMotivo = 170;
+            objE_Separacion.IdDocumentoVenta = (int?)null;
+            objE_Separacion.IdPedido = IdPedido;
+            objE_Separacion.Origen = "ECOMMERCE";
+            objE_Separacion.IdUsuario = Parametros.intUsuarioId;
+            objE_Separacion.FlagEstado = true;
+            objE_Separacion.Usuario = Parametros.strUsuarioLogin;
+            objE_Separacion.Maquina = WindowsIdentity.GetCurrent().Name.ToString();
+
+
+            if (pOperacion == Operacion.Nuevo)
+            {
+
+                DocumentoVentaBL objBL_DocumentoVentaEstado = new DocumentoVentaBL();
+                if (objE_EstadoCuenta != null)
+                {
+                    List<EstadoCuentaBE> lstEstadoCuenta = new List<EstadoCuentaBE>();
+                    lstEstadoCuenta = new EstadoCuentaBL().ListaPedido(Parametros.intEmpresaId, IdPedido, "C");  //Cargo
+
+                    if (lstEstadoCuenta.Count > 0)
+                    {
+                        //XtraMessageBox.Show("Ya existe un registro N°: " + lstEstadoCuenta[0].NumeroDocumento + " en Estado de Cuenta en Dolares(US$) \n US$ " + lstEstadoCuenta[0].Importe, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        IdEstadoCuenta2 = objBL_DocumentoVentaEstado.InsertaCredito2(objE_EstadoCuenta, objE_Separacion);
+                        //XtraMessageBox.Show("Se registró Crédito N°: " + NumeroCredito + " en Estado de Cuenta en Dolares(US$) \n US$ " + objE_EstadoCuenta.Importe, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+
+                if (objE_Separacion != null)
+                {
+                    List<SeparacionBE> lstSeparacion = new List<SeparacionBE>();
+                    lstSeparacion = new SeparacionBL().ListaPedido(Parametros.intEmpresaId, IdPedido, "C");
+                    if (lstSeparacion.Count > 0)
+                    {
+                        XtraMessageBox.Show("Se registro N°: " + lstSeparacion[0].NumeroDocumento + " en Estado de Cuenta " + lstSeparacion[0].Importe, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        IdEstadoCuenta2 = objBL_DocumentoVentaEstado.InsertaCredito2(objE_EstadoCuenta, objE_Separacion);
+                        XtraMessageBox.Show("Se registró Crédito N°: " + NumeroCredito + " en Estado de Cuenta en Soles(S/) \n S/" + objE_Separacion.Importe, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+
+            }
+
+
+        }
+
         private void txtIngresa_KeyDown(object sender, KeyEventArgs e)
         {
             if (Convert.ToDecimal(txtTotal.Text) > 0)
@@ -849,7 +862,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                 if (e.KeyCode == Keys.F8)
                 {
                     if (btnImprimirDocumento.Enabled == false)
-                    { 
+                    {
                         XtraMessageBox.Show("Actualizar antes de Cobrar, Clic en Consultar", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
@@ -1135,7 +1148,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                                     if (mListaDetalle.Count <= 6)
                                     {
                                         InsertarEstadoCuentaDiseñador();
-                                        InsertarDocumentoVentaPagoVarios(frmMsgPago.Efectivo, frmMsgPago.Visa, frmMsgPago.MasterCard, frmMsgPago.VisaPuntosVida, frmMsgPago.MasterCardPuntosVida, frmMsgPago.VisaTipoTarjeta, frmMsgPago.MasterTipoTarjeta, frmMsgPago.IdDocumentoNC, frmMsgPago.IdTipoMaster, IdEmpresa,"BOV");
+                                        InsertarDocumentoVentaPagoVarios(frmMsgPago.Efectivo, frmMsgPago.Visa, frmMsgPago.MasterCard, frmMsgPago.VisaPuntosVida, frmMsgPago.MasterCardPuntosVida, frmMsgPago.VisaTipoTarjeta, frmMsgPago.MasterTipoTarjeta, frmMsgPago.IdDocumentoNC, frmMsgPago.IdTipoMaster, IdEmpresa, "BOV");
                                         ImpresionDirecta("BOV", objCajaEmpresa.IdTipoFormato);
                                         Cargar();
 
@@ -1144,7 +1157,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                                     else
                                     {
                                         InsertarEstadoCuentaDiseñador();
-                                        InsertarDocumentoVentaVariosPagoVarios(6, frmMsgPago.Efectivo, frmMsgPago.Visa, frmMsgPago.MasterCard, frmMsgPago.VisaPuntosVida, frmMsgPago.MasterCardPuntosVida, frmMsgPago.VisaTipoTarjeta, frmMsgPago.MasterTipoTarjeta, frmMsgPago.IdDocumentoNC, frmMsgPago.IdTipoMaster, IdEmpresa,"BOV");
+                                        InsertarDocumentoVentaVariosPagoVarios(6, frmMsgPago.Efectivo, frmMsgPago.Visa, frmMsgPago.MasterCard, frmMsgPago.VisaPuntosVida, frmMsgPago.MasterCardPuntosVida, frmMsgPago.VisaTipoTarjeta, frmMsgPago.MasterTipoTarjeta, frmMsgPago.IdDocumentoNC, frmMsgPago.IdTipoMaster, IdEmpresa, "BOV");
                                         ImpresionDirecta("BOV", objCajaEmpresa.IdTipoFormato);
                                         Cargar();
 
@@ -1524,7 +1537,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                     objE_DocumentoVentaSerie = objBL_DocumentoVenta.SeleccionaSerieNumero(IdEmpresaGenera, objDocumentoVenta.IdTipoDocumento, Serie, Numero);
                     if (objE_DocumentoVentaSerie != null)
                     {
-                        XtraMessageBox.Show("El documento "+ objE_DocumentoVentaSerie.CodTipoDocumento + ":" + Serie +"-"+ Numero + " ya existe, Por favor verificar el correlativo de la serie:" + Serie, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        XtraMessageBox.Show("El documento " + objE_DocumentoVentaSerie.CodTipoDocumento + ":" + Serie + "-" + Numero + " ya existe, Por favor verificar el correlativo de la serie:" + Serie, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
@@ -1583,7 +1596,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                 objDocumentoVenta.Igv = objE_Pedido.Igv;
                 objDocumentoVenta.Total = objE_Pedido.Total;
                 objDocumentoVenta.TotalBruto = objE_Pedido.TotalBruto;
-                objDocumentoVenta.Observacion = "DOC. GENERADO POR VENTA CONTADO | " + Parametros.strUsuarioLogin + " | " + WindowsIdentity.GetCurrent().Name.ToString(); // "DOCUMENTO DE VENTA GENERADO POR VENTA CONTADO";
+                objDocumentoVenta.Observacion = "DOC. GENERADO POR VENTA CONTADO o CONTRAENTREGA | " + Parametros.strUsuarioLogin + " | " + WindowsIdentity.GetCurrent().Name.ToString(); // "DOCUMENTO DE VENTA GENERADO POR VENTA CONTADO";
                 objDocumentoVenta.IdSituacion = Parametros.intDVCancelado;
                 objDocumentoVenta.IdPersonaRegistro = Parametros.intPersonaId;
                 objDocumentoVenta.FlagEstado = true;
@@ -1591,7 +1604,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                 objDocumentoVenta.Maquina = WindowsIdentity.GetCurrent().Name.ToString();
                 objDocumentoVenta.IdEmpresa = IdEmpresaGenera;//Parametros.intEmpresaId;
                 objDocumentoVenta.IdAlmacen = IdAlmacen;
-                objDocumentoVenta.IdTipoCliente = Int32.Parse( gvPedido.GetFocusedRowCellValue("IdTipoCliente").ToString());
+                objDocumentoVenta.IdTipoCliente = Int32.Parse(gvPedido.GetFocusedRowCellValue("IdTipoCliente").ToString());
                 objDocumentoVenta.CodigoNC = CodigoNC;
 
                 //Documento Vneta Detalle
@@ -1711,7 +1724,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                         objTalon = new TalonBL().SeleccionaCajaDocumento(IdEmpresa, Parametros.intTiendaId, Parametros.intCajaId, Convert.ToInt32(cboDocumento.EditValue));
 
                         //Comentado el 13-10-2020
-                   //     ImpresionElectronicaLocal(IdDocumentoVenta, objTalon.IdTamanoHoja, objTalon.Impresora);
+                        //     ImpresionElectronicaLocal(IdDocumentoVenta, objTalon.IdTamanoHoja, objTalon.Impresora);
                         //ImpresionTicketElectronico("C");
                         #endregion
                     }
@@ -1732,7 +1745,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                         objTalon = new TalonBL().SeleccionaCajaDocumento(IdEmpresa, Parametros.intTiendaId, Parametros.intCajaId, Convert.ToInt32(cboDocumento.EditValue));
 
                         //Comentado el 13-10-2020
-                      //  ImpresionElectronicaLocal(IdDocumentoVenta, objTalon.IdTamanoHoja, objTalon.Impresora);
+                        //  ImpresionElectronicaLocal(IdDocumentoVenta, objTalon.IdTamanoHoja, objTalon.Impresora);
                         //ImpresionTicketElectronico("C");
                         #endregion
                     }
@@ -1893,7 +1906,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                         objE_DocumentoVentaSerie = objBL_DocumentoVenta.SeleccionaSerieNumero(IdEmpresaGenera, objDocumentoVenta.IdTipoDocumento, Serie, Numero);
                         if (objE_DocumentoVentaSerie != null)
                         {
-                            XtraMessageBox.Show("El documento "+ TipoDoc +":" + Serie +"-"+ Numero + " ya existe, Por favor verificar el correlativo de la serie:" + Serie, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            XtraMessageBox.Show("El documento " + TipoDoc + ":" + Serie + "-" + Numero + " ya existe, Por favor verificar el correlativo de la serie:" + Serie, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             return;
                         }
 
@@ -2111,7 +2124,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                     #endregion
 
 
-                    if(objTalon.FlagAbrirCajon == true)ticket.AbreCajon();  //abre el cajon
+                    if (objTalon.FlagAbrirCajon == true) ticket.AbreCajon();  //abre el cajon
                     //ticket.TextoCentro("PANORAMA DISTRIBUIDORES S.A");
                     //ticket.TextoCentro(dirFacturacion);
                     //ticket.TextoCentro("RUC: 20330676826");
@@ -2135,7 +2148,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                     }
                     ticket.LineasTotales();
                     if (lstReporte[0].TotalBruto > lstReporte[0].Total) //add 20 may 15
-                    { 
+                    {
                         ticket.AgregaTotales("Total", Math.Round(Convert.ToDouble(lstReporte[0].TotalBruto), 2));
                         ticket.AgregaTotales("Descuento", Math.Round(Convert.ToDouble(lstReporte[0].TotalBruto - lstReporte[0].Total) * -1, 2));
                     }
@@ -2308,13 +2321,13 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                     {
                         ticket.AgregaArticuloCodigo(Convert.ToInt32(item.Cantidad), Convert.ToString(item.Abreviatura), Convert.ToString(item.CodigoProveedor));
                         //ticket.AgregaArticuloDetalle(item.NombreProducto, Convert.ToDouble(Math.Round(item.PrecioVenta, 2)), Convert.ToDouble(Math.Round(item.ValorVenta, 2)));
-                        ticket.AgregaArticuloDetalle(item.NombreProducto + new string(' ', 20) , Convert.ToDouble(Math.Round(item.PrecioVenta, 2)), Convert.ToDouble(Math.Round(item.ValorVenta, 2)));
+                        ticket.AgregaArticuloDetalle(item.NombreProducto + new string(' ', 20), Convert.ToDouble(Math.Round(item.PrecioVenta, 2)), Convert.ToDouble(Math.Round(item.ValorVenta, 2)));
                     }
                     ticket.LineasTotales();
                     if (lstReporte[0].TotalBruto > lstReporte[0].Total) //add 20 may 15
                     {
                         ticket.AgregaTotales("Total", Math.Round(Convert.ToDouble(lstReporte[0].TotalBruto), 2));
-                        ticket.AgregaTotales("Descuento ", Math.Round(Convert.ToDouble(lstReporte[0].TotalBruto - lstReporte[0].Total)*-1, 2));
+                        ticket.AgregaTotales("Descuento ", Math.Round(Convert.ToDouble(lstReporte[0].TotalBruto - lstReporte[0].Total) * -1, 2));
                     }
                     ticket.AgregaTotales("SubTotal", Math.Round(Convert.ToDouble(lstReporte[0].SubTotal), 2));
                     ticket.AgregaTotales("IGV", Math.Round(Convert.ToDouble(lstReporte[0].Igv), 2));
@@ -2433,206 +2446,207 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                 }
                 else
                     if (TipoDoc == "BOV" && TipoFormato == Parametros.intTipoFormatoDesglosable)
+                {
+                    List<ReporteDocumentoVentaBE> lstReporte = null;
+                    lstReporte = new ReporteDocumentoVentaBL().Listado(Parametros.intPeriodo, IdPedido);
+
+                    rptBoletaPanoramaDesglosable objReporteGuia = new rptBoletaPanoramaDesglosable();
+                    objReporteGuia.SetDataSource(lstReporte);
+                    //objReporteGuia.PrintOptions.PrinterName = @"EPSON FX-890 ESC/P";
+                    //objReporteGuia.PrintToPrinter(1, false, 0, 0);
+
+                    bool found = false;
+                    PrinterSettings prtSetting = new PrinterSettings();
+                    foreach (string prtName in PrinterSettings.InstalledPrinters)
                     {
-                        List<ReporteDocumentoVentaBE> lstReporte = null;
-                        lstReporte = new ReporteDocumentoVentaBL().Listado(Parametros.intPeriodo, IdPedido);
-
-                        rptBoletaPanoramaDesglosable objReporteGuia = new rptBoletaPanoramaDesglosable();
-                        objReporteGuia.SetDataSource(lstReporte);
-                        //objReporteGuia.PrintOptions.PrinterName = @"EPSON FX-890 ESC/P";
-                        //objReporteGuia.PrintToPrinter(1, false, 0, 0);
-
-                        bool found = false;
-                        PrinterSettings prtSetting = new PrinterSettings();
-                        foreach (string prtName in PrinterSettings.InstalledPrinters)
+                        string printer = "";
+                        if (prtName.StartsWith("\\\\"))
                         {
-                            string printer = "";
-                            if (prtName.StartsWith("\\\\"))
-                            {
-                                printer = prtName.Substring(3);
-                                printer = printer.Substring(printer.IndexOf("\\") + 1);
-                            }
-                            else
-                                printer = prtName;
-
-                            if (printer.ToUpper().StartsWith("(B)"))
-                            {
-                                found = true;
-                                PrintOptions bufPO = objReporteGuia.PrintOptions;
-                                prtSetting.PrinterName = prtName;
-                                objReporteGuia.PrintOptions.PrinterName = prtName;
-
-                                int rawKind = -1;
-                                CrystalDecisions.CrystalReports.Engine.TextObject crTxt = (CrystalDecisions.CrystalReports.Engine.TextObject)objReporteGuia.ReportDefinition.ReportObjects["PAPERNAME"];
-                                for (int i = 0; i < prtSetting.PaperSizes.Count; i++)
-                                {
-                                    if (prtSetting.PaperSizes[i].PaperName.Trim().ToUpper() == crTxt.Text.Trim().ToUpper())
-                                    {
-                                        rawKind = prtSetting.PaperSizes[i].RawKind;
-                                        objReporteGuia.PrintOptions.PaperSize = (CrystalDecisions.Shared.PaperSize)rawKind;
-                                        break;
-                                    }
-                                }
-                                if (rawKind == -1)
-                                {
-                                    MessageBox.Show("La impresora seleccionada no contiene tipo papel requerido [" + crTxt.Text + "]!\r\nNo podrá imprimir este tipo de documento hasta registre el tipo de papel en su impresora.\r\n\r\nComuníquese con personal de sistemas.", "Impresora", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                }
-                                break;
-                            }
-                        }
-
-                        if (!found)
-                        {
-                            MessageBox.Show("La impresora (B) Nombre para Boleta Panorama no ha sido encontrada.");
-
-                        }
-                        objReporteGuia.PrintToPrinter(1, false, 0, 0);
-                    }
-                    else
-                        if (TipoDoc == "BOV" && TipoFormato == Parametros.intTipoFormatoContinuo)
-                        {
-                            List<ReporteDocumentoVentaBE> lstReporte = null;
-                            lstReporte = new ReporteDocumentoVentaBL().Listado(Parametros.intPeriodo, IdPedido);
-
-                            rptBoletaPanorama objReporteGuia = new rptBoletaPanorama();
-                            objReporteGuia.SetDataSource(lstReporte);
-                            //objReporteGuia.PrintOptions.PrinterName = @"EPSON FX-890 ESC/P";
-                            //objReporteGuia.PrintToPrinter(1, false, 0, 0);
-
-                            bool found = false;
-                            PrinterSettings prtSetting = new PrinterSettings();
-                            foreach (string prtName in PrinterSettings.InstalledPrinters)
-                            {
-                                string printer = "";
-                                if (prtName.StartsWith("\\\\"))
-                                {
-                                    printer = prtName.Substring(3);
-                                    printer = printer.Substring(printer.IndexOf("\\") + 1);
-                                }
-                                else
-                                    printer = prtName;
-
-                                if (printer.ToUpper().StartsWith("(B)"))
-                                {
-                                    found = true;
-                                    PrintOptions bufPO = objReporteGuia.PrintOptions;
-                                    prtSetting.PrinterName = prtName;
-                                    objReporteGuia.PrintOptions.PrinterName = prtName;
-
-                                    int rawKind = -1;
-                                    CrystalDecisions.CrystalReports.Engine.TextObject crTxt = (CrystalDecisions.CrystalReports.Engine.TextObject)objReporteGuia.ReportDefinition.ReportObjects["PAPERNAME"];
-                                    for (int i = 0; i < prtSetting.PaperSizes.Count; i++)
-                                    {
-                                        if (prtSetting.PaperSizes[i].PaperName.Trim().ToUpper() == crTxt.Text.Trim().ToUpper())
-                                        {
-                                            rawKind = prtSetting.PaperSizes[i].RawKind;
-                                            objReporteGuia.PrintOptions.PaperSize = (CrystalDecisions.Shared.PaperSize)rawKind;
-                                            break;
-                                        }
-                                    }
-                                    if (rawKind == -1)
-                                    {
-                                        MessageBox.Show("La impresora seleccionada no contiene tipo papel requerido [" + crTxt.Text + "]!\r\nNo podrá imprimir este tipo de documento hasta registre el tipo de papel en su impresora.\r\n\r\nComuníquese con personal de sistemas.", "Impresora", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    }
-                                    break;
-                                }
-                            }
-
-                            if (!found)
-                            {
-                                MessageBox.Show("La impresora (B) Nombre para Boleta Panorama no ha sido encontrada.");
-
-                            }
-                            objReporteGuia.PrintToPrinter(1, false, 0, 0);
-                        }
-                    else
-                        if (TipoDoc == "FAV")
-                        {
-                            List<ReporteDocumentoVentaBE> lstReporte = null;
-                            lstReporte = new ReporteDocumentoVentaBL().Listado(Parametros.intPeriodo, IdPedido);
-
-                            //string numLetra = FuncionBase.Enletras("200.23");
-
-                            rptFacturaPanorama objReporteGuia = new rptFacturaPanorama();
-                            objReporteGuia.SetDataSource(lstReporte);
-                            //objReporteGuia.SetParameterValue("NumLetra", numLetra + " Soles");
-
-                            bool found = false;
-                            PrinterSettings prtSetting = new PrinterSettings();
-                            foreach (string prtName in PrinterSettings.InstalledPrinters)
-                            {
-                                string printer = "";
-                                if (prtName.StartsWith("\\\\"))
-                                {
-                                    printer = prtName.Substring(3);
-                                    printer = printer.Substring(printer.IndexOf("\\") + 1);
-                                }
-                                else
-                                    printer = prtName;
-
-                                if (printer.ToUpper().StartsWith("(F)"))
-                                {
-                                    found = true;
-                                    PrintOptions bufPO = objReporteGuia.PrintOptions;
-                                    prtSetting.PrinterName = prtName;
-                                    objReporteGuia.PrintOptions.PrinterName = prtName;
-
-                                    int rawKind = -1;
-                                    CrystalDecisions.CrystalReports.Engine.TextObject crTxt = (CrystalDecisions.CrystalReports.Engine.TextObject)objReporteGuia.ReportDefinition.ReportObjects["PAPERNAME"];
-                                    for (int i = 0; i < prtSetting.PaperSizes.Count; i++)
-                                    {
-                                        if (prtSetting.PaperSizes[i].PaperName.Trim().ToUpper() == crTxt.Text.Trim().ToUpper())
-                                        {
-                                            rawKind = prtSetting.PaperSizes[i].RawKind;
-                                            objReporteGuia.PrintOptions.PaperSize = (CrystalDecisions.Shared.PaperSize)rawKind;
-                                            break;
-                                        }
-                                    }
-                                    if (rawKind == -1)
-                                    {
-                                        MessageBox.Show("La impresora seleccionada no contiene tipo papel requerido [" + crTxt.Text + "]!\r\nNo podrá imprimir este tipo de documento hasta registre el tipo de papel en su impresora.\r\n\r\nComuníquese con personal de sistemas.", "Impresora", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    }
-                                    break;
-                                }
-                            }
-
-                            if (!found)
-                            {
-                                MessageBox.Show("La impresora (F) Nombre para Boleta Panorama no ha sido encontrada.");
-
-                            }
-                            objReporteGuia.PrintToPrinter(1, false, 0, 0);
+                            printer = prtName.Substring(3);
+                            printer = printer.Substring(printer.IndexOf("\\") + 1);
                         }
                         else
-                            if (TipoDoc == "G/R")//GUIA DE REMISION
+                            printer = prtName;
+
+                        if (printer.ToUpper().StartsWith("(B)"))
+                        {
+                            found = true;
+                            PrintOptions bufPO = objReporteGuia.PrintOptions;
+                            prtSetting.PrinterName = prtName;
+                            objReporteGuia.PrintOptions.PrinterName = prtName;
+
+                            int rawKind = -1;
+                            CrystalDecisions.CrystalReports.Engine.TextObject crTxt = (CrystalDecisions.CrystalReports.Engine.TextObject)objReporteGuia.ReportDefinition.ReportObjects["PAPERNAME"];
+                            for (int i = 0; i < prtSetting.PaperSizes.Count; i++)
                             {
-                                List<ReporteDocumentoVentaBE> lstReporte = null;
-                                lstReporte = new ReporteDocumentoVentaBL().Listado(Parametros.intPeriodo, IdPedido);
-
-                                rptGuiaRemisionPanorama objReporteGuia = new rptGuiaRemisionPanorama();
-                                objReporteGuia.SetDataSource(lstReporte);
-                                objReporteGuia.SetParameterValue("dirFac", dirFacturacion);
-                                objReporteGuia.PrintOptions.PrinterName = @"EPSON FX-890 ESC/P";
-                                objReporteGuia.PrintToPrinter(1, false, 0, 0);
-                            }
-                            else
-                                if (TipoDoc == "NCV")//NOTACREDITO
+                                if (prtSetting.PaperSizes[i].PaperName.Trim().ToUpper() == crTxt.Text.Trim().ToUpper())
                                 {
-                                    List<ReporteDocumentoVentaBE> lstReporte = null;
-                                    lstReporte = new ReporteDocumentoVentaBL().Listado(Parametros.intPeriodo, IdPedido);
-
-                                    rptNotaCreditoPanorama objReporteNotaCredito = new rptNotaCreditoPanorama();
-                                    objReporteNotaCredito.SetDataSource(lstReporte);
-
-                                    objReporteNotaCredito.PrintOptions.PrinterName = @"EPSON FX-890 ESC/P";
-                                    objReporteNotaCredito.PrintToPrinter(1, false, 0, 0);
+                                    rawKind = prtSetting.PaperSizes[i].RawKind;
+                                    objReporteGuia.PrintOptions.PaperSize = (CrystalDecisions.Shared.PaperSize)rawKind;
+                                    break;
                                 }
+                            }
+                            if (rawKind == -1)
+                            {
+                                MessageBox.Show("La impresora seleccionada no contiene tipo papel requerido [" + crTxt.Text + "]!\r\nNo podrá imprimir este tipo de documento hasta registre el tipo de papel en su impresora.\r\n\r\nComuníquese con personal de sistemas.", "Impresora", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            break;
+                        }
+                    }
+
+                    if (!found)
+                    {
+                        MessageBox.Show("La impresora (B) Nombre para Boleta Panorama no ha sido encontrada.");
+
+                    }
+                    objReporteGuia.PrintToPrinter(1, false, 0, 0);
+                }
+                else
+                        if (TipoDoc == "BOV" && TipoFormato == Parametros.intTipoFormatoContinuo)
+                {
+                    List<ReporteDocumentoVentaBE> lstReporte = null;
+                    lstReporte = new ReporteDocumentoVentaBL().Listado(Parametros.intPeriodo, IdPedido);
+
+                    rptBoletaPanorama objReporteGuia = new rptBoletaPanorama();
+                    objReporteGuia.SetDataSource(lstReporte);
+                    //objReporteGuia.PrintOptions.PrinterName = @"EPSON FX-890 ESC/P";
+                    //objReporteGuia.PrintToPrinter(1, false, 0, 0);
+
+                    bool found = false;
+                    PrinterSettings prtSetting = new PrinterSettings();
+                    foreach (string prtName in PrinterSettings.InstalledPrinters)
+                    {
+                        string printer = "";
+                        if (prtName.StartsWith("\\\\"))
+                        {
+                            printer = prtName.Substring(3);
+                            printer = printer.Substring(printer.IndexOf("\\") + 1);
+                        }
+                        else
+                            printer = prtName;
+
+                        if (printer.ToUpper().StartsWith("(B)"))
+                        {
+                            found = true;
+                            PrintOptions bufPO = objReporteGuia.PrintOptions;
+                            prtSetting.PrinterName = prtName;
+                            objReporteGuia.PrintOptions.PrinterName = prtName;
+
+                            int rawKind = -1;
+                            CrystalDecisions.CrystalReports.Engine.TextObject crTxt = (CrystalDecisions.CrystalReports.Engine.TextObject)objReporteGuia.ReportDefinition.ReportObjects["PAPERNAME"];
+                            for (int i = 0; i < prtSetting.PaperSizes.Count; i++)
+                            {
+                                if (prtSetting.PaperSizes[i].PaperName.Trim().ToUpper() == crTxt.Text.Trim().ToUpper())
+                                {
+                                    rawKind = prtSetting.PaperSizes[i].RawKind;
+                                    objReporteGuia.PrintOptions.PaperSize = (CrystalDecisions.Shared.PaperSize)rawKind;
+                                    break;
+                                }
+                            }
+                            if (rawKind == -1)
+                            {
+                                MessageBox.Show("La impresora seleccionada no contiene tipo papel requerido [" + crTxt.Text + "]!\r\nNo podrá imprimir este tipo de documento hasta registre el tipo de papel en su impresora.\r\n\r\nComuníquese con personal de sistemas.", "Impresora", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            break;
+                        }
+                    }
+
+                    if (!found)
+                    {
+                        MessageBox.Show("La impresora (B) Nombre para Boleta Panorama no ha sido encontrada.");
+
+                    }
+                    objReporteGuia.PrintToPrinter(1, false, 0, 0);
+                }
+                else
+                        if (TipoDoc == "FAV")
+                {
+                    List<ReporteDocumentoVentaBE> lstReporte = null;
+                    lstReporte = new ReporteDocumentoVentaBL().Listado(Parametros.intPeriodo, IdPedido);
+
+                    //string numLetra = FuncionBase.Enletras("200.23");
+
+                    rptFacturaPanorama objReporteGuia = new rptFacturaPanorama();
+                    objReporteGuia.SetDataSource(lstReporte);
+                    //objReporteGuia.SetParameterValue("NumLetra", numLetra + " Soles");
+
+                    bool found = false;
+                    PrinterSettings prtSetting = new PrinterSettings();
+                    foreach (string prtName in PrinterSettings.InstalledPrinters)
+                    {
+                        string printer = "";
+                        if (prtName.StartsWith("\\\\"))
+                        {
+                            printer = prtName.Substring(3);
+                            printer = printer.Substring(printer.IndexOf("\\") + 1);
+                        }
+                        else
+                            printer = prtName;
+
+                        if (printer.ToUpper().StartsWith("(F)"))
+                        {
+                            found = true;
+                            PrintOptions bufPO = objReporteGuia.PrintOptions;
+                            prtSetting.PrinterName = prtName;
+                            objReporteGuia.PrintOptions.PrinterName = prtName;
+
+                            int rawKind = -1;
+                            CrystalDecisions.CrystalReports.Engine.TextObject crTxt = (CrystalDecisions.CrystalReports.Engine.TextObject)objReporteGuia.ReportDefinition.ReportObjects["PAPERNAME"];
+                            for (int i = 0; i < prtSetting.PaperSizes.Count; i++)
+                            {
+                                if (prtSetting.PaperSizes[i].PaperName.Trim().ToUpper() == crTxt.Text.Trim().ToUpper())
+                                {
+                                    rawKind = prtSetting.PaperSizes[i].RawKind;
+                                    objReporteGuia.PrintOptions.PaperSize = (CrystalDecisions.Shared.PaperSize)rawKind;
+                                    break;
+                                }
+                            }
+                            if (rawKind == -1)
+                            {
+                                MessageBox.Show("La impresora seleccionada no contiene tipo papel requerido [" + crTxt.Text + "]!\r\nNo podrá imprimir este tipo de documento hasta registre el tipo de papel en su impresora.\r\n\r\nComuníquese con personal de sistemas.", "Impresora", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            break;
+                        }
+                    }
+
+                    if (!found)
+                    {
+                        MessageBox.Show("La impresora (F) Nombre para Boleta Panorama no ha sido encontrada.");
+
+                    }
+                    objReporteGuia.PrintToPrinter(1, false, 0, 0);
+                }
+                else
+                            if (TipoDoc == "G/R")//GUIA DE REMISION
+                {
+                    List<ReporteDocumentoVentaBE> lstReporte = null;
+                    lstReporte = new ReporteDocumentoVentaBL().Listado(Parametros.intPeriodo, IdPedido);
+
+                    rptGuiaRemisionPanorama objReporteGuia = new rptGuiaRemisionPanorama();
+                    objReporteGuia.SetDataSource(lstReporte);
+                    objReporteGuia.SetParameterValue("dirFac", dirFacturacion);
+                    objReporteGuia.PrintOptions.PrinterName = @"EPSON FX-890 ESC/P";
+                    objReporteGuia.PrintToPrinter(1, false, 0, 0);
+                }
+                else
+                                if (TipoDoc == "NCV")//NOTACREDITO
+                {
+                    List<ReporteDocumentoVentaBE> lstReporte = null;
+                    lstReporte = new ReporteDocumentoVentaBL().Listado(Parametros.intPeriodo, IdPedido);
+
+                    rptNotaCreditoPanorama objReporteNotaCredito = new rptNotaCreditoPanorama();
+                    objReporteNotaCredito.SetDataSource(lstReporte);
+
+                    objReporteNotaCredito.PrintOptions.PrinterName = @"EPSON FX-890 ESC/P";
+                    objReporteNotaCredito.PrintToPrinter(1, false, 0, 0);
+                }
 
                 if (!chkDespachar.Checked)
                 {
                     PedidoBL objBL_Pedido = new PedidoBL();
                     objBL_Pedido.ActualizaSituacion(Parametros.intEmpresaId, IdPedido, Parametros.intFacturado, 0, Parametros.strUsuarioLogin, WindowsIdentity.GetCurrent().Name.ToString());
-                }else
+                }
+                else
                 {
                     chkDespachar.Checked = false;
                 }
@@ -2696,7 +2710,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
 
                 DocumentoVentaBE objE_Documento = new DocumentoVentaBE();
                 objE_Documento = new DocumentoVentaBL().SeleccionaEmpresaPeriodo(Convert.ToInt32(cboEmpresa.EditValue), deFecha.DateTime.Year, deFecha.DateTime.Month);
-//                objE_DocumentoDia = new DocumentoVentaBL().SeleccionaEmpresaPeriodoDia(Convert.ToInt32(cboEmpresa.EditValue), deFecha.DateTime.Year, deFecha.DateTime.Month);
+                //                objE_DocumentoDia = new DocumentoVentaBL().SeleccionaEmpresaPeriodoDia(Convert.ToInt32(cboEmpresa.EditValue), deFecha.DateTime.Year, deFecha.DateTime.Month);
                 decimal TotalVentaDia = 0;
                 decimal TotalVentaMensual = 0;
 
@@ -2735,7 +2749,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                 }
             }
 
-             if (flag)
+            if (flag)
             {
                 XtraMessageBox.Show(strMensaje, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 Cursor = Cursors.Default;
@@ -4475,7 +4489,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                     objE_DocumentoVentaSerie = objBL_DocumentoVenta.SeleccionaSerieNumero(IdEmpresaGenera, objDocumentoVenta.IdTipoDocumento, Serie, Numero);
                     if (objE_DocumentoVentaSerie != null)
                     {
-                        XtraMessageBox.Show("El documento "+ TipoDoc +":" + Serie +"-"+ Numero + " ya existe, Por favor verificar el correlativo de la serie:" + Serie, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        XtraMessageBox.Show("El documento " + TipoDoc + ":" + Serie + "-" + Numero + " ya existe, Por favor verificar el correlativo de la serie:" + Serie, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
@@ -4574,7 +4588,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                 //Movimiento Caja
                 List<MovimientoCajaBE> lstMovimientoCaja = new List<MovimientoCajaBE>();
 
-                if (Efectivo > 0 || (Efectivo == 0 && Visa == 0 && MasterCard == 0 && VisaPuntosVida == 0 && MasterCardPuntosVida == 0 && Cupon ==0))
+                if (Efectivo > 0 || (Efectivo == 0 && Visa == 0 && MasterCard == 0 && VisaPuntosVida == 0 && MasterCardPuntosVida == 0 && Cupon == 0))
                 {
                     MovimientoCajaBE objE_MovimientoCaja = new MovimientoCajaBE();
                     objE_MovimientoCaja.IdEmpresa = IdEmpresaGenera; //Parametros.intEmpresaId;
@@ -4974,7 +4988,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                         objE_DocumentoVentaSerie = objBL_DocumentoVenta.SeleccionaSerieNumero(IdEmpresaGenera, objDocumentoVenta.IdTipoDocumento, Serie, Numero);
                         if (objE_DocumentoVentaSerie != null)
                         {
-                            XtraMessageBox.Show("El documento "+ TipoDoc +":" + Serie +"-"+ Numero + " ya existe, Por favor verificar el correlativo de la serie:" + Serie, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            XtraMessageBox.Show("El documento " + TipoDoc + ":" + Serie + "-" + Numero + " ya existe, Por favor verificar el correlativo de la serie:" + Serie, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             return;
                         }
 
@@ -5247,6 +5261,40 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
             }
         }
 
+        private bool ValidarIngreso()
+        {
+            bool flag = false;
+            string strMensaje = "No se pudo registrar:\n";
+
+            if (IdCliente == 0)
+            {
+                strMensaje = strMensaje + "- Seleccionar un cliente válido.\n";
+                flag = true;
+            }
+
+
+            int TipoDoc = Convert.ToInt32(cboDocumento.EditValue);
+            if (TipoDoc == Parametros.intTipoDocBoletaElectronica || TipoDoc == Parametros.intTipoDocFacturaElectronica || TipoDoc == Parametros.intTipoDocNotaCreditoElectronica)
+            {
+                deFecha.EditValue = Parametros.dtFechaHoraServidor;
+                deFecha.Properties.ReadOnly = true;
+                if (Convert.ToDateTime(deFecha.DateTime.ToShortDateString()) < Convert.ToDateTime(DateTime.Now.ToShortDateString()) || Convert.ToDateTime(deFecha.DateTime.ToShortDateString()) > Convert.ToDateTime(DateTime.Now.ToShortDateString()))
+                {
+                    strMensaje = strMensaje + "- No se puede generar un comprobante electrónico con fecha diferente a la actual.\n";
+                    flag = true;
+                }
+            }
+
+            if (flag)
+            {
+                XtraMessageBox.Show(strMensaje, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                Cursor = Cursors.Default;
+            }
+            return flag;
+        }
+
+        //private int IdFormaPago = 0;
+
         private void InsertarEstadoCuentaDiseñador()
         {
             if (IdAsesorExterno > 0)
@@ -5270,7 +5318,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                     ////Datos del estado de cuenta
                     //EstadoCuentaBE objE_EstadoCuenta = new EstadoCuentaBE();
                     //EstadoCuentaBL objBL_EstadoCuenta = new EstadoCuentaBL();
-                    decTotalPedido = Math.Round( ((Convert.ToDecimal(txtTotal.EditValue) / Convert.ToDecimal(Parametros.dmlTCMayorista)) / Convert.ToDecimal(Parametros.dblIGV)) * (Parametros.dmlClubDesign / 100),2);
+                    decTotalPedido = Math.Round(((Convert.ToDecimal(txtTotal.EditValue) / Convert.ToDecimal(Parametros.dmlTCMayorista)) / Convert.ToDecimal(Parametros.dblIGV)) * (Parametros.dmlClubDesign / 100), 2);
 
                     //Datos del estado de cuenta
                     objE_EstadoCuenta = new EstadoCuentaBE();
@@ -5302,7 +5350,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                 {
                     //SeparacionBE objE_Separacion = new SeparacionBE();
                     //SeparacionBL objBL_Separacion = new SeparacionBL();
-                    decTotalPedido = Math.Round(((Convert.ToDecimal(txtTotal.EditValue)) / Convert.ToDecimal(Parametros.dblIGV)) * (Parametros.dmlClubDesign / 100),2);
+                    decTotalPedido = Math.Round(((Convert.ToDecimal(txtTotal.EditValue)) / Convert.ToDecimal(Parametros.dblIGV)) * (Parametros.dmlClubDesign / 100), 2);
 
                     //Datos del estado de cuenta
                     objE_Separacion = new SeparacionBE();
@@ -5338,7 +5386,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                     if (objE_EstadoCuenta != null)
                     {
                         List<EstadoCuentaBE> lstEstadoCuenta = new List<EstadoCuentaBE>();
-                        lstEstadoCuenta = new EstadoCuentaBL().ListaPedido(Parametros.intEmpresaId, IdPedido,"A");
+                        lstEstadoCuenta = new EstadoCuentaBL().ListaPedido(Parametros.intEmpresaId, IdPedido, "A");
                         if (lstEstadoCuenta.Count > 0)
                         {
                             XtraMessageBox.Show("Ya existe un registro N°: " + lstEstadoCuenta[0].NumeroDocumento + " en Estado de Cuenta Dolares(US$) \n US$ " + lstEstadoCuenta[0].Importe, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -5356,7 +5404,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                         if (lstSeparacion.Count > 0)
                         {
                             XtraMessageBox.Show("Ya existe un registro N°: " + lstSeparacion[0].NumeroDocumento + " en Estado de Cuenta Soles(S/) \n S/ " + lstSeparacion[0].Importe, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                         }
+                        }
                         else
                         {
                             objBL_DocumentoVentaEstado.InsertaCredito(objE_EstadoCuenta, objE_Separacion);
@@ -5630,7 +5678,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
 
                 }
             }
-            else if(IdTamanoHoja == Parametros.intTamano80mmTermico)
+            else if (IdTamanoHoja == Parametros.intTamano80mmTermico)
             {
                 List<ReporteDocumentoVentaElectronicaBE> lstReporte = null;
                 lstReporte = new ReporteDocumentoVentaElectronicaBL().Listado(IdDocumentoVenta);
@@ -5715,9 +5763,9 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                     dirFacturacion = Parametros.strDireccionUcayali3;
                 else
                     dirFacturacion = Parametros.strDireccionUcayali;
-                if (Parametros.intTiendaId == Parametros.intTiendaAndahuaylas)dirFacturacion = Parametros.strDireccionAndahuaylas;
-                if (Parametros.intTiendaId == Parametros.intTiendaKonceptos)dirFacturacion = Parametros.strDireccionMegaplaza;
-                if (Parametros.intTiendaId == Parametros.intTiendaPrescott)dirFacturacion = Parametros.strDireccionPrescott;
+                if (Parametros.intTiendaId == Parametros.intTiendaAndahuaylas) dirFacturacion = Parametros.strDireccionAndahuaylas;
+                if (Parametros.intTiendaId == Parametros.intTiendaKonceptos) dirFacturacion = Parametros.strDireccionMegaplaza;
+                if (Parametros.intTiendaId == Parametros.intTiendaPrescott) dirFacturacion = Parametros.strDireccionPrescott;
 
 
                 List<ReporteDocumentoVentaElectronicaBE> lstReporte = null;
@@ -5780,7 +5828,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                         ticket.TextoIzquierdaNLineas("CLIENTE: " + lstReporte[0].DescCliente);
                         if (Convert.ToInt32(cboDocumento.EditValue) == Parametros.intTipoDocFacturaElectronica) ticket.TextoIzquierdaNLineas("DIR: " + lstReporte[0].Direccion);
                         //ticket.TextoIzquierdaNLineas("DIR: " + lstReporte[0].Direccion);
-                        if(i==1 || i==2)
+                        if (i == 1 || i == 2)
                         {
                             ticket.LineasGuion();
                             ticket.EncabezadoVenta();
@@ -5826,7 +5874,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                             ticket.TextoCentro("GRACIAS POR SU COMPRA");
                             ticket.TextoIzquierda("");
                             ticket.TextoCentro("www.panoramahogar.com");
-                            ticket.TextoCentro("***** COPIA CLIENTE v."+ Parametros.strVersion +" *****");
+                            ticket.TextoCentro("***** COPIA CLIENTE v." + Parametros.strVersion + " *****");
                             //ticket.TextoIzquierda(lstReporte[0].PagoNotaCredito);
                             //if (lstReporte[0].IdPromocionProxima > 0)
                             //{
@@ -5840,7 +5888,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                         }
                         if (i == 2)
                         {
-                            ticket.TextoCentro("***** DESPACHO "+ Parametros.strVersion +" *****");
+                            ticket.TextoCentro("***** DESPACHO " + Parametros.strVersion + " *****");
                         }
                         ticket.CortaTicket();
                     }
@@ -5923,7 +5971,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
             }
 
             #region "Nota de crédito"
-            
+
             if ("NOTA CREDITO" == "NC")
             {
                 //rptNotaCreditoElectronicaPanoramaA4 objReporteGuia = new rptNotaCreditoElectronicaPanoramaA4();
@@ -6017,7 +6065,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                         ObjE_Detalle.CodigoProveedor = item.CodigoProveedor;
                         ObjE_Detalle.NombreProducto = item.NombreProducto;
                         ObjE_Detalle.Abreviatura = item.Abreviatura;
-                        ObjE_Detalle.PrecioUnitario =  item.PrecioUnitario;
+                        ObjE_Detalle.PrecioUnitario = item.PrecioUnitario;
                         ObjE_Detalle.PorcentajeDescuento = item.PorcentajeDescuento;
                         ObjE_Detalle.PrecioVenta = item.PrecioVenta;
                         ObjE_Detalle.ValorVenta = item.PrecioVenta;//item.ValorVenta;
@@ -6293,7 +6341,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
 
                 }
                 #endregion
-                
+
                 #region"3x1"
                 else if (item.DescPromocion == "3x1")
                 {
@@ -6365,7 +6413,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                     #endregion
                 }
                 #endregion
-                
+
                 #region"4x1"
                 else if (item.DescPromocion == "4x1")
                 {
