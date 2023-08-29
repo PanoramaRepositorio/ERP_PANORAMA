@@ -2525,7 +2525,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                     }
 
 
-                    if (Convert.ToInt32(cboFormaPago.EditValue) == Parametros.intContado)
+                    if (Convert.ToInt32(cboFormaPago.EditValue) == Parametros.intContado || Convert.ToInt32(cboFormaPago.EditValue) == Parametros.intContraEntrega)
                     {
                         IdPedido = Numero;
                         //Actualiza Estado Impresion
