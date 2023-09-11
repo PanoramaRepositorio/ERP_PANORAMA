@@ -456,15 +456,30 @@ Begin
 End
 
 
+select * from DocumentoVenta
 
--------
---select * from MovimientoPedido 
---WHERE YEAR(FechaRecibido) = 2023
---order by FechaRecibido
 
---select IdPedido,IdSituacion from Pedido where numero ='0120345'
+--Se creo un procedimiento almacenado
 
---select * from MovimientoPedido where IdPedido = 1251937
+create PROCEDURE usp_IdDocumentoVenta
+    @IdPedido INT
+AS
+BEGIN
+    SET NOCOUNT ON;
 
---EXEC usp_MovimientoPedido_ActualizaSituacionWEB 1251933, 110,'',0,'','','','',1
+    SELECT IdDocumentoVenta,IdVendedor
+    FROM DocumentoVenta
+    WHERE IdPedido = @IdPedido;
+END;
 
+
+exec usp_IdDocumentoVenta 1252941
+
+select * from MovimientoCaja
+where IdDocumentoVenta = 1933354
+
+--exec usp_EstadoCuentaCliente_Inserta 
+
+--EstadoCuentaClienteDL
+
+--revisar en DocumentoVentaBL.cs linea 888 Inserta
