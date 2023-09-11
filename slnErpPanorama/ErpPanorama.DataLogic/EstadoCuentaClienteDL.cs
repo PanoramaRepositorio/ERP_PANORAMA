@@ -34,7 +34,7 @@ namespace ErpPanorama.DataLogic
 			db.AddInParameter(dbCommand, "pIdMovimientoCaja", DbType.Int32, pItem.IdMovimientoCaja);
 			db.AddInParameter(dbCommand, "pIdCuentaBancoDetalle", DbType.Int32, pItem.IdCuentaBancoDetalle);
             db.AddInParameter(dbCommand, "pIdPersona", DbType.Int32, pItem.IdPersona);
-            db.AddInParameter(dbCommand, "pUsuarioRegistro", DbType.String, pItem.UsuarioRegistro);
+            db.AddInParameter(dbCommand, "pUsuarioRegistro", DbType.String, pItem.Usuario);
 			db.AddInParameter(dbCommand, "pFechaRegistro", DbType.DateTime, pItem.FechaRegistro);
 			db.AddInParameter(dbCommand, "pObservacion", DbType.String, pItem.Observacion);
 			db.AddInParameter(dbCommand, "pSaldo", DbType.Decimal, pItem.Saldo);

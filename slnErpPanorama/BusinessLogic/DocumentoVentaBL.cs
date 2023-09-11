@@ -899,7 +899,7 @@ namespace ErpPanorama.BusinessLogic
                     int IdEmpresaCorrelativo = pItem.IdEmpresa;
 
                     IdDocumentoVenta = DocumentoVenta.Inserta(pItem);
-                   
+
                     if (pItem.IdEmpresa == 13)
                     {
                         if (pItem.IdTienda == Parametros.intTiendaUcayali)
@@ -907,7 +907,7 @@ namespace ErpPanorama.BusinessLogic
                             pItem.IdEmpresa = Parametros.intPanoraramaDistribuidores;
                         }
                     }
-                                       
+
                     if (pItem.IdTipoDocumento == Parametros.intTipoDocFacturaVentaTraslado || pItem.IdTipoDocumento == Parametros.intTipoDocBoletaVentaTraslado)
                     {
                         foreach (DocumentoVentaDetalleBE item in pListaDocumentoVentaDetalle)
@@ -915,14 +915,16 @@ namespace ErpPanorama.BusinessLogic
                             item.IdDocumentoVenta = IdDocumentoVenta;
                             DocumentoVentaDetalle.Inserta(item);
                         }
-                    }else{
+                    }
+                    else
+                    {
                         foreach (DocumentoVentaDetalleBE item in pListaDocumentoVentaDetalle)
                         {
-                           //Insertamos el detalle del documento de venta
+                            //Insertamos el detalle del documento de venta
                             item.IdDocumentoVenta = IdDocumentoVenta;
                             //item.IdKardex = IdKardex;
                             DocumentoVentaDetalle.Inserta(item);
-                        }                        
+                        }
                     }
 
                     ClienteBE objE_Cliente = new ClienteBE();
@@ -930,7 +932,7 @@ namespace ErpPanorama.BusinessLogic
 
                     //Estado de cuenta de cliente
                     #region "Credito, Contraentrega y Copagan"
-                    if (pItem.IdTipoDocumento == Parametros.intTipoDocBoletaVenta || pItem.IdTipoDocumento == Parametros.intTipoDocFacturaVenta|| pItem.IdTipoDocumento == Parametros.intTipoDocBoletaElectronica || pItem.IdTipoDocumento == Parametros.intTipoDocFacturaElectronica)
+                    if (pItem.IdTipoDocumento == Parametros.intTipoDocBoletaVenta || pItem.IdTipoDocumento == Parametros.intTipoDocFacturaVenta || pItem.IdTipoDocumento == Parametros.intTipoDocBoletaElectronica || pItem.IdTipoDocumento == Parametros.intTipoDocFacturaElectronica)
                     {
                         if (pItem.IdFormaPago == Parametros.intContraEntrega || pItem.IdFormaPago == Parametros.intCredito || pItem.IdFormaPago == Parametros.intCopagan)
                         {
@@ -1038,7 +1040,7 @@ namespace ErpPanorama.BusinessLogic
 
                     //En caso que sea nota de credito
                     #region "Nota Credito"
-                    if (pItem.IdTipoDocumento == Parametros.intTipoDocNotaCredito|| pItem.IdTipoDocumento ==Parametros.intTipoDocNotaCreditoElectronica)
+                    if (pItem.IdTipoDocumento == Parametros.intTipoDocNotaCredito || pItem.IdTipoDocumento == Parametros.intTipoDocNotaCreditoElectronica)
                     {
                         if (pListaDocumentoVentaDetalle[0].IdProducto == Parametros.intIdProductoReajuste)
                         {
@@ -1259,14 +1261,14 @@ namespace ErpPanorama.BusinessLogic
 
                     //Actualiza la cancelación del pedido
                     PedidoDL Pedido = new PedidoDL();
-                    Pedido.ActualizaSituacion(pItem.IdEmpresa, Convert.ToInt32(pItem.IdPedido), Parametros.intFacturado,0,"",pItem.Usuario,pItem.Maquina);
+                    Pedido.ActualizaSituacion(pItem.IdEmpresa, Convert.ToInt32(pItem.IdPedido), Parametros.intFacturado, 0, "", pItem.Usuario, pItem.Maquina);
 
-                            ////Actualizamos la numeración del documento //antes
-                            //NumeracionDocumentoDL objDL_NumeracionDocumento = new NumeracionDocumentoDL();
-                            //objDL_NumeracionDocumento.ActualizaCorrelativoPeriodo(IdEmpresaCorrelativo, pItem.IdTipoDocumento, Parametros.intPeriodo);
+                    ////Actualizamos la numeración del documento //antes
+                    //NumeracionDocumentoDL objDL_NumeracionDocumento = new NumeracionDocumentoDL();
+                    //objDL_NumeracionDocumento.ActualizaCorrelativoPeriodo(IdEmpresaCorrelativo, pItem.IdTipoDocumento, Parametros.intPeriodo);
 
-                            //Actualizamos la numeración del documento //ADD 230718
-                            NumeracionDocumentoDL objDL_NumeracionDocumento = new NumeracionDocumentoDL();
+                    //Actualizamos la numeración del documento //ADD 230718
+                    NumeracionDocumentoDL objDL_NumeracionDocumento = new NumeracionDocumentoDL();
                     objDL_NumeracionDocumento.ActualizaCorrelativoSerie(pItem.IdEmpresa, pItem.IdTipoDocumento, pItem.Serie);   //
 
                     ts.Complete();
@@ -1275,6 +1277,23 @@ namespace ErpPanorama.BusinessLogic
             }
             catch (Exception ex)
             { throw ex; }
+        }
+
+        //public int ObtenerIdDocumentoVenta(int idPedido)
+        //{
+        //    DocumentoVentaDL documentoVentaDL = new DocumentoVentaDL();
+
+        //    int idDocumentoVenta = documentoVentaDL.ObtenerIdDocumentoVenta(idPedido);
+
+        //    return idDocumentoVenta;
+        //}
+
+        public DocumentoVentaBE ObtenerDocumentoVenta(int idPedido)
+        {
+            DocumentoVentaDL documentoVentaDL = new DocumentoVentaDL();
+            DocumentoVentaBE documentoVenta = documentoVentaDL.ObtenerDocumentoVenta(idPedido);
+
+            return documentoVenta;
         }
 
         public Int32 Inserta_EC(DocumentoVentaBE pItem, List<DocumentoVentaDetalleBE> pListaDocumentoVentaDetalle, int pIdEstadoCuenta, decimal pTipoCambio, int pMoneda)
@@ -3838,7 +3857,7 @@ namespace ErpPanorama.BusinessLogic
                     if (objSeparacion != null)
                     {
                         SeparacionDL Separacion = new SeparacionDL();
-                         IdEstadoCuenta = Separacion.Inserta_Sep(objSeparacion);
+                        IdEstadoCuenta = Separacion.Inserta_Sep(objSeparacion);
 
                         //ClienteCreditoDL ClienteCredito = new ClienteCreditoDL();
                         //ClienteCredito.ActualizaLineaCreditoUtilizada(Parametros.intEmpresaId, objEstadoCuenta.IdCliente, objEstadoCuenta.Importe, 0, objEstadoCuenta.IdMotivo);

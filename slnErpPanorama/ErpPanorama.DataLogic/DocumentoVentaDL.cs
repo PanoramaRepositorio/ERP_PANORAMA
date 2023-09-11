@@ -92,6 +92,26 @@ namespace ErpPanorama.DataLogic
             return intIdDocumentoVenta;
         }
 
+        public DocumentoVentaBE ObtenerDocumentoVenta(int idPedido)
+        {
+            DocumentoVentaBE documentoVenta = null;
+            Database db = DatabaseFactory.CreateDatabase("cnErpPanoramaBD");
+            DbCommand dbCommand = db.GetStoredProcCommand("usp_IdDocumentoVenta");
+
+            db.AddInParameter(dbCommand, "@IdPedido", DbType.Int32, idPedido);
+
+            using (IDataReader reader = db.ExecuteReader(dbCommand))
+            {
+                if (reader.Read())
+                {
+                    documentoVenta = new DocumentoVentaBE();
+                    documentoVenta.IdDocumentoVenta = Convert.ToInt32(reader["IdDocumentoVenta"]);
+                    documentoVenta.IdVendedor = Convert.ToInt32(reader["IdVendedor"]);
+                }
+            }
+
+            return documentoVenta;
+        }
 
         public Int32 InsertaWeb(DocumentoVentaBE pItem)
         {

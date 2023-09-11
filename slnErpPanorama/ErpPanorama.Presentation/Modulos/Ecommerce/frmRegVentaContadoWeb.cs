@@ -74,6 +74,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
         string NumeroDocumento = "";
         int IdAlmacen = 0;
         string NumeroCredito = "";
+        string NumeroDocumentos = "";
         string CodigoNC = "";
 
 
@@ -396,7 +397,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                     objE_Cliente = new ClienteBL().SeleccionaNumeroSunat(Parametros.intEmpresaId, NumDocumentoFac.Trim());
                     if (objE_Cliente != null)
                     {
-                        
+
                         if (objE_Cliente.DescCategoria != "ACTIVO")//Estado contribuyente
                         {
                             XtraMessageBox.Show("- El RUC seleccionado se encuentra en condición de " + objE_Cliente.DescCategoria, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -432,14 +433,14 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                 XtraMessageBox.Show("No se puede imprimir en esta Caja, pedido de " + cboEmpresa.Text + ",  \nConsulte con su Administrador", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            
+
 
             mListaDetalle = null;
             mListaDetalle = new PedidoDetalleBL().ListaTodosActivo(IdPedido);
 
             //add 250319 temporal
             #region "Agregar Promocion 2x1 y Otros" 
-            
+
             #endregion
 
             #region "Promocion Cliente 22"
@@ -662,9 +663,10 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                     return;
                 }
                 #endregion
+                InsertarDocumentoVenta(IdEmpresa, "TEB");
                 InsertarEstadoCuenta(); //Estado de Cuenta
                 InsertarEstadoCuentaDiseñador();
-                InsertarDocumentoVenta(IdEmpresa, "TEB");
+                
                 //ImpresionDirecta("TEB", objE_Talon.IdTipoFormato);
             }
 
@@ -680,13 +682,14 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
 
                 if (IdTipoDocumentoCliente == Parametros.intTipoDocumentoRUC && IdTipoDocumentoClienteAsociado == 0) //Add 050615
                 {
+                    InsertarDocumentoVenta(IdEmpresa, "TEF");
                     InsertarEstadoCuenta(); //Estado de Cuenta
                     InsertarEstadoCuentaDiseñador();
-                    InsertarDocumentoVenta(IdEmpresa, "TEF");
+                    
                     //ImpresionDirecta("TEF", objE_Talon.IdTipoFormato);
                 }
                 else if (IdTipoDocumentoClienteAsociado == Parametros.intTipoDocumentoRUC)
-                {
+                {   
                     InsertarEstadoCuentaDiseñador();
                     InsertarDocumentoVenta(IdEmpresa, "TEF");
                     //ImpresionDirecta("TEF", objE_Talon.IdTipoFormato);
@@ -756,40 +759,79 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
             }
         }
 
+
+        private int correlativoEstadoCuenta = 0; // Variable para llevar la cuenta del correlativo de Estado de Cuenta
+        private void ObtenerCorrelativoNumeroDocumento()
+        {
+            try
+            {
+
+                // Incrementa el correlativo en cada llamada al método
+                correlativoEstadoCuenta++;
+
+                // Formatea el correlativo como una cadena de 5 dígitos con ceros a la izquierda
+                string sNumero = correlativoEstadoCuenta.ToString("D5");
+
+                // Formatea la serie como una cadena de 3 dígitos con ceros a la izquierda
+                string sSerie = "B010"; // Puedes ajustar la serie según tus necesidades
+
+                // Genera el número de documento concatenando todo
+                 NumeroDocumentos = "03-" + sSerie + "-" + sNumero;
+
+                // Haces algo con el número de documento generado (puedes mostrarlo, almacenarlo, etc.)
+                Console.WriteLine("Número de Estado de Cuenta: " + NumeroDocumentos);
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
+
         private void InsertarEstadoCuenta()
         {
 
+            ObtenerCorrelativoNumeroDocumento();
             ObtenerCorrelativoCredito();
+            DocumentoVentaBL objBL_DocumentoVentaEstado = new DocumentoVentaBL();
             EstadoCuentaBE objE_EstadoCuenta = null;
+            EstadoCuentaClienteBE objE_EstadoCuentaCliente = null;
+            objE_EstadoCuentaCliente = new EstadoCuentaClienteBE();
+            EstadoCuentaClienteBL objBL_EstadoCuentaCliente = new EstadoCuentaClienteBL();
             SeparacionBE objE_Separacion = null;
+            DocumentoVentaBE pItem = new DocumentoVentaBE();
+            objE_EstadoCuentaCliente.IdPedido = IdPedido;
+            //DocumentoVentaBE documentoVenta = objBL_DocumentoVentaEstado.ObtenerIdDocumentoVenta(IdPedido);
+            DocumentoVentaBE documentoVenta = objBL_DocumentoVentaEstado.ObtenerDocumentoVenta(IdPedido);
 
-            //Datos del estado de cuenta
-            //agregar t.cambio
-            //agregar  mondeda
+            // Ahora puedes acceder a los datos en variables
+            int idDocumentoVenta = documentoVenta.IdDocumentoVenta;
+            int idVendedor = documentoVenta.IdVendedor;
 
-            objE_EstadoCuenta = new EstadoCuentaBE();
-            objE_EstadoCuenta.IdEstadoCuenta = 0;
-            objE_EstadoCuenta.IdEmpresa = Parametros.intEmpresaId;
-            objE_EstadoCuenta.Periodo = Parametros.intPeriodo;
-            objE_EstadoCuenta.IdCliente = IdCliente;
-            objE_EstadoCuenta.NumeroDocumento = NumeroCredito;//txtNumero.Text;
-            objE_EstadoCuenta.FechaCredito = Convert.ToDateTime(deFecha.DateTime.ToShortDateString());
-            objE_EstadoCuenta.FechaDeposito = Convert.ToDateTime(deFecha.DateTime.ToShortDateString());
-            objE_EstadoCuenta.Concepto = "PAGO CONTRAENTREGA" + " N° " + lblPedido.Text;
-            objE_EstadoCuenta.FechaVencimiento = null;
-            //objE_EstadoCuenta.Importe = Convert.ToInt32(5) == 5 ? Math.Round(Convert.ToDecimal(txtTotal.EditValue) / Convert.ToDecimal(3.78), 2) : Convert.ToDecimal(txtTotal.EditValue);
-            //objE_EstadoCuenta.ImporteAnt = Convert.ToInt32(5) == 5 ? Math.Round(Convert.ToDecimal(txtTotal.EditValue) / Convert.ToDecimal(3.78), 2) : Convert.ToDecimal(txtTotal.EditValue);
-            objE_EstadoCuenta.Importe = Convert.ToDecimal(txtTotal.EditValue);
-            objE_EstadoCuenta.ImporteAnt = Convert.ToDecimal(txtTotal.EditValue);
-            objE_EstadoCuenta.TipoMovimiento = "C";
-            objE_EstadoCuenta.IdMotivo = 170;
-            objE_EstadoCuenta.IdDocumentoVenta = (int?)null;
-            objE_EstadoCuenta.IdUsuario = Parametros.intUsuarioId;
-            objE_EstadoCuenta.IdPedido = IdPedido;
-            objE_EstadoCuenta.Origen = "ECOMMERCE";
-            objE_EstadoCuenta.FlagEstado = true;
-            objE_EstadoCuenta.Usuario = Parametros.strUsuarioLogin;
-            objE_EstadoCuenta.Maquina = WindowsIdentity.GetCurrent().Name.ToString();
+            objE_EstadoCuentaCliente.IdEstadoCuentaCliente = 0;
+            objE_EstadoCuentaCliente.IdEmpresa = Parametros.intEmpresaId;
+            objE_EstadoCuentaCliente.Periodo = Parametros.intPeriodo;
+            objE_EstadoCuentaCliente.IdCliente = IdCliente;
+            objE_EstadoCuentaCliente.NumeroDocumento = NumeroDocumentos;
+            objE_EstadoCuentaCliente.Fecha = Convert.ToDateTime(deFecha.DateTime.ToShortDateString());
+            objE_EstadoCuentaCliente.FechaRegistro = Convert.ToDateTime(deFecha.DateTime.ToShortDateString());
+            objE_EstadoCuentaCliente.FechaVencimiento = objE_EstadoCuentaCliente.Fecha.AddDays(8);
+            objE_EstadoCuentaCliente.Concepto = "CONTRAENTREGA" + " N° " + lblPedido.Text;
+            objE_EstadoCuentaCliente.Importe = Convert.ToDecimal(txtTotal.EditValue);
+            objE_EstadoCuentaCliente.TipoMovimiento = "C";
+            objE_EstadoCuentaCliente.IdMotivo = 170;
+            objE_EstadoCuentaCliente.Saldo = Convert.ToDecimal(txtTotal.EditValue);
+            objE_EstadoCuentaCliente.IdMoneda = Parametros.intSoles;
+            objE_EstadoCuentaCliente.IdDocumentoVenta = idDocumentoVenta; /// completar logica aqui
+            objE_EstadoCuentaCliente.UsuarioRegistro = pItem.Usuario;
+            objE_EstadoCuentaCliente.IdPersona = idVendedor;
+            objE_EstadoCuentaCliente.IdPedido = IdPedido;
+            objE_EstadoCuentaCliente.FlagEstado = true;
+            objE_EstadoCuentaCliente.Usuario = Parametros.strUsuarioLogin;
+            objE_EstadoCuentaCliente.Maquina = WindowsIdentity.GetCurrent().Name.ToString();
+            
 
             //Datos de la separación
             objE_Separacion = new SeparacionBE();
@@ -800,7 +842,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
             objE_Separacion.NumeroDocumento = NumeroCredito;
             objE_Separacion.FechaSeparacion = Convert.ToDateTime(deFecha.DateTime.ToShortDateString());
             objE_Separacion.FechaPago = Convert.ToDateTime(deFecha.DateTime.ToShortDateString());
-            objE_Separacion.Concepto = "PAGO CONTRAENTREGA" + " N° " + lblPedido.Text;
+            objE_Separacion.Concepto = "CONTRAENTREGA" + " N° " + lblPedido.Text;
             objE_Separacion.FechaVencimiento = null;
             objE_Separacion.Importe = Convert.ToDecimal(txtTotal.EditValue);
             objE_Separacion.ImporteAnt = Convert.ToDecimal(txtTotal.EditValue);
@@ -818,22 +860,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
             if (pOperacion == Operacion.Nuevo)
             {
 
-                DocumentoVentaBL objBL_DocumentoVentaEstado = new DocumentoVentaBL();
-                if (objE_EstadoCuenta != null)
-                {
-                    List<EstadoCuentaBE> lstEstadoCuenta = new List<EstadoCuentaBE>();
-                    lstEstadoCuenta = new EstadoCuentaBL().ListaPedido(Parametros.intEmpresaId, IdPedido, "C");  //Cargo
-
-                    if (lstEstadoCuenta.Count > 0)
-                    {
-                        //XtraMessageBox.Show("Ya existe un registro N°: " + lstEstadoCuenta[0].NumeroDocumento + " en Estado de Cuenta en Dolares(US$) \n US$ " + lstEstadoCuenta[0].Importe, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        IdEstadoCuenta2 = objBL_DocumentoVentaEstado.InsertaCredito2(objE_EstadoCuenta, objE_Separacion);
-                        //XtraMessageBox.Show("Se registró Crédito N°: " + NumeroCredito + " en Estado de Cuenta en Dolares(US$) \n US$ " + objE_EstadoCuenta.Importe, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
+                
 
                 if (objE_Separacion != null)
                 {
@@ -847,6 +874,23 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                     {
                         IdEstadoCuenta2 = objBL_DocumentoVentaEstado.InsertaCredito2(objE_EstadoCuenta, objE_Separacion);
                         XtraMessageBox.Show("Se registró Crédito N°: " + NumeroCredito + " en Estado de Cuenta en Soles(S/) \n S/" + objE_Separacion.Importe, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+
+                if (objE_EstadoCuentaCliente != null)
+                {
+                    List<EstadoCuentaBE> lstEstadoCuenta = new List<EstadoCuentaBE>();
+                    lstEstadoCuenta = new EstadoCuentaBL().ListaPedido(Parametros.intEmpresaId, IdPedido, "C");  //Cargo
+
+                    if (lstEstadoCuenta.Count > 0)
+                    {
+                        //XtraMessageBox.Show("Ya existe un registro N°: " + lstEstadoCuenta[0].NumeroDocumento + " en Estado de Cuenta en Dolares(US$) \n US$ " + lstEstadoCuenta[0].Importe, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        
+                        objBL_EstadoCuentaCliente.Inserta(objE_EstadoCuentaCliente);
+                        
                     }
                 }
 
@@ -1704,6 +1748,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
 
                 if (pOperacion == Operacion.Nuevo)
                 {
+                    //IdDocumentoVenta = objBL_DocumentoVenta.Inserta_EC(objDocumentoVenta, lstDocumentoVentaDetalle, IdEstadoCuenta2, Convert.ToDecimal(txtTipoCambio.EditValue), Convert.ToInt32(cboMoneda.EditValue));///ECM2
                     int IdDocumentoVenta = objBL_DocumentoVenta.InsertaDocumentoContadoWeb(objDocumentoVenta, lstDocumentoVentaDetalle, objE_MovimientoCaja, lstDocumentoVentaPago);
                     if (chkDespachar.Checked) GrabarDespacho();
 
