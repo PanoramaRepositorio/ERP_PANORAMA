@@ -17,79 +17,87 @@ namespace ErpPanorama.DataLogic
             Int32 intIdDocumentoVenta = 0;
             Database db = DatabaseFactory.CreateDatabase("cnErpPanoramaBD");
             DbCommand dbCommand = db.GetStoredProcCommand("usp_DocumentoVenta_Inserta");
+            try
+            {
+                db.AddOutParameter(dbCommand, "pIdDocumentoVenta", DbType.Int32, pItem.IdDocumentoVenta);
+                db.AddInParameter(dbCommand, "pIdEmpresa", DbType.Int32, pItem.IdEmpresa);
+                db.AddInParameter(dbCommand, "pIdTienda", DbType.Int32, pItem.IdTienda);
+                db.AddInParameter(dbCommand, "pIdPedido", DbType.Int32, pItem.IdPedido);
+                db.AddInParameter(dbCommand, "pPeriodo", DbType.Int32, pItem.Periodo);
+                db.AddInParameter(dbCommand, "pMes", DbType.Int32, pItem.Mes);
+                db.AddInParameter(dbCommand, "pIdTipoDocumento", DbType.Int32, pItem.IdTipoDocumento);
+                db.AddInParameter(dbCommand, "pSerie", DbType.String, pItem.Serie);
+                db.AddInParameter(dbCommand, "pNumero", DbType.String, pItem.Numero);
 
-            db.AddOutParameter(dbCommand, "pIdDocumentoVenta", DbType.Int32, pItem.IdDocumentoVenta);
-            db.AddInParameter(dbCommand, "pIdEmpresa", DbType.Int32, pItem.IdEmpresa);
-            db.AddInParameter(dbCommand, "pIdTienda", DbType.Int32, pItem.IdTienda);
-            db.AddInParameter(dbCommand, "pIdPedido", DbType.Int32, pItem.IdPedido);
-            db.AddInParameter(dbCommand, "pPeriodo", DbType.Int32, pItem.Periodo);
-            db.AddInParameter(dbCommand, "pMes", DbType.Int32, pItem.Mes);
-            db.AddInParameter(dbCommand, "pIdTipoDocumento", DbType.Int32, pItem.IdTipoDocumento);
-            db.AddInParameter(dbCommand, "pSerie", DbType.String, pItem.Serie);
-            db.AddInParameter(dbCommand, "pNumero", DbType.String, pItem.Numero);
+                db.AddInParameter(dbCommand, "pIdDocumentoReferencia", DbType.Int32, pItem.IdDocumentoReferencia);
+                //db.AddInParameter(dbCommand, "pSerieReferencia", DbType.String, pItem.SerieReferencia);
+                //db.AddInParameter(dbCommand, "pNumeroReferencia", DbType.String, pItem.NumeroReferencia);
 
-            db.AddInParameter(dbCommand, "pIdDocumentoReferencia", DbType.Int32, pItem.IdDocumentoReferencia);
-            //db.AddInParameter(dbCommand, "pSerieReferencia", DbType.String, pItem.SerieReferencia);
-            //db.AddInParameter(dbCommand, "pNumeroReferencia", DbType.String, pItem.NumeroReferencia);
+                db.AddInParameter(dbCommand, "pFecha", DbType.DateTime, pItem.Fecha);
+                db.AddInParameter(dbCommand, "pFechaVencimiento", DbType.DateTime, pItem.FechaVencimiento);
+                db.AddInParameter(dbCommand, "pIdCliente", DbType.Int32, pItem.IdCliente);
+                db.AddInParameter(dbCommand, "pNumeroDocumento", DbType.String, pItem.NumeroDocumento);
+                db.AddInParameter(dbCommand, "pDescCliente", DbType.String, pItem.DescCliente);
+                db.AddInParameter(dbCommand, "pDireccion", DbType.String, pItem.Direccion);
+                db.AddInParameter(dbCommand, "pIdMoneda", DbType.Int32, pItem.IdMoneda);
+                db.AddInParameter(dbCommand, "pTipoCambio", DbType.Decimal, pItem.TipoCambio);
+                db.AddInParameter(dbCommand, "pIdFormaPago", DbType.Int32, pItem.IdFormaPago);
+                db.AddInParameter(dbCommand, "pIdVendedor", DbType.Int32, pItem.IdVendedor);
+                db.AddInParameter(dbCommand, "pTotalCantidad", DbType.Int32, pItem.TotalCantidad);
+                db.AddInParameter(dbCommand, "pSubTotal", DbType.Decimal, pItem.SubTotal);
+                db.AddInParameter(dbCommand, "pPorcentajeDescuento", DbType.Decimal, pItem.PorcentajeDescuento);//double
+                db.AddInParameter(dbCommand, "pDescuento", DbType.Decimal, pItem.Descuentos);
+                db.AddInParameter(dbCommand, "pPorcentajeImpuesto", DbType.Decimal, pItem.PorcentajeImpuesto);
+                db.AddInParameter(dbCommand, "pIgv", DbType.Decimal, pItem.Igv);
+                db.AddInParameter(dbCommand, "pIcbper", DbType.Decimal, pItem.Icbper);
+                db.AddInParameter(dbCommand, "pTotal", DbType.Decimal, pItem.Total);
+                db.AddInParameter(dbCommand, "pTotalBruto", DbType.Decimal, pItem.TotalBruto);
+                db.AddInParameter(dbCommand, "pObservacion", DbType.String, pItem.Observacion);
 
-            db.AddInParameter(dbCommand, "pFecha", DbType.DateTime, pItem.Fecha);
-            db.AddInParameter(dbCommand, "pFechaVencimiento", DbType.DateTime, pItem.FechaVencimiento);
-            db.AddInParameter(dbCommand, "pIdCliente", DbType.Int32, pItem.IdCliente);
-            db.AddInParameter(dbCommand, "pNumeroDocumento", DbType.String, pItem.NumeroDocumento);
-            db.AddInParameter(dbCommand, "pDescCliente", DbType.String, pItem.DescCliente);
-            db.AddInParameter(dbCommand, "pDireccion", DbType.String, pItem.Direccion);
-            db.AddInParameter(dbCommand, "pIdMoneda", DbType.Int32, pItem.IdMoneda);
-            db.AddInParameter(dbCommand, "pTipoCambio", DbType.Decimal, pItem.TipoCambio);
-            db.AddInParameter(dbCommand, "pIdFormaPago", DbType.Int32, pItem.IdFormaPago);
-            db.AddInParameter(dbCommand, "pIdVendedor", DbType.Int32, pItem.IdVendedor);
+                db.AddInParameter(dbCommand, "pIdSituacion", DbType.Int32, pItem.IdSituacion);
+                db.AddInParameter(dbCommand, "pIdPromocionProxima", DbType.Int32, pItem.IdPromocionProxima);
+                db.AddInParameter(dbCommand, "pFlagPromocionProxima", DbType.Boolean, pItem.FlagPromocionProxima);
+                db.AddInParameter(dbCommand, "pCodigoNC", DbType.String, pItem.CodigoNC);
+                db.AddInParameter(dbCommand, "pIdUbigeo", DbType.String, pItem.IdUbigeo);
+                db.AddInParameter(dbCommand, "pIdUbigeoOrigen", DbType.String, pItem.IdUbigeoOrigen);
+                db.AddInParameter(dbCommand, "pFechaTraslado", DbType.DateTime, pItem.FechaTraslado);
+                db.AddInParameter(dbCommand, "pMotivoTraslado", DbType.String, pItem.MotivoTraslado);
+                db.AddInParameter(dbCommand, "pModalildadTraslado", DbType.String, pItem.ModalidadTraslado);
+                db.AddInParameter(dbCommand, "pNumeroBultos", DbType.Int32, pItem.NumeroBultos);
 
-            db.AddInParameter(dbCommand, "pTotalCantidad", DbType.Int32, pItem.TotalCantidad);
-            db.AddInParameter(dbCommand, "pSubTotal", DbType.Decimal, pItem.SubTotal);
-            db.AddInParameter(dbCommand, "pPorcentajeDescuento", DbType.Decimal, pItem.PorcentajeDescuento);//double
-            db.AddInParameter(dbCommand, "pDescuento", DbType.Decimal, pItem.Descuentos);
-            db.AddInParameter(dbCommand, "pPorcentajeImpuesto", DbType.Decimal, pItem.PorcentajeImpuesto);
-            db.AddInParameter(dbCommand, "pIgv", DbType.Decimal, pItem.Igv);
-            db.AddInParameter(dbCommand, "pIcbper", DbType.Decimal, pItem.Icbper);
-            db.AddInParameter(dbCommand, "pTotal", DbType.Decimal, pItem.Total);
-            db.AddInParameter(dbCommand, "pTotalBruto", DbType.Decimal, pItem.TotalBruto);
-            db.AddInParameter(dbCommand, "pObservacion", DbType.String, pItem.Observacion);
+                db.AddInParameter(dbCommand, "pPesoBultos", DbType.Int32, pItem.PesoBultos);
+                db.AddInParameter(dbCommand, "pIdTipoIdentidadTra", DbType.String, pItem.IdTipoIdentidadTra);
+                db.AddInParameter(dbCommand, "pNumeroDocTra", DbType.String, pItem.NumeroDocTra);
+                db.AddInParameter(dbCommand, "pRazonSocialTra", DbType.String, pItem.RazonSocialTra);
+                db.AddInParameter(dbCommand, "pNumeroPlaca", DbType.String, pItem.NumeroPlaca);
+                db.AddInParameter(dbCommand, "pIdPersonaRegistro", DbType.Int32, pItem.IdPersonaRegistro);
 
-            db.AddInParameter(dbCommand, "pIdSituacion", DbType.Int32, pItem.IdSituacion);
-            db.AddInParameter(dbCommand, "pIdPromocionProxima", DbType.Int32, pItem.IdPromocionProxima);
-            db.AddInParameter(dbCommand, "pFlagPromocionProxima", DbType.Boolean, pItem.FlagPromocionProxima);
-            db.AddInParameter(dbCommand, "pCodigoNC", DbType.String, pItem.CodigoNC);
-            db.AddInParameter(dbCommand, "pIdUbigeo", DbType.String, pItem.IdUbigeo);
-            db.AddInParameter(dbCommand, "pIdUbigeoOrigen", DbType.String, pItem.IdUbigeoOrigen);
-            db.AddInParameter(dbCommand, "pFechaTraslado", DbType.DateTime, pItem.FechaTraslado);
-            db.AddInParameter(dbCommand, "pMotivoTraslado", DbType.String, pItem.MotivoTraslado);
-            db.AddInParameter(dbCommand, "pModalildadTraslado", DbType.String, pItem.ModalidadTraslado);
-            db.AddInParameter(dbCommand, "pNumeroBultos", DbType.Int32, pItem.NumeroBultos);
+                db.AddInParameter(dbCommand, "pFlagCumpleanios", DbType.Boolean, pItem.FlagCumpleanios);
+                db.AddInParameter(dbCommand, "pTotalDscCumpleanios", DbType.Decimal, pItem.TotalDscCumpleanios);
 
-            db.AddInParameter(dbCommand, "pPesoBultos", DbType.Int32, pItem.PesoBultos);
-            db.AddInParameter(dbCommand, "pIdTipoIdentidadTra", DbType.String, pItem.IdTipoIdentidadTra);
-            db.AddInParameter(dbCommand, "pNumeroDocTra", DbType.String, pItem.NumeroDocTra);
-            db.AddInParameter(dbCommand, "pRazonSocialTra", DbType.String, pItem.RazonSocialTra);
-            db.AddInParameter(dbCommand, "pNumeroPlaca", DbType.String, pItem.NumeroPlaca);
-            db.AddInParameter(dbCommand, "pIdPersonaRegistro", DbType.Int32, pItem.IdPersonaRegistro);
+                db.AddInParameter(dbCommand, "pFlagEstado", DbType.Boolean, pItem.FlagEstado);
+                db.AddInParameter(dbCommand, "pMaquina", DbType.String, pItem.Maquina);
+                db.AddInParameter(dbCommand, "pUsuario", DbType.String, pItem.Usuario);
+                db.AddInParameter(dbCommand, "pIdComercioAmigo", DbType.Int32, pItem.IdComercioAmigo);
 
-            db.AddInParameter(dbCommand, "pFlagCumpleanios", DbType.Boolean, pItem.FlagCumpleanios);
-            db.AddInParameter(dbCommand, "pTotalDscCumpleanios", DbType.Decimal, pItem.TotalDscCumpleanios);
-
-            db.AddInParameter(dbCommand, "pFlagEstado", DbType.Boolean, pItem.FlagEstado);
-            db.AddInParameter(dbCommand, "pMaquina", DbType.String, pItem.Maquina);
-            db.AddInParameter(dbCommand, "pUsuario", DbType.String, pItem.Usuario);
-            db.AddInParameter(dbCommand, "pIdComercioAmigo", DbType.Int32, pItem.IdComercioAmigo);
-
-            db.AddInParameter(dbCommand, "pIdTiendaDestinoGuia", DbType.Int32, pItem.IdTiendaDestinoGuia);
-            db.AddInParameter(dbCommand, "pMarca", DbType.String, pItem.Marca);
-            db.AddInParameter(dbCommand, "pLicenciaConducir", DbType.String, pItem.LicenciaConducir);
+                db.AddInParameter(dbCommand, "pIdTiendaDestinoGuia", DbType.Int32, pItem.IdTiendaDestinoGuia);
+                db.AddInParameter(dbCommand, "pMarca", DbType.String, pItem.Marca);
+                db.AddInParameter(dbCommand, "pLicenciaConducir", DbType.String, pItem.LicenciaConducir);
 
 
-            db.ExecuteNonQuery(dbCommand);
+                db.ExecuteNonQuery(dbCommand);
 
-            intIdDocumentoVenta = (int)db.GetParameterValue(dbCommand, "pIdDocumentoVenta");
+                intIdDocumentoVenta = (int)db.GetParameterValue(dbCommand, "pIdDocumentoVenta");
 
-            return intIdDocumentoVenta;
+                return intIdDocumentoVenta;
+
+            }
+            catch (Exception ex)
+            {
+                // Imprimir el mensaje de error en la consola
+                Console.WriteLine("Error en el método Inserta de DocumentoVentaDL: " + ex.Message);
+                throw ex;
+            }
         }
 
         public DocumentoVentaBE ObtenerDocumentoVenta(int idPedido)

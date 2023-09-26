@@ -1474,6 +1474,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
 
         #endregion
 
+        
         #region "Metodos"
 
         private bool ValidarIngreso()
@@ -1839,31 +1840,17 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                 ticket.TextoIzquierda("N° " + objE_Pago.NumeroDocumento + "      " + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString());
                 ticket.TextoIzquierda("CAJA: " + Parametros.strUsuarioLogin);
                 ticket.LineasGuion();
-                //ticket.EncabezadoVenta();
                 ticket.TextoIzquierda("RECIBI DE: " + objE_Pago.DescCliente);
                 ticket.TextoIzquierdaNLineas("La Cantidad de: " + FuncionBase.Enletras(Math.Round(Convert.ToDouble(ImportePago), 2).ToString()) + MonedaLetra);
                 ticket.TextoIzquierda("Referencia: " + objE_Pago.Concepto);
                 ticket.TextoIzquierda("");
-
-                //ticket.AgregaArticuloCodigo(Convert.ToInt32(item.Cantidad), Convert.ToString(item.Abreviatura), Convert.ToString(item.CodigoProveedor));
-                //ticket.AgregaArticuloDetalle(item.NombreProducto, Convert.ToDouble(Math.Round(item.PrecioVenta, 2)), Convert.ToDouble(Math.Round(item.ValorVenta, 2)));
-                ////}
                 ticket.LineasTotales();
-                //if (Convert.ToDouble(txtTotalBruto.EditValue) > Convert.ToDouble(txtTotal.EditValue)) //add 20 may 15
-                //{
-                //    ticket.AgregaTotales("Total", Math.Round(Convert.ToDouble(txtTotalBruto.EditValue), 2));
-                //    ticket.AgregaTotales("Descuento 2x1", Math.Round((Convert.ToDouble(txtTotalBruto.EditValue) - Convert.ToDouble(txtTotal.EditValue)) * -1, 2));
-                //}
-
-
                 ticket.AgregaTotales("Total", Math.Round(Convert.ToDouble(ImportePago), 2)); // imprime linea con total
                 ticket.TextoIzquierda("");
                 ticket.TextoIzquierda("");
                 ticket.TextoIzquierda("");
                 ticket.TextoCentro(new String('-', Parametros.strEmpresaNombre.Length));
                 ticket.TextoCentro(Parametros.strEmpresaNombre);
-                //ticket.TextoIzquierda("");
-                //ticket.TextoCentro("www.panoramadistribuidores.com");
                 ticket.CortaTicket();
 
                 #endregion
@@ -1895,6 +1882,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                     objDocumentoVenta.Periodo = Parametros.intPeriodo;
                     objDocumentoVenta.Mes = deFecha.DateTime.Month;
                     objDocumentoVenta.IdTipoDocumento = IdTipoDocumentoRCP;// Convert.ToInt32(cboDocumento.EditValue);
+                    
 
                     //Obtener la serie del documento relacionado a la caja
                     //if (NumeracionAutomatica == true) //Add 13-03-15
@@ -1936,7 +1924,8 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                     objDocumentoVenta.IdMoneda = Parametros.intSoles;//Convert.ToInt32(cboMoneda.EditValue);
                     objDocumentoVenta.TipoCambio = Convert.ToDecimal(txtTipoCambio.EditValue);//Convert.ToDecimal(txtTipoCambio.EditValue);
                     objDocumentoVenta.IdFormaPago = Parametros.intContado; //Convert.ToInt32(cboFormaPago.EditValue);
-                    objDocumentoVenta.IdVendedor = Parametros.intUsuarioId; //Convert.ToInt32(cboVendedor.EditValue);
+                    //objDocumentoVenta.IdVendedor = 10085; //Convert.ToInt32(cboVendedor.EditValue);
+                    objDocumentoVenta.IdVendedor = objE_Cliente.IdVendedor;
                     objDocumentoVenta.TotalCantidad = 1; //Convert.ToInt32(txtTotalCantidad.EditValue);
                     objDocumentoVenta.SubTotal = deSubTotal;
                     objDocumentoVenta.PorcentajeDescuento = 0;
@@ -2347,7 +2336,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
 
 
             #region "Ticket Boleta"
-            if (TipoDoc == "TKV")
+            if (TipoDoc == "BEE")
             {
                 TalonBE objTalon = null;
                 objTalon = new TalonBL().SeleccionaCajaDocumento(Parametros.intEmpresaId, Parametros.intTiendaId, Parametros.intCajaId, Convert.ToInt32(cboDocumento.EditValue));
@@ -2422,11 +2411,11 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
 
             #region "Ticket Factura"
             else
-                if (TipoDoc == "TKF")
+                if (TipoDoc == "FEE")
             {
                 TalonBE objTalon = null;
                 objTalon = new TalonBL().SeleccionaCajaDocumento(Parametros.intEmpresaId, Parametros.intTiendaId, Parametros.intCajaId, Convert.ToInt32(cboDocumento.EditValue));
-
+                
                 CreaTicket ticket = new CreaTicket();
 
                 #region "Busca Impresora"
@@ -2453,6 +2442,10 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                 if (!found)
                 {
                     MessageBox.Show("La impresora " + objTalon.Impresora + " Nombre para Ticket no ha sido encontrada.");
+                }
+                else
+                {
+                    MessageBox.Show("Se encontro impresora " + objTalon.Impresora +  " Se procederá a imprimir ");
                 }
                 #endregion
 
@@ -2851,6 +2844,11 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
             {
                 txtImporteSoles.Focus();
             }
+        }
+
+        private void txtNumeroRCP_EditValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -143,7 +143,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
             if (gvReciboPago.RowCount > 0)
             {
                 int IdPagoDocumento = int.Parse(gvReciboPago.GetFocusedRowCellValue("IdPago").ToString());
-                //Imprimir(IdPagoDocumento);
+                Imprimir(IdPagoDocumento);
             }
 
         }
