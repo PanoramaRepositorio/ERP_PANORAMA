@@ -3230,6 +3230,18 @@
     <Compile Include="Modulos\Ventas\Maestros\frmManPromocionValeDescuentoEdit.Designer.cs">
       <DependentUpon>frmManPromocionValeDescuentoEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modulos\Ventas\Maestros\frmManPromo_Descuento_Por_Volumen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\Ventas\Maestros\frmManPromo_Descuento_Por_Volumen.Designer.cs">
+      <DependentUpon>frmManPromo_Descuento_Por_Volumen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\Ventas\Maestros\frmManPromo_Descuento_Por_VolumenEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\Ventas\Maestros\frmManPromo_Descuento_Por_VolumenEdit.Designer.cs">
+      <DependentUpon>frmManPromo_Descuento_Por_VolumenEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modulos\Ventas\Maestros\frmManSubLineaProducto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5592,6 +5604,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Ventas\Maestros\frmManPromocionValeDescuentoEdit.resx">
       <DependentUpon>frmManPromocionValeDescuentoEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\Ventas\Maestros\frmManPromo_Descuento_Por_Volumen.resx">
+      <DependentUpon>frmManPromo_Descuento_Por_Volumen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\Ventas\Maestros\frmManPromo_Descuento_Por_VolumenEdit.resx">
+      <DependentUpon>frmManPromo_Descuento_Por_VolumenEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Ventas\Maestros\frmManSubLineaProducto.resx">
       <DependentUpon>frmManSubLineaProducto.cs</DependentUpon>
