@@ -41,9 +41,9 @@ namespace ErpPanorama.DataLogic
                 PromocionTemporal.FechaInicio = DateTime.Parse(reader["FechaInicio"].ToString());
                 PromocionTemporal.FechaFin = DateTime.Parse(reader["FechaFin"].ToString());
                 PromocionTemporal.FlagContado = Boolean.Parse(reader["FlagContado"].ToString());
-                PromocionTemporal.FlagCredito = Boolean.Parse(reader["FlagCredito"].ToString());
-                PromocionTemporal.FlagConsignacion = Boolean.Parse(reader["FlagConsignacion"].ToString());
-                PromocionTemporal.FlagSeparacion = Boolean.Parse(reader["FlagSeparacion"].ToString());
+                PromocionTemporal.FlagCFrabricacion = Boolean.Parse(reader["FlagCFrabricacion"].ToString());
+                PromocionTemporal.FlagAplicaCombinacion = Boolean.Parse(reader["FlagAplicaCombinacion"].ToString());
+                PromocionTemporal.FlagAplicaxCodigo = Boolean.Parse(reader["FlagAplicaxCodigo"].ToString());
                 PromocionTemporal.FlagContraentrega = Boolean.Parse(reader["FlagContraentrega"].ToString());
                 PromocionTemporal.FlagCopagan = Boolean.Parse(reader["FlagCopagan"].ToString());
                 PromocionTemporal.FlagObsequio = Boolean.Parse(reader["FlagObsequio"].ToString());
@@ -75,9 +75,9 @@ namespace ErpPanorama.DataLogic
             Database db = DatabaseFactory.CreateDatabase("cnErpPanoramaBD");
             DbCommand dbCommand = db.GetStoredProcCommand("usp_PromocionVolumen_Inserta");
 
-            db.AddOutParameter(dbCommand, "pIdPromocionTemporal", DbType.Int32, pItem.IdPromocionVolumen);
+            db.AddOutParameter(dbCommand, "pIdPromocionVolumen", DbType.Int32, pItem.IdPromocionVolumen);
             db.AddInParameter(dbCommand, "pIdEmpresa", DbType.Int32, pItem.IdEmpresa);
-            db.AddInParameter(dbCommand, "pDescPromocionTemporal", DbType.String, pItem.DescPromocionVolumen);
+            db.AddInParameter(dbCommand, "pDescPromocionVolumen", DbType.String, pItem.DescPromocionVolumen);
             db.AddInParameter(dbCommand, "pIdTipoCliente", DbType.Int32, pItem.IdTipoCliente);
             db.AddInParameter(dbCommand, "pIdFormaPago", DbType.Int32, pItem.IdFormaPago);
             db.AddInParameter(dbCommand, "pIdTienda", DbType.Int32, pItem.IdTienda);
@@ -87,9 +87,9 @@ namespace ErpPanorama.DataLogic
             db.AddInParameter(dbCommand, "pFechaInicioImpresion", DbType.DateTime, pItem.FechaInicioImpresion);
             db.AddInParameter(dbCommand, "pFechaFinImpresion", DbType.DateTime, pItem.FechaFinImpresion);
             db.AddInParameter(dbCommand, "pFlagContado", DbType.Boolean, pItem.FlagContado);
-            db.AddInParameter(dbCommand, "pFlagCredito", DbType.Boolean, pItem.FlagCredito);
-            db.AddInParameter(dbCommand, "pFlagConsignacion", DbType.Boolean, pItem.FlagConsignacion);
-            db.AddInParameter(dbCommand, "pFlagSeparacion", DbType.Boolean, pItem.FlagSeparacion);
+            db.AddInParameter(dbCommand, "pFlagCFrabricacion", DbType.Boolean, pItem.FlagCFrabricacion);
+            db.AddInParameter(dbCommand, "pFlagAplicaCombinacion", DbType.Boolean, pItem.FlagAplicaCombinacion);
+            db.AddInParameter(dbCommand, "pFlagAplicaxCodigo", DbType.Boolean, pItem.FlagAplicaxCodigo);
             db.AddInParameter(dbCommand, "pFlagContraentrega", DbType.Boolean, pItem.FlagContraentrega);
             db.AddInParameter(dbCommand, "pFlagCopagan", DbType.Boolean, pItem.FlagCopagan);
             db.AddInParameter(dbCommand, "pFlagObsequio", DbType.Boolean, pItem.FlagObsequio);
@@ -110,10 +110,75 @@ namespace ErpPanorama.DataLogic
 
             db.ExecuteNonQuery(dbCommand);
 
-            Id = (int)db.GetParameterValue(dbCommand, "pIdPromocionTemporal");
+            Id = (int)db.GetParameterValue(dbCommand, "pIdPromocionVolumen");
 
             return Id;
         }
+
+
+
+        public void ActualizaVistaWeb()
+        {
+            Database db = DatabaseFactory.CreateDatabase("cnErpPanoramaBD");
+            DbCommand dbCommand = db.GetStoredProcCommand("usp_PromocionTemporal_ActualizaVistaWeb");
+
+            db.ExecuteNonQuery(dbCommand);
+        }
+
+        public void Actualiza(PromocionVolumenBE pItem)
+        {
+            Database db = DatabaseFactory.CreateDatabase("cnErpPanoramaBD");
+            DbCommand dbCommand = db.GetStoredProcCommand("usp_PromocionVolumen_Actualiza");
+
+            db.AddInParameter(dbCommand, "pIdPromocionVolumen", DbType.Int32, pItem.IdPromocionVolumen);
+            db.AddInParameter(dbCommand, "pIdEmpresa", DbType.Int32, pItem.IdEmpresa);
+            db.AddInParameter(dbCommand, "pDescPromocionVolumen", DbType.String, pItem.DescPromocionVolumen);
+            db.AddInParameter(dbCommand, "pIdTipoCliente", DbType.Int32, pItem.IdTipoCliente);
+            db.AddInParameter(dbCommand, "pIdFormaPago", DbType.Int32, pItem.IdFormaPago);
+            db.AddInParameter(dbCommand, "pIdTienda", DbType.Int32, pItem.IdTienda);
+            db.AddInParameter(dbCommand, "pIdTipoVenta", DbType.Int32, pItem.IdTipoVenta);
+            db.AddInParameter(dbCommand, "pFechaInicio", DbType.DateTime, pItem.FechaInicio);
+            db.AddInParameter(dbCommand, "pFechaFin", DbType.DateTime, pItem.FechaFin);
+            db.AddInParameter(dbCommand, "pFechaInicioImpresion", DbType.DateTime, pItem.FechaInicioImpresion);
+            db.AddInParameter(dbCommand, "pFechaFinImpresion", DbType.DateTime, pItem.FechaFinImpresion);
+            db.AddInParameter(dbCommand, "pFlagContado", DbType.Boolean, pItem.FlagContado);
+            db.AddInParameter(dbCommand, "pFlagCFrabricacion", DbType.Boolean, pItem.FlagCFrabricacion);
+            db.AddInParameter(dbCommand, "pFlagAplicaCombinacion", DbType.Boolean, pItem.FlagAplicaCombinacion);
+            db.AddInParameter(dbCommand, "pFlagAplicaxCodigo", DbType.Boolean, pItem.FlagAplicaxCodigo);
+            db.AddInParameter(dbCommand, "pFlagContraentrega", DbType.Boolean, pItem.FlagContraentrega);
+            db.AddInParameter(dbCommand, "pFlagCopagan", DbType.Boolean, pItem.FlagCopagan);
+            db.AddInParameter(dbCommand, "pFlagObsequio", DbType.Boolean, pItem.FlagObsequio);
+            db.AddInParameter(dbCommand, "pFlagAsaf", DbType.Boolean, pItem.FlagAsaf);
+            db.AddInParameter(dbCommand, "pFlagClienteMayorista", DbType.Boolean, pItem.FlagClienteMayorista);
+            db.AddInParameter(dbCommand, "pFlagClienteFinal", DbType.Boolean, pItem.FlagClienteFinal);
+            db.AddInParameter(dbCommand, "pFlagUcayali", DbType.Boolean, pItem.FlagUcayali);
+            db.AddInParameter(dbCommand, "pFlagAndahuaylas", DbType.Boolean, pItem.FlagAndahuaylas);
+            db.AddInParameter(dbCommand, "pFlagPrescott", DbType.Boolean, pItem.FlagPrescott);
+            db.AddInParameter(dbCommand, "pFlagAviacion", DbType.Boolean, pItem.FlagAviacion);
+            db.AddInParameter(dbCommand, "pFlagMegaplaza", DbType.Boolean, pItem.FlagMegaplaza);
+            db.AddInParameter(dbCommand, "pFlagWeb", DbType.Boolean, pItem.FlagWeb);
+            db.AddInParameter(dbCommand, "pFlagEstado", DbType.Boolean, pItem.FlagEstado);
+            db.AddInParameter(dbCommand, "pUsuario", DbType.String, pItem.Usuario);
+            db.AddInParameter(dbCommand, "pMaquina", DbType.String, pItem.Maquina);
+            db.AddInParameter(dbCommand, "pFlagAviacion2", DbType.Boolean, pItem.FlagAviacion2);
+            db.AddInParameter(dbCommand, "pFlagSanMiguel", DbType.Boolean, pItem.FlagSanMiguel);
+            db.ExecuteNonQuery(dbCommand);
+        }
+
+
+        public void Elimina(PromocionVolumenBE pItem)
+        {
+            Database db = DatabaseFactory.CreateDatabase("cnErpPanoramaBD");
+            DbCommand dbCommand = db.GetStoredProcCommand("usp_PromocionVolumen_Elimina");
+
+            db.AddInParameter(dbCommand, "pIdPromocionVolumen", DbType.Int32, pItem.IdPromocionVolumen);
+            db.AddInParameter(dbCommand, "pIdEmpresa", DbType.Int32, pItem.IdEmpresa);
+            db.AddInParameter(dbCommand, "pUsuario", DbType.String, pItem.Usuario);
+            db.AddInParameter(dbCommand, "pMaquina", DbType.String, pItem.Maquina);
+
+            db.ExecuteNonQuery(dbCommand);
+        }
+
 
     }
 }
