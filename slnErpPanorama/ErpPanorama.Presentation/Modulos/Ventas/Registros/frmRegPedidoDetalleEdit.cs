@@ -475,6 +475,61 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                                     }
                                     #endregion
 
+
+                                    #region "Descuento Promocion x VOLUMEN"
+                                    if (!FlagPromocion2x1)
+                                    {
+                                        PromocionVolumenDetalleBE  objE_PromocionVolumen= null;
+                                        objE_PromocionVolumen = new PromocionVolumenBL().Selecciona(Parametros.intEmpresaId, IdTipoCliente, IdFormaPago, Parametros.intTiendaId, IdTipoVenta, IdProducto);
+                                        if (objE_PromocionVolumen != null)
+                                        {
+                                            if (IdTipoCliente == Parametros.intTipClienteMayorista || IdClasificacionCliente == Parametros.intBlack)///IdTipoCliente == Parametros.intTipClienteFinal && IdClasificacionCliente == Parametros.intBlack)
+                                            {
+
+                                                if (Convert.ToDecimal(txtDescuento.Text) < objE_PromocionVolumen.Descuento)//Regular y Descuento Promocion
+                                                {
+                                                    if (objE_PromocionVolumen.Descuento >= 80) DescuentoExtra = 0;//add 251019
+                                                    txtPrecioUnitario.EditValue = objBusProducto.pProductoBE.PrecioABSoles;
+
+                                                    if (IdFormaPago == Parametros.intContado)
+                                                    {
+                                                        if (objE_PromocionVolumen.Descuento < 21 && Parametros.intLineaReligioso == IdLineaProducto)
+                                                        {
+                                                            txtDescuento.EditValue = 25;
+                                                        }
+                                                        else if (objE_PromocionVolumen.Descuento < 21 && Parametros.intLineaReligioso != IdLineaProducto)
+                                                        {
+                                                            txtDescuento.EditValue = 25;
+                                                        }
+                                                        else
+                                                        {
+                                                            txtDescuento.EditValue = objE_PromocionVolumen.Descuento + DescuentoExtra;
+                                                        }
+                                                    }
+
+                                                    txtPrecioVenta.EditValue = Convert.ToDecimal(txtPrecioUnitario.Text) * ((100 - Convert.ToDecimal(txtDescuento.Text)) / 100);
+                                                    txtValorVenta.EditValue = Convert.ToDecimal(txtPrecioVenta.Text) * Convert.ToDecimal(txtCantidad.Text);
+                                                }
+                                            }
+                                            //Se agrego el descuento temporal
+                                            else
+                                            {
+                                                txtPrecioUnitario.EditValue = objBusProducto.pProductoBE.PrecioCDSoles;
+                                                txtDescuento.EditValue = objE_PromocionVolumen.Descuento;
+                                                txtPrecioVenta.EditValue = Convert.ToDecimal(txtPrecioUnitario.Text) * ((100 - Convert.ToDecimal(txtDescuento.Text)) / 100);
+                                                txtValorVenta.EditValue = Convert.ToDecimal(txtPrecioVenta.Text) * Convert.ToDecimal(txtCantidad.Text);
+                                            }
+                                        }
+                                    }
+                                    #endregion
+
+
+
+
+
+
+
+
                                 }
                                 else
                                 {
@@ -1276,9 +1331,16 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
         private decimal Decuento_Cliente_Final(int Cantidad)
         {
             decimal Descuento = 0;
-            //int Cantidad = Convert.ToInt32(txtCantidad.Text);
+            // int Cantidad = Convert.ToInt32(txtCantidad.Text);
+            PromocionVolumenDetalleBE objE_PromocionVolumen = new PromocionVolumenBL().Selecciona(Parametros.intEmpresaId, IdTipoCliente, IdFormaPago, Parametros.intTiendaId, IdTipoVenta, IdProducto, false);
             PromocionTemporalDetalleBE objE_PromocionTemporal = new PromocionTemporalDetalleBL().Selecciona(Parametros.intEmpresaId, IdTipoCliente, IdFormaPago, Parametros.intTiendaId, IdTipoVenta, IdProducto, true);
-            if (objE_PromocionTemporal != null)
+
+            if (objE_PromocionVolumen != null)
+            {
+                Descuento = objE_PromocionVolumen.Descuento;
+                IdPromocion2 = objE_PromocionVolumen.IdPromocionVolumenDetalle;
+            }
+            else if (objE_PromocionTemporal != null)
             {
                 Descuento = objE_PromocionTemporal.Descuento;
                 IdPromocion2 = objE_PromocionTemporal.IdPromocionTemporalDetalle;
@@ -1287,16 +1349,15 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
             {
                 if (IdMarca != Parametros.intIdMarcaKira)
                 {
-                    //if (bFlagEscala)
-                    //{
                     if (IdProducto == 83617 || IdProducto == 83618)
                     {
-
-                    }      
+                        // Manejar casos específicos de productos si es necesario.
+                    }
                     else
                     {
-                        // var  var_DescFinalMin = mListaDescuentoClienteFinal.Where(x =>x.CantidadMaxima >= Cantidad).ToList().Min(x => x.PorDescuento);
-                        var var_DescFinalMin = mListaDescuentoClienteFinal.Where(x => x.IdClasificacionCliente == IdClasificacionCliente && x.CantidadMaxima >= Cantidad).ToList().Min(x => x.PorDescuento);
+                        var var_DescFinalMin = mListaDescuentoClienteFinal
+                            .Where(x => x.IdClasificacionCliente == IdClasificacionCliente && x.CantidadMaxima >= Cantidad)
+                            .Min(x => x.PorDescuento);
 
                         if (var_DescFinalMin != null)
                         {
@@ -1304,9 +1365,6 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                         }
                     }
                 }
-
-                //}
-
             }
 
             return Descuento;
@@ -1862,8 +1920,8 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
         {
             try
             {
-                if (FlagPromocion2x1) return; //add 15-12-2019
 
+                if (FlagPromocion2x1) return; //add 15-12-2019
                 decimal decDescuento = 0;
                 decimal decPrecioAB = 0;
                 decimal decPrecioCD = 0;
@@ -2122,21 +2180,32 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                         }
                         #endregion
 
-                        //Test de velocidad por Hora
+                        // Test de velocidad por Hora
+                        #region "Descuento Promocion Volumen"
+                        PromocionVolumenDetalleBE objE_PromocionVolumen = null;
+                        objE_PromocionVolumen = new PromocionVolumenBL().Selecciona(Parametros.intEmpresaId, IdTipoCliente, IdFormaPago, Parametros.intTiendaId, IdTipoVenta, IdProducto);
+                        if (objE_PromocionVolumen != null && Convert.ToDecimal(txtDescuento.EditValue) < objE_PromocionVolumen.Descuento)
+                        {
+                            txtDescuento.EditValue = objE_PromocionVolumen.Descuento;
+                            txtPrecioVenta.EditValue = Convert.ToDecimal(txtPrecioUnitario.Text) * ((100 - Convert.ToDecimal(txtDescuento.Text)) / 100);
+                            txtValorVenta.EditValue = Convert.ToDecimal(txtPrecioVenta.Text) * Convert.ToDecimal(txtCantidad.Text);
+                        }
+                        #endregion
+
+                        // Test de velocidad por Hora
                         #region "Descuento Promocion Temporal"
                         PromocionTemporalDetalleBE objE_PromocionTemporal = null;
                         objE_PromocionTemporal = new PromocionTemporalDetalleBL().Selecciona(Parametros.intEmpresaId, IdTipoCliente, IdFormaPago, Parametros.intTiendaId, IdTipoVenta, IdProducto);
-                        if (objE_PromocionTemporal != null)
+                        if (objE_PromocionTemporal != null && Convert.ToDecimal(txtDescuento.EditValue) < objE_PromocionTemporal.Descuento)
                         {
-                            if (Convert.ToDecimal(txtDescuento.EditValue) < objE_PromocionTemporal.Descuento) //Regular y Descuento Promocion
-                            {
-                                txtDescuento.EditValue = objE_PromocionTemporal.Descuento;
-                                txtPrecioVenta.EditValue = Convert.ToDecimal(txtPrecioUnitario.Text) * ((100 - Convert.ToDecimal(txtDescuento.Text)) / 100);
-                                //txtPrecioVenta.EditValue = Math.Round(Convert.ToDecimal(txtPrecioUnitario.Text) * ((100 - Convert.ToDecimal(txtDescuento.Text)) / 100), 2);
-                                txtValorVenta.EditValue = Convert.ToDecimal(txtPrecioVenta.Text) * Convert.ToDecimal(txtCantidad.Text);
-                            }
+                            txtDescuento.EditValue = objE_PromocionTemporal.Descuento;
+                            txtPrecioVenta.EditValue = Convert.ToDecimal(txtPrecioUnitario.Text) * ((100 - Convert.ToDecimal(txtDescuento.Text)) / 100);
+                            txtValorVenta.EditValue = Convert.ToDecimal(txtPrecioVenta.Text) * Convert.ToDecimal(txtCantidad.Text);
                         }
                         #endregion
+
+
+
 
                         #region "Descuento de Cumpleaños - DESABILITADO 24/02/2022" 
                         //if (bDescuentoCumpleanio)
