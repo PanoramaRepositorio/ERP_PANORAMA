@@ -58,11 +58,11 @@ namespace ErpPanorama.BusinessEntity
         [DataMember]
         public Boolean FlagContado { get; set; }
         [DataMember]
-        public Boolean FlagCredito { get; set; }
+        public Boolean FlagCFrabricacion { get; set; }
         [DataMember]
-        public Boolean FlagConsignacion { get; set; }
+        public Boolean FlagAplicaCombinacion { get; set; }
         [DataMember]
-        public Boolean FlagSeparacion { get; set; }
+        public Boolean FlagAplicaxCodigo { get; set; }
         [DataMember]
         public Boolean FlagContraentrega { get; set; }
         [DataMember]

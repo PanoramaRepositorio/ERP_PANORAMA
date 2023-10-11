@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 namespace ErpPanorama.BusinessEntity
 {
     [DataContract]
-    class PromocionVolumenDetalleBE
+    public class PromocionVolumenDetalleBE
     {
         #region "Atributos"
         [DataMember]
@@ -77,6 +77,14 @@ namespace ErpPanorama.BusinessEntity
 
         [DataMember]
         public Int32 AlmacenSanMiguel { get; set; }
+
+        [DataMember]
+        public Decimal MontoSoloXUni { get; set; }
+
+        [DataMember]
+        public Decimal MontoUniXamas { get; set; }
+
+
         #endregion
 
     }
