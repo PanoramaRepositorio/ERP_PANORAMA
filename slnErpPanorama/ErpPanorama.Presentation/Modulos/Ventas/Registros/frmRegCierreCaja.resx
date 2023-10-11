@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnEliminarCierre.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnEliminarCierre.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAXBJREFUOE9j
         oAmwNpFhMdWXYIdyiQd+rlpch9enzXh2JvP1o6Pxr/Z2e+0KslFQg0oTBkdXpy+dXGMzS1KUR1BKlIe1
@@ -179,7 +179,7 @@
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>613, 11</value>
   </metadata>
-  <data name="btnGrabar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnGrabar.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         R0lGODlhEAAQAIYAAAAAALC4wGBg0CBIsP///1BQUJCI4ODg8BA4oGBYsEA4cFBIkLC4/zAwYLSwxaCg
         8NDY8IB40FBQsHB4kEBAoLC48CAwQGBogPDw8LCo8JCQ8DBAQICI8EBIsDA4oHBo0MDI4FBYcPD4/1BY
@@ -194,7 +194,7 @@
         TDjgI0kQCkFSCPygwcYACwECkFBSIEgQDwoEOiCiI4brBTNm3EiRQgENg7gJBgQAOw==
 </value>
   </data>
-  <data name="btnCancelar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnCancelar.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         R0lGODlhEAAQAIf/AGxGP3Bvb50hGJ4lHI00J4k5KpY0IpQ+N6MiF6YjF6ckF6gpHK0oGrYqGLorGLsu
         Gr4tGLIxHb42HqMsIKMvJLU2Jbs9I4FGP4FtaqxWU7JqZrdrZ8EuGMQvGMEwGsI2HcYwGcY6HskxGck3
@@ -216,7 +216,7 @@
         FAAQoLXtgQEBADs=
 </value>
   </data>
-  <data name="btnCerrarCaja.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnCerrarCaja.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAACrVJREFUWEet
         lXlQVGcWxb9kKqnKTCUx28xUJTEzU2PMZoygyKICsoiIoix2iwsuICIoNDtEAVFAMbKogOwoKDSr7NCy
@@ -267,7 +267,7 @@
         X3jK00B4ykNfGOWsKTgbIhDeVEh3txSf2vnowV01PbB/A4icGeINWPPDAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="btnVer.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnVer.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         R0lGODlhEAAQAIUAAP////D48PDw8PDo8ODo4NDo/+DY4LDg8MzT3LDY8MzMzMDIwMDAwMC4wLG7v7O4
         ybCwsLCosGCo/5mfp5mZmYyTnICQsICQoIaLkZCIkICIgHCIoHCIkICAkH2BhoB4gFB44GB4kHBwcGBw
