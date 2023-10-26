@@ -413,7 +413,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.btnGuardar.ImageOptions.Image = global::ErpPanorama.Presentation.Properties.Resources.btn_grabar;
             this.btnGuardar.ImageOptions.ImageIndex = 0;
             this.btnGuardar.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.btnGuardar.Location = new System.Drawing.Point(489, 619);
+            this.btnGuardar.Location = new System.Drawing.Point(489, 650);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 208;
@@ -426,7 +426,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.btnCancelar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.ImageOptions.Image")));
             this.btnCancelar.ImageOptions.ImageIndex = 0;
             this.btnCancelar.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(570, 619);
+            this.btnCancelar.Location = new System.Drawing.Point(570, 650);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 207;
@@ -469,7 +469,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.Tabcontrol.Location = new System.Drawing.Point(31, 223);
             this.Tabcontrol.Name = "Tabcontrol";
             this.Tabcontrol.SelectedIndex = 0;
-            this.Tabcontrol.Size = new System.Drawing.Size(614, 392);
+            this.Tabcontrol.Size = new System.Drawing.Size(614, 423);
             this.Tabcontrol.TabIndex = 212;
             this.Tabcontrol.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.Tabcontrol_DrawItem);
             // 
@@ -488,7 +488,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(606, 363);
+            this.tabPage1.Size = new System.Drawing.Size(606, 394);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -496,7 +496,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // btnEliminarPestaña1
             // 
             this.btnEliminarPestaña1.Image = global::ErpPanorama.Presentation.Properties.Resources.Remove_16x16;
-            this.btnEliminarPestaña1.Location = new System.Drawing.Point(475, 41);
+            this.btnEliminarPestaña1.Location = new System.Drawing.Point(492, 55);
             this.btnEliminarPestaña1.Name = "btnEliminarPestaña1";
             this.btnEliminarPestaña1.Size = new System.Drawing.Size(32, 26);
             this.btnEliminarPestaña1.TabIndex = 168;
@@ -506,7 +506,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // btnActualizarPestaña1
             // 
             this.btnActualizarPestaña1.Image = global::ErpPanorama.Presentation.Properties.Resources.actualizar;
-            this.btnActualizarPestaña1.Location = new System.Drawing.Point(447, 41);
+            this.btnActualizarPestaña1.Location = new System.Drawing.Point(464, 55);
             this.btnActualizarPestaña1.Name = "btnActualizarPestaña1";
             this.btnActualizarPestaña1.Size = new System.Drawing.Size(32, 26);
             this.btnActualizarPestaña1.TabIndex = 167;
@@ -514,7 +514,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // txtSumaCostosPestaña1
             // 
-            this.txtSumaCostosPestaña1.Location = new System.Drawing.Point(518, 262);
+            this.txtSumaCostosPestaña1.Location = new System.Drawing.Point(518, 277);
             this.txtSumaCostosPestaña1.Name = "txtSumaCostosPestaña1";
             this.txtSumaCostosPestaña1.Properties.MaxLength = 7;
             this.txtSumaCostosPestaña1.Size = new System.Drawing.Size(52, 20);
@@ -522,7 +522,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // txtPrecio
             // 
-            this.txtPrecio.Location = new System.Drawing.Point(362, 45);
+            this.txtPrecio.Location = new System.Drawing.Point(377, 61);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Properties.MaxLength = 7;
             this.txtPrecio.Size = new System.Drawing.Size(52, 20);
@@ -530,7 +530,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // labelControl22
             // 
-            this.labelControl22.Location = new System.Drawing.Point(326, 48);
+            this.labelControl22.Location = new System.Drawing.Point(341, 64);
             this.labelControl22.Name = "labelControl22";
             this.labelControl22.Size = new System.Drawing.Size(30, 13);
             this.labelControl22.TabIndex = 141;
@@ -539,7 +539,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // btnAgregarPestaña1
             // 
             this.btnAgregarPestaña1.Image = global::ErpPanorama.Presentation.Properties.Resources.Add_16x16;
-            this.btnAgregarPestaña1.Location = new System.Drawing.Point(420, 41);
+            this.btnAgregarPestaña1.Location = new System.Drawing.Point(437, 55);
             this.btnAgregarPestaña1.Name = "btnAgregarPestaña1";
             this.btnAgregarPestaña1.Size = new System.Drawing.Size(32, 26);
             this.btnAgregarPestaña1.TabIndex = 140;
@@ -548,10 +548,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // gridControlPestaña1
             // 
-            this.gridControlPestaña1.Location = new System.Drawing.Point(24, 88);
+            this.gridControlPestaña1.Location = new System.Drawing.Point(38, 97);
             this.gridControlPestaña1.MainView = this.gridView1;
             this.gridControlPestaña1.Name = "gridControlPestaña1";
-            this.gridControlPestaña1.Size = new System.Drawing.Size(546, 168);
+            this.gridControlPestaña1.Size = new System.Drawing.Size(532, 174);
             this.gridControlPestaña1.TabIndex = 139;
             this.gridControlPestaña1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -567,6 +567,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn14});
             this.gridView1.GridControl = this.gridControlPestaña1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumn44
             // 
@@ -618,11 +619,11 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // cboMaterial
             // 
-            this.cboMaterial.Location = new System.Drawing.Point(157, 45);
+            this.cboMaterial.Location = new System.Drawing.Point(177, 61);
             this.cboMaterial.Name = "cboMaterial";
             this.cboMaterial.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboMaterial.Size = new System.Drawing.Size(124, 20);
+            this.cboMaterial.Size = new System.Drawing.Size(128, 20);
             this.cboMaterial.TabIndex = 137;
             // 
             // labelControl7
@@ -634,7 +635,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(37, 48);
+            this.labelControl6.Location = new System.Drawing.Point(68, 64);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(102, 13);
             this.labelControl6.TabIndex = 129;
@@ -654,7 +655,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(606, 363);
+            this.tabPage2.Size = new System.Drawing.Size(606, 394);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -662,7 +663,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // btnEliminarPestaña2
             // 
             this.btnEliminarPestaña2.Image = global::ErpPanorama.Presentation.Properties.Resources.Remove_16x16;
-            this.btnEliminarPestaña2.Location = new System.Drawing.Point(462, 42);
+            this.btnEliminarPestaña2.Location = new System.Drawing.Point(492, 55);
             this.btnEliminarPestaña2.Name = "btnEliminarPestaña2";
             this.btnEliminarPestaña2.Size = new System.Drawing.Size(32, 26);
             this.btnEliminarPestaña2.TabIndex = 170;
@@ -672,7 +673,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // btnActualizarPestaña2
             // 
             this.btnActualizarPestaña2.Image = global::ErpPanorama.Presentation.Properties.Resources.actualizar;
-            this.btnActualizarPestaña2.Location = new System.Drawing.Point(434, 42);
+            this.btnActualizarPestaña2.Location = new System.Drawing.Point(464, 55);
             this.btnActualizarPestaña2.Name = "btnActualizarPestaña2";
             this.btnActualizarPestaña2.Size = new System.Drawing.Size(32, 26);
             this.btnActualizarPestaña2.TabIndex = 169;
@@ -680,7 +681,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // txtSumaCostosPestaña2
             // 
-            this.txtSumaCostosPestaña2.Location = new System.Drawing.Point(517, 303);
+            this.txtSumaCostosPestaña2.Location = new System.Drawing.Point(518, 277);
             this.txtSumaCostosPestaña2.Name = "txtSumaCostosPestaña2";
             this.txtSumaCostosPestaña2.Properties.MaxLength = 7;
             this.txtSumaCostosPestaña2.Size = new System.Drawing.Size(52, 20);
@@ -688,7 +689,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // txtinsumo
             // 
-            this.txtinsumo.Location = new System.Drawing.Point(347, 48);
+            this.txtinsumo.Location = new System.Drawing.Point(377, 61);
             this.txtinsumo.Name = "txtinsumo";
             this.txtinsumo.Properties.MaxLength = 7;
             this.txtinsumo.Size = new System.Drawing.Size(52, 20);
@@ -696,7 +697,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // labelControl8
             // 
-            this.labelControl8.Location = new System.Drawing.Point(311, 51);
+            this.labelControl8.Location = new System.Drawing.Point(341, 64);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(30, 13);
             this.labelControl8.TabIndex = 146;
@@ -723,6 +724,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn15});
             this.gridView2.GridControl = this.gridControlPestaña2;
             this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumn46
             // 
@@ -775,7 +777,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // btnAgregarPestaña2
             // 
             this.btnAgregarPestaña2.Image = global::ErpPanorama.Presentation.Properties.Resources.Add_16x16;
-            this.btnAgregarPestaña2.Location = new System.Drawing.Point(407, 42);
+            this.btnAgregarPestaña2.Location = new System.Drawing.Point(437, 55);
             this.btnAgregarPestaña2.Name = "btnAgregarPestaña2";
             this.btnAgregarPestaña2.Size = new System.Drawing.Size(32, 26);
             this.btnAgregarPestaña2.TabIndex = 144;
@@ -784,7 +786,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // cboInsumos
             // 
-            this.cboInsumos.Location = new System.Drawing.Point(147, 48);
+            this.cboInsumos.Location = new System.Drawing.Point(177, 61);
             this.cboInsumos.Name = "cboInsumos";
             this.cboInsumos.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -793,7 +795,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // labelControl11
             // 
-            this.labelControl11.Location = new System.Drawing.Point(38, 51);
+            this.labelControl11.Location = new System.Drawing.Point(68, 64);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(93, 13);
             this.labelControl11.TabIndex = 139;
@@ -813,7 +815,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(606, 363);
+            this.tabPage3.Size = new System.Drawing.Size(606, 394);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -821,7 +823,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // btnEliminarPestaña3
             // 
             this.btnEliminarPestaña3.Image = global::ErpPanorama.Presentation.Properties.Resources.Remove_16x16;
-            this.btnEliminarPestaña3.Location = new System.Drawing.Point(483, 41);
+            this.btnEliminarPestaña3.Location = new System.Drawing.Point(492, 55);
             this.btnEliminarPestaña3.Name = "btnEliminarPestaña3";
             this.btnEliminarPestaña3.Size = new System.Drawing.Size(32, 26);
             this.btnEliminarPestaña3.TabIndex = 170;
@@ -831,7 +833,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // btnActualizarPestaña3
             // 
             this.btnActualizarPestaña3.Image = global::ErpPanorama.Presentation.Properties.Resources.actualizar;
-            this.btnActualizarPestaña3.Location = new System.Drawing.Point(456, 41);
+            this.btnActualizarPestaña3.Location = new System.Drawing.Point(464, 55);
             this.btnActualizarPestaña3.Name = "btnActualizarPestaña3";
             this.btnActualizarPestaña3.Size = new System.Drawing.Size(32, 26);
             this.btnActualizarPestaña3.TabIndex = 169;
@@ -839,7 +841,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // txtSumaCostosPestaña3
             // 
-            this.txtSumaCostosPestaña3.Location = new System.Drawing.Point(517, 296);
+            this.txtSumaCostosPestaña3.Location = new System.Drawing.Point(518, 277);
             this.txtSumaCostosPestaña3.Name = "txtSumaCostosPestaña3";
             this.txtSumaCostosPestaña3.Properties.MaxLength = 7;
             this.txtSumaCostosPestaña3.Size = new System.Drawing.Size(52, 20);
@@ -847,7 +849,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // txtMontoaccesorio
             // 
-            this.txtMontoaccesorio.Location = new System.Drawing.Point(361, 47);
+            this.txtMontoaccesorio.Location = new System.Drawing.Point(377, 61);
             this.txtMontoaccesorio.Name = "txtMontoaccesorio";
             this.txtMontoaccesorio.Properties.MaxLength = 7;
             this.txtMontoaccesorio.Size = new System.Drawing.Size(52, 20);
@@ -855,7 +857,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // labelControl9
             // 
-            this.labelControl9.Location = new System.Drawing.Point(325, 50);
+            this.labelControl9.Location = new System.Drawing.Point(341, 64);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(30, 13);
             this.labelControl9.TabIndex = 151;
@@ -863,10 +865,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // gridControlPestaña3
             // 
-            this.gridControlPestaña3.Location = new System.Drawing.Point(37, 90);
+            this.gridControlPestaña3.Location = new System.Drawing.Point(38, 97);
             this.gridControlPestaña3.MainView = this.gridView3;
             this.gridControlPestaña3.Name = "gridControlPestaña3";
-            this.gridControlPestaña3.Size = new System.Drawing.Size(533, 200);
+            this.gridControlPestaña3.Size = new System.Drawing.Size(532, 174);
             this.gridControlPestaña3.TabIndex = 150;
             this.gridControlPestaña3.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView3});
@@ -882,6 +884,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn17});
             this.gridView3.GridControl = this.gridControlPestaña3;
             this.gridView3.Name = "gridView3";
+            this.gridView3.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumn47
             // 
@@ -934,7 +937,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // btnAgregarPestaña3
             // 
             this.btnAgregarPestaña3.Image = global::ErpPanorama.Presentation.Properties.Resources.Add_16x16;
-            this.btnAgregarPestaña3.Location = new System.Drawing.Point(430, 41);
+            this.btnAgregarPestaña3.Location = new System.Drawing.Point(437, 55);
             this.btnAgregarPestaña3.Name = "btnAgregarPestaña3";
             this.btnAgregarPestaña3.Size = new System.Drawing.Size(32, 26);
             this.btnAgregarPestaña3.TabIndex = 149;
@@ -943,16 +946,16 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // cboAccesorios
             // 
-            this.cboAccesorios.Location = new System.Drawing.Point(168, 47);
+            this.cboAccesorios.Location = new System.Drawing.Point(177, 61);
             this.cboAccesorios.Name = "cboAccesorios";
             this.cboAccesorios.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboAccesorios.Size = new System.Drawing.Size(151, 20);
+            this.cboAccesorios.Size = new System.Drawing.Size(128, 20);
             this.cboAccesorios.TabIndex = 147;
             // 
             // labelControl14
             // 
-            this.labelControl14.Location = new System.Drawing.Point(37, 50);
+            this.labelControl14.Location = new System.Drawing.Point(68, 64);
             this.labelControl14.Name = "labelControl14";
             this.labelControl14.Size = new System.Drawing.Size(104, 13);
             this.labelControl14.TabIndex = 144;
@@ -972,7 +975,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(606, 363);
+            this.tabPage4.Size = new System.Drawing.Size(606, 394);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -980,7 +983,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // btnEliminarPestaña4
             // 
             this.btnEliminarPestaña4.Image = global::ErpPanorama.Presentation.Properties.Resources.Remove_16x16;
-            this.btnEliminarPestaña4.Location = new System.Drawing.Point(471, 36);
+            this.btnEliminarPestaña4.Location = new System.Drawing.Point(492, 55);
             this.btnEliminarPestaña4.Name = "btnEliminarPestaña4";
             this.btnEliminarPestaña4.Size = new System.Drawing.Size(32, 26);
             this.btnEliminarPestaña4.TabIndex = 170;
@@ -990,7 +993,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // btnActualizarPestaña4
             // 
             this.btnActualizarPestaña4.Image = global::ErpPanorama.Presentation.Properties.Resources.actualizar;
-            this.btnActualizarPestaña4.Location = new System.Drawing.Point(443, 36);
+            this.btnActualizarPestaña4.Location = new System.Drawing.Point(464, 55);
             this.btnActualizarPestaña4.Name = "btnActualizarPestaña4";
             this.btnActualizarPestaña4.Size = new System.Drawing.Size(32, 26);
             this.btnActualizarPestaña4.TabIndex = 169;
@@ -998,7 +1001,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // txtSumaCostosPestaña4
             // 
-            this.txtSumaCostosPestaña4.Location = new System.Drawing.Point(517, 293);
+            this.txtSumaCostosPestaña4.Location = new System.Drawing.Point(518, 277);
             this.txtSumaCostosPestaña4.Name = "txtSumaCostosPestaña4";
             this.txtSumaCostosPestaña4.Properties.MaxLength = 7;
             this.txtSumaCostosPestaña4.Size = new System.Drawing.Size(52, 20);
@@ -1006,7 +1009,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // txtManoobra
             // 
-            this.txtManoobra.Location = new System.Drawing.Point(349, 42);
+            this.txtManoobra.Location = new System.Drawing.Point(377, 61);
             this.txtManoobra.Name = "txtManoobra";
             this.txtManoobra.Properties.MaxLength = 7;
             this.txtManoobra.Size = new System.Drawing.Size(52, 20);
@@ -1014,7 +1017,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // labelControl10
             // 
-            this.labelControl10.Location = new System.Drawing.Point(313, 45);
+            this.labelControl10.Location = new System.Drawing.Point(341, 64);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(30, 13);
             this.labelControl10.TabIndex = 158;
@@ -1022,10 +1025,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // gridControlPestaña4
             // 
-            this.gridControlPestaña4.Location = new System.Drawing.Point(32, 87);
+            this.gridControlPestaña4.Location = new System.Drawing.Point(38, 97);
             this.gridControlPestaña4.MainView = this.gridView4;
             this.gridControlPestaña4.Name = "gridControlPestaña4";
-            this.gridControlPestaña4.Size = new System.Drawing.Size(538, 200);
+            this.gridControlPestaña4.Size = new System.Drawing.Size(532, 174);
             this.gridControlPestaña4.TabIndex = 157;
             this.gridControlPestaña4.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView4});
@@ -1041,6 +1044,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn19});
             this.gridView4.GridControl = this.gridControlPestaña4;
             this.gridView4.Name = "gridView4";
+            this.gridView4.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumn48
             // 
@@ -1093,7 +1097,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // btnAgregarPestaña4
             // 
             this.btnAgregarPestaña4.Image = global::ErpPanorama.Presentation.Properties.Resources.Add_16x16;
-            this.btnAgregarPestaña4.Location = new System.Drawing.Point(417, 36);
+            this.btnAgregarPestaña4.Location = new System.Drawing.Point(437, 55);
             this.btnAgregarPestaña4.Name = "btnAgregarPestaña4";
             this.btnAgregarPestaña4.Size = new System.Drawing.Size(32, 26);
             this.btnAgregarPestaña4.TabIndex = 156;
@@ -1102,20 +1106,20 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // cboManoObra
             // 
-            this.cboManoObra.Location = new System.Drawing.Point(163, 42);
+            this.cboManoObra.Location = new System.Drawing.Point(177, 61);
             this.cboManoObra.Name = "cboManoObra";
             this.cboManoObra.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboManoObra.Size = new System.Drawing.Size(108, 20);
+            this.cboManoObra.Size = new System.Drawing.Size(128, 20);
             this.cboManoObra.TabIndex = 154;
             // 
             // labelControl18
             // 
-            this.labelControl18.Location = new System.Drawing.Point(32, 45);
+            this.labelControl18.Location = new System.Drawing.Point(68, 64);
             this.labelControl18.Name = "labelControl18";
-            this.labelControl18.Size = new System.Drawing.Size(121, 13);
+            this.labelControl18.Size = new System.Drawing.Size(68, 13);
             this.labelControl18.TabIndex = 151;
-            this.labelControl18.Text = "Selecciona Mano de Obra";
+            this.labelControl18.Text = "Mano de Obra";
             // 
             // tabPage5
             // 
@@ -1131,7 +1135,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(606, 363);
+            this.tabPage5.Size = new System.Drawing.Size(606, 394);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "tabPage5";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -1139,7 +1143,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // btnEliminarPestaña5
             // 
             this.btnEliminarPestaña5.Image = global::ErpPanorama.Presentation.Properties.Resources.Remove_16x16;
-            this.btnEliminarPestaña5.Location = new System.Drawing.Point(472, 28);
+            this.btnEliminarPestaña5.Location = new System.Drawing.Point(492, 55);
             this.btnEliminarPestaña5.Name = "btnEliminarPestaña5";
             this.btnEliminarPestaña5.Size = new System.Drawing.Size(32, 26);
             this.btnEliminarPestaña5.TabIndex = 170;
@@ -1149,7 +1153,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // btnActualizarPestaña5
             // 
             this.btnActualizarPestaña5.Image = global::ErpPanorama.Presentation.Properties.Resources.actualizar;
-            this.btnActualizarPestaña5.Location = new System.Drawing.Point(445, 28);
+            this.btnActualizarPestaña5.Location = new System.Drawing.Point(464, 55);
             this.btnActualizarPestaña5.Name = "btnActualizarPestaña5";
             this.btnActualizarPestaña5.Size = new System.Drawing.Size(32, 26);
             this.btnActualizarPestaña5.TabIndex = 169;
@@ -1157,7 +1161,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // txtSumaCostosPestaña5
             // 
-            this.txtSumaCostosPestaña5.Location = new System.Drawing.Point(517, 283);
+            this.txtSumaCostosPestaña5.Location = new System.Drawing.Point(518, 277);
             this.txtSumaCostosPestaña5.Name = "txtSumaCostosPestaña5";
             this.txtSumaCostosPestaña5.Properties.MaxLength = 7;
             this.txtSumaCostosPestaña5.Size = new System.Drawing.Size(52, 20);
@@ -1165,7 +1169,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // txtMovilidad
             // 
-            this.txtMovilidad.Location = new System.Drawing.Point(357, 32);
+            this.txtMovilidad.Location = new System.Drawing.Point(377, 61);
             this.txtMovilidad.Name = "txtMovilidad";
             this.txtMovilidad.Properties.MaxLength = 7;
             this.txtMovilidad.Size = new System.Drawing.Size(52, 20);
@@ -1173,7 +1177,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // labelControl12
             // 
-            this.labelControl12.Location = new System.Drawing.Point(321, 35);
+            this.labelControl12.Location = new System.Drawing.Point(341, 64);
             this.labelControl12.Name = "labelControl12";
             this.labelControl12.Size = new System.Drawing.Size(30, 13);
             this.labelControl12.TabIndex = 158;
@@ -1181,10 +1185,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // gridControlPestaña5
             // 
-            this.gridControlPestaña5.Location = new System.Drawing.Point(30, 77);
+            this.gridControlPestaña5.Location = new System.Drawing.Point(38, 97);
             this.gridControlPestaña5.MainView = this.gridView5;
             this.gridControlPestaña5.Name = "gridControlPestaña5";
-            this.gridControlPestaña5.Size = new System.Drawing.Size(540, 200);
+            this.gridControlPestaña5.Size = new System.Drawing.Size(532, 174);
             this.gridControlPestaña5.TabIndex = 157;
             this.gridControlPestaña5.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView5});
@@ -1200,6 +1204,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn21});
             this.gridView5.GridControl = this.gridControlPestaña5;
             this.gridView5.Name = "gridView5";
+            this.gridView5.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumn49
             // 
@@ -1252,7 +1257,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // btnAgregarPestaña5
             // 
             this.btnAgregarPestaña5.Image = global::ErpPanorama.Presentation.Properties.Resources.Add_16x16;
-            this.btnAgregarPestaña5.Location = new System.Drawing.Point(417, 28);
+            this.btnAgregarPestaña5.Location = new System.Drawing.Point(437, 55);
             this.btnAgregarPestaña5.Name = "btnAgregarPestaña5";
             this.btnAgregarPestaña5.Size = new System.Drawing.Size(32, 26);
             this.btnAgregarPestaña5.TabIndex = 156;
@@ -1261,20 +1266,20 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // cboSeleccionaMovilidad
             // 
-            this.cboSeleccionaMovilidad.Location = new System.Drawing.Point(181, 32);
+            this.cboSeleccionaMovilidad.Location = new System.Drawing.Point(177, 61);
             this.cboSeleccionaMovilidad.Name = "cboSeleccionaMovilidad";
             this.cboSeleccionaMovilidad.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboSeleccionaMovilidad.Size = new System.Drawing.Size(108, 20);
+            this.cboSeleccionaMovilidad.Size = new System.Drawing.Size(128, 20);
             this.cboSeleccionaMovilidad.TabIndex = 154;
             // 
             // labelControl21
             // 
-            this.labelControl21.Location = new System.Drawing.Point(30, 35);
+            this.labelControl21.Location = new System.Drawing.Point(68, 64);
             this.labelControl21.Name = "labelControl21";
-            this.labelControl21.Size = new System.Drawing.Size(145, 13);
+            this.labelControl21.Size = new System.Drawing.Size(92, 13);
             this.labelControl21.TabIndex = 151;
-            this.labelControl21.Text = "Selecciona Movilidad y viaticos";
+            this.labelControl21.Text = "Movilidad y viaticos";
             // 
             // tabPage6
             // 
@@ -1288,7 +1293,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.tabPage6.Location = new System.Drawing.Point(4, 25);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(606, 363);
+            this.tabPage6.Size = new System.Drawing.Size(606, 394);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "tabPage6";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -1322,7 +1327,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridControlPestaña6.Location = new System.Drawing.Point(26, 87);
             this.gridControlPestaña6.MainView = this.gridView6;
             this.gridControlPestaña6.Name = "gridControlPestaña6";
-            this.gridControlPestaña6.Size = new System.Drawing.Size(544, 200);
+            this.gridControlPestaña6.Size = new System.Drawing.Size(532, 174);
             this.gridControlPestaña6.TabIndex = 163;
             this.gridControlPestaña6.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView6});
@@ -1372,14 +1377,14 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.tabPage7.Location = new System.Drawing.Point(4, 25);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(606, 363);
+            this.tabPage7.Size = new System.Drawing.Size(606, 394);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "tabPage7";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
             // txtEquipoyherramientas
             // 
-            this.txtEquipoyherramientas.Location = new System.Drawing.Point(171, 251);
+            this.txtEquipoyherramientas.Location = new System.Drawing.Point(193, 272);
             this.txtEquipoyherramientas.Name = "txtEquipoyherramientas";
             this.txtEquipoyherramientas.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.5F, System.Drawing.FontStyle.Bold);
             this.txtEquipoyherramientas.Properties.Appearance.Options.UseFont = true;
@@ -1391,7 +1396,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             this.labelControl24.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.labelControl24.Appearance.Options.UseFont = true;
-            this.labelControl24.Location = new System.Drawing.Point(21, 258);
+            this.labelControl24.Location = new System.Drawing.Point(43, 279);
             this.labelControl24.Name = "labelControl24";
             this.labelControl24.Size = new System.Drawing.Size(133, 13);
             this.labelControl24.TabIndex = 172;
@@ -1399,7 +1404,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // txtMargen
             // 
-            this.txtMargen.Location = new System.Drawing.Point(171, 274);
+            this.txtMargen.Location = new System.Drawing.Point(193, 295);
             this.txtMargen.Name = "txtMargen";
             this.txtMargen.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.5F, System.Drawing.FontStyle.Bold);
             this.txtMargen.Properties.Appearance.Options.UseFont = true;
@@ -1411,7 +1416,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             this.labelControl23.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.labelControl23.Appearance.Options.UseFont = true;
-            this.labelControl23.Location = new System.Drawing.Point(23, 277);
+            this.labelControl23.Location = new System.Drawing.Point(45, 298);
             this.labelControl23.Name = "labelControl23";
             this.labelControl23.Size = new System.Drawing.Size(117, 13);
             this.labelControl23.TabIndex = 170;
@@ -1419,10 +1424,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // gridControlPestaña7Resumen
             // 
-            this.gridControlPestaña7Resumen.Location = new System.Drawing.Point(21, 16);
+            this.gridControlPestaña7Resumen.Location = new System.Drawing.Point(38, 51);
             this.gridControlPestaña7Resumen.MainView = this.gridView7;
             this.gridControlPestaña7Resumen.Name = "gridControlPestaña7Resumen";
-            this.gridControlPestaña7Resumen.Size = new System.Drawing.Size(526, 226);
+            this.gridControlPestaña7Resumen.Size = new System.Drawing.Size(532, 214);
             this.gridControlPestaña7Resumen.TabIndex = 169;
             this.gridControlPestaña7Resumen.UseDirectXPaint = DevExpress.Utils.DefaultBoolean.True;
             this.gridControlPestaña7Resumen.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -1439,6 +1444,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn23});
             this.gridView7.GridControl = this.gridControlPestaña7Resumen;
             this.gridView7.Name = "gridView7";
+            this.gridView7.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumn45
             // 
@@ -1492,7 +1498,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             this.labelControl16.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.labelControl16.Appearance.Options.UseFont = true;
-            this.labelControl16.Location = new System.Drawing.Point(412, 251);
+            this.labelControl16.Location = new System.Drawing.Point(441, 280);
             this.labelControl16.Name = "labelControl16";
             this.labelControl16.Size = new System.Drawing.Size(71, 13);
             this.labelControl16.TabIndex = 168;
@@ -1502,7 +1508,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             this.labelControl17.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.labelControl17.Appearance.Options.UseFont = true;
-            this.labelControl17.Location = new System.Drawing.Point(23, 326);
+            this.labelControl17.Location = new System.Drawing.Point(45, 347);
             this.labelControl17.Name = "labelControl17";
             this.labelControl17.Size = new System.Drawing.Size(131, 13);
             this.labelControl17.TabIndex = 160;
@@ -1510,7 +1516,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // txtTotal
             // 
-            this.txtTotal.Location = new System.Drawing.Point(495, 248);
+            this.txtTotal.Location = new System.Drawing.Point(518, 277);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.Properties.MaxLength = 7;
             this.txtTotal.Size = new System.Drawing.Size(52, 20);
@@ -1518,7 +1524,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // txtPrecioVenta
             // 
-            this.txtPrecioVenta.Location = new System.Drawing.Point(171, 311);
+            this.txtPrecioVenta.Location = new System.Drawing.Point(193, 332);
             this.txtPrecioVenta.Name = "txtPrecioVenta";
             this.txtPrecioVenta.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 13F, System.Drawing.FontStyle.Bold);
             this.txtPrecioVenta.Properties.Appearance.Options.UseFont = true;
@@ -1540,7 +1546,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(671, 645);
+            this.ClientSize = new System.Drawing.Size(671, 676);
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.Tabcontrol);
             this.Controls.Add(this.btnEliminarimg);

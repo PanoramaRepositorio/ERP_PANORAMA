@@ -1527,5 +1527,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                 e.Graphics.DrawString(tabPage.Text, Tabcontrol.Font, textBrush, e.Bounds.X + 3, e.Bounds.Y + 3);
             }
         }
+
+     
     }
 }

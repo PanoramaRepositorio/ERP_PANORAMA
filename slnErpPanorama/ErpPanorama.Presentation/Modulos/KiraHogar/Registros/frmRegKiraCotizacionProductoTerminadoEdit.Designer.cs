@@ -141,7 +141,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.btnGuardar.ImageOptions.Image = global::ErpPanorama.Presentation.Properties.Resources.btn_grabar;
             this.btnGuardar.ImageOptions.ImageIndex = 0;
             this.btnGuardar.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.btnGuardar.Location = new System.Drawing.Point(434, 656);
+            this.btnGuardar.Location = new System.Drawing.Point(434, 621);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 233;
@@ -154,7 +154,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.btnCancelar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.ImageOptions.Image")));
             this.btnCancelar.ImageOptions.ImageIndex = 0;
             this.btnCancelar.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(512, 656);
+            this.btnCancelar.Location = new System.Drawing.Point(512, 621);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 232;
@@ -356,7 +356,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.Tabcontrol.Location = new System.Drawing.Point(22, 232);
             this.Tabcontrol.Name = "Tabcontrol";
             this.Tabcontrol.SelectedIndex = 0;
-            this.Tabcontrol.Size = new System.Drawing.Size(581, 418);
+            this.Tabcontrol.Size = new System.Drawing.Size(581, 376);
             this.Tabcontrol.TabIndex = 237;
             this.Tabcontrol.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.Tabcontrol_DrawItem);
             // 
@@ -375,7 +375,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(573, 389);
+            this.tabPage1.Size = new System.Drawing.Size(573, 347);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -455,6 +455,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn1});
             this.gridView1.GridControl = this.gridControlPestaña1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumn6
             // 
@@ -542,17 +543,17 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.tabPage2.Controls.Add(this.labelControl17);
             this.tabPage2.Controls.Add(this.txtTotal);
             this.tabPage2.Controls.Add(this.txtPrecioVenta);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(573, 392);
+            this.tabPage2.Size = new System.Drawing.Size(573, 347);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // txtMargen
             // 
-            this.txtMargen.Location = new System.Drawing.Point(159, 314);
+            this.txtMargen.Location = new System.Drawing.Point(160, 302);
             this.txtMargen.Name = "txtMargen";
             this.txtMargen.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 13F, System.Drawing.FontStyle.Bold);
             this.txtMargen.Properties.Appearance.Options.UseFont = true;
@@ -564,7 +565,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             this.labelControl23.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.labelControl23.Appearance.Options.UseFont = true;
-            this.labelControl23.Location = new System.Drawing.Point(24, 323);
+            this.labelControl23.Location = new System.Drawing.Point(25, 311);
             this.labelControl23.Name = "labelControl23";
             this.labelControl23.Size = new System.Drawing.Size(117, 13);
             this.labelControl23.TabIndex = 177;
@@ -575,7 +576,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridControlPestañaResumen.Location = new System.Drawing.Point(24, 6);
             this.gridControlPestañaResumen.MainView = this.gridView7;
             this.gridControlPestañaResumen.Name = "gridControlPestañaResumen";
-            this.gridControlPestañaResumen.Size = new System.Drawing.Size(522, 299);
+            this.gridControlPestañaResumen.Size = new System.Drawing.Size(522, 280);
             this.gridControlPestañaResumen.TabIndex = 199;
             this.gridControlPestañaResumen.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView7});
@@ -591,6 +592,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn7});
             this.gridView7.GridControl = this.gridControlPestañaResumen;
             this.gridView7.Name = "gridView7";
+            this.gridView7.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumn9
             // 
@@ -698,7 +700,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(621, 681);
+            this.ClientSize = new System.Drawing.Size(621, 646);
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.Tabcontrol);
             this.Controls.Add(this.btnEliminarimg);
