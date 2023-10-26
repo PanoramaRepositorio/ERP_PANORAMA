@@ -654,7 +654,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                     XtraMessageBox.Show("No se puede facturar a un cliente con DNI, por favor verifique el pedido.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            if (Convert.ToInt32(cboDocumento.EditValue) == Parametros.intTipoDocBoletaElectronica)
+            if (Convert.ToInt32(cboDocumento.EditValue) == Parametros.intTipoDocBoletaElectronica && objE_Pedido.DescFormaPago == "CONTRAENTREGA")
             {
                 #region "Diferencia cabecera vs detalle"
                 if (objE_Pedido.TotalDiferencia != 0)
@@ -666,11 +666,16 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                 InsertarDocumentoVenta(IdEmpresa, "TEB");
                 InsertarEstadoCuenta(); //Estado de Cuenta
                 InsertarEstadoCuentaDiseñador();
-                
+
                 //ImpresionDirecta("TEB", objE_Talon.IdTipoFormato);
             }
+            else // PEdido contado
+            {
+                InsertarDocumentoVenta(IdEmpresa, "TEB");
+                InsertarEstadoCuentaDiseñador();
+            }
 
-            if (Convert.ToInt32(cboDocumento.EditValue) == Parametros.intTipoDocFacturaElectronica)
+            if (Convert.ToInt32(cboDocumento.EditValue) == Parametros.intTipoDocFacturaElectronica && objE_Pedido.DescFormaPago == "CONTRAENTREGA")
             {
                 #region "Diferencia cabecera vs detalle"
                 if (objE_Pedido.TotalDiferencia != 0)
@@ -685,9 +690,10 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                     InsertarDocumentoVenta(IdEmpresa, "TEF");
                     InsertarEstadoCuenta(); //Estado de Cuenta
                     InsertarEstadoCuentaDiseñador();
-                    
+
                     //ImpresionDirecta("TEF", objE_Talon.IdTipoFormato);
                 }
+               
                 else if (IdTipoDocumentoClienteAsociado == Parametros.intTipoDocumentoRUC)
                 {   
                     InsertarEstadoCuentaDiseñador();
