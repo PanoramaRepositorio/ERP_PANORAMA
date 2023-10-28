@@ -179,7 +179,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             this.lblTitulo.Appearance.Font = new System.Drawing.Font("Tahoma", 12.25F, System.Drawing.FontStyle.Bold);
             this.lblTitulo.Appearance.Options.UseFont = true;
-            this.lblTitulo.Location = new System.Drawing.Point(225, 209);
+            this.lblTitulo.Location = new System.Drawing.Point(206, 222);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(147, 19);
             this.lblTitulo.TabIndex = 179;
@@ -207,7 +207,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.txtCaracteristicas.Location = new System.Drawing.Point(133, 95);
             this.txtCaracteristicas.Multiline = true;
             this.txtCaracteristicas.Name = "txtCaracteristicas";
-            this.txtCaracteristicas.Size = new System.Drawing.Size(263, 43);
+            this.txtCaracteristicas.Size = new System.Drawing.Size(263, 107);
             this.txtCaracteristicas.TabIndex = 189;
             // 
             // labelControl5
@@ -417,7 +417,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.Tabcontrol.Controls.Add(this.tabPage2);
             this.Tabcontrol.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.Tabcontrol.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.Tabcontrol.Location = new System.Drawing.Point(36, 238);
+            this.Tabcontrol.Location = new System.Drawing.Point(25, 256);
             this.Tabcontrol.Name = "Tabcontrol";
             this.Tabcontrol.SelectedIndex = 0;
             this.Tabcontrol.Size = new System.Drawing.Size(581, 418);
@@ -519,7 +519,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCancelar.ImageOptions.ImageIndex = 0;
             this.btnCancelar.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(528, 662);
+            this.btnCancelar.Location = new System.Drawing.Point(528, 680);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 203;
@@ -532,7 +532,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.btnGuardar.ImageOptions.Image = global::ErpPanorama.Presentation.Properties.Resources.btn_grabar;
             this.btnGuardar.ImageOptions.ImageIndex = 0;
             this.btnGuardar.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.btnGuardar.Location = new System.Drawing.Point(447, 662);
+            this.btnGuardar.Location = new System.Drawing.Point(447, 680);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 204;
@@ -543,7 +543,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(633, 686);
+            this.ClientSize = new System.Drawing.Size(633, 704);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.lblCodigoExistente);

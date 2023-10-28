@@ -294,7 +294,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.txtCaracteristicas.Location = new System.Drawing.Point(139, 118);
             this.txtCaracteristicas.Multiline = true;
             this.txtCaracteristicas.Name = "txtCaracteristicas";
-            this.txtCaracteristicas.Size = new System.Drawing.Size(263, 61);
+            this.txtCaracteristicas.Size = new System.Drawing.Size(263, 88);
             this.txtCaracteristicas.TabIndex = 174;
             // 
             // labelControl5
@@ -413,7 +413,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.btnGuardar.ImageOptions.Image = global::ErpPanorama.Presentation.Properties.Resources.btn_grabar;
             this.btnGuardar.ImageOptions.ImageIndex = 0;
             this.btnGuardar.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.btnGuardar.Location = new System.Drawing.Point(489, 650);
+            this.btnGuardar.Location = new System.Drawing.Point(489, 677);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 208;
@@ -426,7 +426,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.btnCancelar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.ImageOptions.Image")));
             this.btnCancelar.ImageOptions.ImageIndex = 0;
             this.btnCancelar.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(570, 650);
+            this.btnCancelar.Location = new System.Drawing.Point(570, 677);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 207;
@@ -466,7 +466,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.Tabcontrol.Controls.Add(this.tabPage7);
             this.Tabcontrol.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.Tabcontrol.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.Tabcontrol.Location = new System.Drawing.Point(31, 223);
+            this.Tabcontrol.Location = new System.Drawing.Point(31, 248);
             this.Tabcontrol.Name = "Tabcontrol";
             this.Tabcontrol.SelectedIndex = 0;
             this.Tabcontrol.Size = new System.Drawing.Size(614, 423);
@@ -595,6 +595,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // gridColumn26
             // 
+            this.gridColumn26.AppearanceCell.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Bold);
+            this.gridColumn26.AppearanceCell.Options.UseFont = true;
+            this.gridColumn26.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.gridColumn26.AppearanceHeader.Options.UseFont = true;
             this.gridColumn26.Caption = "DescTabla";
             this.gridColumn26.FieldName = "DescTabla";
             this.gridColumn26.Name = "gridColumn26";
@@ -1472,7 +1476,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // gridColumn27
             // 
-            this.gridColumn27.Caption = "DescTabla";
+            this.gridColumn27.Caption = "*";
             this.gridColumn27.FieldName = "DescTabla";
             this.gridColumn27.Name = "gridColumn27";
             this.gridColumn27.Visible = true;
@@ -1536,7 +1540,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             this.lblTitulo.Appearance.Font = new System.Drawing.Font("Tahoma", 12.25F, System.Drawing.FontStyle.Bold);
             this.lblTitulo.Appearance.Options.UseFont = true;
-            this.lblTitulo.Location = new System.Drawing.Point(228, 194);
+            this.lblTitulo.Location = new System.Drawing.Point(226, 212);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(180, 19);
             this.lblTitulo.TabIndex = 213;
@@ -1546,7 +1550,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(671, 676);
+            this.ClientSize = new System.Drawing.Size(671, 703);
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.Tabcontrol);
             this.Controls.Add(this.btnEliminarimg);

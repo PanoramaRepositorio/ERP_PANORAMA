@@ -17,7 +17,7 @@ using DevExpress.XtraEditors;
 using DevExpress.Utils.Menu;
 using DevExpress.Utils;
 using ErpPanorama.Presentation.Modulos.KiraHogar.Registros;
-
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 
 namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
 {
@@ -158,7 +158,18 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Consultas
             gridControlPestaña7Resumen.DataSource = dtDatosResumen;
             gridView7.OptionsView.GroupDrawMode = DevExpress.XtraGrid.Views.Grid.GroupDrawMode.Office;
             gridView7.Columns["NombreTablaElemento"].GroupIndex = 0; // Establecer la columna "NombreTablaElemento" como columna de agrupación
+                                                                     // Manejar el evento CustomDrawGroupRow
+            gridView7.CustomDrawGroupRow += (s, ev) =>
+            {
+                GridView view = s as GridView;
+                GridGroupRowInfo info = ev.Info as GridGroupRowInfo;
 
+                if (info != null)
+                {
+                    ev.Appearance.BackColor = Color.AliceBlue; // Personalizar el color de fondo de la fila de grupo
+                    ev.Appearance.Font = new Font("Arial", 10, FontStyle.Bold); // Personalizar la fuente de la fila de grupo
+                }
+            };
         }
 
         private void OcultarColumnasGridControlPestañas()

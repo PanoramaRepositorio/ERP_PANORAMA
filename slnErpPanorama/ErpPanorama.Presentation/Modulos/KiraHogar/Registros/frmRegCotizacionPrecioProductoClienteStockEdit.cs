@@ -10,9 +10,12 @@ using ErpPanorama.BusinessEntity;
 using ErpPanorama.BusinessLogic;
 using System.Windows.Forms;
 using System.IO;
+using DevExpress.Utils;
+using System.Drawing;
+using DevExpress.Utils;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
-
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 
 namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
 {
@@ -75,7 +78,8 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
 
 
             txtCodigoProducto.TextChanged += txtCodigoProducto_TextChanged;
-
+         
+          
         }
 
         private void personalizacióncontrolesform()
@@ -83,10 +87,21 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
 
             gridView7.OptionsView.GroupDrawMode = DevExpress.XtraGrid.Views.Grid.GroupDrawMode.Office;
             gridView7.Columns["DescTabla"].GroupIndex = 0; // Establecer la columna "DescTabla" como columna de agrupación
+            gridView7.Columns["DescTabla"].Visible = false;
             txtNumeroCotizacion.Enabled = false;
             gridView7.ExpandAllGroups();
-            //gridView7.OptionsView.ShowGroupPanel = true;
-            //gridView7.OptionsView.ColumnAutoWidth = true;
+            // Manejar el evento CustomDrawGroupRow
+            gridView7.CustomDrawGroupRow += (s, ev) =>
+            {
+                GridView view = s as GridView;
+                GridGroupRowInfo info = ev.Info as GridGroupRowInfo;
+
+                if (info != null)
+                {
+                    ev.Appearance.BackColor = Color.AliceBlue; // Personalizar el color de fondo de la fila de grupo
+                    ev.Appearance.Font = new Font("Arial", 10, FontStyle.Bold); // Personalizar la fuente de la fila de grupo
+                }
+            };
             txtCodigoProducto.Properties.MaxLength = 0;
             Tabcontrol.TabPages[0].Text = "Materiales";
             Tabcontrol.TabPages[1].Text = "Insumos";
@@ -163,10 +178,11 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                 gridViewPestaña5.Columns["IdCotizacion"].Visible = false;
                 gridViewPestaña5.Columns["IdCotizacionDetalle"].Visible = false;
 
-                gridViewPestaña7.Columns["DescTabla"].Visible = false;
+                gridViewPestaña7.Columns["DescTabla"].Visible = true;
                 gridViewPestaña7.Columns["IdTablaElemento"].Visible = false;
                 gridViewPestaña7.Columns["IdCotizacion"].Visible = false;
                 gridViewPestaña7.Columns["IdCotizacionDetalle"].Visible = false;
+                
 
 
             }
