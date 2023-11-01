@@ -329,17 +329,56 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                 }
                 else
                 {
-                    rowIndex = gvCotizacion.FocusedRowHandle;
-                    if (rowIndex >= 0)
+                    int[] selectedRows = gvCotizacion.GetSelectedRows();
+                    if (selectedRows.Length > 1)
                     {
-                        CotizacionKiraBE cotizacion = (CotizacionKiraBE)gvCotizacion.GetRow(rowIndex);
-                        if (cotizacion != null)
+                        //GenerarInformeAll();
+                        // Obtén la lista de idCotizaciones seleccionadas
+                        List<int> idCotizaciones = new List<int>();
+
+                        foreach (int rowHandle in selectedRows)
                         {
-                            int idCotizacion = cotizacion.IdCotizacion;
-                            GenerarInforme(idCotizacion);
+                            CotizacionKiraBE cotizacion = (CotizacionKiraBE)gvCotizacion.GetRow(rowHandle);
+                            if (cotizacion != null)
+                            {
+                                idCotizaciones.Add(cotizacion.IdCotizacion);
+                            }
+                        }
+                        GenerarInformeAll(idCotizaciones);
+                    }
+                    else
+                    {
+                        rowIndex = gvCotizacion.FocusedRowHandle;
+                        if (rowIndex >= 0)
+                        {
+                            CotizacionKiraBE cotizacion = (CotizacionKiraBE)gvCotizacion.GetRow(rowIndex);
+                            if (cotizacion != null)
+                            {
+                                int idCotizacion = cotizacion.IdCotizacion;
+                                GenerarInforme(idCotizacion);
+                            }
                         }
                     }
                 }
+
+                //else
+                //{
+                //    rowIndex = gvCotizacion.FocusedRowHandle;
+                //    if (rowIndex >= 0)
+                //    {
+                //        CotizacionKiraBE cotizacion = (CotizacionKiraBE)gvCotizacion.GetRow(rowIndex);
+                //        if (cotizacion != null)
+                //        {
+                //            int idCotizacion = cotizacion.IdCotizacion;
+                //            GenerarInforme(idCotizacion);
+                //        }
+                //        else
+                //        {
+                //            GenerarInformeAll();
+                //        }
+                //    }
+
+                //}
             }
             catch (Exception ex)
             {
@@ -399,7 +438,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
                         XtraMessageBox.Show("No hay información para el periodo seleccionado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
-
                 Cursor = Cursors.Default;
             }
             catch (Exception ex)
@@ -409,6 +447,72 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             }
         }
 
+        //private void GenerarInformeAll()
+        //{
+        //    try
+        //    {
+        //        Cursor = Cursors.WaitCursor;
+
+        //        if (listaCotizacionesOriginal.Count > 0)
+        //        {
+        //            List<CotizacionKiraBE> lstReporte = new CotizacionKiraBL().ListadoAll();
+        //            if (lstReporte != null && lstReporte.Count > 0)
+        //            {
+        //                RptVistaReportes objRptFacturaCompra = new RptVistaReportes();
+        //                objRptFacturaCompra.VerRptCotizacionKira(lstReporte);
+        //                objRptFacturaCompra.ShowDialog();
+        //            }
+        //            else
+        //            {
+        //                XtraMessageBox.Show("No hay información para el periodo seleccionado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //            }
+        //        }
+        //        Cursor = Cursors.Default;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Cursor = Cursors.Default;
+        //        MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}
+
+        public void GenerarInformeAll(List<int> listaIdCotizaciones)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+
+                if (listaCotizacionesOriginal.Count > 0)
+                {
+                    // Obtén la lista de idCotizaciones que deseas consultar
+                    List<int> idCotizaciones = new List<int>();
+
+                    foreach (var cotizacion in listaCotizacionesOriginal)
+                    {
+                        idCotizaciones.Add(cotizacion.IdCotizacion);
+                    }
+
+                    List<CotizacionKiraBE> lstReporte = new CotizacionKiraBL().ListadoAll(listaIdCotizaciones);
+
+                    if (lstReporte != null && lstReporte.Count > 0)
+                    {
+                        RptVistaReportes objRptFacturaCompra = new RptVistaReportes();
+                        objRptFacturaCompra.VerRptCotizacionKiraAll(lstReporte);
+                        objRptFacturaCompra.ShowDialog();
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show("No hay información para el periodo seleccionado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                Cursor = Cursors.Default;
+            }
+            catch (Exception ex)
+            {
+                Cursor = Cursors.Default;
+                MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
 
         private void tlbMenu_Load(object sender, EventArgs e)

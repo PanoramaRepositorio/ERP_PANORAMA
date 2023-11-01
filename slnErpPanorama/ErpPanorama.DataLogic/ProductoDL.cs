@@ -1648,46 +1648,49 @@ namespace ErpPanorama.DataLogic
             while (reader.Read())
             {
                 Producto = new ProductoBE();
-                Producto.IdProducto = Int32.Parse(reader["idProducto"].ToString());
-                Producto.IdEmpresa = Int32.Parse(reader["IdEmpresa"].ToString());
+                Producto.IdProducto = int.TryParse(reader["idProducto"].ToString(), out int parsedId) ? parsedId : 0;
+                Producto.IdEmpresa = int.TryParse(reader["IdEmpresa"].ToString(), out int parsedEmpresa) ? parsedEmpresa : 0;
                 Producto.Fecha = DateTime.Parse(reader["Fecha"].ToString());
                 Producto.NumeroDocumento = reader["NumeroDocumento"].ToString();
-                Producto.Periodo = Int32.Parse(reader["Periodo"].ToString());
+                //Producto.NumeroDocumento = reader["NumeroDocumento"].ToString();
+                Producto.Periodo = int.TryParse(reader["Periodo"].ToString(), out int parsedPeriodo) ? parsedPeriodo : 0;
                 Producto.CodigoProveedor = reader["CodigoProveedor"].ToString();
                 Producto.NombreProducto = reader["NombreProducto"].ToString();
                 Producto.Abreviatura = reader["Abreviatura"].ToString();
-                Producto.Descuento = Decimal.Parse(reader["Descuento"].ToString());
-                Producto.DescuentoTemporal = Decimal.Parse(reader["DescuentoTemporal"].ToString());
-                Producto.PrecioAB = Decimal.Parse(reader["PrecioAB"].ToString());
-                Producto.PrecioCD = Decimal.Parse(reader["PrecioCD"].ToString());
-                Producto.PrecioABSoles = Decimal.Parse(reader["PrecioABSoles"].ToString());
-                Producto.PrecioCDSoles = Decimal.Parse(reader["PrecioCDSoles"].ToString());
-                Producto.DescFamiliaProducto = reader["DescFamiliaProducto"].ToString();
-                Producto.IdLineaProducto = Int32.Parse(reader["IdLineaProducto"].ToString());
+                Producto.Descuento = decimal.TryParse(reader["Descuento"].ToString(), out decimal parsedDescuento) ? parsedDescuento : 0;
+                Producto.DescuentoTemporal = decimal.TryParse(reader["DescuentoTemporal"].ToString(), out decimal parsedDescuentoTemporal) ? parsedDescuentoTemporal : 0;
+                Producto.PrecioAB = decimal.TryParse(reader["PrecioAB"].ToString(), out decimal parsedPrecioAB) ? parsedPrecioAB : 0;
+                Producto.PrecioCD = decimal.TryParse(reader["PrecioCD"].ToString(), out decimal parsedPrecioCD) ? parsedPrecioCD : 0;
+                Producto.PrecioABSoles = decimal.TryParse(reader["PrecioABSoles"].ToString(), out decimal parsedPrecioABSoles) ? parsedPrecioABSoles : 0;
+                Producto.PrecioCDSoles = decimal.TryParse(reader["PrecioCDSoles"].ToString(), out decimal parsedPrecioCDSoles) ? parsedPrecioCDSoles : 0;
+                Producto.DescFamiliaProducto = reader.IsDBNull(reader.GetOrdinal("DescFamiliaProducto")) ? null : reader["DescFamiliaProducto"].ToString();
+                Producto.IdLineaProducto = int.TryParse(reader["IdLineaProducto"].ToString(), out int parsedIdLineaProducto) ? parsedIdLineaProducto : 0;
                 Producto.DescLineaProducto = reader["DescLineaProducto"].ToString();
-                Producto.IdSubLineaProducto = Int32.Parse(reader["IdSubLineaProducto"].ToString());
+                Producto.IdSubLineaProducto = int.TryParse(reader["IdSubLineaProducto"].ToString(), out int parsedIdSubLineaProducto) ? parsedIdSubLineaProducto : 0;
                 Producto.DescSubLineaProducto = reader["DescSubLineaProducto"].ToString();
                 Producto.Medida = reader["Medida"].ToString();
-                Producto.IdModeloProducto = Int32.Parse(reader["IdModeloProducto"].ToString());
+                Producto.IdModeloProducto = int.TryParse(reader["IdModeloProducto"].ToString(), out int parsedIdModeloProducto) ? parsedIdModeloProducto : 0;
                 Producto.DescModeloProducto = reader["DescModeloProducto"].ToString();
                 Producto.DescMaterial = reader["DescMaterial"].ToString();
                 Producto.DescMarca = reader["DescMarca"].ToString();
-
-                Producto.Coleccion = reader["Coleccion"].ToString();
-
-                Producto.FlagNacional = Boolean.Parse(reader["FlagNacional"].ToString());
-                Producto.CantidadCompra = Int32.Parse(reader["CantidadCompra"].ToString());
-                Producto.AlmacenCentral = Int32.Parse(reader["AlmacenCentral"].ToString());
-                Producto.AlmacenTienda = Int32.Parse(reader["AlmacenTienda"].ToString());
-                Producto.AlmacenAndahuaylas = Int32.Parse(reader["AlmacenAndahuaylas"].ToString());
-                Producto.AlmacenOutlet = Int32.Parse(reader["AlmacenOutlet"].ToString());
-                Producto.AlmacenPrescott = Int32.Parse(reader["AlmacenPrescott"].ToString());
-                Producto.AlmacenAviacion = Int32.Parse(reader["AlmacenAviacion"].ToString());
-                Producto.AlmacenMegaPlaza = Int32.Parse(reader["AlmacenMegaPlaza"].ToString());
-                Producto.TotalStock = Int32.Parse(reader["TotalStock"].ToString());
-                Producto.AlmacenAviacion2 = Int32.Parse(reader["AlmacenAviacion2"].ToString());
-                Producto.AlmacenSanMiguel = Int32.Parse(reader["AlmacenSanMiguel"].ToString());
+                Producto.Coleccion = Producto.Coleccion = reader.IsDBNull(reader.GetOrdinal("Coleccion")) ? null : reader["Coleccion"].ToString();
+                Producto.FlagNacional = bool.TryParse(reader["FlagNacional"].ToString(), out bool parsedFlagNacional) ? parsedFlagNacional : false;
+                Producto.AlmacenTransitos_NS = int.TryParse(reader["AlmacenTransitos_NS"].ToString(), out int parsedAlmacenTransitosNS) ? parsedAlmacenTransitosNS : 0;
+                //Producto.AlmacenTransitos_NS = Convert.ToInt32(reader["AlmacenTransitos_NS"]);
+                //Producto.AlmacenTransito_PED = int.TryParse(reader["AlmacenTransitos_PED"].ToString(), out int parsedAlmacenTransitosPED) ? parsedAlmacenTransitosPED : 0;
+                Producto.CantidadCompra = int.TryParse(reader["CantidadCompra"].ToString(), out int parsedCantidadCompra) ? parsedCantidadCompra : 0;
+                Producto.AlmacenCentral = int.TryParse(reader["AlmacenCentral"].ToString(), out int parsedAlmacenCentral) ? parsedAlmacenCentral : 0;
+                Producto.AlmacenTienda = int.TryParse(reader["AlmacenTienda"].ToString(), out int parsedAlmacenTienda) ? parsedAlmacenTienda : 0;
+                Producto.AlmacenAndahuaylas = int.TryParse(reader["AlmacenAndahuaylas"].ToString(), out int parsedAlmacenAndahuaylas) ? parsedAlmacenAndahuaylas : 0;
+                Producto.AlmacenOutlet = int.TryParse(reader["AlmacenOutlet"].ToString(), out int parsedAlmacenOutlet) ? parsedAlmacenOutlet : 0;
+                Producto.AlmacenPrescott = int.TryParse(reader["AlmacenPrescott"].ToString(), out int parsedAlmacenPrescott) ? parsedAlmacenPrescott : 0;
+                //Producto.AlmacenAviacion = int.TryParse(reader["AlmacenAviacion"].ToString(), out int parsedAlmacenAviacion) ? parsedAlmacenAviacion : 0;
+                //Producto.AlmacenMegaPlaza = int.TryParse(reader["AlmacenMegaPlaza"].ToString(), out int parsedAlmacenMegaPlaza) ? parsedAlmacenMegaPlaza : 0;
+                Producto.TotalStock = int.TryParse(reader["TotalStock"].ToString(), out int parsedTotalStock) ? parsedTotalStock : 0;
+                Producto.AlmacenAviacion2 = int.TryParse(reader["AlmacenAviacion2"].ToString(), out int parsedAlmacenAviacion2) ? parsedAlmacenAviacion2 : 0;
+                Producto.AlmacenSanMiguel = int.TryParse(reader["AlmacenSanMiguel"].ToString(), out int parsedAlmacenSanMiguel) ? parsedAlmacenSanMiguel : 0;
                 Productolist.Add(Producto);
+
             }
             reader.Close();
             reader.Dispose();

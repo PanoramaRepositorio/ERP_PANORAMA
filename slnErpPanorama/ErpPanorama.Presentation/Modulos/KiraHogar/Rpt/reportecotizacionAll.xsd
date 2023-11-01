@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportecotizacionall"
+    targetNamespace="http://tempuri.org/reportefacturacompra.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/reportefacturacompra.xsd"
+    xmlns:mstns="http://tempuri.org/reportefacturacompra.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="reportecotizacionall">
+    <xs:complexType>
+      <xs:sequence />
+      <xs:attribute name="IdCotizacion" type="xs:int" />
+      <xs:attribute name="IdTablaElemento" type="xs:int" />
+      <xs:attribute name="Fecha" type="xs:date" />
+      <xs:attribute name="CodigoProducto" type="xs:string" />
+      <xs:attribute name="Descripcion" type="xs:string" />
+      <xs:attribute name="Caracteristicas" type="xs:string" />
+      <xs:attribute name="TotalGastos" type="xs:decimal" />
+      <xs:attribute name="PrecioVenta" type="xs:decimal" />
+      <xs:attribute name="IdMoneda" type="xs:int" />
+      <xs:attribute name="CostoMateriales" type="xs:decimal" />
+      <xs:attribute name="CostoInsumos" type="xs:decimal" />
+      <xs:attribute name="CostoAccesorios" type="xs:decimal" />
+      <xs:attribute name="CostoManoObra" type="xs:decimal" />
+      <xs:attribute name="CostoMovilidad" type="xs:decimal" />
+      <xs:attribute name="CostoEquipos" type="xs:decimal" />
+      <xs:attribute name="DescTablaElemento" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

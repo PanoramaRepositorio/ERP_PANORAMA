@@ -234,6 +234,33 @@ namespace ErpPanorama.BusinessLogic
             { throw ex; }
         }
 
+        //public List<CotizacionKiraBE> ListadoAll()
+        //{
+        //    try
+        //    {
+        //        CotizacionKiraDL reporteCotizacion = new CotizacionKiraDL();
+        //        return reporteCotizacion.Listadoall();
+
+        //    }
+        //    catch (Exception ex)
+        //    { throw ex; }
+        //}
+
+        public List<CotizacionKiraBE> ListadoAll(List<int> idCotizaciones)
+{
+    try
+    {
+        CotizacionKiraDL reporteCotizacion = new CotizacionKiraDL();
+        return reporteCotizacion.Listadoall(idCotizaciones);
+    }
+    catch (Exception ex)
+    {
+        // Manejo de excepciones
+        throw ex;
+    }
+}
+
+
         public List<CotizacionKiraProductoTerminadoBE> ListadoProducto(int IdCotizacion)
         {
             try

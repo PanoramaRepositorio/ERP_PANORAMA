@@ -33,7 +33,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.tlbMenu = new ErpPanorama.Presentation.ControlUser.UIToolBar();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.lblTotalRegistros = new DevExpress.XtraEditors.LabelControl();
-            this.btnConsultarMasInformacion = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txtNumero = new DevExpress.XtraEditors.TextEdit();
             this.txtPeriodo = new DevExpress.XtraEditors.TextEdit();
@@ -72,7 +71,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.gridColumn27 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.lblTotalRegistrosProductos = new DevExpress.XtraEditors.LabelControl();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.txtNumeroProducto = new DevExpress.XtraEditors.TextEdit();
             this.txtPeriodoProducto = new DevExpress.XtraEditors.TextEdit();
@@ -97,7 +95,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.tlbMenu.Ensamblado = "";
             this.tlbMenu.Location = new System.Drawing.Point(0, 0);
             this.tlbMenu.Name = "tlbMenu";
-            this.tlbMenu.Size = new System.Drawing.Size(1595, 31);
+            this.tlbMenu.Size = new System.Drawing.Size(1554, 20);
             this.tlbMenu.TabIndex = 0;
             this.tlbMenu.NewClick += new ErpPanorama.Presentation.ControlUser.UIToolBar.delegateNewClick(this.tlbMenu_NewClick);
             this.tlbMenu.EditClick += new ErpPanorama.Presentation.ControlUser.UIToolBar.delegateEditClick(this.tlbMenu_EditClick);
@@ -117,15 +115,14 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.groupControl1.AppearanceCaption.Options.UseFont = true;
             this.groupControl1.AppearanceCaption.Options.UseForeColor = true;
             this.groupControl1.Controls.Add(this.lblTotalRegistros);
-            this.groupControl1.Controls.Add(this.btnConsultarMasInformacion);
             this.groupControl1.Controls.Add(this.labelControl1);
             this.groupControl1.Controls.Add(this.txtNumero);
             this.groupControl1.Controls.Add(this.txtPeriodo);
             this.groupControl1.Controls.Add(this.labelControl7);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupControl1.Location = new System.Drawing.Point(0, 31);
+            this.groupControl1.Location = new System.Drawing.Point(0, 20);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(1595, 52);
+            this.groupControl1.Size = new System.Drawing.Size(1554, 53);
             this.groupControl1.TabIndex = 24;
             this.groupControl1.Text = "Criterios de Búsqueda Precio Producto Cliente Stock";
             // 
@@ -136,15 +133,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.lblTotalRegistros.Size = new System.Drawing.Size(117, 13);
             this.lblTotalRegistros.TabIndex = 59;
             this.lblTotalRegistros.Text = "0 Registros encontrados";
-            // 
-            // btnConsultarMasInformacion
-            // 
-            this.btnConsultarMasInformacion.ImageOptions.Image = global::ErpPanorama.Presentation.Properties.Resources.Consultar_16x16;
-            this.btnConsultarMasInformacion.Location = new System.Drawing.Point(1213, 24);
-            this.btnConsultarMasInformacion.Name = "btnConsultarMasInformacion";
-            this.btnConsultarMasInformacion.Size = new System.Drawing.Size(118, 23);
-            this.btnConsultarMasInformacion.TabIndex = 58;
-            this.btnConsultarMasInformacion.Text = "Más Información";
             // 
             // labelControl1
             // 
@@ -202,10 +190,10 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // gcCotizaciones
             // 
-            this.gcCotizaciones.Location = new System.Drawing.Point(0, 83);
+            this.gcCotizaciones.Location = new System.Drawing.Point(0, 72);
             this.gcCotizaciones.MainView = this.gvCotizacion;
             this.gcCotizaciones.Name = "gcCotizaciones";
-            this.gcCotizaciones.Size = new System.Drawing.Size(1597, 360);
+            this.gcCotizaciones.Size = new System.Drawing.Size(1597, 337);
             this.gcCotizaciones.TabIndex = 26;
             this.gcCotizaciones.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvCotizacion});
@@ -383,7 +371,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             // gcCotizacionesProducto
             // 
-            this.gcCotizacionesProducto.Location = new System.Drawing.Point(-2, 501);
+            this.gcCotizacionesProducto.Location = new System.Drawing.Point(0, 467);
             this.gcCotizacionesProducto.MainView = this.gvCotizacionProducto;
             this.gcCotizacionesProducto.Name = "gcCotizacionesProducto";
             this.gcCotizacionesProducto.Size = new System.Drawing.Size(1191, 381);
@@ -557,12 +545,11 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.groupControl2.AppearanceCaption.Options.UseFont = true;
             this.groupControl2.AppearanceCaption.Options.UseForeColor = true;
             this.groupControl2.Controls.Add(this.lblTotalRegistrosProductos);
-            this.groupControl2.Controls.Add(this.simpleButton1);
             this.groupControl2.Controls.Add(this.labelControl3);
             this.groupControl2.Controls.Add(this.txtNumeroProducto);
             this.groupControl2.Controls.Add(this.txtPeriodoProducto);
             this.groupControl2.Controls.Add(this.labelControl4);
-            this.groupControl2.Location = new System.Drawing.Point(0, 449);
+            this.groupControl2.Location = new System.Drawing.Point(0, 415);
             this.groupControl2.Name = "groupControl2";
             this.groupControl2.Size = new System.Drawing.Size(1595, 52);
             this.groupControl2.TabIndex = 28;
@@ -575,15 +562,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             this.lblTotalRegistrosProductos.Size = new System.Drawing.Size(117, 13);
             this.lblTotalRegistrosProductos.TabIndex = 59;
             this.lblTotalRegistrosProductos.Text = "0 Registros encontrados";
-            // 
-            // simpleButton1
-            // 
-            this.simpleButton1.ImageOptions.Image = global::ErpPanorama.Presentation.Properties.Resources.Consultar_16x16;
-            this.simpleButton1.Location = new System.Drawing.Point(1213, 24);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(118, 23);
-            this.simpleButton1.TabIndex = 58;
-            this.simpleButton1.Text = "Más Información";
             // 
             // labelControl3
             // 
@@ -627,7 +605,7 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1595, 931);
+            this.ClientSize = new System.Drawing.Size(1554, 852);
             this.Controls.Add(this.groupControl2);
             this.Controls.Add(this.gcCotizacionesProducto);
             this.Controls.Add(this.gcCotizaciones);
@@ -660,7 +638,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
         private ControlUser.UIToolBar tlbMenu;
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraEditors.LabelControl lblTotalRegistros;
-        private DevExpress.XtraEditors.SimpleButton btnConsultarMasInformacion;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.TextEdit txtNumero;
         public DevExpress.XtraEditors.TextEdit txtPeriodo;
@@ -699,7 +676,6 @@ namespace ErpPanorama.Presentation.Modulos.KiraHogar.Registros
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn27;
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private DevExpress.XtraEditors.LabelControl lblTotalRegistrosProductos;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.TextEdit txtNumeroProducto;
         public DevExpress.XtraEditors.TextEdit txtPeriodoProducto;
