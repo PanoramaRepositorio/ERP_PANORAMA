@@ -75,7 +75,8 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
         public string TipoClasificacion { get; set; }
 
         #endregion
-        private const string UrlApi = "https://ruc.com.pe/api/v1/consultas";
+        private const string UrlApiRUC = "https://ruc.com.pe/api/v1/consultas";
+        private const string UriAPiDNI = "https://apiperu.dev/api/dni";
         #region "Eventos"
 
         public frmManClienteMinoristaEdit()
@@ -1528,10 +1529,10 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
                 var jsonRequest = JsonConvert.SerializeObject(requestBody);
                 var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
                 // Registro de detalles de la solicitud
-                Console.WriteLine($"URL: {UrlApi}");
+                Console.WriteLine($"URL: {UrlApiRUC}");
                 Console.WriteLine($"Request Body: {jsonRequest}");
 
-                    var response = await client.PostAsync(UrlApi, content);
+                    var response = await client.PostAsync(UrlApiRUC, content);
 
                 response.EnsureSuccessStatusCode();
 
@@ -1551,7 +1552,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
                 client.DefaultRequestHeaders.Add("User-Agent", "TuApp/1.0");
 
                 // Configuración de la autorización con el token Bearer
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "545ebfef11f6a9505456270d51ae2d383f84553e5da02a1fce3e0383087e9419");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Parametros.KEY_API_DNI);
 
                 var requestBody = new
                 {
@@ -1562,12 +1563,12 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
                 var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
 
                 // Registro de detalles de la solicitud
-                Console.WriteLine($"URL: https://apiperu.dev/api/dni");
+                Console.WriteLine($"URL: {UriAPiDNI}");
                 Console.WriteLine($"Request Body: {jsonRequest}");
 
                 try
                 {
-                    var response = await client.PostAsync("https://apiperu.dev/api/dni", content);
+                        var response = await client.PostAsync(UriAPiDNI, content);
 
                     if (!response.IsSuccessStatusCode)
                     {
@@ -1582,7 +1583,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
                     Console.WriteLine($"API Response: {JsonConvert.SerializeObject(jsonResponse)}");
 
 
-                    return JsonConvert.DeserializeObject<ApiResponseDNI>(jsonResponse);
+                        return JsonConvert.DeserializeObject<ApiResponseDNI>(jsonResponse);
                     
                 }
                 catch (HttpRequestException ex)
@@ -1810,7 +1811,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
                         }
                         catch (Exception ex)
                         {
-                            XtraMessageBox.Show($"Error al consultar DNI: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            XtraMessageBox.Show($"Error al consultar DNI por Limitación de consultas {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     }

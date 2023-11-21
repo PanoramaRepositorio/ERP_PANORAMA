@@ -21,7 +21,7 @@ namespace ErpPanorama.Presentation
         public static string Key = "YUXTAPUESTO/ARIN";
         public static string IV = "kabosilva0123456";
         public static string KEY_API_RUC_COM = "07548db0-cabe-4e20-b1e4-0dd91b923b40-756064cb-5a76-4a42-a9ad-02e95f2da9fe";
-        public static string KEY_API_DNI = "545ebfef11f6a9505456270d51ae2d383f84553e5da02a1fce3e0383087e9419";
+        public static string KEY_API_DNI = "fe4d6339239a3005ca8b505327c03943bdd9ff5e9f468725f98ffd48acb10151";
         public static DateTime dtFechaHoraServidor = DateTime.Today;
         public static string strVersion = "11.8.39"; //LIMA
         public static string strDBUse = "BD_ERPPANORAMA";
