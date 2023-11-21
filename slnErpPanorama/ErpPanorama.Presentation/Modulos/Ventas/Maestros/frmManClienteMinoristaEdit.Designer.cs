@@ -36,6 +36,7 @@
             this.btnGrabar = new DevExpress.XtraEditors.SimpleButton();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
+            this.chkComercioAmigo = new System.Windows.Forms.CheckBox();
             this.gcContactadoPor = new DevExpress.XtraEditors.GroupControl();
             this.chkOtros = new System.Windows.Forms.CheckBox();
             this.txtEncuestaOtro = new DevExpress.XtraEditors.TextEdit();
@@ -174,7 +175,6 @@
             this.chkPreventa = new DevExpress.XtraEditors.CheckEdit();
             this.lblEstadoRUC = new DevExpress.XtraEditors.LabelControl();
             this.bsListadoClienteTracking = new System.Windows.Forms.BindingSource(this.components);
-            this.chkComercioAmigo = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.gcTxtComentario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.asdf)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
@@ -303,6 +303,18 @@
             this.xtraTabPage1.Name = "xtraTabPage1";
             this.xtraTabPage1.Size = new System.Drawing.Size(836, 507);
             this.xtraTabPage1.Text = "Datos Generales";
+            // 
+            // chkComercioAmigo
+            // 
+            this.chkComercioAmigo.AutoSize = true;
+            this.chkComercioAmigo.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.chkComercioAmigo.ForeColor = System.Drawing.Color.DarkOliveGreen;
+            this.chkComercioAmigo.Location = new System.Drawing.Point(11, 487);
+            this.chkComercioAmigo.Name = "chkComercioAmigo";
+            this.chkComercioAmigo.Size = new System.Drawing.Size(118, 17);
+            this.chkComercioAmigo.TabIndex = 9;
+            this.chkComercioAmigo.Text = "Comercio Amigo";
+            this.chkComercioAmigo.UseVisualStyleBackColor = true;
             // 
             // gcContactadoPor
             // 
@@ -872,9 +884,9 @@
             // 
             // pictureCapcha
             // 
-            this.pictureCapcha.Location = new System.Drawing.Point(337, 23);
+            this.pictureCapcha.Location = new System.Drawing.Point(335, 66);
             this.pictureCapcha.Name = "pictureCapcha";
-            this.pictureCapcha.Size = new System.Drawing.Size(81, 39);
+            this.pictureCapcha.Size = new System.Drawing.Size(81, 10);
             this.pictureCapcha.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureCapcha.TabIndex = 80;
             this.pictureCapcha.TabStop = false;
@@ -1205,7 +1217,7 @@
             this.xtraTabPage2.Controls.Add(this.groupControl4);
             this.xtraTabPage2.Controls.Add(this.groupControl5);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(836, 488);
+            this.xtraTabPage2.Size = new System.Drawing.Size(836, 507);
             this.xtraTabPage2.Text = "Correos Electronico";
             // 
             // groupControl4
@@ -1488,7 +1500,7 @@
             this.xtraTabPage3.Controls.Add(this.gcClienteTracking);
             this.xtraTabPage3.Controls.Add(this.labelControl30);
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(836, 488);
+            this.xtraTabPage3.Size = new System.Drawing.Size(836, 507);
             this.xtraTabPage3.Text = "Seguimiento de LLamadas";
             // 
             // gcClienteTracking
@@ -1693,18 +1705,6 @@
             this.lblEstadoRUC.Name = "lblEstadoRUC";
             this.lblEstadoRUC.Size = new System.Drawing.Size(0, 19);
             this.lblEstadoRUC.TabIndex = 1;
-            // 
-            // chkComercioAmigo
-            // 
-            this.chkComercioAmigo.AutoSize = true;
-            this.chkComercioAmigo.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.chkComercioAmigo.ForeColor = System.Drawing.Color.DarkOliveGreen;
-            this.chkComercioAmigo.Location = new System.Drawing.Point(11, 487);
-            this.chkComercioAmigo.Name = "chkComercioAmigo";
-            this.chkComercioAmigo.Size = new System.Drawing.Size(118, 17);
-            this.chkComercioAmigo.TabIndex = 9;
-            this.chkComercioAmigo.Text = "Comercio Amigo";
-            this.chkComercioAmigo.UseVisualStyleBackColor = true;
             // 
             // frmManClienteMinoristaEdit
             // 

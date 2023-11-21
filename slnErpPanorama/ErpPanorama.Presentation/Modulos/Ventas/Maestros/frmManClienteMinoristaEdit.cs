@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
@@ -69,9 +73,9 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
 
         public int IdClasificacionCliente { get; set; }
         public string TipoClasificacion { get; set; }
-  
-        #endregion
 
+        #endregion
+        private const string UrlApi = "https://ruc.com.pe/api/v1/consultas";
         #region "Eventos"
 
         public frmManClienteMinoristaEdit()
@@ -1222,84 +1226,100 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
         }
 
 
-        private void btnConsultarSunat_Click(object sender, EventArgs e)
+        private async void btnConsultarSunat_Click(object sender, EventArgs e)
         {
-            try
+            //CONSULTAR SI EXISTE
+            if (pOperacion == Operacion.Nuevo)
             {
-                if (Convert.ToInt32(cboDocumento.EditValue) == Parametros.intTipoDocumentoRUC)
+                ClienteBE objE_ClienteV = null;
+                objE_ClienteV = new ClienteBL().SeleccionaNumero(Parametros.intEmpresaId, txtNumeroDocumento.Text.Trim());
+                if (objE_ClienteV != null)
                 {
-                    if (txtCaptcha.Text.Trim() == "")
-                    {
-                        XtraMessageBox.Show("Ingrese el código que se muestra en la imágen.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        txtCaptcha.Select();
-                        return;
-                    }
+                    XtraMessageBox.Show("El cliente ya existe! ", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
+                }
+            }
 
-                    //Contribuyente myRuc = new Contribuyente();//add
-                    
-                    myRuc.GetInfo(this.txtNumeroDocumento.Text, this.txtCaptcha.Text);
-                    this.txtDireccion.Text = myRuc.Direccion;
-                    this.txtDescripcion.Text = myRuc.RazonSocial;
-                    this.lblEstadoRUC.Text = myRuc.Estado + " / " + myRuc.Habido;
-                    this.txtCaptcha.Text = "";
-                    CargarImagen();
+            if (Convert.ToInt32(cboDocumento.EditValue) == Parametros.intTipoDocumentoRUC)
+            {
+
+
+
+                string ruc = txtNumeroDocumento.Text;
+
+                if (!string.IsNullOrWhiteSpace(ruc))
+                {
+                    try
+                    {
+                        var datos = await ConsultarApi(ruc);
+
+                        // Mostrar los datos en los controles del formulario
+                        txtDescripcion.Text = datos.nombre_o_razon_social;
+                        txtDireccion.Text = datos.direccion;
+                        lblEstadoRUC.Text = $"{datos.estado_del_contribuyente} - {datos.condicion_de_domicilio}";
+                        txtObservacion.Text = datos.direccion_completa;
+                    }
+                    catch (Exception ex)
+                    {
+                        //XtraMessageBox.Show($"Error al consultar la API: {ex.Message}\n{ex.StackTrace}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        XtraMessageBox.Show($"Error al consultar RUC: No existe , Por favor ingrese nuevamente. ", "INVALIDO : Comunicarse con Sistemas de persistir", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            //Condición cambio TIPO PERSONA
+
+            else
+            {
+                CargarImagen();
+
+                if (txtNumeroDocumento.Text.Substring(0, 2) == "20")
+                {
+                    cboTipoPersona.EditValue = "J";
+                    txtApPaterno.Properties.ReadOnly = true;
+                    txtApMaterno.Properties.ReadOnly = true;
+                    txtNombres.Properties.ReadOnly = true;
+                    txtDescripcion.Properties.ReadOnly = false;
+
+                    txtApPaterno.Text = String.Empty;
+                    txtApMaterno.Text = String.Empty;
+                    txtNombres.Text = String.Empty;
+                    txtDescripcion.Select();
                 }
                 else
                 {
-                    if (this.txtNumeroDocumento.Text.Length != 8)
-                    {
-                        this.lblEstadoRUC.Text = "Ingrese Dni Valido";
-                        this.txtNumeroDocumento.SelectAll();
-                        this.txtNumeroDocumento.Focus();
-                        return;
-                    }
-                    
-                    myInfo.GetInfo(this.txtNumeroDocumento.Text, this.txtCaptcha.Text);
-                    CaptionResul();
-                    CargarImagenReniec(); //Comentar esta linea para consultar multiples DNI usando un solo captcha.                
+                    cboTipoPersona.EditValue = "N";
+                    txtApPaterno.Properties.ReadOnly = false;
+                    txtApMaterno.Properties.ReadOnly = false;
+                    txtNombres.Properties.ReadOnly = false;
+                    txtDescripcion.Properties.ReadOnly = true;
+                    txtApPaterno.Select();
                 }
+            }
 
+            try
+            {
+                string ruc = txtNumeroDocumento.Text;
+                ClienteBL objBL_Cliente = new ClienteBL();
+                ClienteBE objE_Cliente = new ClienteBE();
+                var datos = await ConsultarApi(ruc);
+                objE_Cliente.NumeroDocumento = txtNumeroDocumento.Text.ToString().Trim();
+                objE_Cliente.DescCliente = txtDescripcion.Text.ToString().Trim();
+                objE_Cliente.EstadoContribuyente = datos.estado_del_contribuyente;
+                objE_Cliente.CondicionDomicilio = datos.condicion_de_domicilio;
+
+                objBL_Cliente.ActualizaPadron(objE_Cliente);
+
+                XtraMessageBox.Show("Se actualizo el padron.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                Cursor = Cursors.Default;
+                XtraMessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 
-            //XtraMessageBox.Show("Por el momento este servicio no está disponible.\nPor favor, consulte por el navegador.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            /*
-             * 
-             * 
-            ///---------------
-             * 
-            string ruc = this.txtNumeroDocumento.Text;
-
-            Contribuyente myRuc = new Contribuyente(ruc);
-
-            if (string.IsNullOrEmpty(myRuc.Error))
-            {
-                txtDescripcion.Text = myRuc.GetInfo.RazonSocial;
-                txtDireccion.Text = myRuc.GetInfo.Direccion;
-                lblEstadoRUC.Text = "ESTADO: " + myRuc.GetInfo.Estado;
-
-                if(myRuc.GetInfo.Telefono.Length > 3)
-                    txtTelefono.Text = myRuc.GetInfo.Telefono;
-
-                cboDocumento.EditValue = Parametros.intTipoDocumentoRUC;
-
-                //this.txtAntiguoRuc.Text = myRuc.GetInfo.AntiguoRuc;
-                //this.txtEstado.Text = myRuc.GetInfo.Estado;
-                //this.txtEsAgenteRetencion.Text = myRuc.GetInfo.EsAgenteRetencion;
-                //this.txtNombreComercial.Text = myRuc.GetInfo.NombreComercial;
-                //this.txtDependencia.Text = myRuc.GetInfo.Dependencia;
-                //this.txtTipoEmpresa.Text = myRuc.GetInfo.Tipo;
-            }
-            else
-            {
-                XtraMessageBox.Show(myRuc.Error, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                
-            }*/
         }
+
 
         private void lblRefrescarCodigo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -1447,12 +1467,152 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
             this.lblEstadoRUC.Text = "";
         }
 
-        private void txtNumeroDocumento_KeyDown(object sender, KeyEventArgs e)
+        // Clase para representar la respuesta de la API
+        public class ApiResponse
         {
+            public bool success { get; set; }
+            public string ruc { get; set; }
+            public string nombre_o_razon_social { get; set; }
+            public string estado_del_contribuyente { get; set; }
+            public string condicion_de_domicilio { get; set; }
+            public string direccion { get; set; }
+            public string direccion_completa { get; set; }
+
+            public string nombres { get; set; }
+
+            public string apellido_paterno { get; set; }
+
+            public string apellido_materno { get; set; }
+        }
+
+        public class ApiResponseDNI
+        {
+            public bool success { get; set; }
+            public Data data { get; set; }
+            public string source { get; set; }
+        }
+
+        public class Data
+        {
+            public string numero { get; set; }
+            public string nombre_completo { get; set; }
+            public string nombres { get; set; }
+            public string apellido_paterno { get; set; }
+            public string apellido_materno { get; set; }
+            public int codigo_verificacion { get; set; }
+            public string direccion { get; set; }
+            public string direccion_completa { get; set; }
+            public string ubigeo_sunat { get; set; }
+            public string[] ubigeo { get; set; }
+        }
+
+        private async Task<ApiResponse> ConsultarApi(string ruc)
+        {
+            using (
+                var client = new HttpClient())
+            {
+
+                // Configuración de la seguridad TLS
+                System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12 | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls;
+
+
+                // Configuración del encabezado User-Agent
+                client.DefaultRequestHeaders.Add("User-Agent", "TuApp/1.0");
+
+                var requestBody = new
+                {
+                    token = Parametros.KEY_API_RUC_COM,
+                    ruc
+                };
+
+                var jsonRequest = JsonConvert.SerializeObject(requestBody);
+                var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
+                // Registro de detalles de la solicitud
+                Console.WriteLine($"URL: {UrlApi}");
+                Console.WriteLine($"Request Body: {jsonRequest}");
+
+                    var response = await client.PostAsync(UrlApi, content);
+
+                response.EnsureSuccessStatusCode();
+
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<ApiResponse>(jsonResponse);
+            }
+        }
+
+        public async Task<ApiResponseDNI> ConsultarApiDNI(string dni)
+        {
+            using (var client = new HttpClient())
+            {
+                // Configuración de la seguridad TLS
+                System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12 | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls;
+               
+                // Configuración del encabezado User-Agent
+                client.DefaultRequestHeaders.Add("User-Agent", "TuApp/1.0");
+
+                // Configuración de la autorización con el token Bearer
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "545ebfef11f6a9505456270d51ae2d383f84553e5da02a1fce3e0383087e9419");
+
+                var requestBody = new
+                {
+                    dni
+                };
+
+                var jsonRequest = JsonConvert.SerializeObject(requestBody);
+                var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
+
+                // Registro de detalles de la solicitud
+                Console.WriteLine($"URL: https://apiperu.dev/api/dni");
+                Console.WriteLine($"Request Body: {jsonRequest}");
+
+                try
+                {
+                    var response = await client.PostAsync("https://apiperu.dev/api/dni", content);
+
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        // Mostrar el contenido del cuerpo de la respuesta si hay errores
+                        var errorResponse = await response.Content.ReadAsStringAsync();
+                        Console.WriteLine($"Error Response Body: {errorResponse}");
+                    }
+
+                    response.EnsureSuccessStatusCode();
+
+                    var jsonResponse = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine($"API Response: {JsonConvert.SerializeObject(jsonResponse)}");
+
+
+                    return JsonConvert.DeserializeObject<ApiResponseDNI>(jsonResponse);
+                    
+                }
+                catch (HttpRequestException ex)
+                {
+                    // Manejo general de excepciones
+                    MessageBox.Show($"Error al consultar la API: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    // Puedes lanzar la excepción nuevamente si deseas que otros manejadores de excepciones también la capturen
+                    throw;
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+        private async void txtNumeroDocumento_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Configuración de la seguridad TLS
+            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12 | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls;
+
             if (e.KeyCode == Keys.Enter)
             {
                 //CONSULTAR SI EXISTE
-                if(pOperacion == Operacion.Nuevo)
+                if (pOperacion == Operacion.Nuevo)
                 {
                     ClienteBE objE_ClienteV = null;
                     objE_ClienteV = new ClienteBL().SeleccionaNumero(Parametros.intEmpresaId, txtNumeroDocumento.Text.Trim());
@@ -1463,9 +1623,58 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
                     }
                 }
 
-                //btnConsultarSunat_Click(sender, e);
+
+
                 if (Convert.ToInt32(cboDocumento.EditValue) == Parametros.intTipoDocumentoRUC)
                 {
+
+                    #region "Consulta RUC API https://ruc.com.pe/"
+
+                    string ruc = txtNumeroDocumento.Text;
+
+                    if (!string.IsNullOrWhiteSpace(ruc))
+                    {
+                        try
+                        {
+                            var datos = await ConsultarApi(ruc);
+
+                            // Mostrar los datos en los controles del formulario
+                            txtDescripcion.Text = datos.nombre_o_razon_social;
+                            txtDireccion.Text = datos.direccion;
+                            lblEstadoRUC.Text = $"{datos.estado_del_contribuyente} - {datos.condicion_de_domicilio}";
+                            txtObservacion.Text = datos.direccion_completa;
+                        }
+                        catch (Exception ex)
+                        {
+                            //XtraMessageBox.Show($"Error al consultar la API: {ex.Message}\n{ex.StackTrace}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            XtraMessageBox.Show($"Error al consultar RUC: No existe , Por favor ingrese nuevamente. ", "INVALIDO : Comunicarse con Sistemas de persistir", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    ClienteBE objE_Clientee = new ClienteBE();
+                    try
+                    {
+
+                        ClienteBL objBL_Cliente = new ClienteBL();
+
+                        var datos = await ConsultarApi(ruc);
+                        objE_Clientee.NumeroDocumento = txtNumeroDocumento.Text.ToString().Trim();
+                        objE_Clientee.DescCliente = txtDescripcion.Text.ToString().Trim();
+                        objE_Clientee.EstadoContribuyente = datos.estado_del_contribuyente;
+                        objE_Clientee.CondicionDomicilio = datos.condicion_de_domicilio;
+
+                        objBL_Cliente.ActualizaPadron(objE_Clientee);
+
+                        XtraMessageBox.Show("Se actualizo el padron.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        Cursor = Cursors.Default;
+                        XtraMessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+
+                    #endregion
+
                     #region "Consulta RUC Data Local"
 
                     ClienteBE objE_Cliente = null;
@@ -1521,7 +1730,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
                         cboDocumento.Properties.ReadOnly = true;
                         txtNumeroDocumento.Properties.ReadOnly = true;
 
-                        if (txtNumeroDocumento.Text.Trim().Substring(0,2)=="10")
+                        if (txtNumeroDocumento.Text.Trim().Substring(0, 2) == "10")
                         {
                             cboTipoPersona.EditValue = "N";
                             SeparaApellidosNombres();
@@ -1541,10 +1750,10 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
                     }
                     #endregion
 
+                    //Condición cambio TIPO PERSONA
+
                     else
                     {
-                        CargarImagen();
-
                         if (txtNumeroDocumento.Text.Substring(0, 2) == "20")
                         {
                             cboTipoPersona.EditValue = "J";
@@ -1569,13 +1778,49 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
                         }
                     }
                 }
-                else
+                else    if (Convert.ToInt32(cboDocumento.EditValue) == Parametros.intTipoDocumentoDNI)
                 {
-                    CargarImagenReniec();
-                }
+                    string DNI = txtNumeroDocumento.Text;
+                 
+                    if (!string.IsNullOrWhiteSpace(DNI))
+                    {
+                        try
+                        {
+                            var datos1 = await ConsultarApiDNI(DNI);
 
-                e.Handled = true;
-                SendKeys.Send("{TAB}");
+                            // Verificar si la respuesta no es nula
+                            if (datos1 != null)
+                            {
+                                // Mostrar la respuesta completa en la consola
+                                Console.WriteLine($"API Response: {JsonConvert.SerializeObject(datos1)}");
+
+                                // Actualizar los datos en los controles del formulario desde el hilo de la UI
+                                this.Invoke((MethodInvoker)delegate
+                                {
+                                    txtNombres.Text = datos1.data.nombres;
+                                    txtApPaterno.Text = datos1.data.apellido_paterno;
+                                    txtApMaterno.Text = datos1.data.apellido_materno;
+                                    txtDescripcion.Text = datos1.data.nombre_completo;
+                                });
+                            }
+                            else
+                            {
+                                MessageBox.Show("La respuesta de la API de DNI es nula.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            XtraMessageBox.Show($"Error al consultar DNI: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    }
+                //else
+                //{
+                //    CargarImagenReniec();
+                //}
+
+                    e.Handled = true;
+                    SendKeys.Send("{TAB}");
             }
         }
 
@@ -1825,6 +2070,43 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
 
                 }
             }
+        }
+
+        private async void btnConsultarDNI_Click(object sender, EventArgs e)
+        {
+             string DNI = txtNumeroDocumento.Text;
+                 
+                    if (!string.IsNullOrWhiteSpace(DNI))
+                    {
+                        try
+                        {
+                            var datos2 = await ConsultarApiDNI(DNI);
+
+                            // Verificar si la respuesta no es nula
+                            if (datos2 != null)
+                            {
+                                // Mostrar la respuesta completa en la consola
+                                Console.WriteLine($"API Response: {JsonConvert.SerializeObject(datos2)}");
+
+                                // Actualizar los datos en los controles del formulario desde el hilo de la UI
+                                this.Invoke((MethodInvoker)delegate
+                                {
+                                    txtNombres.Text = datos2.data.nombres;
+                                    txtApPaterno.Text = datos2.data.apellido_paterno;
+                                    txtApMaterno.Text = datos2.data.apellido_materno;
+                                    txtDescripcion.Text = datos2.data.nombre_completo;
+                                });
+                            }
+                            else
+                            {
+                                MessageBox.Show("La respuesta de la API de DNI es nula.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            XtraMessageBox.Show($"Error al consultar DNI: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
         }
     }
 }
