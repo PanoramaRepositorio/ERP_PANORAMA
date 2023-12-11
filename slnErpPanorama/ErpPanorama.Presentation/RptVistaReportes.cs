@@ -273,6 +273,13 @@ namespace ErpPanorama.Presentation
             this.crystalReportViewer1.ReportSource = objReporte;
         }
 
+        public void VerRptCotizacionKiraAll(List<CotizacionKiraBE> lstReporte)
+        {
+            rptCotizacionKiraAll objReporte = new rptCotizacionKiraAll();
+            objReporte.SetDataSource(lstReporte);
+            this.crystalReportViewer1.ReportSource = objReporte;
+        }
+
         public void VerRptCotizacionKiraProductoTerminado(List<CotizacionKiraProductoTerminadoBE> lstReporte)
         {
             rptCotizacionkiraProducto objReporte = new rptCotizacionkiraProducto();
