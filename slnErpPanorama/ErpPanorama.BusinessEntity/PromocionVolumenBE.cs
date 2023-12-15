@@ -93,6 +93,15 @@ namespace ErpPanorama.BusinessEntity
         public Boolean FlagAviacion2 { get; set; }
         [DataMember]
         public Boolean FlagSanMiguel { get; set; }
+
+        [DataMember]
+        public Int32 CantidadProductos { get; set; }
+
+        [DataMember]
+        public Decimal MontoSoloXUni { get; set; }
+
+        [DataMember]
+        public Decimal MontoUniXamas { get; set; }
         #endregion
     }
 }

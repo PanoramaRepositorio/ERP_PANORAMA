@@ -83,7 +83,12 @@ namespace ErpPanorama.BusinessEntity
 
         [DataMember]
         public Decimal MontoUniXamas { get; set; }
-
+        [DataMember]
+        public Boolean FlagAplicaxCodigo { get; set; }
+        [DataMember]
+        public Boolean FlagAplicaCombinacion { get; set; }
+        [DataMember]
+        public Int32 CantidadProductos { get; set; }
 
         #endregion
 
