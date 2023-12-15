@@ -76,5 +76,8 @@ namespace ErpPanorama.BusinessEntity
 
         [DataMember]
         public decimal CostoDetalle { get; set; }
+
+        [DataMember]
+        public decimal TotalGastosGeneral { get; set; }
     }
 }
