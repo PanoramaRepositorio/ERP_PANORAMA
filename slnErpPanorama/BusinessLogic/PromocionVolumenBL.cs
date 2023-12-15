@@ -198,7 +198,73 @@ namespace ErpPanorama.BusinessLogic
             { throw ex; }
         }
 
+        public List<PromocionVolumenDetalleBE> ObtenerProductosPorDetalle(int IdPromocionVolumen)
+        {
+            try
+            {
+                PromocionVolumenDetalleDL promocionVolumenDetalleDL = new PromocionVolumenDetalleDL();
+                return promocionVolumenDetalleDL.ObtenerProductosPorDetalle(IdPromocionVolumen);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
+
+        public List<PromocionVolumenBE> ValidarPromocion(int IdPromocionVolumen)
+        {
+            try
+            {
+                PromocionVolumenDetalleDL promocionVolumenDetalleDL = new PromocionVolumenDetalleDL();
+                // Llama al método en la capa de datos que devuelve una lista de PromocionVolumenBE
+                return promocionVolumenDetalleDL.ValidarPromocion(IdPromocionVolumen);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<PromocionVolumenDetalleBE> ValidarPromocion_IDProducto(int idproducto)
+        {
+            try
+            {
+                PromocionVolumenDetalleDL promocionVolumenDetalleDL = new PromocionVolumenDetalleDL();
+                // Llama al método en la capa de datos que devuelve una lista de PromocionVolumenBE
+                return promocionVolumenDetalleDL.ValidarPromocionIDProducto(idproducto);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<PromocionVolumenDetalleBE> ObtenerIdPromocionPorIdProducto(int idproducto)
+        {
+            try
+            {
+                PromocionVolumenDetalleDL promocionVolumenDetalleDL = new PromocionVolumenDetalleDL();
+                return promocionVolumenDetalleDL.ObtenerIdPromocionPorIdProducto(idproducto);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<PromocionVolumenDetalleBE> ObtenerProductosPorIdPromocion(int idPromocionVolumen)
+        {
+            try
+            {
+                PromocionVolumenDetalleDL promocionVolumenDetalleDL = new PromocionVolumenDetalleDL();
+                return promocionVolumenDetalleDL.ObtenerProductosPorIdPromocion(idPromocionVolumen);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
     }
 }
