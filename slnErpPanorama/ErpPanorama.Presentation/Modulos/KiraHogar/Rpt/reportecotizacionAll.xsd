@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema id="reportecotizacionall"
-    targetNamespace="http://tempuri.org/reportefacturacompra.xsd"
+    targetNamespace="http://tempuri.org/reportecotizacionall.xsd"
     elementFormDefault="qualified"
-    xmlns="http://tempuri.org/reportefacturacompra.xsd"
-    xmlns:mstns="http://tempuri.org/reportefacturacompra.xsd"
+    xmlns="http://tempuri.org/reportecotizacionall.xsd"
+    xmlns:mstns="http://tempuri.org/reportecotizacionall.xsd"
     xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <xs:element name="reportecotizacionall">
@@ -25,6 +25,7 @@
       <xs:attribute name="CostoMovilidad" type="xs:decimal" />
       <xs:attribute name="CostoEquipos" type="xs:decimal" />
       <xs:attribute name="DescTablaElemento" type="xs:string" />
+	  <xs:attribute name="TotalGastosGeneral" type="xs:decimal" />
     </xs:complexType>
   </xs:element>
   

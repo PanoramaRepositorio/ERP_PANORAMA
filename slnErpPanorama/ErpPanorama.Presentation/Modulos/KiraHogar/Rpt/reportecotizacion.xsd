@@ -25,6 +25,7 @@
       <xs:attribute name="CostoMovilidad" type="xs:decimal" />
       <xs:attribute name="CostoEquipos" type="xs:decimal" />
       <xs:attribute name="DescTablaElemento" type="xs:string" />
+	  <xs:attribute name="TotalGastosGeneral" type="xs:decimal" />	
     </xs:complexType>
   </xs:element>
   
