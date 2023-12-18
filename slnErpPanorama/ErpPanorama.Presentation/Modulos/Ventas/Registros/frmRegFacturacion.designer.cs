@@ -130,7 +130,6 @@
             this.repositoryItemImageEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageEdit();
             this.gridColumn29 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.rptProveedor1 = new ErpPanorama.Presentation.Modulos.ComercioExterior.Rpt.rptProveedor();
-         //   this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPeriodo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.prgFactura.Properties)).BeginInit();
@@ -147,7 +146,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvDocumento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageEdit1)).BeginInit();
-        //    ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.SuspendLayout();
             // 
             // tlbMenu
@@ -416,7 +414,7 @@
             this.enviarResumenDeVentasToolStripMenuItem,
             this.actualizarConsultaTicketToolStripMenuItem1});
             this.mnuContextual.Name = "contextMenuStrip1";
-            this.mnuContextual.Size = new System.Drawing.Size(280, 658);
+            this.mnuContextual.Size = new System.Drawing.Size(280, 680);
             this.mnuContextual.Opening += new System.ComponentModel.CancelEventHandler(this.mnuContextual_Opening);
             // 
             // imprimirToolStripMenuItem
@@ -472,7 +470,7 @@
             // 
             this.undocumentocontinuotoolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("undocumentocontinuotoolStripMenuItem1.Image")));
             this.undocumentocontinuotoolStripMenuItem1.Name = "undocumentocontinuotoolStripMenuItem1";
-            this.undocumentocontinuotoolStripMenuItem1.Size = new System.Drawing.Size(216, 22);
+            this.undocumentocontinuotoolStripMenuItem1.Size = new System.Drawing.Size(220, 26);
             this.undocumentocontinuotoolStripMenuItem1.Text = "Documento Continuo";
             this.undocumentocontinuotoolStripMenuItem1.Click += new System.EventHandler(this.undocumentocontinuotoolStripMenuItem1_Click);
             // 
@@ -480,7 +478,7 @@
             // 
             this.undocumentodesglosabletoolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("undocumentodesglosabletoolStripMenuItem1.Image")));
             this.undocumentodesglosabletoolStripMenuItem1.Name = "undocumentodesglosabletoolStripMenuItem1";
-            this.undocumentodesglosabletoolStripMenuItem1.Size = new System.Drawing.Size(216, 22);
+            this.undocumentodesglosabletoolStripMenuItem1.Size = new System.Drawing.Size(220, 26);
             this.undocumentodesglosabletoolStripMenuItem1.Text = "Documento Desglosable";
             this.undocumentodesglosabletoolStripMenuItem1.Click += new System.EventHandler(this.undocumentodesglosabletoolStripMenuItem1_Click);
             // 
@@ -488,7 +486,7 @@
             // 
             this.unaguiatoolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("unaguiatoolStripMenuItem1.Image")));
             this.unaguiatoolStripMenuItem1.Name = "unaguiatoolStripMenuItem1";
-            this.unaguiatoolStripMenuItem1.Size = new System.Drawing.Size(216, 22);
+            this.unaguiatoolStripMenuItem1.Size = new System.Drawing.Size(220, 26);
             this.unaguiatoolStripMenuItem1.Text = "Guia Remisión";
             this.unaguiatoolStripMenuItem1.Click += new System.EventHandler(this.unaguiatoolStripMenuItem1_Click);
             // 
@@ -497,7 +495,7 @@
             this.unaguiaDesglosabletoolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.unaguiaDesglosabletoolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("unaguiaDesglosabletoolStripMenuItem.Image")));
             this.unaguiaDesglosabletoolStripMenuItem.Name = "unaguiaDesglosabletoolStripMenuItem";
-            this.unaguiaDesglosabletoolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.unaguiaDesglosabletoolStripMenuItem.Size = new System.Drawing.Size(220, 26);
             this.unaguiaDesglosabletoolStripMenuItem.Text = "Guia Remisión Desglosable";
             this.unaguiaDesglosabletoolStripMenuItem.Click += new System.EventHandler(this.unaguiaDesglosabletoolStripMenuItem_Click);
             // 
@@ -579,7 +577,7 @@
             // 
             this.asociarapedidotoolStripMenuItem.Image = global::ErpPanorama.Presentation.Properties.Resources.Link_16x16;
             this.asociarapedidotoolStripMenuItem.Name = "asociarapedidotoolStripMenuItem";
-            this.asociarapedidotoolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.asociarapedidotoolStripMenuItem.Size = new System.Drawing.Size(136, 26);
             this.asociarapedidotoolStripMenuItem.Text = "Asociar";
             this.asociarapedidotoolStripMenuItem.Click += new System.EventHandler(this.asociarapedidotoolStripMenuItem_Click);
             // 
@@ -587,7 +585,7 @@
             // 
             this.desasociartoolStripMenuItem.Image = global::ErpPanorama.Presentation.Properties.Resources.go_back_32x32;
             this.desasociartoolStripMenuItem.Name = "desasociartoolStripMenuItem";
-            this.desasociartoolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.desasociartoolStripMenuItem.Size = new System.Drawing.Size(136, 26);
             this.desasociartoolStripMenuItem.Text = "DesAsociar";
             this.desasociartoolStripMenuItem.Click += new System.EventHandler(this.desasociartoolStripMenuItem_Click);
             // 
@@ -1114,20 +1112,11 @@
             this.gridColumn29.OptionsColumn.AllowFocus = false;
             this.gridColumn29.Width = 56;
             // 
-            // groupControl1
-            // 
-            //this.groupControl1.Location = new System.Drawing.Point(70, 202);
-            //this.groupControl1.Name = "groupControl1";
-            //this.groupControl1.Size = new System.Drawing.Size(200, 100);
-            //this.groupControl1.TabIndex = 62;
-            //this.groupControl1.Text = "groupControl1";
-            // 
             // frmRegFacturacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1736, 726);
-        //    this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.gcDocumento);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tlbMenu);
@@ -1152,7 +1141,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvDocumento)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageEdit1)).EndInit();
-//            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.ResumeLayout(false);
 
         }

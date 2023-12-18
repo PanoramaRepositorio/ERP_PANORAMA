@@ -2284,7 +2284,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
             this.tsmMenuSelText});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1070, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1072, 24);
             this.menuStrip1.TabIndex = 110;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.Visible = false;
@@ -2554,11 +2554,11 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
             this.Controls.Add(this.labelControl26);
             this.Controls.Add(this.txtDescuento);
             this.Controls.Add(this.labelControl7);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Controls.Add(this.menuStrip1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmRegPedidoEdit";

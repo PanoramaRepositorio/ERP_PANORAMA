@@ -39,10 +39,11 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
         public List<PromocionValeDescuentoBE> mListaPromocionVale = new List<PromocionValeDescuentoBE>();
         public List<CMovimientoAlmacenDetalle> mListaMovimientoAlmacenDetalleOrigen = new List<CMovimientoAlmacenDetalle>();
         public List<EscalaMayoristaBE> mListaEscalaMayorista = new List<EscalaMayoristaBE>();
-
         public List<PedidoDetalleBE> mListaPedidoDetallePromo3x2 = new List<PedidoDetalleBE>();
         public List<PedidoDetalleBE> mListaPedidoDetallePromo3x1 = new List<PedidoDetalleBE>();
         public List<PedidoDetalleBE> mListaPedidoDetallePromo4x1 = new List<PedidoDetalleBE>();
+
+
 
         int _IdPedido = 0;
 
@@ -63,6 +64,9 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
         private int IdCliente = 0;
         private int IdAsesorExterno = 0;
         private int IdTipoCliente = 0;
+        private int IdFormaPago = 0;
+        private int IdTipoVenta = 0;
+        private int IdProducto = 0;
         private int IdClasificacionCliente = 0;
         private int IdProforma = 0;
         private int? IdContratoFabricacion = 0;
@@ -102,6 +106,9 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
 
         }
 
+
+        
+
         public Operacion pOperacion;
 
         public int CantIngresoRapido = 100; // ecm7
@@ -135,7 +142,6 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
         {
             InitializeComponent();
         }
-
         private void frmRegPedidoEdit_Load(object sender, EventArgs e)
         {
             chkPreventa.Enabled = true;
@@ -143,7 +149,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
             cboEmpresa.EditValue = Parametros.intEmpresaId;
             deFecha.EditValue = DateTime.Now;
             deFechaVencimiento.EditValue = DateTime.Now;
-
+            //Decuento_Promocio_Volumen();
 
             BSUtils.LoaderLook(cboVendedor, new PersonaBL().SeleccionaVendedor(Parametros.intEmpresaId), "ApeNom", "IdPersona", true);
             cboVendedor.EditValue = Parametros.intPersonaId;
@@ -160,7 +166,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
 
             if (Parametros.strUsuarioLogin == "ltapia" || Parametros.strUsuarioLogin == "master" || Parametros.strUsuarioLogin == "etapia"
                 || Parametros.strUsuarioLogin == "ntapia" || Parametros.strUsuarioLogin == "dsalinas" || Parametros.strUsuarioLogin == "acordero" || Parametros.strUsuarioLogin.ToUpper() == "EVALDEZ"
-                || Parametros.intPerfilId == Parametros.intPerAdministradorTienda || Parametros.intPerfilId == Parametros.intPerAdministrador 
+                || Parametros.intPerfilId == Parametros.intPerAdministradorTienda || Parametros.intPerfilId == Parametros.intPerAdministrador
                 || Parametros.intPerfilId == Parametros.intPerCajeraDigital)
             {
                 BSUtils.LoaderLook(cboTipoVenta, new TablaElementoBL().ListaTodosActivo(Parametros.intEmpresaId, Parametros.intTblTipoVenta), "DescTablaElemento", "IdTablaElemento", true);
@@ -187,15 +193,6 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
             CargarDescuentoClienteMayorista();
             CargarDescuentoClienteFechaCompra();//por Default, no es necesario cargar
             EstadoDescuentoClienteFechaCompra();
-
-            ////Cargar Promociones ***** 2x1
-            //CargarProductoPromocionDosPorUno();
-            //CargarProductoPromocion3x2();
-            ////Vale Apertura
-            //if (Parametros.intTiendaId == Parametros.intTiendaMegaplaza)
-            //{
-            //    chkVale.Visible = true;
-            //}
 
             if (Parametros.intPerfilId == Parametros.intPerAdministrador || Parametros.intPerfilId == Parametros.intPerAsistenteFacturacion ||
                 Parametros.intPerfilId == Parametros.intPerCoordinacionFacturacion || Parametros.intPerfilId == Parametros.intPerSupervisorVentasPiso ||
@@ -475,9 +472,9 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
 
 
                     if (Parametros.strUsuarioLogin == "master" || Parametros.strUsuarioLogin == "kconcha" || Parametros.strUsuarioLogin == "focampo"
-                        || Parametros.strUsuarioLogin == "liliana" || Parametros.strUsuarioLogin == "rcastañeda" 
-                        || Parametros.strUsuarioLogin == "jzanabria" || Parametros.strUsuarioLogin == "dhuaman" 
-                        || Parametros.strUsuarioLogin == "nillanes" || Parametros.strUsuarioLogin == "aflores" 
+                        || Parametros.strUsuarioLogin == "liliana" || Parametros.strUsuarioLogin == "rcastañeda"
+                        || Parametros.strUsuarioLogin == "jzanabria" || Parametros.strUsuarioLogin == "dhuaman"
+                        || Parametros.strUsuarioLogin == "nillanes" || Parametros.strUsuarioLogin == "aflores"
                         || Parametros.intPerfilId == Parametros.intPerAdministrador || Parametros.intPerfilId == Parametros.intPerHelpDesk)
                     {
 
@@ -732,6 +729,9 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
             CalculaTotales();
             this.TotalSumaEscalaFamilia();
             this.MostrarBotonMayorista();// ecm7
+
+
+           
         }
 
         private void frmRegPedidoEdit_Shown(object sender, EventArgs e)
@@ -1058,80 +1058,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
 
         private void txtNumeroProforma_KeyUp(object sender, KeyEventArgs e)
         {
-            //try
-            // {
-            //     if (e.KeyCode == Keys.Enter)
-            //     {
-            //         //Traemos la información de la proforma
-            //         ProformaBE objE_Proforma = null;
-            //         objE_Proforma = new ProformaBL().SeleccionaNumero(Parametros.intPeriodo, txtNumeroProforma.Text.Trim(), Parametros.intPFAprobado);
-            //         if (objE_Proforma != null)
-            //         {
-            //             IdProforma = objE_Proforma.IdProforma;
-            //             txtNumeroProforma.Text = objE_Proforma.Numero;
-            //             cboVendedor.EditValue = objE_Proforma.IdVendedor;
-            //             cboFormaPago.EditValue = objE_Proforma.IdFormaPago;
-            //             cboMoneda.EditValue = objE_Proforma.IdMoneda;
-            //             txtTipoCambio.EditValue = objE_Proforma.TipoCambio;
-            //             IdCliente = objE_Proforma.IdCliente;
-            //             txtNumeroDocumento.Text = objE_Proforma.NumeroDocumento;
-            //             txtDescCliente.Text = objE_Proforma.DescCliente;
-            //             txtTipoCliente.Text = objE_Proforma.DescTipoCliente;
-            //             txtDireccion.Text = objE_Proforma.Direccion;
-
-            //             //Tramoes la información del detalle de la proforma
-            //             List<ProformaDetalleBE> lstTmpProformaDetalle = null;
-            //             lstTmpProformaDetalle = new ProformaDetalleBL().ListaTodosActivo(Parametros.intEmpresaId, IdProforma);
-            //             int nItem = 1;
-            //             foreach (ProformaDetalleBE item in lstTmpProformaDetalle)
-            //             {
-            //                 if (item.FlagAprobacion)
-            //                 {
-            //                     CPedidoDetalle objE_PedidoDetalle = new CPedidoDetalle();
-            //                     objE_PedidoDetalle.IdEmpresa = item.IdEmpresa;
-            //                     objE_PedidoDetalle.IdPedido = 0;
-            //                     objE_PedidoDetalle.IdPedidoDetalle = 0;
-            //                     objE_PedidoDetalle.Item = nItem;
-            //                     objE_PedidoDetalle.IdProducto = item.IdProducto;
-            //                     objE_PedidoDetalle.CodigoProveedor = item.CodigoProveedor;
-            //                     objE_PedidoDetalle.NombreProducto = item.NombreProducto;
-            //                     objE_PedidoDetalle.Abreviatura = item.Abreviatura;
-            //                     objE_PedidoDetalle.Cantidad = item.Cantidad;
-            //                     objE_PedidoDetalle.CantidadAnt = item.Cantidad;
-            //                     objE_PedidoDetalle.PrecioUnitario = item.PrecioUnitario;
-            //                     objE_PedidoDetalle.PorcentajeDescuento = item.PorcentajeDescuento;
-            //                     objE_PedidoDetalle.Descuento = item.Descuento;
-            //                     objE_PedidoDetalle.PrecioVenta = item.PrecioVenta;
-            //                     objE_PedidoDetalle.ValorVenta = item.ValorVenta;
-            //                     objE_PedidoDetalle.Observacion = item.Observacion;
-            //                     objE_PedidoDetalle.IdKardex = 0;
-            //                     objE_PedidoDetalle.FlagMuestra = false;
-            //                     objE_PedidoDetalle.FlagRegalo = false;
-            //                     objE_PedidoDetalle.Stock = 0;
-            //                     objE_PedidoDetalle.TipoOper = item.TipoOper;
-            //                     mListaPedidoDetalleOrigen.Add(objE_PedidoDetalle);
-
-            //                     nItem = nItem + 1;
-            //                 }
-
-            //             }
-
-            //             bsListado.DataSource = mListaPedidoDetalleOrigen;
-            //             gcPedidoDetalle.DataSource = bsListado;
-            //             gcPedidoDetalle.RefreshDataSource();
-
-            //             CalculaTotales();
-            //         }
-            //         else
-            //         {
-            //             XtraMessageBox.Show("Verificar que la proforma y los códigos esten aprobados.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //         }
-            //     }
-            // }
-            // catch (Exception ex)
-            // {
-            //     XtraMessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            // }
+          
         }
         private void txtNumeroDocumento_KeyUp(object sender, KeyEventArgs e)
         {
@@ -1515,6 +1442,9 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
             }
         }
 
+
+
+
         private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -1583,29 +1513,35 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                     }
                 }
                 #endregion
+
+
+
+
                 int IdAlmacenOrigen = 0;
 
                 frmRegPedidoDetalleEdit movDetalle = new frmRegPedidoDetalleEdit();
                 int i = 0;
                 if (mListaPedidoDetalleOrigen.Count > 0)
                     i = mListaPedidoDetalleOrigen.Max(ob => Convert.ToInt32(ob.Item));
-                        movDetalle.intCorrelativo = Convert.ToInt32(i) + 1;
-                        movDetalle.IdTipoCliente = IdTipoCliente;
-                        movDetalle.IdFormaPago = Convert.ToInt32(cboFormaPago.EditValue);//add 23 jun 15
-                        movDetalle.IdClasificacionCliente = IdClasificacionCliente;
-                        movDetalle.IdMoneda = Convert.ToInt32(cboMoneda.EditValue);
-                        movDetalle.bPreVenta = chkPreventa.Checked;
-                        movDetalle.bDescuentoCumpleanio = bCumpleAnios;
-                        movDetalle.bDescuentoEncuesta = bEncuesta;
-                        movDetalle.IdPedido = IdPedido;
-                        movDetalle.PorcentajeDescuentoClientePromocion = DescuentoClientePromocion;
-                        movDetalle.IdDescuentoClientePromocion = IdDescuentoClientePromocion;
-                        movDetalle.ItemsDescuentoPromocion = ItemsDescuentoPromocion;
-                        movDetalle.OrigenNuevo = OrigenNuevo;
-                        movDetalle.DescuentoVale = DescuentoVale;
-                        movDetalle.FlagRamoPersonalizado = chkPtFlores.Checked;
-                        movDetalle.IdTipoVenta = Convert.ToInt32(cboTipoVenta.EditValue);
-                        movDetalle.pOperacion = frmRegPedidoDetalleEdit.Operacion.Nuevo; //Add 07/07/15
+                movDetalle.intCorrelativo = Convert.ToInt32(i) + 1;
+                movDetalle.IdTipoCliente = IdTipoCliente;
+                movDetalle.IdFormaPago = Convert.ToInt32(cboFormaPago.EditValue);//add 23 jun 15
+                movDetalle.IdClasificacionCliente = IdClasificacionCliente;
+                movDetalle.IdMoneda = Convert.ToInt32(cboMoneda.EditValue);
+                movDetalle.bPreVenta = chkPreventa.Checked;
+                movDetalle.bDescuentoCumpleanio = bCumpleAnios;
+                movDetalle.bDescuentoEncuesta = bEncuesta;
+                movDetalle.IdPedido = IdPedido;
+                movDetalle.PorcentajeDescuentoClientePromocion = DescuentoClientePromocion;
+                movDetalle.IdDescuentoClientePromocion = IdDescuentoClientePromocion;
+                movDetalle.ItemsDescuentoPromocion = ItemsDescuentoPromocion;
+                movDetalle.OrigenNuevo = OrigenNuevo;
+                movDetalle.DescuentoVale = DescuentoVale;
+                movDetalle.FlagRamoPersonalizado = chkPtFlores.Checked;
+                movDetalle.IdTipoVenta = Convert.ToInt32(cboTipoVenta.EditValue);
+                movDetalle.pOperacion = frmRegPedidoDetalleEdit.Operacion.Nuevo; //Add 07/07/15
+
+
 
                 if (movDetalle.ShowDialog() == DialogResult.OK)
                 {
@@ -2002,8 +1938,12 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                                 gvPedidoDetalle.SetRowCellValue(gvPedidoDetalle.FocusedRowHandle, "Cantidad", movDetalle.oBE.Cantidad);
                                 gvPedidoDetalle.SetRowCellValue(gvPedidoDetalle.FocusedRowHandle, "CantidadAnt", movDetalle.oBE.CantidadAnt);
                                 gvPedidoDetalle.SetRowCellValue(gvPedidoDetalle.FocusedRowHandle, "PrecioUnitario", movDetalle.oBE.PrecioUnitario);
+                                //int des = 50;
+                                //movDetalle.oBE.PorcentajeDescuento = des;
                                 gvPedidoDetalle.SetRowCellValue(gvPedidoDetalle.FocusedRowHandle, "PorcentajeDescuento", movDetalle.oBE.PorcentajeDescuento);
                                 gvPedidoDetalle.SetRowCellValue(gvPedidoDetalle.FocusedRowHandle, "Descuento", movDetalle.oBE.Descuento);
+
+
                                 gvPedidoDetalle.SetRowCellValue(gvPedidoDetalle.FocusedRowHandle, "PrecioVenta", movDetalle.oBE.PrecioVenta);
                                 gvPedidoDetalle.SetRowCellValue(gvPedidoDetalle.FocusedRowHandle, "ValorVenta", movDetalle.oBE.ValorVenta);
                                 gvPedidoDetalle.SetRowCellValue(gvPedidoDetalle.FocusedRowHandle, "Observacion", movDetalle.oBE.Observacion);
@@ -2079,13 +2019,84 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                                 }
                                 return;
                             }
-                            if (mListaPedidoDetalleOrigen.Count > 0)
+
+                            if (mListaPedidoDetalleOrigen.Count > 0) // VALIDAR CODIGO AQUI
                             {
+                                // obtenemos el id de la promción volumen 
+                                List<PromocionVolumenDetalleBE> listaIdPromocion = new PromocionVolumenBL().ObtenerIdPromocionPorIdProducto(movDetalle.IdProducto);
+
+                                // Verificamos si las listas contienen elementos antes de acceder al índice 0 (y usamos el id de la promoción )
+                                PromocionVolumenDetalleBE objE_IDPromoVoluDet = listaIdPromocion.Count > 0 ? listaIdPromocion[0] : null;
+                                int idpromocionVolumen = objE_IDPromoVoluDet != null ? objE_IDPromoVoluDet.IdPromocionVolumen : 0;
+
+                                //// Obtenemos la lista de codigos de productos de la promoción indicada.
+                                //List<PromocionVolumenDetalleBE> listaIdProductosPromocionales = new PromocionVolumenBL().ObtenerProductosPorIdPromocion(idpromocionVolumen);
+                                
+                                // Obtén la lista de IdProducto de la promoción
+                                List<int> listaIdProductosPromocionales = new PromocionVolumenBL().ObtenerProductosPorIdPromocion(idpromocionVolumen)
+                                    .Select(item => item.IdProducto)
+                                    .ToList();
+
+
+                                // Obtenemos el descuento de la promoción volumen segun el codigo ingresado.
+                                PromocionVolumenDetalleBE objE_PromocionVolumen2 = null;
+                                objE_PromocionVolumen2 = new PromocionVolumenBL().Selecciona(Parametros.intEmpresaId, IdTipoCliente, movDetalle.IdFormaPago, Parametros.intTiendaId, movDetalle.IdTipoVenta, movDetalle.IdProducto);
+                                decimal descuentopromo = objE_PromocionVolumen2.Descuento;
+
+                                //var Buscar = mListaPedidoDetalleOrigen.Where(oB => oB.IdProducto == movDetalle.oBE.IdProducto).ToList();
+                                //if (Buscar.Count > 0)
+                                //{
+                                //    XtraMessageBox.Show("El código de producto ya existe", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                //    return;
+                                //}
+
+
+                                // Verifica si el código de producto ya existe en mListaPedidoDetalleOrigen
                                 var Buscar = mListaPedidoDetalleOrigen.Where(oB => oB.IdProducto == movDetalle.oBE.IdProducto).ToList();
                                 if (Buscar.Count > 0)
                                 {
                                     XtraMessageBox.Show("El código de producto ya existe", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     return;
+                                }
+
+                                // Agrega el nuevo producto a mListaPedidoDetalleOrigen
+                                mListaPedidoDetalleOrigen.Add(new CPedidoDetalle
+                                {
+                                    IdProducto = movDetalle.oBE.IdProducto,
+                                    PorcentajeDescuento = descuentopromo
+                                });
+
+                                //frmRegPedidoDetalleEdit movDetalle2 = new frmRegPedidoDetalleEdit();
+
+                                
+
+                                // Verifica si hay coincidencias entre las dos listas
+                                var coincidencias = mListaPedidoDetalleOrigen
+                                    .Where(item => listaIdProductosPromocionales.Contains(item.IdProducto))
+                                    .ToList();
+
+                                // Verifica si todas las IdProducto de la promoción están presentes en coincidencias
+                                //bool todasLasCoincidenciasPresentes = listaIdProductosPromocionales.All(id => coincidencias.Any(item => item.IdProducto == id));
+
+                                //if (coincidencias.Count > 0 && todasLasCoincidenciasPresentes)
+                                if (coincidencias.Count == listaIdProductosPromocionales.Count)
+                                {
+                                    // Actualiza el porcentaje de descuento en gvPedidoDetalle para las coincidencias
+                                    foreach (var coincidencia in coincidencias)
+                                    {
+                                        int rowIndex = gvPedidoDetalle.LocateByValue("IdProducto", coincidencia.IdProducto);
+                                        if (rowIndex >= 0)
+                                        {
+                                            gvPedidoDetalle.SetRowCellValue(rowIndex, "PorcentajeDescuento", descuentopromo);
+                                        }
+                                    }
+                                    movDetalle.oBE.PorcentajeDescuento = descuentopromo;
+                                    XtraMessageBox.Show("El porcentaje de descuento se actualizó en gvPedidoDetalle.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                                else
+                                {
+                                    //XtraMessageBox.Show("No se encontraron todos productos de la promoción seguir intentando.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    
                                 }
 
                                 gvPedidoDetalle.AddNewRow();
@@ -2196,6 +2207,15 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                 XtraMessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        frmRegPedidoDetalleEdit movDetalle2 = new frmRegPedidoDetalleEdit();
+        public PedidoDetalleBE oBE;
+        //private decimal Decuento_Promocio_Volumen()
+        //{
+        //    PromocionVolumenDetalleBE objE_PromocionVolumen2 = null;
+        //    objE_PromocionVolumen2 = new PromocionVolumenBL().Selecciona(Parametros.intEmpresaId, IdTipoCliente, movDetalle2.IdFormaPago, Parametros.intTiendaId, movDetalle2.IdTipoVenta, movDetalle2.IdProducto);
+        //    return objE_PromocionVolumen2.Descuento;
+        //}
 
         private void modificarprecioToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -5743,7 +5763,9 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                                         objBL_Pedido.ActualizaImpresion(IdPedido, true);
 
                                         //objReporteGuia.PrintToPrinter(1, false, 0, 0);
-                                        MessageBox.Show("El pedido se imprimió correctamente");// se envió a  + prtName);
+                                        //MessageBox.Show("El pedido se imprimió correctamente");// se envió a  + prtName);
+                                        frmMensajeWindows frmMsg = new frmMensajeWindows();
+                                        frmMsg.ShowDialog();
                                     }
                                     #endregion
                                 }

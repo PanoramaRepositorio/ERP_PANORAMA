@@ -475,12 +475,12 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                                     }
                                     #endregion
 
-
+                                    PromocionVolumenDetalleBE objE_PromocionVolumen = null;
+                                    objE_PromocionVolumen = new PromocionVolumenBL().Selecciona(Parametros.intEmpresaId, IdTipoCliente, IdFormaPago, Parametros.intTiendaId, IdTipoVenta, IdProducto);
                                     #region "Descuento Promocion x VOLUMEN"
                                     if (!FlagPromocion2x1)
                                     {
-                                        PromocionVolumenDetalleBE  objE_PromocionVolumen= null;
-                                        objE_PromocionVolumen = new PromocionVolumenBL().Selecciona(Parametros.intEmpresaId, IdTipoCliente, IdFormaPago, Parametros.intTiendaId, IdTipoVenta, IdProducto);
+                                       
                                         if (objE_PromocionVolumen != null)
                                         {
                                             if (IdTipoCliente == Parametros.intTipClienteMayorista || IdClasificacionCliente == Parametros.intBlack)///IdTipoCliente == Parametros.intTipClienteFinal && IdClasificacionCliente == Parametros.intBlack)
@@ -512,12 +512,72 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                                                 }
                                             }
                                             //Se agrego el descuento temporal
+
                                             else
                                             {
+                                                List<PromocionVolumenDetalleBE> listaIdPromocion = new PromocionVolumenBL().ObtenerIdPromocionPorIdProducto(IdProducto);
+                                                PromocionVolumenDetalleBE objE_IDPromoVoluDet = listaIdPromocion.Count > 0 ? listaIdPromocion[0] : null;
+                                                int idpromocionVolumen = objE_IDPromoVoluDet != null ? objE_IDPromoVoluDet.IdPromocionVolumen : 0;
+                                                List<PromocionVolumenDetalleBE> listaIdProductosPromocionales = new PromocionVolumenBL().ObtenerProductosPorIdPromocion(idpromocionVolumen);
+
+
                                                 txtPrecioUnitario.EditValue = objBusProducto.pProductoBE.PrecioCDSoles;
                                                 txtDescuento.EditValue = objE_PromocionVolumen.Descuento;
                                                 txtPrecioVenta.EditValue = Convert.ToDecimal(txtPrecioUnitario.Text) * ((100 - Convert.ToDecimal(txtDescuento.Text)) / 100);
                                                 txtValorVenta.EditValue = Convert.ToDecimal(txtPrecioVenta.Text) * Convert.ToDecimal(txtCantidad.Text);
+                                                // codigo nuevo
+                                                if (Convert.ToDecimal(txtCantidad.EditValue) > 0)
+                                                {
+                                                    List<PromocionVolumenDetalleBE> listaPromociones = new PromocionVolumenBL().ValidarPromocion_IDProducto(IdProducto);
+
+                                                    // Verifica si la lista tiene al menos un elemento
+                                                    if (listaPromociones.Count > 0)
+                                                    {
+                                                        // Obtén el primer elemento de la lista
+
+                                                        PromocionVolumenDetalleBE objE_PromoTempDet = listaPromociones[0];
+
+                                                        // Aquí debemos dar lógica y actualizar el txtDescuento
+
+                                                        txtValorVenta.EditValue = Convert.ToDecimal(txtPrecioVenta.Text) * Convert.ToDecimal(txtCantidad.Text);
+                                                        txtDescuento.Text = "0";
+
+                                                        // Muestra un mensaje que el código elegido tiene una promoción a partir de elegir la cantidad x.
+
+                                                        if (Convert.ToDecimal(txtCantidad.EditValue) >= objE_PromoTempDet.MontoUniXamas && objE_PromoTempDet.FlagAplicaxCodigo)
+                                                        {
+                                                            txtValorVenta.EditValue = Convert.ToDecimal(txtPrecioVenta.Text) * Convert.ToDecimal(txtCantidad.Text);
+                                                            txtDescuento.Text = objE_PromoTempDet.Descuento.ToString();
+
+                                                            // Muestra un mensaje que hemos desbloqueado una promoción por elegir la cantidad mencionada.
+
+                                                            XtraMessageBox.Show($"¡Hemos desbloqueado una promoción!\nHas elegido la cantidad necesaria para aplicar el {objE_PromocionVolumen.Descuento}% de descuento", "Promoción por Mismo Codigo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                        }
+                                                        else if (Convert.ToDecimal(txtCantidad.EditValue) >= objE_PromoTempDet.MontoUniXamas && objE_PromoTempDet.FlagAplicaCombinacion)
+                                                        {
+
+                                                        }
+                                                        else if ( objE_PromoTempDet.FlagAplicaCombinacion)
+                                                        {
+
+                                                            XtraMessageBox.Show($" Este Producto está en una promoción que aplica el {objE_PromocionVolumen.Descuento } % de descuento.\n agregue los codigos correctos consultando en la seccion promociones - volumen, \n O selecciona al menos {objE_PromoTempDet.MontoUniXamas} unidades Sí, desea desbloquear esta promoción" , "APLICA DESCUENTO COMBINANDO CODIGOS PROD.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                            //XtraMessageBox.Show($"Este Producto está en una promoción que aplica el {objE_PromocionVolumen.Descuento}% de descuento.\nAgregue los códigos correctos consultando en la sección promociones - volumen.\nSeleccione al menos {objE_PromoTempDet.MontoUniXamas} unidades.\n\nSí, desea desbloquear la promoción", "APLICA DESCUENTO COMBINANDO CODIGOS PROD.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                                        }
+                                                        else if (objE_PromoTempDet.FlagAplicaxCodigo)
+                                                        {
+                                                          
+                                                            XtraMessageBox.Show($" Este Producto está en una promoción que aplica el {objE_PromocionVolumen.Descuento } % de descuento .\n Selecciona al menos {objE_PromoTempDet.MontoUniXamas} unidades para desbloquear la promoción.", "APLICA DESCUENTO POR CODIGO PROD.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                        }
+
+                                                    }
+                                                    else
+                                                    {
+                                                        // Muestra un mensaje indicando que no hay promociones disponibles para el producto.
+                                                        XtraMessageBox.Show("Este producto no tiene promociones disponibles en este momento.");
+                                                    }
+                                                }
+
                                             }
                                         }
                                     }
@@ -1030,21 +1090,23 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
 
         private void txtCantidad_EditValueChanged(object sender, EventArgs e)
         {
+            PromocionVolumenDetalleBE objE_PromoTempDet = new PromocionVolumenDetalleBE();
+            PromocionVolumenBL obBL = new PromocionVolumenBL();
+            //int prueba = 2;
+            //objE_PromoTempDet = obBL.Selecciona(prueba);
+
             if (Convert.ToDecimal(txtCantidad.EditValue) > 0)
             {
-                ////if (Convert.ToDecimal(txtCantidad.EditValue) > Stock)
-                //if (Parametros.bStockNegativo == false)
-                //{ 
-                //    if (Convert.ToDecimal(txtCantidad.EditValue) > Stock  & Parametros.intTiendaId == Parametros.intTiendaUcayali)
-                //    {
-                //        XtraMessageBox.Show("Stock insuficiente en Almacén. Cantidad:" +   Stock +" , Puede vender la muestra", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //        txtCantidad.EditValue = Stock;
-                //        txtValorVenta.EditValue = Convert.ToDecimal(txtPrecioVenta.Text) * Stock;
-                //        return;
-                //    }
-                //}
 
+                // aqui debemos dar logica y actualizar el txtDescuento
                 txtValorVenta.EditValue = Convert.ToDecimal(txtPrecioVenta.Text) * Convert.ToDecimal(txtCantidad.Text);
+                // mostrar un mensaje que el codigo elegido tiene una promoción apartir de elegir la cantidad x.
+                if (Convert.ToDecimal(txtCantidad.EditValue) >= objE_PromoTempDet.MontoUniXamas)
+                {
+                    txtValorVenta.EditValue = Convert.ToDecimal(txtPrecioVenta.Text) * Convert.ToDecimal(txtCantidad.Text);
+                    txtDescuento.Text = objE_PromoTempDet.Descuento.ToString();
+                    // mostrar un mensaje que hemos desbloqueado una promoción por elegir la cantidad mencionada.
+                }
             }
         }
 
@@ -1175,6 +1237,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                     if (bNuevo)
                     {
                         CalculaDescuentoClienteFinal(IdProducto, Convert.ToInt32(txtCantidad.Text), IdLineaProducto);
+
                     }
                     else
                     {
@@ -1270,7 +1333,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                         else
                         {
                             Descuento = Decuento_Cliente_Final(Convert.ToInt32(txtCantidad.Text));
-                            
+
                             if (FlagRamoPersonalizado)
                             {
                                 if (IdLineaProducto == 4)
@@ -1296,31 +1359,15 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                         oBE.PorcentajeDescuento = Convert.ToDecimal(txtDescuento.Text);
                         oBE.PrecioVenta = Convert.ToDecimal(txtPrecioVenta.Text);
                         oBE.ValorVenta = Convert.ToDecimal(txtValorVenta.Text);
+
+
                     }
                 }
-                //if (IdTipoCliente == Parametros.intTipClienteFinal)
-                //{
-                //    if (FlagRamoPersonalizado)
-                //    {
-                //        if (IdLineaProducto == 4)
-                //        {
-                //            txtDescuento.EditValue = 0;
-
-                //            txtPrecioVenta.EditValue = Convert.ToDecimal(txtPrecioUnitario.Text) * ((100 - Convert.ToDecimal(txtDescuento.Text)) / 100);
-                //            txtValorVenta.EditValue = Convert.ToDecimal(txtPrecioVenta.Text) * Convert.ToDecimal(txtCantidad.Text);
-
-                //            oBE.PorcentajeDescuento = Convert.ToDecimal(txtDescuento.Text);
-                //            oBE.PrecioVenta = Convert.ToDecimal(txtPrecioVenta.Text);
-                //            oBE.ValorVenta = Convert.ToDecimal(txtValorVenta.Text);
-                //        }
-                //    }
-                //}
                 #endregion
 
-
-
-
                 this.DialogResult = DialogResult.OK;
+
+
             }
             catch (Exception ex)
             {
@@ -1328,17 +1375,74 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
             }
         }
 
+        private static frmRegPedidoDetalleEdit instanciaActual;
+        public decimal ObtenerDescuento()
+        {
+            PromocionVolumenDetalleBE objE_PromocionVolumen2 = null;
+            objE_PromocionVolumen2 = new PromocionVolumenBL().Selecciona(Parametros.intEmpresaId, IdTipoCliente, IdFormaPago, Parametros.intTiendaId, IdTipoVenta, IdProducto);
+
+            if (objE_PromocionVolumen2 != null)
+            {
+                return objE_PromocionVolumen2.Descuento;
+            }
+            else
+            {
+                throw new InvalidOperationException("No se encontró una promoción válida para los parámetros proporcionados.");
+            }
+        }
+
+        public static frmRegPedidoDetalleEdit ObtenerInstanciaActual()
+        {
+            if (instanciaActual == null)
+            {
+                instanciaActual = new frmRegPedidoDetalleEdit();
+            }
+            return instanciaActual;
+        }
+
+
         private decimal Decuento_Cliente_Final(int Cantidad)
         {
+            PromocionVolumenDetalleBE objE_PromocionVolumen2 = null;
+            objE_PromocionVolumen2 = new PromocionVolumenBL().Selecciona(Parametros.intEmpresaId, IdTipoCliente, IdFormaPago, Parametros.intTiendaId, IdTipoVenta, IdProducto);
+
+            List<PromocionVolumenDetalleBE> listaPromociones = new PromocionVolumenBL().ValidarPromocion_IDProducto(IdProducto);
+            List<PromocionVolumenDetalleBE> listaIdPromocion = new PromocionVolumenBL().ObtenerIdPromocionPorIdProducto(IdProducto);
+
+
+            // Verificar si las listas contienen elementos antes de acceder al índice 0
+            PromocionVolumenDetalleBE objE_PromoVoluDet = listaPromociones.Count > 0 ? listaPromociones[0] : null;
+            PromocionVolumenDetalleBE objE_IDPromoVoluDet = listaIdPromocion.Count > 0 ? listaIdPromocion[0] : null;
+
+            int idpromocionVolumen = objE_IDPromoVoluDet != null ? objE_IDPromoVoluDet.IdPromocionVolumen : 0;
+            List<PromocionVolumenDetalleBE> listaIdProductosPromocionales = new PromocionVolumenBL().ObtenerProductosPorIdPromocion(idpromocionVolumen);
             decimal Descuento = 0;
-            // int Cantidad = Convert.ToInt32(txtCantidad.Text);
+
             PromocionVolumenDetalleBE objE_PromocionVolumen = new PromocionVolumenBL().Selecciona(Parametros.intEmpresaId, IdTipoCliente, IdFormaPago, Parametros.intTiendaId, IdTipoVenta, IdProducto, false);
             PromocionTemporalDetalleBE objE_PromocionTemporal = new PromocionTemporalDetalleBL().Selecciona(Parametros.intEmpresaId, IdTipoCliente, IdFormaPago, Parametros.intTiendaId, IdTipoVenta, IdProducto, true);
 
             if (objE_PromocionVolumen != null)
             {
-                Descuento = objE_PromocionVolumen.Descuento;
-                IdPromocion2 = objE_PromocionVolumen.IdPromocionVolumenDetalle;
+                if (Convert.ToDecimal(txtCantidad.EditValue) >= (objE_PromoVoluDet?.MontoUniXamas ?? 0) && objE_PromoVoluDet.FlagAplicaCombinacion)
+                {
+                    txtValorVenta.EditValue = Convert.ToDecimal(txtPrecioVenta.Text) * Convert.ToDecimal(txtCantidad.Text);
+                    txtDescuento.Text = objE_PromoVoluDet.Descuento.ToString();
+                    Descuento = objE_PromocionVolumen.Descuento;
+                    IdPromocion2 = objE_PromocionVolumen.IdPromocionVolumenDetalle;
+                }
+                else if (Convert.ToDecimal(txtCantidad.EditValue) >= (objE_PromoVoluDet?.MontoUniXamas ?? 0) && objE_PromoVoluDet.FlagAplicaxCodigo)
+                {
+                    txtValorVenta.EditValue = Convert.ToDecimal(txtPrecioVenta.Text) * Convert.ToDecimal(txtCantidad.Text);
+                    txtDescuento.Text = objE_PromoVoluDet.Descuento.ToString();
+                    Descuento = objE_PromocionVolumen.Descuento;
+                    IdPromocion2 = objE_PromocionVolumen.IdPromocionVolumenDetalle;
+                }
+
+                else
+                {
+                    Descuento = 0;
+                    IdPromocion2 = objE_PromocionVolumen.IdPromocionVolumenDetalle;
+                }
             }
             else if (objE_PromocionTemporal != null)
             {
@@ -1366,10 +1470,11 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                     }
                 }
             }
-
+            
             return Descuento;
+          
         }
-
+        public static frmRegPedidoEdit InstanciaPrincipal { get; set; }
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -1425,11 +1530,6 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
             if (keyData == Keys.F6) optHangTag.Checked = true;
 
             return base.ProcessCmdKey(ref msg, keyData);
-        }
-
-        private void grdDatos_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void txtCantidad_Leave(object sender, EventArgs e)
@@ -1922,6 +2022,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
             {
 
                 if (FlagPromocion2x1) return; //add 15-12-2019
+                
                 decimal decDescuento = 0;
                 decimal decPrecioAB = 0;
                 decimal decPrecioCD = 0;
@@ -2190,6 +2291,8 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                             txtPrecioVenta.EditValue = Convert.ToDecimal(txtPrecioUnitario.Text) * ((100 - Convert.ToDecimal(txtDescuento.Text)) / 100);
                             txtValorVenta.EditValue = Convert.ToDecimal(txtPrecioVenta.Text) * Convert.ToDecimal(txtCantidad.Text);
                         }
+
+                       
                         #endregion
 
                         // Test de velocidad por Hora
@@ -2203,9 +2306,6 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                             txtValorVenta.EditValue = Convert.ToDecimal(txtPrecioVenta.Text) * Convert.ToDecimal(txtCantidad.Text);
                         }
                         #endregion
-
-
-
 
                         #region "Descuento de Cumpleaños - DESABILITADO 24/02/2022" 
                         //if (bDescuentoCumpleanio)
@@ -2241,6 +2341,41 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                         //}
                         //#endregion
 
+                    }
+                    PromocionVolumenDetalleBE objE_PromocionVolumen2 = null;
+                    objE_PromocionVolumen2 = new PromocionVolumenBL().Selecciona(Parametros.intEmpresaId, IdTipoCliente, IdFormaPago, Parametros.intTiendaId, IdTipoVenta, IdProducto);
+                    if (Convert.ToDecimal(txtCantidad.EditValue) > 0)
+                    {
+                        List<PromocionVolumenDetalleBE> listaPromociones = new PromocionVolumenBL().ValidarPromocion_IDProducto(IdProducto);
+
+                        // Verifica si la lista tiene al menos un elemento
+                        if (listaPromociones.Count > 0)
+                        {
+                            // Obtén el primer elemento de la lista
+                            PromocionVolumenDetalleBE objE_PromoTempDet = listaPromociones[0];
+
+                            // Aquí debemos dar lógica y actualizar el txtDescuento
+                            txtValorVenta.EditValue = Convert.ToDecimal(txtPrecioVenta.Text) * Convert.ToDecimal(txtCantidad.Text);
+                            //txtDescuento.Text = "0";
+                            // Muestra un mensaje que el código elegido tiene una promoción a partir de elegir la cantidad x.
+                            if (Convert.ToDecimal(txtCantidad.EditValue) >= objE_PromoTempDet.MontoUniXamas && objE_PromoTempDet.FlagAplicaxCodigo)
+                            {
+                                txtValorVenta.EditValue = Convert.ToDecimal(txtPrecioVenta.Text) * Convert.ToDecimal(txtCantidad.Text);
+                                txtDescuento.Text = objE_PromoTempDet.Descuento.ToString();
+                                XtraMessageBox.Show($"¡Hemos desbloqueado una promoción!\nHas elegido la cantidad necesaria para aplicar el {objE_PromocionVolumen2.Descuento}% de descuento","Promoción por Mismo Codigo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else if (Convert.ToDecimal(txtCantidad.EditValue) >= objE_PromoTempDet.MontoUniXamas && objE_PromoTempDet.FlagAplicaCombinacion)
+                            {
+                                txtValorVenta.EditValue = Convert.ToDecimal(txtPrecioVenta.Text) * Convert.ToDecimal(txtCantidad.Text);
+                                txtDescuento.Text = objE_PromoTempDet.Descuento.ToString();
+                                XtraMessageBox.Show($"¡Para desbloquear! \n Elige los codigos necesarios para aplicar el {objE_PromocionVolumen2.Descuento }  % de descuento", "Promoción Combinada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            } 
+                        }
+                        else
+                        {
+                            // Muestra un mensaje indicando que no hay promociones disponibles para el producto.
+                            XtraMessageBox.Show("Este producto no tiene promociones disponibles en este momento.");
+                        }
                     }
                 }
             }

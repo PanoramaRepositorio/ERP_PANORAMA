@@ -222,10 +222,9 @@
             this.grdDatos.Dock = System.Windows.Forms.DockStyle.Top;
             this.grdDatos.Location = new System.Drawing.Point(0, 0);
             this.grdDatos.Name = "grdDatos";
-            this.grdDatos.Size = new System.Drawing.Size(543, 188);
+            this.grdDatos.Size = new System.Drawing.Size(543, 424);
             this.grdDatos.TabIndex = 0;
             this.grdDatos.Text = "Datos";
-            this.grdDatos.Paint += new System.Windows.Forms.PaintEventHandler(this.grdDatos_Paint);
             // 
             // lblDescPromocion
             // 
