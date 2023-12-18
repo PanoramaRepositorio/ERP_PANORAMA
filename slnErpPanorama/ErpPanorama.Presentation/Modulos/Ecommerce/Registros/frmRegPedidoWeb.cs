@@ -393,10 +393,10 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce.Registros
                 objManCliente.wIdPedidoWeb = Convert.ToInt32(gvPedido.GetFocusedDataRow()["IdPPedido"].ToString());
                 objManCliente.wPedidoWeb = Convert.ToString(gvPedido.GetFocusedDataRow()["NumPedidoWeb"].ToString());
 
-                if (Convert.ToString(gvPedido.GetFocusedDataRow()["Ruc"].ToString().Trim()).Length == 11 && Convert.ToString(gvPedido.GetFocusedDataRow()["RazonSocial"].ToString().Trim()).Length > 1)
+                if (Convert.ToString(gvPedido.GetFocusedDataRow()["NumDocumento"].ToString().Trim()).Length == 11 && Convert.ToString(gvPedido.GetFocusedDataRow()["NumDocumento"].ToString().Trim()).Length > 1)
                 {
-                    objManCliente.wNumDoc = Convert.ToString(gvPedido.GetFocusedDataRow()["Ruc"].ToString());
-                    objManCliente.wDescCliente = Convert.ToString(gvPedido.GetFocusedDataRow()["RazonSocial"].ToString());
+                    objManCliente.wNumDoc = Convert.ToString(gvPedido.GetFocusedDataRow()["NumDocumento"].ToString());
+                    objManCliente.wDescCliente = Convert.ToString(gvPedido.GetFocusedDataRow()["DescCliente"].ToString());
                     objManCliente.wConfactura = 2;
                 }
                 else
