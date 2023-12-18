@@ -21,11 +21,18 @@ using ErpPanorama.BusinessLogic;
 using ErpPanorama.BusinessEntity;
 using System.Text.RegularExpressions;
 using ErpPanorama.Presentation.Modulos.Ventas.Otros;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace ErpPanorama.Presentation.Modulos.Ecommerce
 {
     public partial class frmManClienteMinoristaEditPre : DevExpress.XtraEditors.XtraForm
     {
+
+        private const string UrlApiRUC = "https://ruc.com.pe/api/v1/consultas";
+        private const string UriAPiDNI = "https://apiperu.dev/api/dni";
         #region "Propiedades"
 
         public List<ClienteBE> lstCliente;
@@ -1272,81 +1279,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
 
         private void btnConsultarSunat_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (Convert.ToInt32(cboDocumento.EditValue) == Parametros.intTipoDocumentoRUC)
-                {
-                    if (txtCaptcha.Text.Trim() == "")
-                    {
-                        XtraMessageBox.Show("Ingrese el código que se muestra en la imágen.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        txtCaptcha.Select();
-                        return;
-                    }
-
-                    //Contribuyente myRuc = new Contribuyente();//add
-                    
-                    myRuc.GetInfo(this.txtNumeroDocumento.Text, this.txtCaptcha.Text);
-                    this.txtDireccion.Text = myRuc.Direccion;
-                    this.txtDescripcion.Text = myRuc.RazonSocial;
-                    this.lblEstadoRUC.Text = myRuc.Estado + " / " + myRuc.Habido;
-                    this.txtCaptcha.Text = "";
-                    CargarImagen();
-                }
-                else
-                {
-                    if (this.txtNumeroDocumento.Text.Length != 8)
-                    {
-                        this.lblEstadoRUC.Text = "Ingrese Dni Valido";
-                        this.txtNumeroDocumento.SelectAll();
-                        this.txtNumeroDocumento.Focus();
-                        return;
-                    }
-                    
-                    myInfo.GetInfo(this.txtNumeroDocumento.Text, this.txtCaptcha.Text);
-                    CaptionResul();
-                    CargarImagenReniec(); //Comentar esta linea para consultar multiples DNI usando un solo captcha.                
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-
-            //XtraMessageBox.Show("Por el momento este servicio no está disponible.\nPor favor, consulte por el navegador.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            /*
-             * 
-             * 
-            ///---------------
-             * 
-            string ruc = this.txtNumeroDocumento.Text;
-
-            Contribuyente myRuc = new Contribuyente(ruc);
-
-            if (string.IsNullOrEmpty(myRuc.Error))
-            {
-                txtDescripcion.Text = myRuc.GetInfo.RazonSocial;
-                txtDireccion.Text = myRuc.GetInfo.Direccion;
-                lblEstadoRUC.Text = "ESTADO: " + myRuc.GetInfo.Estado;
-
-                if(myRuc.GetInfo.Telefono.Length > 3)
-                    txtTelefono.Text = myRuc.GetInfo.Telefono;
-
-                cboDocumento.EditValue = Parametros.intTipoDocumentoRUC;
-
-                //this.txtAntiguoRuc.Text = myRuc.GetInfo.AntiguoRuc;
-                //this.txtEstado.Text = myRuc.GetInfo.Estado;
-                //this.txtEsAgenteRetencion.Text = myRuc.GetInfo.EsAgenteRetencion;
-                //this.txtNombreComercial.Text = myRuc.GetInfo.NombreComercial;
-                //this.txtDependencia.Text = myRuc.GetInfo.Dependencia;
-                //this.txtTipoEmpresa.Text = myRuc.GetInfo.Tipo;
-            }
-            else
-            {
-                XtraMessageBox.Show(myRuc.Error, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                
-            }*/
+           
         }
 
         private void lblRefrescarCodigo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -1493,12 +1426,77 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
         private void txtNumeroDocumento_EditValueChanged(object sender, EventArgs e)
         {
             this.lblEstadoRUC.Text = "";
+
+
         }
 
-        private void txtNumeroDocumento_KeyDown(object sender, KeyEventArgs e)
+
+
+        public class ApiResponse
         {
-           // ClienteBL objBL_Cliente = new ClienteBL();
-      
+            public bool succes { get; set; }
+            public string ruc { get; set; }
+
+            public string nombre_o_razon_social { get; set; }
+
+            public string estado_del_contribuyente { get; set; }
+            public string condicion_de_domicilio { get; set; }
+
+            public string direccion { get; set; }
+
+            public string direccion_completa { get; set; }
+        }
+
+        public class ApiResponseDNI
+        {
+            public bool success { get; set; }
+            public Data data { get; set; }
+
+            public string source { get; set; }
+        }
+
+
+        public class Data
+        {
+            public string numero { get; set; }
+            public string nombre_completo { get; set; }
+            public string nombres { get; set; }
+            public string apellido_paterno { get; set; }
+            public string apellido_materno { get; set; }
+        }
+
+        private async Task<ApiResponse> ConsultarApiRUC(string ruc)
+        {
+            using (var client = new HttpClient())
+            {
+                // Configuración de la seguridad TLS
+                System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12 | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls;
+                //Configuración del encabezado User-Agent
+                client.DefaultRequestHeaders.Add("User-Agent", "TuApp/1.0");
+                var requestBody = new
+                {
+                    token = Parametros.KEY_API_RUC_COM,
+                    ruc
+                };
+
+                var jsonRequest = JsonConvert.SerializeObject(requestBody);
+                var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
+                //registro de detalles de la solicitud
+                var response = await client.PostAsync(UrlApiRUC, content);
+
+                response.EnsureSuccessStatusCode();
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<ApiResponse>(jsonResponse);
+
+
+            }
+        }
+
+
+        private async void txtNumeroDocumento_KeyDown(object sender, KeyEventArgs e)
+        {
+            // ClienteBL objBL_Cliente = new ClienteBL();
+            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12 | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls;
 
             if (e.KeyCode == Keys.Enter)
             {
@@ -1525,122 +1523,155 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
                         else
                         {
                             return;
+                            if (Convert.ToInt32(cboDocumento.EditValue) == Parametros.intTipoDocumentoRUC)
+                            {
+
+                                #region "Consulta RUC API https://ruc.com.pe/"
+                                string ruc = txtNumeroDocumento.Text;
+                                if (!string.IsNullOrWhiteSpace(ruc))
+                                {
+                                    try
+                                    {
+                                        var datos = await ConsultarApiRUC(ruc);
+                                        // mostrar los datos en los controles del formulario
+                                        txtDescripcion.Text = datos.nombre_o_razon_social;
+                                        txtDireccion.Text = datos.direccion_completa;
+                                        lblEstadoRUC.Text = $"{datos.estado_del_contribuyente} - {datos.condicion_de_domicilio}";
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        XtraMessageBox.Show($"Error al consultar RUC: No existe , Por favor ingrese nuevamente. ", "INVALIDO : Comunicarse con Sistemas de persistir", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+
+                                    ClienteBE objE_Clientee = new ClienteBE();
+                                    try
+                                    {
+                                        ClienteBL objBL_Cliente = new ClienteBL();
+                                        var datos = await ConsultarApiRUC(ruc);
+                                        objE_Clientee.NumeroDocumento = txtNumeroDocumento.Text;
+                                        objE_Clientee.DescCliente = txtDescripcion.Text;
+                                        objE_Clientee.EstadoContribuyente = datos.estado_del_contribuyente;
+                                        objE_Clientee.CondicionDomicilio = datos.condicion_de_domicilio;
+                                        objBL_Cliente.ActualizaPadron(objE_Clientee);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Cursor = Cursors.Default;
+                                        XtraMessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                }
+                                #endregion
+
+                                #region "Consulta RUC Data Local"
+
+                                ClienteBE objE_Cliente = null;
+                                objE_Cliente = new ClienteBL().SeleccionaNumeroSunat(Parametros.intEmpresaId, txtNumeroDocumento.Text.Trim());
+                                if (objE_Cliente != null)
+                                {
+                                    string IdDepartamento = string.Empty;
+                                    string IdProvincia = string.Empty;
+                                    string IdDistrito = string.Empty;
+
+                                    txtDescripcion.Text = objE_Cliente.DescCliente;
+                                    lblEstadoRUC.Text = objE_Cliente.DescCategoria + " - " + objE_Cliente.DescCondicion;
+
+
+                                    if (objE_Cliente.IdUbigeoDom.Trim() != "")
+                                        IdDepartamento = objE_Cliente.IdUbigeoDom.Substring(0, 2);
+                                    cboDepartamento.EditValue = IdDepartamento;
+                                    if (objE_Cliente.IdUbigeoDom.Trim() != "")
+                                        IdProvincia = objE_Cliente.IdUbigeoDom.Substring(2, 2);
+                                    cboProvincia.EditValue = IdProvincia;
+                                    if (objE_Cliente.IdUbigeoDom.Trim() != "")
+                                        IdDistrito = objE_Cliente.IdUbigeoDom.Substring(4, 2);
+                                    cboDistrito.EditValue = IdDistrito;
+
+                                    //Domicilio
+                                    switch (objE_Cliente.AbrevDomicilio)
+                                    {
+                                        case "AV.":
+                                            cboTipoDireccion.EditValue = 57;
+                                            break;
+                                        case "CAL.":
+                                            cboTipoDireccion.EditValue = 58;
+                                            break;
+                                        case "JR.":
+                                            cboTipoDireccion.EditValue = 59;
+                                            break;
+                                        case "PJ.":
+                                            cboTipoDireccion.EditValue = 60;
+                                            break;
+                                        default:
+                                            cboTipoDireccion.EditValue = 128;
+                                            if (objE_Cliente.AbrevDomicilio == "-" || objE_Cliente.AbrevDomicilio == "--" || objE_Cliente.AbrevDomicilio == "---" || objE_Cliente.AbrevDomicilio == "----")
+                                                objE_Cliente.AbrevDomicilio = "";
+                                            else
+                                                objE_Cliente.AbrevDomicilio = objE_Cliente.AbrevDomicilio + " ";
+                                            objE_Cliente.Direccion = objE_Cliente.AbrevDomicilio + objE_Cliente.Direccion;
+                                            break;
+                                    }
+                                    txtDireccion.Text = objE_Cliente.Direccion;
+
+                                    //Tipo persona
+                                    cboTipoPersona.Properties.ReadOnly = true;
+                                    cboDocumento.Properties.ReadOnly = true;
+                                    txtNumeroDocumento.Properties.ReadOnly = true;
+
+                                    if (txtNumeroDocumento.Text.Trim().Substring(0, 2) == "10")
+                                    {
+                                        cboTipoPersona.EditValue = "N";
+                                        SeparaApellidosNombres();
+                                    }
+                                    else
+                                    {
+                                        cboTipoPersona.EditValue = "J";
+                                        txtApPaterno.Text = string.Empty;
+                                        txtApMaterno.Text = string.Empty;
+                                        txtNombres.Text = string.Empty;
+                                        BloqueaModificar();
+                                    }
+
+                                    txtTelefono.Focus();
+                                    e.Handled = true;
+                                    return;
+                                }
+                                #endregion
+
+
+                                //CargarImagen();
+
+                                if (txtNumeroDocumento.Text.Substring(0, 2) == "20")
+                                {
+                                    cboTipoPersona.EditValue = "J";
+                                    txtApPaterno.Properties.ReadOnly = true;
+                                    txtApMaterno.Properties.ReadOnly = true;
+                                    txtNombres.Properties.ReadOnly = true;
+                                    txtDescripcion.Properties.ReadOnly = false;
+
+                                    txtApPaterno.Text = String.Empty;
+                                    txtApMaterno.Text = String.Empty;
+                                    txtNombres.Text = String.Empty;
+                                    txtDescripcion.Select();
+                                }
+                                else
+                                {
+                                    cboTipoPersona.EditValue = "N";
+                                    txtApPaterno.Properties.ReadOnly = false;
+                                    txtApMaterno.Properties.ReadOnly = false;
+                                    txtNombres.Properties.ReadOnly = false;
+                                    txtDescripcion.Properties.ReadOnly = true;
+                                    txtApPaterno.Select();
+                                }
+
+                            }
                         }
-                        
+
                     }
                 }
 
                 //btnConsultarSunat_Click(sender, e);
-                if (Convert.ToInt32(cboDocumento.EditValue) == Parametros.intTipoDocumentoRUC)
-                {
-                    #region "Consulta RUC Data Local"
-
-                    ClienteBE objE_Cliente = null;
-                    objE_Cliente = new ClienteBL().SeleccionaNumeroSunat(Parametros.intEmpresaId, txtNumeroDocumento.Text.Trim());
-                    if (objE_Cliente != null)
-                    {
-                        string IdDepartamento = string.Empty;
-                        string IdProvincia = string.Empty;
-                        string IdDistrito = string.Empty;
-
-                        txtDescripcion.Text = objE_Cliente.DescCliente;
-                        lblEstadoRUC.Text = objE_Cliente.DescCategoria + " - " + objE_Cliente.DescCondicion;
-
-
-                        if (objE_Cliente.IdUbigeoDom.Trim() != "")
-                            IdDepartamento = objE_Cliente.IdUbigeoDom.Substring(0, 2);
-                        cboDepartamento.EditValue = IdDepartamento;
-                        if (objE_Cliente.IdUbigeoDom.Trim() != "")
-                            IdProvincia = objE_Cliente.IdUbigeoDom.Substring(2, 2);
-                        cboProvincia.EditValue = IdProvincia;
-                        if (objE_Cliente.IdUbigeoDom.Trim() != "")
-                            IdDistrito = objE_Cliente.IdUbigeoDom.Substring(4, 2);
-                        cboDistrito.EditValue = IdDistrito;
-
-                        //Domicilio
-                        switch (objE_Cliente.AbrevDomicilio)
-                        {
-                            case "AV.":
-                                cboTipoDireccion.EditValue = 57;
-                                break;
-                            case "CAL.":
-                                cboTipoDireccion.EditValue = 58;
-                                break;
-                            case "JR.":
-                                cboTipoDireccion.EditValue = 59;
-                                break;
-                            case "PJ.":
-                                cboTipoDireccion.EditValue = 60;
-                                break;
-                            default:
-                                cboTipoDireccion.EditValue = 128;
-                                if (objE_Cliente.AbrevDomicilio == "-" || objE_Cliente.AbrevDomicilio == "--" || objE_Cliente.AbrevDomicilio == "---" || objE_Cliente.AbrevDomicilio == "----")
-                                    objE_Cliente.AbrevDomicilio = "";
-                                else
-                                    objE_Cliente.AbrevDomicilio = objE_Cliente.AbrevDomicilio + " ";
-                                objE_Cliente.Direccion = objE_Cliente.AbrevDomicilio + objE_Cliente.Direccion;
-                                break;
-                        }
-                        txtDireccion.Text = objE_Cliente.Direccion;
-
-                        //Tipo persona
-                        cboTipoPersona.Properties.ReadOnly = true;
-                        cboDocumento.Properties.ReadOnly = true;
-                        txtNumeroDocumento.Properties.ReadOnly = true;
-
-                        if (txtNumeroDocumento.Text.Trim().Substring(0,2)=="10")
-                        {
-                            cboTipoPersona.EditValue = "N";
-                            SeparaApellidosNombres();
-                        }
-                        else
-                        {
-                            cboTipoPersona.EditValue = "J";
-                            txtApPaterno.Text = string.Empty;
-                            txtApMaterno.Text = string.Empty;
-                            txtNombres.Text = string.Empty;
-                            BloqueaModificar();
-                        }
-
-                        txtTelefono.Focus();
-                        e.Handled = true;
-                        return;
-                    }
-                    #endregion
-
-                    else
-                    {
-                        CargarImagen();
-
-                        if (txtNumeroDocumento.Text.Substring(0, 2) == "20")
-                        {
-                            cboTipoPersona.EditValue = "J";
-                            txtApPaterno.Properties.ReadOnly = true;
-                            txtApMaterno.Properties.ReadOnly = true;
-                            txtNombres.Properties.ReadOnly = true;
-                            txtDescripcion.Properties.ReadOnly = false;
-
-                            txtApPaterno.Text = String.Empty;
-                            txtApMaterno.Text = String.Empty;
-                            txtNombres.Text = String.Empty;
-                            txtDescripcion.Select();
-                        }
-                        else
-                        {
-                            cboTipoPersona.EditValue = "N";
-                            txtApPaterno.Properties.ReadOnly = false;
-                            txtApMaterno.Properties.ReadOnly = false;
-                            txtNombres.Properties.ReadOnly = false;
-                            txtDescripcion.Properties.ReadOnly = true;
-                            txtApPaterno.Select();
-                        }
-                    }
-                }
-                else
-                {
-                    CargarImagenReniec();
-                }
-
+                
+              
                 e.Handled = true;
                 SendKeys.Send("{TAB}");
             }
@@ -1923,34 +1954,101 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
             }
         }
 
-        private void txtNumeroDocumento_TextChanged(object sender, EventArgs e)
+        private async void txtNumeroDocumento_TextChanged(object sender, EventArgs e)
         {
-                //CONSULTAR SI EXISTE
-                    ClienteBE objE_ClienteV = null;
-                    objE_ClienteV = new ClienteBL().SeleccionaNumero(Parametros.intEmpresaId, txtNumeroDocumento.Text.Trim());
+            //CONSULTAR SI EXISTE
+            ClienteBE objE_ClienteV = null;
+            objE_ClienteV = new ClienteBL().SeleccionaNumero(Parametros.intEmpresaId, txtNumeroDocumento.Text.Trim());
 
-                    if (objE_ClienteV != null)
+            if (objE_ClienteV != null)
+            {
+
+                if (XtraMessageBox.Show("El numero de documento se encuentra registrado.\n " + "Cliente: " + wDescCliente + " \n \n ¿Desea seleccionar al cliente para asignarlo al pedido N° " + wPedidoWeb + " ?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.No)
+                {
+                    PedidoBL objBL_Pedido = new PedidoBL();
+                    objBL_Pedido.Actualizar_PedidoWeb(wIdPedidoWeb
+                                                         , objE_ClienteV.IdCliente
+                                                       , objE_ClienteV.NumeroDocumento
+                                                       , objE_ClienteV.DescCliente
+                                                       , objE_ClienteV.Direccion
+                                                       , 1);
+                    this.Close();
+                }
+                else
+                {
+                    //txtNumeroDocumento.Focus();
+                    //return;
+                    if (Convert.ToInt32(cboDocumento.EditValue) == Parametros.intTipoDocumentoRUC)
                     {
 
-                        if (XtraMessageBox.Show("El numero de documento se encuentra registrado.\n " + "Cliente: " + wDescCliente + " \n \n ¿Desea seleccionar al cliente para asignarlo al pedido N° " + wPedidoWeb + " ?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.No)
+                        #region "Consulta RUC API https://ruc.com.pe/"
+                        string ruc = txtNumeroDocumento.Text;
+                        if (!string.IsNullOrWhiteSpace(ruc))
                         {
-                            PedidoBL objBL_Pedido = new PedidoBL();
-                            objBL_Pedido.Actualizar_PedidoWeb(wIdPedidoWeb
-                                                                 , objE_ClienteV.IdCliente
-                                                               , objE_ClienteV.NumeroDocumento
-                                                               , objE_ClienteV.DescCliente
-                                                               , objE_ClienteV.Direccion
-                                                               , 1);
-                            this.Close();
+                            try
+                            {
+                                var datos = await ConsultarApiRUC(ruc);
+                                // mostrar los datos en los controles del formulario
+                                txtDescripcion.Text = datos.nombre_o_razon_social;
+                                txtDireccion.Text = datos.direccion_completa;
+                                lblEstadoRUC.Text = $"{datos.estado_del_contribuyente} - {datos.condicion_de_domicilio}";
+                            }
+                            catch (Exception ex)
+                            {
+                                XtraMessageBox.Show($"Error al consultar RUC: No existe , Por favor ingrese nuevamente. ", "INVALIDO : Comunicarse con Sistemas de persistir", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+
+                            ClienteBE objE_Clientee = new ClienteBE();
+                            try
+                            {
+                                ClienteBL objBL_Cliente = new ClienteBL();
+                                var datos = await ConsultarApiRUC(ruc);
+                                objE_Clientee.NumeroDocumento = txtNumeroDocumento.Text;
+                                objE_Clientee.DescCliente = txtDescripcion.Text;
+                                objE_Clientee.EstadoContribuyente = datos.estado_del_contribuyente;
+                                objE_Clientee.CondicionDomicilio = datos.condicion_de_domicilio;
+                                objBL_Cliente.ActualizaPadron(objE_Clientee);
+                            }
+                            catch (Exception ex)
+                            {
+                                Cursor = Cursors.Default;
+                                XtraMessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        #endregion
+
+                        if (txtNumeroDocumento.Text.Substring(0, 2) == "20")
+                        {
+                            cboTipoPersona.EditValue = "J";
+                            txtApPaterno.Properties.ReadOnly = true;
+                            txtApMaterno.Properties.ReadOnly = true;
+                            txtNombres.Properties.ReadOnly = true;
+                            txtDescripcion.Properties.ReadOnly = false;
+
+                            txtApPaterno.Text = String.Empty;
+                            txtApMaterno.Text = String.Empty;
+                            txtNombres.Text = String.Empty;
+                            txtDescripcion.Select();
                         }
                         else
                         {
-                    txtNumeroDocumento.Focus();
-                    return;
-
+                            cboTipoPersona.EditValue = "N";
+                            txtApPaterno.Properties.ReadOnly = false;
+                            txtApMaterno.Properties.ReadOnly = false;
+                            txtNombres.Properties.ReadOnly = false;
+                            txtDescripcion.Properties.ReadOnly = true;
+                            txtApPaterno.Select();
                         }
 
                     }
+
+                }
+
+            }
+        }
+
+        private void mnuContextualClienteCorreo_Opening(object sender, CancelEventArgs e)
+        {
 
         }
     }

@@ -1248,7 +1248,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
             // 
             this.nuevoClienteAsociadoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("nuevoClienteAsociadoToolStripMenuItem.Image")));
             this.nuevoClienteAsociadoToolStripMenuItem.Name = "nuevoClienteAsociadoToolStripMenuItem";
-            this.nuevoClienteAsociadoToolStripMenuItem.Size = new System.Drawing.Size(121, 26);
+            this.nuevoClienteAsociadoToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
             this.nuevoClienteAsociadoToolStripMenuItem.Text = "Nuevo";
             this.nuevoClienteAsociadoToolStripMenuItem.Click += new System.EventHandler(this.nuevoClienteAsociadoToolStripMenuItem_Click);
             // 
@@ -1256,7 +1256,7 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
             // 
             this.eliminarClienteAsociadoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("eliminarClienteAsociadoToolStripMenuItem.Image")));
             this.eliminarClienteAsociadoToolStripMenuItem.Name = "eliminarClienteAsociadoToolStripMenuItem";
-            this.eliminarClienteAsociadoToolStripMenuItem.Size = new System.Drawing.Size(121, 26);
+            this.eliminarClienteAsociadoToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
             this.eliminarClienteAsociadoToolStripMenuItem.Text = "Eliminar";
             this.eliminarClienteAsociadoToolStripMenuItem.Click += new System.EventHandler(this.eliminarClienteAsociadoToolStripMenuItem_Click);
             // 
@@ -1406,7 +1406,8 @@ namespace ErpPanorama.Presentation.Modulos.Ecommerce
             this.nuevoClienteCorreoToolStripMenuItem,
             this.eliminarClienteCorreoToolStripMenuItem});
             this.mnuContextualClienteCorreo.Name = "contextMenuStrip1";
-            this.mnuContextualClienteCorreo.Size = new System.Drawing.Size(122, 56);
+            this.mnuContextualClienteCorreo.Size = new System.Drawing.Size(185, 78);
+            this.mnuContextualClienteCorreo.Opening += new System.ComponentModel.CancelEventHandler(this.mnuContextualClienteCorreo_Opening);
             // 
             // nuevoClienteCorreoToolStripMenuItem
             // 
