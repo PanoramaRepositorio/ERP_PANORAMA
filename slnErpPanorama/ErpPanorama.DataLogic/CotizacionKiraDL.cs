@@ -1295,6 +1295,7 @@ namespace ErpPanorama.DataLogic
                 cot.CostoMovilidad = Decimal.Parse(reader["CostoMovilidad"].ToString());
                 cot.CostoEquipos = Decimal.Parse(reader["CostoEquipos"].ToString());
                 cot.DescTablaElemento = reader["DescTablaElemento"].ToString();
+                cot.TotalGastosGeneral = Decimal.Parse(reader["TotalGastosGeneral"].ToString());
                 // Continúa mapeando las demás propiedades
                 cotizazionalist.Add(cot);
             }
