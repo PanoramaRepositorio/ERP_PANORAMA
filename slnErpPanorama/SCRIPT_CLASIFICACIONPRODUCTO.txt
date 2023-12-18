@@ -1,0 +1,36 @@
+-producto
+-ListaPrecioDetalle
+-PromocionTemporal
+-PromocionTemporalDetalle
+-FacturaCompraDetalle
+-FacturaCompra
+-UnidadMedida
+-Variables
+-LineaProducto
+-SubLineaProducto
+-ModeloProducto
+-Material
+-Marca
+-Stock
+-MovimientoAlmacenDetalle
+-PedidoDetalle
+  
+- mostrar encabezados como:
+   
+  IdProducto, IdEmpresa, Fecha (tabla producto)
+  NumeroDocumento (tabla  FacturaCompra)
+  Fecha con el nombre Periodo, CodigoProveedor, NombreProducto (tabla   producto)
+  Abreviatura (tabla UnidadMedida)
+  Descuento, PrecioAB, PrecioCD, PrecioAB,PrecioCD (tabla   ListaPrecioDetalle)
+  Descuento con el nombre DescuentoTemporal (tabla PromocionTemporalDetalle)
+  PrecioAB de la tabla ListaPrecioDetalle * TipoCambioMayorista de la tabla   Variables      colocar como nombre de la columna PrecioABSoles
+  PrecioCD de la tabla ListaPrecioDetalle * TipoCambioCD de la ListaPrecioDetal colocar      como nombre columna  PrecioCDSoles
+  IdFamiliaProducto (tabla producto)
+  IdLineaProducto   (LineaProducto)
+  DescSubLineaProducto (SubLineaProducto)
+  Medida (tabla producto)
+  IdModeloProducto (ModeloProducto) 
+  DescMaterial (Material)
+  Coleccion , FlagNacional (tabla producto)
+  cantidad (tabla MovimientoAlmacenDetalle) colocar como nombre AlmacenTransitos_NS
+  sumar el stock de idAlmacen

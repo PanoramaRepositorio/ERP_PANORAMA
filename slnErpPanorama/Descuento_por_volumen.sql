@@ -38,7 +38,7 @@ CREATE TABLE PromocionVolumen (
     FlagAviacion2 bit NULL,
     FlagSanMiguel bit NULL
 );
-
+GO
 -- Crear la tabla PromocionVolumenDetalle
 CREATE TABLE PromocionVolumenDetalle (
     IdPromocionVolumenDetalle int IDENTITY (1,1) NOT NULL PRIMARY KEY,
@@ -51,10 +51,10 @@ CREATE TABLE PromocionVolumenDetalle (
     FlagEstado bit NULL,
     FOREIGN KEY (IdPromocionVolumen) REFERENCES PromocionVolumen(IdPromocionVolumen)
 );
-
+go
 select * from PromocionVolumenDetalle
 ----
-alter PROCEDURE [dbo].[usp_PromocionVolumen_ListaFecha]
+CREATE PROCEDURE [dbo].[usp_PromocionVolumen_ListaFecha]
 (
 	@pIdEmpresa int,
 	@pFlagEstado bit,
@@ -136,7 +136,7 @@ exec usp_PromocionTemporal_ListaFecha 1,1,@pFechaDesde,@pFechaHasta
 
 ---	EXECUTE SP_HELPTEXT usp_PromocionTemporal_Inserta
 
-alter PROCEDURE [dbo].[usp_PromocionVolumen_Inserta]
+CREATE PROCEDURE [dbo].[usp_PromocionVolumen_Inserta]
 (
 	@pIdPromocionVolumen int OUT,
 	@pIdEmpresa int,
@@ -324,31 +324,15 @@ Begin
 		'MontoSoloXUni=' + isnull(convert(varchar(10),@pMontoSoloXUni),'null') + '||' + 
 		'FlagEstado=' + isnull(convert(char(5),@pFlagEstado),'null')
 
-
 		--Insertar en Auditoria
 		Declare @FechaActual datetime
 		Set @FechaActual = getdate()
 		EXEC usp_Auditoria_inserta 13,'PromocionVolumenDetalle', 'INSERT', @FechaActual, @pMaquina, @pUsuario, @vValor, ''
 
-		----Actualizar Precios WEB
-		--IF(@pFlagWeb = 1)
-		--BEGIN
-		--	DECLARE @SQL VARCHAR(2000)
-		--	SET @SQL = 'sp_refreshview vw_ListadoProductoPrecioWeb'
-		--	EXECUTE sp_sqlexec @SQL
-
-
-		--	--UPDATE vw_ListadoProductoPrecioWeb
-		--	--SET Descuento = @pDescuento
-		--	--WHERE 
-		--	--	IdProducto= @pIdProducto 
-		--END
-
-
 End
 GO
 
-alter PROCEDURE [dbo].[usp_PromocionVolumen_Actualiza]
+CREATE PROCEDURE [dbo].[usp_PromocionVolumen_Actualiza]
 (
 	@pIdPromocionVolumen int,
 	@pIdEmpresa int,
@@ -513,7 +497,7 @@ Begin
 End
 GO
 
-create PROCEDURE [dbo].[usp_PromocionVolumenDetalle_Actualiza]
+CREATE PROCEDURE [dbo].[usp_PromocionVolumenDetalle_Actualiza]
 (
 	@pIdPromocionVolumenDetalle int,
 	@pIdPromocionVolumen int,
@@ -601,11 +585,6 @@ Begin
 
 End
 GO
-
-
----	EXECUTE SP_HELPTEXT usp_PromocionTemporalDetalle_ListaTodosActivo
-
-
 
 CREATE PROCEDURE [dbo].[usp_PromocionVolumenDetalle_ListaTodosActivo]
 (
@@ -698,8 +677,7 @@ BEGIN
 	SET NOCOUNT OFF
 	
 END
-go
-
+GO
 
 CREATE PROCEDURE [dbo].[usp_PromocionVolumenDetalle_EliminaTodo]
 (
@@ -726,10 +704,9 @@ Begin
 		Set Nocount Off
 
 End
-go
+GO
 
-
-alter PROCEDURE [dbo].[usp_PromocionVolumen_Elimina]
+CREATE PROCEDURE [dbo].[usp_PromocionVolumen_Elimina]
 (
 	@pIdPromocionVolumen int, 
 	@pIdEmpresa int,
@@ -862,7 +839,6 @@ Begin
 End
 GO
 
-
 CREATE PROCEDURE [dbo].[usp_PromocionVolumenDetalle_Elimina]
 (
 	@pIdPromocionVolumenDetalle int, 
@@ -934,10 +910,8 @@ Begin
 		Set Nocount Off
 
 End
-go
+GO
 
----	EXECUTE SP_HELPTEXT usp_PromocionTemporal_ListaFecha
----	   UPDATE PromocionTemporal SET  FlagAviacion2=0 WHERE FlagAviacion2 IS NULL
 
 CREATE PROCEDURE [dbo].[usp_PromocionTemporal_ListaFecha]
 (
@@ -1009,8 +983,8 @@ END
 go
 --*
 
-exec usp_PromocionTemporalDetalle_SeleccionaTipoClienteFormapago 13,86,61,1,394,7245,0
-exec usp_PromocionVolumenDetalle_SeleccionaTipoClienteFormapago  13,86,61,1,394,7245,1 
+exec usp_PromocionTemporalDetalle_SeleccionaTipoClienteFormapago 13,86,61,1,394,9266,0
+exec usp_PromocionVolumenDetalle_SeleccionaTipoClienteFormapago  13,86,61,1,394,16197,0
   
 CREATE PROCEDURE [dbo].[usp_PromocionVolumenDetalle_SeleccionaTipoClienteFormapago]    
 (    
@@ -1083,45 +1057,114 @@ BEGIN
 END 
 go
 
-
 -- Crear el procedimiento almacenado
-CREATE PROCEDURE ValidarPromocion
-    @IdPromocionVolumenDetalle int
+
+CREATE PROCEDURE usp_ValidarPromocion
+    @IdPromocionVolumen int
 AS
 BEGIN
-    DECLARE @IdPromocionVolumen int
     DECLARE @FlagAplicaCombinacion bit
     DECLARE @FlagAplicaxCodigo bit
-
-    -- Obtener IdPromocionVolumen del IdPromocionVolumenDetalle
-    SELECT @IdPromocionVolumen = IdPromocionVolumen
-    FROM PromocionVolumenDetalle
-    WHERE IdPromocionVolumenDetalle = @IdPromocionVolumenDetalle
+    DECLARE @MontoUniXamas numeric
+    DECLARE @MontoSoloXUni numeric
 
     -- Obtener FlagAplicaCombinacion y FlagAplicaxCodigo de la tabla PromocionVolumen
-    SELECT @FlagAplicaCombinacion = FlagAplicaCombinacion, @FlagAplicaxCodigo = FlagAplicaxCodigo
-    FROM PromocionVolumen
-    WHERE IdPromocionVolumen = @IdPromocionVolumen
+    SELECT @FlagAplicaCombinacion = pv.FlagAplicaCombinacion, @FlagAplicaxCodigo = pv.FlagAplicaxCodigo
+    FROM PromocionVolumen pv
+    WHERE pv.IdPromocionVolumen = @IdPromocionVolumen and pv.FlagEstado = 1
 
-    -- Contar cuántos productos están asociados al IdPromocionVolumenDetalle
+     -- Obtener MontoUniXamas y MontoSoloXUni de un producto asociado al IdPromocionVolumen
+    SELECT TOP 1 @MontoUniXamas = pvd.MontoUniXamas, @MontoSoloXUni = pvd.MontoSoloXUni
+    FROM PromocionVolumenDetalle pvd
+    WHERE pvd.IdPromocionVolumen = @IdPromocionVolumen and pvd.FlagEstado = 1
+
+    -- Contar cuántos productos están asociados al IdPromocionVolumen
     DECLARE @NumProductos int
-    SELECT @NumProductos = COUNT(*) FROM PromocionVolumenDetalle WHERE IdPromocionVolumen = @IdPromocionVolumen
+    SELECT @NumProductos = COUNT(*)
+    FROM PromocionVolumenDetalle pvd
+    WHERE pvd.IdPromocionVolumen = @IdPromocionVolumen and pvd.FlagEstado = 1
 
     -- Devolver resultados
-    SELECT @NumProductos AS CantidadProductos, @FlagAplicaCombinacion AS FlagCombinacion, @FlagAplicaxCodigo AS FlagAplicaxCodigo
+    SELECT @NumProductos AS CantidadProductos, @FlagAplicaCombinacion AS FlagCombinacion, @FlagAplicaxCodigo AS FlagAplicaxCodigo, @MontoUniXamas AS MontoTotalUniXamas, @MontoSoloXUni AS MontoTotalSoloXUni
 END
 GO
 
-EXEC ValidarPromocion 38
-EXEC ObtenerProductosPorDetalle 38
+EXEC usp_ValidarPromocion 2
+
+CREATE PROCEDURE usp_ValidarPromocion_IDProducto
+    @IdProducto int
+AS
+BEGIN
+    DECLARE @FlagAplicaCombinacion bit
+    DECLARE @FlagAplicaxCodigo bit
+    DECLARE @MontoUniXamas numeric
+    DECLARE @MontoSoloXUni numeric
+
+    -- Obtener FlagAplicaCombinacion y FlagAplicaxCodigo de la tabla PromocionVolumen
+    SELECT @FlagAplicaCombinacion = pv.FlagAplicaCombinacion, @FlagAplicaxCodigo = pv.FlagAplicaxCodigo
+    FROM PromocionVolumenDetalle pvd  inner join PromocionVolumen pv on pvd.IdPromocionVolumen = pv.IdPromocionVolumen
+    WHERE pvd.IdProducto = @IdProducto and pv.FlagEstado = 1
+
+     -- Obtener MontoUniXamas y MontoSoloXUni de un producto asociado al IdPromocionVolumen
+    SELECT TOP 1 @MontoUniXamas = pvd.MontoUniXamas, @MontoSoloXUni = pvd.MontoSoloXUni
+    FROM PromocionVolumenDetalle pvd
+    WHERE pvd.IdProducto = @IdProducto and pvd.FlagEstado = 1
+
+    -- Contar cuántos productos están asociados al IdProducto
+    DECLARE @NumProductos int
+    SELECT @NumProductos = COUNT(*)
+    FROM PromocionVolumenDetalle pvd
+    WHERE pvd.IdProducto = @IdProducto and pvd.FlagEstado = 1
+
+    -- Devolver resultados
+    SELECT @NumProductos AS Cantidad_MismoCodigo, @FlagAplicaCombinacion AS FlagCombinacion, @FlagAplicaxCodigo AS FlagAplicaxCodigo, @MontoUniXamas AS MontoTotalUniXamas, @MontoSoloXUni AS MontoTotalSoloXUni
+END
+GO
+
+EXEC usp_ValidarPromocion_IDProducto 65703;
+EXEC usp_ValidarPromocion_IDProducto 16197;
+EXEC usp_ValidarPromocion_IDProducto 7240;
+EXEC usp_ValidarPromocion_IDProducto 7245;
+GO
 
 -- Crear el procedimiento almacenado
-create PROCEDURE ObtenerProductosPorDetalle
-    @IdPromocionVolumenDetalle int
+CREATE PROCEDURE usp_ObtenerProductosPorDetalle
+    @IdPromocionVolumen int
 AS
 BEGIN
     -- Seleccionar los IdProducto asociados al IdPromocionVolumenDetalle
     SELECT IdProducto
     FROM PromocionVolumenDetalle
-    WHERE IdPromocionVolumen = (SELECT IdPromocionVolumen FROM PromocionVolumenDetalle WHERE IdPromocionVolumenDetalle = @IdPromocionVolumenDetalle)
+    WHERE IdPromocionVolumen = (SELECT IdPromocionVolumen FROM PromocionVolumen WHERE IdPromocionVolumen = @IdPromocionVolumen) and FlagEstado = 1
 END
+go
+
+exec usp_ObtenerProductosPorDetalle 2
+GO
+
+CREATE PROCEDURE usp_ObtenerIdPromocionPorIdproducto
+    @IdProducto int
+AS
+BEGIN
+    -- Seleccionar los IdProducto asociados al IdPromocionVolumenDetalle
+    SELECT IdPromocionVolumen
+    FROM PromocionVolumenDetalle
+    WHERE IdProducto =  @IdProducto and FlagEstado = 1
+END
+go
+
+--///////////
+exec usp_ObtenerIdPromocionPorIdproducto 7245
+exec usp_ObtenerProductosPorDetalle 2
+--//////////
+
+select * from TempListaPrecioDetalle
+
+
+select IdAlmacen, DescAlmacen from Almacen
+
+    SELECT IdPromocionVolumen
+    FROM PromocionVolumenDetalle
+    WHERE IdProducto = 65703 and FlagEstado = 1
+
+

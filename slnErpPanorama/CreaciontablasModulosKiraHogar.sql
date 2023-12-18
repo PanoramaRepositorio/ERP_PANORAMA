@@ -76,7 +76,7 @@ VALUES ('001303', 2456, 'Precio Producto Terminado', '', 0, '', '', 4, 0, 1);
 -- insertar menu  (BUTTON) Cotizar
 
 INSERT INTO Menu ( MenuCodigo, IdMenuPadre, MenuDescripcion, Imagen, LargeImage, Clase, Ensamblado, IdMenuTipo, ModoCargaVentana, FlagEstado)
-VALUES ('00130101', 2457, 'Cotización', 'Consultas_32x32', 1, 'frmRegKiraCotizacion', 'ErpPanorama.Presentation.Modulos.KiraHogar.Registros.frmRegKiraCotizacion', 2, 1, 1);
+VALUES ('00130101', 2457, 'Cotizaciï¿½n', 'Consultas_32x32', 1, 'frmRegKiraCotizacion', 'ErpPanorama.Presentation.Modulos.KiraHogar.Registros.frmRegKiraCotizacion', 2, 1, 1);
 INSERT INTO Menu ( MenuCodigo, IdMenuPadre, MenuDescripcion, Imagen, LargeImage, Clase, Ensamblado, IdMenuTipo, ModoCargaVentana, FlagEstado)
 VALUES ('00130201', 2458, 'Precio Producto Cliente Stock', 'PedidoVenta_32x32', 1, 'frmCotizacion', 'ErpPanorama.Presentation.Modulos.KiraHogar.Consultas.frmCotizacion', 2, 1, 1);
 INSERT INTO Menu ( MenuCodigo, IdMenuPadre, MenuDescripcion, Imagen, LargeImage, Clase, Ensamblado, IdMenuTipo, ModoCargaVentana, FlagEstado)
@@ -88,7 +88,7 @@ VALUES ('00130202', 2458 , 'Precio Producto Terminado', 'PedidoVenta_32x32', 1, 
 -- Insertar datos de nuevas DescTabla a TABLA para los combosBOX
 
 INSERT INTO Tabla (IdEmpresa, DescTabla, FlagEstado)
-VALUES (13, 'TIPO COTIZACIÓN', 1);
+VALUES (13, 'TIPO COTIZACIï¿½N', 1);
 
 INSERT INTO Tabla (IdEmpresa, DescTabla, FlagEstado)
 VALUES (13, 'MATERIALES', 1);
@@ -112,10 +112,10 @@ INSERT INTO Tabla (IdEmpresa, DescTabla, FlagEstado)
 VALUES (13, 'PRODUCTO TERMINADO', 1);
 
 
--- Insertar datos a TABLA ELEMENTO (TIPO COTIZACIÓN)
+-- Insertar datos a TABLA ELEMENTO (TIPO COTIZACIï¿½N)
 
 INSERT INTO TablaElemento (IdTabla, Abreviatura, DescTablaElemento, IdTablaExterna, Valor, FlagEstado)
-VALUES (105, 'CPC', 'COTIZACIÓN PARA EL CLIENTE', NULL, NULL, 1);
+VALUES (105, 'CPC', 'COTIZACIï¿½N PARA EL CLIENTE', NULL, NULL, 1);
 
 INSERT INTO TablaElemento (IdTabla, Abreviatura, DescTablaElemento, IdTablaExterna, Valor, FlagEstado)
 VALUES (105, 'CF', 'COTIZACION DE FABRICACION PARA STOCK', NULL, NULL, 1);
@@ -176,7 +176,7 @@ VALUES (108, 'CRS', 'CORREDERAS', NULL, NULL, 1);
 INSERT INTO TablaElemento (IdTabla, Abreviatura, DescTablaElemento, IdTablaExterna, Valor, FlagEstado)
 VALUES (108, 'TRDS', 'TIRADORES', NULL, NULL, 1);
 INSERT INTO TablaElemento (IdTabla, Abreviatura, DescTablaElemento, IdTablaExterna, Valor, FlagEstado)
-VALUES (108, 'ILMN', 'ILUMINACIÓN', NULL, NULL, 1);
+VALUES (108, 'ILMN', 'ILUMINACIï¿½N', NULL, NULL, 1);
 INSERT INTO TablaElemento (IdTabla, Abreviatura, DescTablaElemento, IdTablaExterna, Valor, FlagEstado)
 VALUES (108, 'PTZL', 'PATAS CON ZOCALO', NULL, NULL, 1);
 INSERT INTO TablaElemento (IdTabla, Abreviatura, DescTablaElemento, IdTablaExterna, Valor, FlagEstado)
@@ -206,7 +206,7 @@ VALUES (109, 'VDO', 'VIDRIERO', NULL, NULL, 1);
 -- Insertar datos a TABLA ELEMENTO (TIPO MOVILIDAD Y VIATICOS)
 
 INSERT INTO TablaElemento (IdTabla, Abreviatura, DescTablaElemento, IdTablaExterna, Valor, FlagEstado)
-VALUES (110, 'CPT', 'PASAJE DISEÑADORA', NULL, NULL, 1);
+VALUES (110, 'CPT', 'PASAJE DISEï¿½ADORA', NULL, NULL, 1);
 INSERT INTO TablaElemento (IdTabla, Abreviatura, DescTablaElemento, IdTablaExterna, Valor, FlagEstado)
 VALUES (110, 'CPT', 'PASAJE PARA LA ENTREGA', NULL, NULL, 1);
 INSERT INTO TablaElemento (IdTabla, Abreviatura, DescTablaElemento, IdTablaExterna, Valor, FlagEstado)
@@ -250,7 +250,7 @@ CREATE TABLE CotizacionKIRA (
     Moneda INT NOT NULL, -- Nuevo campo para la moneda
     FlagEstado BIT NOT NULL, -- Nueva columna agregada
     FOREIGN KEY (IdTablaElemento) REFERENCES TablaElemento (IdTablaElemento),
-    FOREIGN KEY (Moneda) REFERENCES TablaElemento (IdTablaElemento) -- Relación con la tabla TablaElemento para la columna Moneda
+    FOREIGN KEY (Moneda) REFERENCES TablaElemento (IdTablaElemento) -- Relaciï¿½n con la tabla TablaElemento para la columna Moneda
 );
 
 CREATE TABLE DetalleCotizacion (
@@ -294,23 +294,23 @@ CREATE PROCEDURE usp_RegistrarCotizacionYDetalle
     @CostoEquipos DECIMAL(18, 2),
     @TotalGastos DECIMAL(18, 2),
     @PrecioVenta DECIMAL(18, 2),
-    @Moneda INT, -- Nuevo parámetro para la moneda
+    @Moneda INT, -- Nuevo parï¿½metro para la moneda
     @DetalleCotizacion dbo.DetalleCotizacionType READONLY,
     @IdCotizacion INT OUTPUT,
-    @FlagEstado BIT -- Nuevo parámetro para el FlagEstado de la Cotización
+    @FlagEstado BIT -- Nuevo parï¿½metro para el FlagEstado de la Cotizaciï¿½n
 )
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    -- Insertar la cotización en la tabla "CotizacionKIRA"
+    -- Insertar la cotizaciï¿½n en la tabla "CotizacionKIRA"
     INSERT INTO CotizacionKIRA (IdTablaElemento, Fecha, CodigoProducto, Descripcion, Caracteristicas, Imagen, CostoMateriales, CostoInsumos, CostoAccesorios, CostoManoObra, CostoMovilidad, CostoEquipos, TotalGastos, PrecioVenta, Moneda, FlagEstado)
     VALUES (@IdTablaElemento, @Fecha, @CodigoProducto, @Descripcion, @Caracteristicas, @Imagen, @CostoMateriales, @CostoInsumos, @CostoAccesorios, @CostoManoObra, @CostoMovilidad, @CostoEquipos, @TotalGastos, @PrecioVenta, @Moneda, @FlagEstado)
 
-    -- Obtener el ID de la cotización recién insertada
+    -- Obtener el ID de la cotizaciï¿½n reciï¿½n insertada
     SET @IdCotizacion = SCOPE_IDENTITY()
 
-    -- Insertar los detalles de cotización desde la tabla estructurada a la tabla "DetalleCotizacion"
+    -- Insertar los detalles de cotizaciï¿½n desde la tabla estructurada a la tabla "DetalleCotizacion"
     INSERT INTO DetalleCotizacion (IdCotizacion, IdTablaElemento, Item, DescripcionGastos, FlagAprobacion, FlagEstado, Costo)
     SELECT @IdCotizacion, IdTablaElemento, Item, DescripcionGastos, FlagAprobacion, FlagEstado, Costo
     FROM @DetalleCotizacion
@@ -321,10 +321,10 @@ END
 -- Declarar una variable para almacenar el IdCotizacion de salida
 DECLARE @IdCotizacionResult INT;
 
--- Declarar una tabla para almacenar los detalles de cotización
+-- Declarar una tabla para almacenar los detalles de cotizaciï¿½n
 DECLARE @DetalleCotizacionData AS dbo.DetalleCotizacionType;
 
--- Insertar datos en la tabla de detalles de cotización (puedes ajustar estos valores según tus necesidades)
+-- Insertar datos en la tabla de detalles de cotizaciï¿½n (puedes ajustar estos valores segï¿½n tus necesidades)
 INSERT INTO @DetalleCotizacionData (IdTablaElemento, Item, DescripcionGastos, FlagAprobacion, FlagEstado, Costo)
 VALUES
     (718, 1, 'ESPEJO', 1, 1, 100.00),
@@ -337,7 +337,7 @@ EXEC usp_RegistrarCotizacionYDetalle
     @Fecha = '2023-07-18',
     @CodigoProducto = 'PROD002',
     @Descripcion = 'MUEBLE BAR FLOTANTE (desde SQL)',
-    @Caracteristicas = 'MUEBLE BAR FLOTANTE / ESTRUCTURA: MELAMINA PELIKANO ROVERE CON FONDO DE ESPEJO / PUERTAS: VIDRIO AHUMADO / ILUMINACIÓN: LED DICROICO LUZ CÁLIDA / MEDIDAS: 2.16m largo x 0.36m profundidad x 0.91m alto',
+    @Caracteristicas = 'MUEBLE BAR FLOTANTE / ESTRUCTURA: MELAMINA PELIKANO ROVERE CON FONDO DE ESPEJO / PUERTAS: VIDRIO AHUMADO / ILUMINACIï¿½N: LED DICROICO LUZ Cï¿½LIDA / MEDIDAS: 2.16m largo x 0.36m profundidad x 0.91m alto',
     @Imagen = 'imagen_producto.jpg',
     @CostoMateriales = 800.00,
     @CostoInsumos = 20.00,
@@ -348,9 +348,9 @@ EXEC usp_RegistrarCotizacionYDetalle
     @TotalGastos = 1751.50,
     @PrecioVenta = 2919.17,
     @Moneda = 5, -- Asignar el valor correspondiente para la moneda (5 para SOLES)
-    @DetalleCotizacion = @DetalleCotizacionData, -- Datos de los detalles de cotización
+    @DetalleCotizacion = @DetalleCotizacionData, -- Datos de los detalles de cotizaciï¿½n
     @IdCotizacion = @IdCotizacionResult OUTPUT, -- Variable de salida para el IdCotizacion
-    @FlagEstado = 1; -- Valor para el nuevo parámetro FlagEstado (1 para activo)
+    @FlagEstado = 1; -- Valor para el nuevo parï¿½metro FlagEstado (1 para activo)
 
 -- Verificar el resultado mostrando el IdCotizacion generado
 SELECT @IdCotizacionResult AS 'IdCotizacion';
@@ -421,7 +421,7 @@ GO
 --        RETURN;
 --    END
     
---    -- Actualizamos el CodigoProducto y la Descripción utilizando el procedimiento almacenado
+--    -- Actualizamos el CodigoProducto y la Descripciï¿½n utilizando el procedimiento almacenado
 --    UPDATE CotizacionKIRA
 --    SET CodigoProducto = @NuevoCodigoProducto, Descripcion = @NuevaDescripcion
 --    WHERE IdCotizacion = @IdCotizacion;
@@ -445,12 +445,12 @@ BEGIN
 
     IF EXISTS (SELECT 1 FROM CotizacionKIRA WHERE CodigoProducto = @CodigoProducto)
     BEGIN
-        PRINT 'El Código de Producto ' + @CodigoProducto + ' ya existe en la base de datos.';
+        PRINT 'El Cï¿½digo de Producto ' + @CodigoProducto + ' ya existe en la base de datos.';
         SET @ExisteCodigo = 1;
     END
     ELSE
     BEGIN
-        PRINT 'El Código de Producto ' + @CodigoProducto + ' no existe en la base de datos.';
+        PRINT 'El Cï¿½digo de Producto ' + @CodigoProducto + ' no existe en la base de datos.';
         SET @ExisteCodigo = 0;
     END
 END
@@ -467,12 +467,12 @@ BEGIN
 
     IF EXISTS (SELECT 1 FROM CotizacionKIRATerminado WHERE CodigoProducto = @CodigoProducto)
     BEGIN
-        PRINT 'El Código de Producto ' + @CodigoProducto + ' ya existe en la base de datos.';
+        PRINT 'El Cï¿½digo de Producto ' + @CodigoProducto + ' ya existe en la base de datos.';
         SET @ExisteCodigo = 1;
     END
     ELSE
     BEGIN
-        PRINT 'El Código de Producto ' + @CodigoProducto + ' no existe en la base de datos.';
+        PRINT 'El Cï¿½digo de Producto ' + @CodigoProducto + ' no existe en la base de datos.';
         SET @ExisteCodigo = 0;
     END
 END
@@ -496,7 +496,7 @@ GO
 ----END
 ----
 
-----Código de producto existente:
+----Cï¿½digo de producto existente:
 
 --DECLARE @CodigoProductoExistente VARCHAR(50) = 'COT-001';
 --DECLARE @ExisteCodigoExistente BIT;
@@ -507,7 +507,7 @@ GO
 
 --SELECT @ExisteCodigoExistente AS 'ExisteCodigoExistente';
 
----- Código de producto no existente:
+---- Cï¿½digo de producto no existente:
 
 --DECLARE @CodigoProductoNoExistente VARCHAR(50) = 'PROD999';
 --DECLARE @ExisteCodigoNoExistente BIT;
@@ -590,7 +590,7 @@ GO
 ----        FlagEstado = @NuevoFlagEstado
 ----    WHERE IdCotizacion = @IdCotizacion;
 
-----    -- Actualizar detalles de la cotización si es necesario
+----    -- Actualizar detalles de la cotizaciï¿½n si es necesario
 ----    UPDATE DetalleCotizacion
 ----    SET DescripcionGastos = @NuevaDescripcionGastos,
 ----        FlagAprobacion = @NuevoFlagAprobacion,
@@ -606,10 +606,10 @@ GO
 
 ----BEGIN TRY
 ----    EXEC usp_ActualizarCotizacion
-----        @IdCotizacion = 4,  -- Cambia esto al ID de la cotización que deseas actualizar
+----        @IdCotizacion = 4,  -- Cambia esto al ID de la cotizaciï¿½n que deseas actualizar
 ----        @NuevoCodigoProducto = 'SPORTINGX ',
-----        @NuevaDescripcion = 'Nueva descripción',
-----        @NuevoCaracteristicas = 'Nuevas características',
+----        @NuevaDescripcion = 'Nueva descripciï¿½n',
+----        @NuevoCaracteristicas = 'Nuevas caracterï¿½sticas',
 ----        @NuevoImagen = 'Nueva imagen',
 ----        @NuevoCostoMateriales = 100.00,
 ----        @NuevoCostoInsumos = 50.00,
@@ -621,12 +621,12 @@ GO
 ----        @NuevoPrecioVenta = 500.00,
 ----        @NuevoMoneda = 5,  -- Cambia esto al valor correcto de la moneda
 ----        @NuevoFlagEstado = 1,  -- Cambia esto al valor correcto del estado
-----        @NuevaDescripcionGastos = 'Nueva descripción de gastos',
-----        @NuevoFlagAprobacion = 1,  -- Cambia esto al valor correcto de aprobación
+----        @NuevaDescripcionGastos = 'Nueva descripciï¿½n de gastos',
+----        @NuevoFlagAprobacion = 1,  -- Cambia esto al valor correcto de aprobaciï¿½n
 ----        @NuevoFlagEstadoDetalle = 1,  -- Cambia esto al valor correcto del estado detalle
 ----        @NuevoCosto = 150.00;
 
-----    SET @Resultado = 'Éxito';
+----    SET @Resultado = 'ï¿½xito';
 ----END TRY
 ----BEGIN CATCH
 ----    SET @Resultado = ERROR_MESSAGE();
@@ -692,7 +692,7 @@ DECLARE @Resultado NVARCHAR(200);
 
 BEGIN TRY
     EXEC usp_ActualizarCotizacion
-        @IdCotizacion = 1,  -- Cambia esto al ID de la cotización que deseas actualizar
+        @IdCotizacion = 1,  -- Cambia esto al ID de la cotizaciï¿½n que deseas actualizar
         @NuevoCodigoProducto = 'CODSC',
         @NuevaDescripcion = 'liga 1',
         @NuevoCaracteristicas = 'liga',
@@ -706,7 +706,7 @@ BEGIN TRY
         --@NuevoTotalGastos = 290.00,
         --@NuevoPrecioVenta = 500.00,
 
-    SET @Resultado = 'Éxito';
+    SET @Resultado = 'ï¿½xito';
 END TRY
 BEGIN CATCH
     SET @Resultado = ERROR_MESSAGE();
@@ -764,7 +764,7 @@ DECLARE @Resultado NVARCHAR(200);
 
 BEGIN TRY
     EXEC usp_ActualizarCotizacionProductos
-        @IdCotizacion = 1,  -- Cambia esto al ID de la cotización que deseas actualizar
+        @IdCotizacion = 1,  -- Cambia esto al ID de la cotizaciï¿½n que deseas actualizar
         @NuevoCodigoProducto = 'CODSCs',
         @NuevaDescripcion = 'liga 1',
         @NuevoCaracteristicas = 'liga',
@@ -773,7 +773,7 @@ BEGIN TRY
         --@NuevoTotalGastos = 290.00,
         --@NuevoPrecioVenta = 500.00,
 
-    SET @Resultado = 'Éxito';
+    SET @Resultado = 'ï¿½xito';
 END TRY
 BEGIN CATCH
     SET @Resultado = ERROR_MESSAGE();
@@ -789,7 +789,7 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    -- Aquí escribe la lógica para obtener los detalles de la cotización por su IdCotizacion
+    -- Aquï¿½ escribe la lï¿½gica para obtener los detalles de la cotizaciï¿½n por su IdCotizacion
     -- Puedes realizar las consultas necesarias para obtener los detalles de la tabla DetalleCotizacion
     -- y retornar los resultados
     SELECT IdTablaElemento, Item, DescripcionGastos, FlagAprobacion, FlagEstado, Costo
@@ -1142,7 +1142,7 @@ CREATE TABLE CotizacionKIRATerminado (
     Moneda INT NOT NULL, -- Nuevo campo para la moneda
     FlagEstado BIT NOT NULL, -- Nueva columna agregada
     FOREIGN KEY (IdTablaElemento) REFERENCES TablaElemento (IdTablaElemento),
-    FOREIGN KEY (Moneda) REFERENCES TablaElemento (IdTablaElemento) -- Relación con la tabla TablaElemento para la columna Moneda
+    FOREIGN KEY (Moneda) REFERENCES TablaElemento (IdTablaElemento) -- Relaciï¿½n con la tabla TablaElemento para la columna Moneda
 );
 GO
 
@@ -1174,23 +1174,23 @@ CREATE PROCEDURE usp_RegistrarCotizacionYDetalleProductosTerminados
     @CostoProductos DECIMAL(18, 2), -- cambiar aqui
     @TotalGastos DECIMAL(18, 2),
     @PrecioVenta DECIMAL(18, 2),
-    @Moneda INT, -- Nuevo parámetro para la moneda
+    @Moneda INT, -- Nuevo parï¿½metro para la moneda
     @DetalleCotizacion dbo.DetalleCotizacionType READONLY,
     @IdCotizacion INT OUTPUT,
-    @FlagEstado BIT -- Nuevo parámetro para el FlagEstado de la Cotización
+    @FlagEstado BIT -- Nuevo parï¿½metro para el FlagEstado de la Cotizaciï¿½n
 )
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    -- Insertar la cotización en la tabla "CotizacionKIRA"
+    -- Insertar la cotizaciï¿½n en la tabla "CotizacionKIRA"
     INSERT INTO CotizacionKIRATerminado (IdTablaElemento, Fecha, CodigoProducto, Descripcion, Caracteristicas, Imagen, CostoProductos, TotalGastos, PrecioVenta, Moneda, FlagEstado)
     VALUES (@IdTablaElemento, @Fecha, @CodigoProducto, @Descripcion, @Caracteristicas, @Imagen, @CostoProductos,@TotalGastos, @PrecioVenta, @Moneda, @FlagEstado)
 
-    -- Obtener el ID de la cotización recién insertada
+    -- Obtener el ID de la cotizaciï¿½n reciï¿½n insertada
     SET @IdCotizacion = SCOPE_IDENTITY()
 
-    -- Insertar los detalles de cotización desde la tabla estructurada a la tabla "DetalleCotizacion"
+    -- Insertar los detalles de cotizaciï¿½n desde la tabla estructurada a la tabla "DetalleCotizacion"
     INSERT INTO DetalleCotizacionTerminado (IdCotizacion, IdTablaElemento, Item, DescripcionGastos, FlagAprobacion, FlagEstado, Costo)
     SELECT @IdCotizacion, IdTablaElemento, Item, DescripcionGastos, FlagAprobacion, FlagEstado, Costo
     FROM @DetalleCotizacion
@@ -1200,10 +1200,10 @@ END
 -- Declarar una variable para almacenar el IdCotizacion de salida
 DECLARE @IdCotizacionResult INT;
 
--- Declarar una tabla para almacenar los detalles de cotización
+-- Declarar una tabla para almacenar los detalles de cotizaciï¿½n
 DECLARE @DetalleCotizacionData AS dbo.DetalleCotizacionType;
 
--- Insertar datos en la tabla de detalles de cotización (puedes ajustar estos valores según tus necesidades)
+-- Insertar datos en la tabla de detalles de cotizaciï¿½n (puedes ajustar estos valores segï¿½n tus necesidades)
 INSERT INTO @DetalleCotizacionData (IdTablaElemento, Item, DescripcionGastos, FlagAprobacion, FlagEstado, Costo)
 VALUES
     (754, 1, 'COSTO INC. IGV', 1, 1, 100.00),
@@ -1216,15 +1216,15 @@ EXEC usp_RegistrarCotizacionYDetalleProductosTerminados
     @Fecha = '2023-07-18',
     @CodigoProducto = 'PROD002',
     @Descripcion = 'MUEBLE BAR FLOTANTE (desde SQL)',
-    @Caracteristicas = 'MUEBLE BAR FLOTANTE / ESTRUCTURA: MELAMINA PELIKANO ROVERE CON FONDO DE ESPEJO / PUERTAS: VIDRIO AHUMADO / ILUMINACIÓN: LED DICROICO LUZ CÁLIDA / MEDIDAS: 2.16m largo x 0.36m profundidad x 0.91m alto',
+    @Caracteristicas = 'MUEBLE BAR FLOTANTE / ESTRUCTURA: MELAMINA PELIKANO ROVERE CON FONDO DE ESPEJO / PUERTAS: VIDRIO AHUMADO / ILUMINACIï¿½N: LED DICROICO LUZ Cï¿½LIDA / MEDIDAS: 2.16m largo x 0.36m profundidad x 0.91m alto',
     @Imagen = 'imagen_producto.jpg',
     @CostoProductos = 800.00,
     @TotalGastos = 1751.50,
     @PrecioVenta = 2919.17,
     @Moneda = 5, -- Asignar el valor correspondiente para la moneda (5 para SOLES)
-    @DetalleCotizacion = @DetalleCotizacionData, -- Datos de los detalles de cotización
+    @DetalleCotizacion = @DetalleCotizacionData, -- Datos de los detalles de cotizaciï¿½n
     @IdCotizacion = @IdCotizacionResult OUTPUT, -- Variable de salida para el IdCotizacion
-    @FlagEstado = 1; -- Valor para el nuevo parámetro FlagEstado (1 para activo)
+    @FlagEstado = 1; -- Valor para el nuevo parï¿½metro FlagEstado (1 para activo)
 
 -- Verificar el resultado mostrando el IdCotizacion generado
 SELECT @IdCotizacionResult AS 'IdCotizacion';
@@ -1279,7 +1279,7 @@ BEGIN
 END;
 GO
 
---- Obtiene detalleCotizacion PESTAÑAS
+--- Obtiene detalleCotizacion PESTAï¿½AS
 
 CREATE PROCEDURE ObtenerDetallesCotizacionMateriales
     @IdCotizacion int
@@ -1467,7 +1467,7 @@ GO
 CREATE PROCEDURE usp_AgregarDetalleCotizacion
 (
     @IdCotizacion INT,
-	@IdTablaElemento INT, -- Agrega este parámetro
+	@IdTablaElemento INT, -- Agrega este parï¿½metro
     @DescripcionGastos NVARCHAR(200),
     @Costo DECIMAL(18, 2)
 )
@@ -1478,14 +1478,14 @@ BEGIN
     INSERT INTO DetalleCotizacion (IdCotizacion,IdTablaElemento, DescripcionGastos, Costo)
     VALUES (@IdCotizacion,@IdTablaElemento, @DescripcionGastos, @Costo);
 END;
--- Ejemplo de ejecución de usp_AgregarDetalleCotizacion
-DECLARE @IdCotizacion INT = 2; -- Cambia el valor según la cotización a la que deseas agregar el detalle
+-- Ejemplo de ejecuciï¿½n de usp_AgregarDetalleCotizacion
+DECLARE @IdCotizacion INT = 2; -- Cambia el valor segï¿½n la cotizaciï¿½n a la que deseas agregar el detalle
 DECLARE @IdTablaElemento INT = 715;
-DECLARE @DescripcionGastos NVARCHAR(200) = 'Descripción de gastos de prueba';
-DECLARE @Costo DECIMAL(18, 2) = 100.00; -- Cambia el costo según el valor deseado
+DECLARE @DescripcionGastos NVARCHAR(200) = 'Descripciï¿½n de gastos de prueba';
+DECLARE @Costo DECIMAL(18, 2) = 100.00; -- Cambia el costo segï¿½n el valor deseado
 
 EXEC usp_AgregarDetalleCotizacion @IdCotizacion, @IdTablaElemento, @DescripcionGastos, @Costo;
--- Consulta para verificar los detalles de cotización relacionados con una cotización
+-- Consulta para verificar los detalles de cotizaciï¿½n relacionados con una cotizaciï¿½n
 SELECT * FROM DetalleCotizacion WHERE IdCotizacion = @IdCotizacion;
 GO
 
@@ -1493,7 +1493,7 @@ GO
 CREATE PROCEDURE usp_AgregarDetalleCotizacionProducto
 (
     @IdCotizacion INT,
-	@IdTablaElemento INT, -- Agrega este parámetro
+	@IdTablaElemento INT, -- Agrega este parï¿½metro
     @DescripcionGastos NVARCHAR(200),
     @Costo DECIMAL(18, 2)
 )
@@ -1616,3 +1616,47 @@ BEGIN
 END;
 
 usp_rptCotizacionKiraProductoTerminado 1
+
+
+-- CREACION DE PROCEDIMIENTO PARA REPORTE
+
+CREATE TYPE dbo.IdCotizacionTableType AS TABLE
+(
+    IdCotizacion INT
+);
+
+CREATE PROCEDURE usp_rptCotizacionKiraAll
+    @IdCotizaciones AS dbo.IdCotizacionTableType READONLY
+AS
+BEGIN
+    SELECT
+        c.IdCotizacion,
+        c.IdTablaElemento,
+        c.Fecha,
+        c.CodigoProducto,
+        c.Descripcion,
+        c.Caracteristicas,
+        c.CostoMateriales,
+        c.CostoInsumos,
+        c.CostoAccesorios,
+        c.CostoManoObra,
+        c.CostoMovilidad,
+        c.CostoEquipos,
+        c.TotalGastos,
+        c.PrecioVenta,
+        c.Moneda as IdMoneda,
+        ce.DescTablaElemento
+    FROM CotizacionKIRA c
+    INNER JOIN TablaElemento ce ON c.IdTablaElemento = ce.IdTablaElemento
+    WHERE c.IdCotizacion IN (SELECT IdCotizacion FROM @IdCotizaciones);
+END;
+
+-- DeclaraciÃ³n de la variable de tabla
+DECLARE @TestIds AS dbo.IdCotizacionTableType;
+
+-- Llena la variable de tabla con valores de prueba
+INSERT INTO @TestIds (IdCotizacion)
+VALUES (8), (11), (1); -- Agrega aquÃ­ los valores de prueba que desees
+
+-- Ejecuta el procedimiento almacenado con los valores de prueba
+EXEC usp_rptCotizacionKiraAll @TestIds;
