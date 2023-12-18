@@ -868,7 +868,6 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
                 gvPromocionVolumenDetalle.SetRowCellValue(i, "MontoSoloXUni", nuevoValor2);
             }
         }
-
     }
 
 }

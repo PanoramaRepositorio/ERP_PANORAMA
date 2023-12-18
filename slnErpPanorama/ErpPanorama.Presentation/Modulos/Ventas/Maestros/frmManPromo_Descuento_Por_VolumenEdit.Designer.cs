@@ -80,10 +80,11 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.chkFlagAplicaxCodigo = new DevExpress.XtraEditors.CheckEdit();
+            this.prgFactura = new DevExpress.XtraEditors.ProgressBarControl();
             this.chkFlagAplicaCombinacion = new DevExpress.XtraEditors.CheckEdit();
-            this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
-            this.btnCancelar = new DevExpress.XtraEditors.SimpleButton();
             this.btnGrabar = new DevExpress.XtraEditors.SimpleButton();
+            this.btnCancelar = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
             this.deHastaImpresion = new DevExpress.XtraEditors.DateEdit();
             this.deHasta = new DevExpress.XtraEditors.DateEdit();
             this.deDesdeImpresion = new DevExpress.XtraEditors.DateEdit();
@@ -97,7 +98,6 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
             this.chkCfabricacion = new DevExpress.XtraEditors.CheckEdit();
             this.chkContado = new DevExpress.XtraEditors.CheckEdit();
             this.bsListado = new System.Windows.Forms.BindingSource(this.components);
-            this.prgFactura = new DevExpress.XtraEditors.ProgressBarControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkSanMiguel.Properties)).BeginInit();
@@ -120,6 +120,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkFlagAplicaxCodigo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prgFactura.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkFlagAplicaCombinacion.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deHastaImpresion.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deHastaImpresion.Properties)).BeginInit();
@@ -135,7 +136,6 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
             ((System.ComponentModel.ISupportInitialize)(this.chkCfabricacion.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkContado.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsListado)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.prgFactura.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl2
@@ -283,7 +283,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
             this.gcPromocionVolumenDetalle.Location = new System.Drawing.Point(12, 378);
             this.gcPromocionVolumenDetalle.MainView = this.gvPromocionVolumenDetalle;
             this.gcPromocionVolumenDetalle.Name = "gcPromocionVolumenDetalle";
-            this.gcPromocionVolumenDetalle.Size = new System.Drawing.Size(527, 224);
+            this.gcPromocionVolumenDetalle.Size = new System.Drawing.Size(506, 221);
             this.gcPromocionVolumenDetalle.TabIndex = 193;
             this.gcPromocionVolumenDetalle.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvPromocionVolumenDetalle,
@@ -291,6 +291,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
             // 
             // mnuContextual
             // 
+            this.mnuContextual.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mnuContextual.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.nuevoToolStripMenuItem,
             this.modificarprecioToolStripMenuItem,
@@ -301,13 +302,13 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
             this.toolStripSeparator2,
             this.elminartodotoolStripMenuItem});
             this.mnuContextual.Name = "contextMenuStrip1";
-            this.mnuContextual.Size = new System.Drawing.Size(151, 148);
+            this.mnuContextual.Size = new System.Drawing.Size(155, 172);
             // 
             // nuevoToolStripMenuItem
             // 
             this.nuevoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("nuevoToolStripMenuItem.Image")));
             this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
-            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(154, 26);
             this.nuevoToolStripMenuItem.Text = "Añade Codigo";
             this.nuevoToolStripMenuItem.Click += new System.EventHandler(this.nuevoToolStripMenuItem_Click);
             // 
@@ -315,21 +316,21 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
             // 
             this.modificarprecioToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("modificarprecioToolStripMenuItem.Image")));
             this.modificarprecioToolStripMenuItem.Name = "modificarprecioToolStripMenuItem";
-            this.modificarprecioToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.modificarprecioToolStripMenuItem.Size = new System.Drawing.Size(154, 26);
             this.modificarprecioToolStripMenuItem.Text = "Editar";
             // 
             // eliminarToolStripMenuItem
             // 
             this.eliminarToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("eliminarToolStripMenuItem.Image")));
             this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
-            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(154, 26);
             this.eliminarToolStripMenuItem.Text = "Eliminar";
             this.eliminarToolStripMenuItem.Click += new System.EventHandler(this.eliminarToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(147, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(151, 6);
             // 
             // importartoolStripMenuItem
             // 
@@ -338,7 +339,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
             this.importarporhangtagtoolStripMenuItem});
             this.importartoolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("importartoolStripMenuItem.Image")));
             this.importartoolStripMenuItem.Name = "importartoolStripMenuItem";
-            this.importartoolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.importartoolStripMenuItem.Size = new System.Drawing.Size(154, 26);
             this.importartoolStripMenuItem.Text = "Importar";
             // 
             // importarporcodigotoolStripMenuItem
@@ -362,19 +363,19 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
             // 
             this.exportartoolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("exportartoolStripMenuItem.Image")));
             this.exportartoolStripMenuItem.Name = "exportartoolStripMenuItem";
-            this.exportartoolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.exportartoolStripMenuItem.Size = new System.Drawing.Size(154, 26);
             this.exportartoolStripMenuItem.Text = "Exportar";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(147, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(151, 6);
             // 
             // elminartodotoolStripMenuItem
             // 
             this.elminartodotoolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("elminartodotoolStripMenuItem.Image")));
             this.elminartodotoolStripMenuItem.Name = "elminartodotoolStripMenuItem";
-            this.elminartodotoolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.elminartodotoolStripMenuItem.Size = new System.Drawing.Size(154, 26);
             this.elminartodotoolStripMenuItem.Text = "Eliminar Todo";
             this.elminartodotoolStripMenuItem.Click += new System.EventHandler(this.elminartodotoolStripMenuItem_Click);
             // 
@@ -412,7 +413,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
             this.gridColumn3.OptionsColumn.AllowFocus = false;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 0;
-            this.gridColumn3.Width = 67;
+            this.gridColumn3.Width = 50;
             // 
             // gridColumn4
             // 
@@ -421,7 +422,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 1;
-            this.gridColumn4.Width = 55;
+            this.gridColumn4.Width = 48;
             // 
             // gridColumn5
             // 
@@ -432,7 +433,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
             this.gridColumn5.OptionsColumn.AllowFocus = false;
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 2;
-            this.gridColumn5.Width = 165;
+            this.gridColumn5.Width = 123;
             // 
             // gridColumn11
             // 
@@ -459,7 +460,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
             this.gridColumn10.ToolTip = "Aumenta el descuento final después de todo Cálculo";
             this.gridColumn10.Visible = true;
             this.gridColumn10.VisibleIndex = 3;
-            this.gridColumn10.Width = 132;
+            this.gridColumn10.Width = 57;
             // 
             // gridColumn20
             // 
@@ -580,51 +581,40 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
             // groupControl1
             // 
             this.groupControl1.Controls.Add(this.chkFlagAplicaxCodigo);
+            this.groupControl1.Controls.Add(this.prgFactura);
             this.groupControl1.Controls.Add(this.chkFlagAplicaCombinacion);
-            this.groupControl1.Location = new System.Drawing.Point(82, 677);
+            this.groupControl1.Controls.Add(this.btnGrabar);
+            this.groupControl1.Controls.Add(this.btnCancelar);
+            this.groupControl1.Controls.Add(this.labelControl12);
+            this.groupControl1.Location = new System.Drawing.Point(12, 600);
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.ShowCaption = false;
-            this.groupControl1.Size = new System.Drawing.Size(350, 22);
+            this.groupControl1.Size = new System.Drawing.Size(506, 131);
             this.groupControl1.TabIndex = 204;
             // 
             // chkFlagAplicaxCodigo
             // 
-            this.chkFlagAplicaxCodigo.Location = new System.Drawing.Point(236, 2);
+            this.chkFlagAplicaxCodigo.Location = new System.Drawing.Point(300, 46);
             this.chkFlagAplicaxCodigo.Name = "chkFlagAplicaxCodigo";
             this.chkFlagAplicaxCodigo.Properties.Caption = "Aplica por código.";
             this.chkFlagAplicaxCodigo.Size = new System.Drawing.Size(109, 20);
             this.chkFlagAplicaxCodigo.TabIndex = 1;
             // 
+            // prgFactura
+            // 
+            this.prgFactura.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.prgFactura.Location = new System.Drawing.Point(64, 5);
+            this.prgFactura.Name = "prgFactura";
+            this.prgFactura.Size = new System.Drawing.Size(345, 16);
+            this.prgFactura.TabIndex = 216;
+            // 
             // chkFlagAplicaCombinacion
             // 
-            this.chkFlagAplicaCombinacion.Location = new System.Drawing.Point(12, 2);
+            this.chkFlagAplicaCombinacion.Location = new System.Drawing.Point(76, 46);
             this.chkFlagAplicaCombinacion.Name = "chkFlagAplicaCombinacion";
             this.chkFlagAplicaCombinacion.Properties.Caption = "Aplica combinación de todos los códigos";
             this.chkFlagAplicaCombinacion.Size = new System.Drawing.Size(218, 20);
             this.chkFlagAplicaCombinacion.TabIndex = 0;
-            // 
-            // labelControl12
-            // 
-            this.labelControl12.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.labelControl12.Appearance.Options.UseFont = true;
-            this.labelControl12.Location = new System.Drawing.Point(32, 647);
-            this.labelControl12.Name = "labelControl12";
-            this.labelControl12.Size = new System.Drawing.Size(133, 13);
-            this.labelControl12.TabIndex = 203;
-            this.labelControl12.Text = "4| Permitir seleccionar:";
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancelar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.ImageOptions.Image")));
-            this.btnCancelar.ImageOptions.ImageIndex = 0;
-            this.btnCancelar.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(474, 741);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 206;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnGrabar
             // 
@@ -632,12 +622,35 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
             this.btnGrabar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGrabar.ImageOptions.Image")));
             this.btnGrabar.ImageOptions.ImageIndex = 1;
             this.btnGrabar.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.btnGrabar.Location = new System.Drawing.Point(393, 741);
+            this.btnGrabar.Location = new System.Drawing.Point(346, 103);
             this.btnGrabar.Name = "btnGrabar";
             this.btnGrabar.Size = new System.Drawing.Size(75, 23);
             this.btnGrabar.TabIndex = 205;
             this.btnGrabar.Text = "Grabar";
             this.btnGrabar.Click += new System.EventHandler(this.btnGrabar_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.ImageOptions.Image")));
+            this.btnCancelar.ImageOptions.ImageIndex = 0;
+            this.btnCancelar.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.btnCancelar.Location = new System.Drawing.Point(427, 103);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 206;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // labelControl12
+            // 
+            this.labelControl12.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.labelControl12.Appearance.Options.UseFont = true;
+            this.labelControl12.Location = new System.Drawing.Point(17, 27);
+            this.labelControl12.Name = "labelControl12";
+            this.labelControl12.Size = new System.Drawing.Size(133, 13);
+            this.labelControl12.TabIndex = 203;
+            this.labelControl12.Text = "4| Permitir seleccionar:";
             // 
             // deHastaImpresion
             // 
@@ -776,20 +789,11 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
             this.chkContado.Size = new System.Drawing.Size(95, 20);
             this.chkContado.TabIndex = 0;
             // 
-            // prgFactura
-            // 
-            this.prgFactura.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.prgFactura.Location = new System.Drawing.Point(29, 629);
-            this.prgFactura.Name = "prgFactura";
-            this.prgFactura.Size = new System.Drawing.Size(453, 15);
-            this.prgFactura.TabIndex = 216;
-            // 
             // frmManPromo_Descuento_Por_VolumenEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(564, 785);
-            this.Controls.Add(this.prgFactura);
+            this.ClientSize = new System.Drawing.Size(529, 744);
             this.Controls.Add(this.groupControl3);
             this.Controls.Add(this.deHastaImpresion);
             this.Controls.Add(this.deHasta);
@@ -799,10 +803,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
             this.Controls.Add(this.labelControl14);
             this.Controls.Add(this.labelControl15);
             this.Controls.Add(this.labelControl16);
-            this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.btnGrabar);
             this.Controls.Add(this.groupControl1);
-            this.Controls.Add(this.labelControl12);
             this.Controls.Add(this.labelControl11);
             this.Controls.Add(this.labelControl10);
             this.Controls.Add(this.labelControl9);
@@ -845,7 +846,9 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
             ((System.ComponentModel.ISupportInitialize)(this.txtunidades1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
+            this.groupControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkFlagAplicaxCodigo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prgFactura.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkFlagAplicaCombinacion.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deHastaImpresion.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deHastaImpresion.Properties)).EndInit();
@@ -861,7 +864,6 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Maestros
             ((System.ComponentModel.ISupportInitialize)(this.chkCfabricacion.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkContado.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsListado)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.prgFactura.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
