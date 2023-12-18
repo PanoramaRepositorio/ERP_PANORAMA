@@ -165,5 +165,146 @@ namespace ErpPanorama.DataLogic
 
 
 
+        public List<PromocionVolumenDetalleBE> ObtenerProductosPorDetalle(int IdPromocionVolumen)
+        {
+            Database db = DatabaseFactory.CreateDatabase("cnErpPanoramaBD");
+            DbCommand dbCommand = db.GetStoredProcCommand("usp_ObtenerProductosPorDetalle");
+            db.AddInParameter(dbCommand, "IdPromocionVolumen", DbType.Int32, IdPromocionVolumen);
+
+            IDataReader reader = db.ExecuteReader(dbCommand);
+            List<PromocionVolumenDetalleBE> listaProductos = new List<PromocionVolumenDetalleBE>();
+
+            while (reader.Read())
+            {
+                PromocionVolumenDetalleBE producto = new PromocionVolumenDetalleBE();
+                producto.IdProducto = Int32.Parse(reader["IdProducto"].ToString());
+                producto.CodigoProveedor = reader["CodigoProveedor"].ToString();
+                producto.NombreProducto = reader["NombreProducto"].ToString();
+                producto.MontoUniXamas = Decimal.Parse(reader["MontoUniXamas"].ToString());
+                producto.MontoSoloXUni = Decimal.Parse(reader["MontoSoloXUni"].ToString());
+                producto.Descuento = Decimal.Parse(reader["Descuento"].ToString());
+                producto.Fecha = DateTime.Parse(reader["FechaRegistro"].ToString());
+                producto.FlagEstado = Boolean.Parse(reader["FlagEstado"].ToString());
+
+                listaProductos.Add(producto);
+            }
+
+            reader.Close();
+            reader.Dispose();
+            return listaProductos;
+        }
+
+        public List<PromocionVolumenBE> ValidarPromocion(int IdPromocionVolumen)
+        {
+            Database db = DatabaseFactory.CreateDatabase("cnErpPanoramaBD");
+            DbCommand dbCommand = db.GetStoredProcCommand("usp_ValidarPromocion");
+            db.AddInParameter(dbCommand, "IdPromocionVolumen", DbType.Int32, IdPromocionVolumen);
+
+            IDataReader reader = db.ExecuteReader(dbCommand);
+
+            List<PromocionVolumenBE> listapromo = new List<PromocionVolumenBE>();
+
+
+            if (reader.Read())
+            {
+                PromocionVolumenBE promobe = new PromocionVolumenBE();
+                promobe.CantidadProductos = Int32.Parse(reader["CantidadProductos"].ToString());
+                promobe.FlagAplicaCombinacion = Boolean.Parse(reader["FlagCombinacion"].ToString());
+                promobe.FlagAplicaxCodigo = Boolean.Parse(reader["FlagAplicaxCodigo"].ToString());
+                promobe.MontoUniXamas = Decimal.Parse(reader["MontoTotalUniXamas"].ToString());
+                promobe.MontoSoloXUni = Decimal.Parse(reader["MontoTotalSoloXUni"].ToString());
+                listapromo.Add(promobe);
+            }
+
+            reader.Close();
+            reader.Dispose();
+            return listapromo;
+        }
+
+        public List<PromocionVolumenDetalleBE> ValidarPromocionIDProducto(int IdPromocionVolumen)
+        {
+            Database db = DatabaseFactory.CreateDatabase("cnErpPanoramaBD");
+            DbCommand dbCommand = db.GetStoredProcCommand("usp_ValidarPromocion_IDProducto");
+            db.AddInParameter(dbCommand, "IdProducto", DbType.Int32, IdPromocionVolumen);
+
+            IDataReader reader = db.ExecuteReader(dbCommand);
+
+            List<PromocionVolumenDetalleBE> listapromo = new List<PromocionVolumenDetalleBE>();  // Cambiado a List<PromocionVolumenBE>
+            if (reader != null)
+            {
+                while (reader.Read())
+                {
+                    PromocionVolumenDetalleBE promobedt = new PromocionVolumenDetalleBE();
+
+                    // Verificar si los campos no son nulos antes de convertir
+                    promobedt.CantidadProductos = reader["Cantidad_MismoCodigo"] != DBNull.Value
+                        ? Int32.Parse(reader["Cantidad_MismoCodigo"].ToString())
+                        : 0; // Puedes establecer un valor predeterminado o manejarlo según tus necesidades
+
+                    promobedt.FlagAplicaCombinacion = reader["FlagCombinacion"] != DBNull.Value
+                        ? Boolean.Parse(reader["FlagCombinacion"].ToString())
+                        : false;
+
+                    promobedt.FlagAplicaxCodigo = reader["FlagAplicaxCodigo"] != DBNull.Value
+                        ? Boolean.Parse(reader["FlagAplicaxCodigo"].ToString())
+                        : false;
+
+                    promobedt.MontoUniXamas = reader["MontoTotalUniXamas"] != DBNull.Value
+                        ? Decimal.Parse(reader["MontoTotalUniXamas"].ToString())
+                        : 0;
+
+                    promobedt.MontoSoloXUni = reader["MontoTotalSoloXUni"] != DBNull.Value
+                        ? Decimal.Parse(reader["MontoTotalSoloXUni"].ToString())
+                        : 0;
+
+                    listapromo.Add(promobedt);
+                }
+
+                reader.Close();
+                reader.Dispose();
+            }
+
+            return listapromo;
+        }
+
+        public List<PromocionVolumenDetalleBE> ObtenerIdPromocionPorIdProducto(int IdProducto)
+        {
+            Database db = DatabaseFactory.CreateDatabase("cnErpPanoramaBD");
+            DbCommand dbCommand = db.GetStoredProcCommand("usp_ObtenerIdPromocionPorIdproducto");
+            db.AddInParameter(dbCommand, "IdProducto", DbType.Int32, IdProducto);
+
+            IDataReader reader = db.ExecuteReader(dbCommand);
+            List<PromocionVolumenDetalleBE> listapro = new List<PromocionVolumenDetalleBE>();
+            while (reader.Read())
+            {
+                PromocionVolumenDetalleBE promo = new PromocionVolumenDetalleBE();
+                promo.IdPromocionVolumen = Int32.Parse(reader["IdPromocionVolumen"].ToString());
+                listapro.Add(promo);
+            }
+            reader.Close();
+            reader.Dispose();
+            return listapro;
+        }
+
+        public List<PromocionVolumenDetalleBE> ObtenerProductosPorIdPromocion(int idPromocionVolumen)
+        {
+            Database db = DatabaseFactory.CreateDatabase("cnErpPanoramaBD");
+            DbCommand dbComand = db.GetStoredProcCommand("usp_ObtenerProductosPorDetalle");
+            db.AddInParameter(dbComand, "IdPromocionVolumen", DbType.Int32, idPromocionVolumen);
+
+            IDataReader reader = db.ExecuteReader(dbComand);
+            List<PromocionVolumenDetalleBE> listaproduc = new List<PromocionVolumenDetalleBE>();
+            while (reader.Read())
+            {
+                PromocionVolumenDetalleBE prod = new PromocionVolumenDetalleBE();
+                prod.IdProducto = Int32.Parse(reader["IdProducto"].ToString());
+                listaproduc.Add(prod);
+            }
+            reader.Close();
+            reader.Dispose();
+            return listaproduc;
+        }
+
+
     }
 }
