@@ -1706,6 +1706,12 @@
       <DependentUpon>rptCotizacionkira.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Modulos\KiraHogar\Rpt\rptCotizacionKiraAll.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptCotizacionKiraAll.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Modulos\KiraHogar\Rpt\rptCotizacionkiraProducto.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -4795,6 +4801,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptCotizacionkira.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\KiraHogar\Rpt\rptCotizacionKiraAll.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptCotizacionKiraAll.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modulos\KiraHogar\Rpt\rptCotizacionkiraProducto.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptCotizacionkiraProducto.cs</LastGenOutput>
@@ -5610,6 +5620,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Ventas\Maestros\frmManPromo_Descuento_Por_VolumenEdit.resx">
       <DependentUpon>frmManPromo_Descuento_Por_VolumenEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Ventas\Maestros\frmManSubLineaProducto.resx">
       <DependentUpon>frmManSubLineaProducto.cs</DependentUpon>
@@ -10667,6 +10678,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Modulos\Ecommerce\Rpt\reporteVentas.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Modulos\KiraHogar\Rpt\reportecotizacionAll.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Modulos\KiraHogar\Rpt\reportecotizacionProducto.xsd">
