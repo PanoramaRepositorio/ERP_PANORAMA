@@ -1166,5 +1166,26 @@ select IdAlmacen, DescAlmacen from Almacen
     SELECT IdPromocionVolumen
     FROM PromocionVolumenDetalle
     WHERE IdProducto = 65703 and FlagEstado = 1
+	go
 
 
+
+
+SELECT  IdPedidoDetalle, IdPedido, Item, IdProducto, NombreProducto, Abreviatura, Cantidad, CantidadAnterior, CantidadInicial, CantidadChequeo, PrecioUnitario, PorcentajeDescuento, Descuento, PrecioVenta, ValorVenta, Observacion, 
+                         CodAfeIGV, IdKardex, IdAlmacen, IdAlmacenOrigen, IdMovimientoAlmacenDetalle, IdAlmacenOrigenAprobado, FlagMuestra, FlagRegalo, FlagArmado, IdPromocion, DescPromocion, IdDescuentoClientePromocion, 
+                         FlagBultoCerrado, IdPersonaServicio, FechaRegistro, FlagEstadoAnterior, FlagEstado, ObsEscala, IdPromocion2, FlagFijarDescuento
+FROM            PedidoDetalle
+WHERE        (IdPedido = 1261079) and FlagEstado = 1
+go
+
+
+CREATE PROCEDURE sp_cantidad_detalle_productos
+ @IdPedido int
+ as
+ Begin
+ select Cantidad from PedidoDetalle
+ where IdPedido = @IdPedido and FlagEstado = 1
+ end
+go
+
+exec sp_cantidad_detalle_productos 1261079

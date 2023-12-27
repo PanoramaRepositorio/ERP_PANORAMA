@@ -107,7 +107,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
         }
 
 
-        
+
 
         public Operacion pOperacion;
 
@@ -141,6 +141,8 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
         public frmRegPedidoEdit()
         {
             InitializeComponent();
+            gvPedidoDetalle.CustomDrawCell += gvPedidoDetalle_CustomDrawCell;
+            
         }
         private void frmRegPedidoEdit_Load(object sender, EventArgs e)
         {
@@ -731,7 +733,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
             this.MostrarBotonMayorista();// ecm7
 
 
-           
+
         }
 
         private void frmRegPedidoEdit_Shown(object sender, EventArgs e)
@@ -1058,7 +1060,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
 
         private void txtNumeroProforma_KeyUp(object sender, KeyEventArgs e)
         {
-          
+
         }
         private void txtNumeroDocumento_KeyUp(object sender, KeyEventArgs e)
         {
@@ -1284,7 +1286,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                         //Cliente Asociado
                         CargarClienteAsociado();  //Add
                         cboFormaPago.EditValue = IdFormaPago; //add 280616
-                       btnNuevo.Focus();
+                        btnNuevo.Focus();
                         //////---------------------------------------------------
                     }
                     else
@@ -1938,12 +1940,8 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                                 gvPedidoDetalle.SetRowCellValue(gvPedidoDetalle.FocusedRowHandle, "Cantidad", movDetalle.oBE.Cantidad);
                                 gvPedidoDetalle.SetRowCellValue(gvPedidoDetalle.FocusedRowHandle, "CantidadAnt", movDetalle.oBE.CantidadAnt);
                                 gvPedidoDetalle.SetRowCellValue(gvPedidoDetalle.FocusedRowHandle, "PrecioUnitario", movDetalle.oBE.PrecioUnitario);
-                                //int des = 50;
-                                //movDetalle.oBE.PorcentajeDescuento = des;
                                 gvPedidoDetalle.SetRowCellValue(gvPedidoDetalle.FocusedRowHandle, "PorcentajeDescuento", movDetalle.oBE.PorcentajeDescuento);
                                 gvPedidoDetalle.SetRowCellValue(gvPedidoDetalle.FocusedRowHandle, "Descuento", movDetalle.oBE.Descuento);
-
-
                                 gvPedidoDetalle.SetRowCellValue(gvPedidoDetalle.FocusedRowHandle, "PrecioVenta", movDetalle.oBE.PrecioVenta);
                                 gvPedidoDetalle.SetRowCellValue(gvPedidoDetalle.FocusedRowHandle, "ValorVenta", movDetalle.oBE.ValorVenta);
                                 gvPedidoDetalle.SetRowCellValue(gvPedidoDetalle.FocusedRowHandle, "Observacion", movDetalle.oBE.Observacion);
@@ -2022,6 +2020,10 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
 
                             if (mListaPedidoDetalleOrigen.Count > 0) // VALIDAR CODIGO AQUI
                             {
+
+
+                                List<PromocionVolumenDetalleBE> listaPromociones = new PromocionVolumenBL().ValidarPromocion_IDProducto(movDetalle.IdProducto);
+
                                 // obtenemos el id de la promción volumen 
                                 List<PromocionVolumenDetalleBE> listaIdPromocion = new PromocionVolumenBL().ObtenerIdPromocionPorIdProducto(movDetalle.IdProducto);
 
@@ -2029,27 +2031,22 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                                 PromocionVolumenDetalleBE objE_IDPromoVoluDet = listaIdPromocion.Count > 0 ? listaIdPromocion[0] : null;
                                 int idpromocionVolumen = objE_IDPromoVoluDet != null ? objE_IDPromoVoluDet.IdPromocionVolumen : 0;
 
-                                //// Obtenemos la lista de codigos de productos de la promoción indicada.
-                                //List<PromocionVolumenDetalleBE> listaIdProductosPromocionales = new PromocionVolumenBL().ObtenerProductosPorIdPromocion(idpromocionVolumen);
-                                
                                 // Obtén la lista de IdProducto de la promoción
                                 List<int> listaIdProductosPromocionales = new PromocionVolumenBL().ObtenerProductosPorIdPromocion(idpromocionVolumen)
                                     .Select(item => item.IdProducto)
                                     .ToList();
 
 
-                                // Obtenemos el descuento de la promoción volumen segun el codigo ingresado.
+                                // Obtenemos el descuento de la promoción volumen según el código ingresado.
                                 PromocionVolumenDetalleBE objE_PromocionVolumen2 = null;
                                 objE_PromocionVolumen2 = new PromocionVolumenBL().Selecciona(Parametros.intEmpresaId, IdTipoCliente, movDetalle.IdFormaPago, Parametros.intTiendaId, movDetalle.IdTipoVenta, movDetalle.IdProducto);
-                                decimal descuentopromo = objE_PromocionVolumen2.Descuento;
 
-                                //var Buscar = mListaPedidoDetalleOrigen.Where(oB => oB.IdProducto == movDetalle.oBE.IdProducto).ToList();
-                                //if (Buscar.Count > 0)
-                                //{
-                                //    XtraMessageBox.Show("El código de producto ya existe", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                //    return;
-                                //}
+                                decimal descuentopromo = 0; // Valor por defecto si objE_PromocionVolumen2 es null
 
+                                if (objE_PromocionVolumen2 != null)
+                                {
+                                    descuentopromo = objE_PromocionVolumen2.Descuento;
+                                }
 
                                 // Verifica si el código de producto ya existe en mListaPedidoDetalleOrigen
                                 var Buscar = mListaPedidoDetalleOrigen.Where(oB => oB.IdProducto == movDetalle.oBE.IdProducto).ToList();
@@ -2063,12 +2060,24 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                                 mListaPedidoDetalleOrigen.Add(new CPedidoDetalle
                                 {
                                     IdProducto = movDetalle.oBE.IdProducto,
-                                    PorcentajeDescuento = descuentopromo
+                                    PorcentajeDescuento = objE_PromocionVolumen2.Descuento,
+                                    Cantidad = movDetalle.oBE.Cantidad,
+                                    PrecioUnitario =  movDetalle.oBE.PrecioUnitario,
+                                    PrecioVenta = movDetalle.oBE.PrecioVenta,
+                                    ValorVenta = movDetalle.oBE.ValorVenta
+
                                 });
 
-                                //frmRegPedidoDetalleEdit movDetalle2 = new frmRegPedidoDetalleEdit();
+                                // Obtiene el último elemento de la lista
+                                CPedidoDetalle ultimaFila = mListaPedidoDetalleOrigen[mListaPedidoDetalleOrigen.Count - 1];
 
-                                
+                                // Extrae los valores en variables individuales
+                                int idProducto = ultimaFila.IdProducto;
+                                decimal porcentajeDescuento = ultimaFila.PorcentajeDescuento;
+                                int cantidad = ultimaFila.Cantidad;
+                                decimal preciounitario = ultimaFila.PrecioUnitario;
+                                decimal precioVenta = ultimaFila.PrecioVenta;
+                                decimal valorVenta = ultimaFila.ValorVenta;
 
                                 // Verifica si hay coincidencias entre las dos listas
                                 var coincidencias = mListaPedidoDetalleOrigen
@@ -2076,27 +2085,80 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                                     .ToList();
 
                                 // Verifica si todas las IdProducto de la promoción están presentes en coincidencias
-                                //bool todasLasCoincidenciasPresentes = listaIdProductosPromocionales.All(id => coincidencias.Any(item => item.IdProducto == id));
-
-                                //if (coincidencias.Count > 0 && todasLasCoincidenciasPresentes)
-                                if (coincidencias.Count == listaIdProductosPromocionales.Count)
+                                if (listaPromociones.Count > 0)
                                 {
-                                    // Actualiza el porcentaje de descuento en gvPedidoDetalle para las coincidencias
-                                    foreach (var coincidencia in coincidencias)
+                                    //verifica la cantidad acumulativa 
+                                    decimal cantidadTotal = mListaPedidoDetalleOrigen.Sum(item => item.Cantidad);
+                                    PromocionVolumenDetalleBE objE_PromoTempDet = listaPromociones[0];
+                                    if (coincidencias.Count == listaIdProductosPromocionales.Count && objE_PromoTempDet.MontoUniXamas <= cantidadTotal)
                                     {
-                                        int rowIndex = gvPedidoDetalle.LocateByValue("IdProducto", coincidencia.IdProducto);
-                                        if (rowIndex >= 0)
+                                        // Actualiza el porcentaje de descuento en gvPedidoDetalle para las coincidencias
+                                       
+                                        // Obtén el último IdProducto
+                                        int ultimoIdProducto = coincidencias.Last().IdProducto;
+                                        int rowIndex2 = gvPedidoDetalle.LocateByValue("IdProducto", ultimoIdProducto);
+                                        foreach (var coincidencia in coincidencias)
                                         {
-                                            gvPedidoDetalle.SetRowCellValue(rowIndex, "PorcentajeDescuento", descuentopromo);
+                                            // Excluye el último IdProducto del ciclo
+                                            if (coincidencia.IdProducto == ultimoIdProducto)
+                                            {
+                                                if (rowIndex2 >= 0)
+                                                {
+                                                    gvPedidoDetalle.SetRowCellValue(rowIndex2, "PorcentajeDescuento", descuentopromo);
+                                                    precioVenta = decimal.Parse(gvPedidoDetalle.GetRowCellValue(rowIndex2, "PrecioUnitario").ToString()) * ((100 - descuentopromo) / 100);
+                                                    valorVenta = Math.Round(precioVenta, 2) * decimal.Parse(gvPedidoDetalle.GetRowCellValue(rowIndex2, "Cantidad").ToString());
+                                                    gvPedidoDetalle.SetRowCellValue(rowIndex2, "PrecioVenta", precioVenta);
+                                                    gvPedidoDetalle.SetRowCellValue(rowIndex2, "ValorVenta", valorVenta);
+                                                    gvPedidoDetalle.SetRowCellValue(rowIndex2, "FlagFijarDescuento", true);
+                                                    //CalculaTotales();
+                                                    continue;
+                                                }
+                                            }
+
+                                            int rowIndex = gvPedidoDetalle.LocateByValue("IdProducto", coincidencia.IdProducto);
+                                            if (rowIndex >= 0)
+                                            {
+                                                gvPedidoDetalle.SetRowCellValue(rowIndex, "PorcentajeDescuento", descuentopromo);
+                                                movDetalle.oBE.PrecioVenta = decimal.Parse(gvPedidoDetalle.GetRowCellValue(rowIndex, "PrecioUnitario").ToString()) * ((100 - descuentopromo) / 100);
+                                                movDetalle.oBE.ValorVenta = Math.Round(movDetalle.oBE.PrecioVenta, 2) * decimal.Parse(gvPedidoDetalle.GetRowCellValue(rowIndex, "Cantidad").ToString());
+                                                gvPedidoDetalle.SetRowCellValue(rowIndex, "PrecioVenta", movDetalle.oBE.PrecioVenta);
+                                                gvPedidoDetalle.SetRowCellValue(rowIndex, "ValorVenta", movDetalle.oBE.ValorVenta);
+                                                gvPedidoDetalle.SetRowCellValue(rowIndex, "FlagFijarDescuento", true);
+                                                //CalculaTotales();
+                                            }
+
                                         }
+                                        movDetalle.oBE.PorcentajeDescuento = descuentopromo;
+                                        movDetalle.oBE.PrecioVenta = precioVenta;
+                                        movDetalle.oBE.ValorVenta = valorVenta;
+                                        
+                                        XtraMessageBox.Show("Se aplico Descuento", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                                     }
-                                    movDetalle.oBE.PorcentajeDescuento = descuentopromo;
-                                    XtraMessageBox.Show("El porcentaje de descuento se actualizó en gvPedidoDetalle.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    else if ( objE_PromoTempDet.MontoUniXamas <= cantidadTotal)
+                                    {
+                                        // Actualiza el porcentaje de descuento en gvPedidoDetalle para las coincidencias
+                                        foreach (var coincidencia in coincidencias)
+                                        {
+                                            int rowIndex = gvPedidoDetalle.LocateByValue("IdProducto", coincidencia.IdProducto);
+                                            if (rowIndex >= 0)
+                                            {
+                                                gvPedidoDetalle.SetRowCellValue(rowIndex, "PorcentajeDescuento", descuentopromo);
+                                                CalculaTotales();
+                                            }
+
+                                        }
+                                        movDetalle.oBE.PorcentajeDescuento = descuentopromo;
+                                        XtraMessageBox.Show("Se aplico Descuento", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    }
                                 }
+
+
+
                                 else
                                 {
                                     //XtraMessageBox.Show("No se encontraron todos productos de la promoción seguir intentando.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                    
+
                                 }
 
                                 gvPedidoDetalle.AddNewRow();
@@ -2207,15 +2269,6 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                 XtraMessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        frmRegPedidoDetalleEdit movDetalle2 = new frmRegPedidoDetalleEdit();
-        public PedidoDetalleBE oBE;
-        //private decimal Decuento_Promocio_Volumen()
-        //{
-        //    PromocionVolumenDetalleBE objE_PromocionVolumen2 = null;
-        //    objE_PromocionVolumen2 = new PromocionVolumenBL().Selecciona(Parametros.intEmpresaId, IdTipoCliente, movDetalle2.IdFormaPago, Parametros.intTiendaId, movDetalle2.IdTipoVenta, movDetalle2.IdProducto);
-        //    return objE_PromocionVolumen2.Descuento;
-        //}
 
         private void modificarprecioToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -2622,7 +2675,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
             }
         }
 
-     
+
         private void btnNuevo_Click(object sender, EventArgs e)
         {
             if (Convert.ToInt32(cboTipoVenta.EditValue) == 0)
@@ -5179,9 +5232,9 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                     frmRegGestionPedidoDespachoEdit frm = new frmRegGestionPedidoDespachoEdit();
                     frm.IdPedido = IdPedido;
                     frm.pOperacion = frmRegGestionPedidoDespachoEdit.Operacion.Modificar;
-                    frm.wVendedor = Convert.ToInt32(cboVendedor.EditValue); 
+                    frm.wVendedor = Convert.ToInt32(cboVendedor.EditValue);
                     frm.StartPosition = FormStartPosition.CenterParent;
-                   // frm.  = FechaPedido;
+                    // frm.  = FechaPedido;
                     frm.ShowDialog();
                 }
                 else
@@ -5195,9 +5248,9 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
         {
             try
             {
-                if (ActivaVend==1 && txtNumeroProforma.Text.ToString() == "")
+                if (ActivaVend == 1 && txtNumeroProforma.Text.ToString() == "")
                 {
-                    if (vIdPersonaPIN == 0 )
+                    if (vIdPersonaPIN == 0)
                     {
                         PersonaBE objE_Persona = new PersonaBE();
 
@@ -5487,8 +5540,6 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
 
                         }
                     }
-
-
 
 
                 }
@@ -5782,350 +5833,350 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
 
                                 frmMensajeWindowsYESNO frm = new frmMensajeWindowsYESNO();
                                 frm.Mensaje = "Desea IMPRIMIR el Pedido en el ALMACEN?";
-                                if(frm.ShowDialog()== DialogResult.Yes)
+                                if (frm.ShowDialog() == DialogResult.Yes)
+                                {
+                                    List<ReportePedidoContadoBE> lstReporte = null;
+                                    lstReporte = new ReportePedidoContadoBL().Listado(Periodo, IdPedido, Parametros.intTiendaId);
+
+                                    #region "Codigo Barras"
+
+                                    iTextSharp.text.pdf.Barcode128 bc = new Barcode128();
+                                    bc.TextAlignment = Element.ALIGN_LEFT;
+                                    bc.Code = lstReporte[0].Numero;
+                                    bc.StartStopText = false;
+                                    bc.CodeType = iTextSharp.text.pdf.Barcode128.EAN13;
+                                    bc.Extended = true;
+                                    bc.BarHeight = 27;
+                                    lstReporte[0].CodigoBarraNumero = new FuncionBase().Image2Bytes(bc.CreateDrawingImage(System.Drawing.Color.Black, System.Drawing.Color.White));
+
+                                    #endregion
+
+                                    if (lstReporte.Count > 0)
                                     {
-                                        List<ReportePedidoContadoBE> lstReporte = null;
-                                        lstReporte = new ReportePedidoContadoBL().Listado(Periodo, IdPedido, Parametros.intTiendaId);
-
-                                        #region "Codigo Barras"
-
-                                        iTextSharp.text.pdf.Barcode128 bc = new Barcode128();
-                                        bc.TextAlignment = Element.ALIGN_LEFT;
-                                        bc.Code = lstReporte[0].Numero;
-                                        bc.StartStopText = false;
-                                        bc.CodeType = iTextSharp.text.pdf.Barcode128.EAN13;
-                                        bc.Extended = true;
-                                        bc.BarHeight = 27;
-                                        lstReporte[0].CodigoBarraNumero = new FuncionBase().Image2Bytes(bc.CreateDrawingImage(System.Drawing.Color.Black, System.Drawing.Color.White));
-
-                                        #endregion
-
-                                        if (lstReporte.Count > 0)
+                                        if (Parametros.intTiendaId == Parametros.intTiendaAndahuaylas)  //
                                         {
-                                            if (Parametros.intTiendaId == Parametros.intTiendaAndahuaylas)  //
+                                            rptPedidoContadoTicket objReporteGuia = new rptPedidoContadoTicket();
+                                            objReporteGuia.SetDataSource(lstReporte);
+                                            objReporteGuia.SetParameterValue("Equipo", WindowsIdentity.GetCurrent().Name.ToString());
+                                            objReporteGuia.SetParameterValue("Usuario", Parametros.strUsuarioLogin);
+                                            objReporteGuia.SetParameterValue("Modificado", "Modif. N°(" + lstReporte[0].NumeroModificacion + ")");
+                                            //Impresion.Imprimir(objReporteGuia, frmPrinter.strNamePrinter, 1, 0, 0, CrystalDecisions.Shared.PaperSize.DefaultPaperSize);///addd
+
+                                            #region "Buscar Impresora ..."
+                                            bool found = false;
+                                            PrinterSettings prtSetting = new PrinterSettings();
+                                            foreach (string prtName in PrinterSettings.InstalledPrinters)
                                             {
-                                                rptPedidoContadoTicket objReporteGuia = new rptPedidoContadoTicket();
-                                                objReporteGuia.SetDataSource(lstReporte);
-                                                objReporteGuia.SetParameterValue("Equipo", WindowsIdentity.GetCurrent().Name.ToString());
-                                                objReporteGuia.SetParameterValue("Usuario", Parametros.strUsuarioLogin);
-                                                objReporteGuia.SetParameterValue("Modificado", "Modif. N°(" + lstReporte[0].NumeroModificacion + ")");
-                                                //Impresion.Imprimir(objReporteGuia, frmPrinter.strNamePrinter, 1, 0, 0, CrystalDecisions.Shared.PaperSize.DefaultPaperSize);///addd
-
-                                                #region "Buscar Impresora ..."
-                                                bool found = false;
-                                                PrinterSettings prtSetting = new PrinterSettings();
-                                                foreach (string prtName in PrinterSettings.InstalledPrinters)
+                                                string printer = "";
+                                                if (prtName.StartsWith("\\\\"))
                                                 {
-                                                    string printer = "";
-                                                    if (prtName.StartsWith("\\\\"))
-                                                    {
-                                                        printer = prtName.Substring(3);
-                                                        printer = printer.Substring(printer.IndexOf("\\") + 1);
-                                                    }
-                                                    else
-                                                        printer = prtName;
-
-                                                    if (printer.ToUpper().StartsWith("(PAN)"))
-                                                    {
-                                                        found = true;
-                                                        PrintOptions bufPO = objReporteGuia.PrintOptions;
-                                                        prtSetting.PrinterName = prtName;
-                                                        objReporteGuia.PrintOptions.PrinterName = prtName;
-
-                                                        Impresion.Imprimir(objReporteGuia, prtSetting.PrinterName, 1, 0, 0, CrystalDecisions.Shared.PaperSize.DefaultPaperSize);///addd
-                                                        break;
-                                                    }
+                                                    printer = prtName.Substring(3);
+                                                    printer = printer.Substring(printer.IndexOf("\\") + 1);
                                                 }
+                                                else
+                                                    printer = prtName;
 
-                                                if (!found)
+                                                if (printer.ToUpper().StartsWith("(PAN)"))
                                                 {
-                                                    Cursor = Cursors.Default;
-                                                    MessageBox.Show("La impresora (PAN) Nombre para Pedido de Venta no ha sido encontrada.");
-                                                    return;
-                                                }
-                                                //Actualiza Impresión
-                                                objBL_Pedido.ActualizaImpresion(IdPedido, true);
+                                                    found = true;
+                                                    PrintOptions bufPO = objReporteGuia.PrintOptions;
+                                                    prtSetting.PrinterName = prtName;
+                                                    objReporteGuia.PrintOptions.PrinterName = prtName;
 
-                                                //objReporteGuia.PrintToPrinter(1, false, 0, 0);
-                                                //MessageBox.Show("El pedido se imprimió correctamente");// se envió a  + prtName);
-                                                frmMensajeWindows frmMsg = new frmMensajeWindows();
-                                                frmMsg.ShowDialog();
-                                                #endregion
+                                                    Impresion.Imprimir(objReporteGuia, prtSetting.PrinterName, 1, 0, 0, CrystalDecisions.Shared.PaperSize.DefaultPaperSize);///addd
+                                                    break;
+                                                }
                                             }
-                                            else if (Parametros.intTiendaId == Parametros.intTiendaPrescott)
+
+                                            if (!found)
                                             {
-                                                rptPedidoContadoTicket objReporteGuia = new rptPedidoContadoTicket();
-
-                                                objReporteGuia.SetDataSource(lstReporte);
-                                                objReporteGuia.SetParameterValue("Equipo", WindowsIdentity.GetCurrent().Name.ToString());
-                                                objReporteGuia.SetParameterValue("Usuario", Parametros.strUsuarioLogin);
-                                                objReporteGuia.SetParameterValue("Modificado", "Modif. N°(" + lstReporte[0].NumeroModificacion + ")");
-
-                                                #region "Buscar Impresora ..."
-                                                bool found = false;
-                                                PrinterSettings prtSetting = new PrinterSettings();
-                                                foreach (string prtName in PrinterSettings.InstalledPrinters)
-                                                {
-                                                    string printer = "";
-
-                                                    if (prtName.StartsWith("\\\\"))
-                                                    {
-                                                        printer = prtName.Substring(3);
-                                                        printer = printer.Substring(printer.IndexOf("\\") + 1);
-                                                    }
-                                                    else
-                                                        printer = prtName;
-
-                                                    if (printer.ToUpper().StartsWith("(PPR)"))
-                                                    {
-                                                        found = true;
-                                                        PrintOptions bufPO = objReporteGuia.PrintOptions;
-                                                        prtSetting.PrinterName = prtName;
-                                                        objReporteGuia.PrintOptions.PrinterName = prtName;
-
-                                                        Impresion.Imprimir(objReporteGuia, prtSetting.PrinterName, 1, 0, 0, CrystalDecisions.Shared.PaperSize.DefaultPaperSize);///addd
-                                                        break;
-                                                    }
-                                                }
-
-                                                if (!found)
-                                                {
-                                                    Cursor = Cursors.Default;
-                                                    MessageBox.Show("La impresora (PPR) Nombre para Pedido de Venta no ha sido encontrada.");
-                                                    return;
-                                                }
-                                                //Actualiza Impresión
-                                                objBL_Pedido.ActualizaImpresion(IdPedido, true);
-
-                                                //objReporteGuia.PrintToPrinter(1, false, 0, 0);
-                                                //MessageBox.Show("El pedido se imprimió correctamente");// se envió a  + prtName);
-                                                frmMensajeWindows frmMsg = new frmMensajeWindows();
-                                                frmMsg.ShowDialog();
-                                                #endregion
-
-                                                //--
-                                                //#region "Impresion seleccionando impresora"
-                                                //frmListaPrinters frmPrinter = new frmListaPrinters();
-                                                //if (frmPrinter.ShowDialog() == DialogResult.OK)
-                                                //{
-                                                //    List<ReportePedidoContadoBE> lstReporte2 = null;
-                                                //    lstReporte2 = new ReportePedidoContadoBL().Listado(Periodo, IdPedido, Parametros.intTiendaId);
-
-                                                //    //#region "Codigo Barras"
-
-                                                //    //iTextSharp.text.pdf.Barcode128 bc = new Barcode128();
-                                                //    //bc.TextAlignment = Element.ALIGN_LEFT;
-                                                //    //bc.Code = lstReporte[0].Numero;
-                                                //    //bc.StartStopText = false;
-                                                //    //bc.CodeType = iTextSharp.text.pdf.Barcode128.EAN13;
-                                                //    //bc.Extended = true;
-                                                //    //bc.BarHeight = 27;
-                                                //    //lstReporte[0].CodigoBarraNumero = new FuncionBase().Image2Bytes(bc.CreateDrawingImage(System.Drawing.Color.Black, System.Drawing.Color.White));
-
-                                                //#region "Impresión matricial"
-                                                //CreaTicket ticket = new CreaTicket();
-                                                //ticket.impresora = frmPrinter.strNamePrinter;
-                                                ////ticket.TextoCentro(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString());
-                                                //ticket.TextoCentro("***** " + lstReporte2[0].Numero + " *****");
-                                                //ticket.TextoIzquierda("");
-                                                //ticket.TextoIzquierda("TIENDA : " + lstReporte2[0].DescTienda);
-                                                //ticket.TextoIzquierda("FECHA  : " + lstReporte2[0].Fecha.ToShortDateString() + "    " + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString());
-                                                //ticket.TextoIzquierda("CLIENTE: " + lstReporte2[0].DescCliente);
-                                                //ticket.TextoIzquierda("DOCMTO.: " + lstReporte2[0].NumeroDocumento);
-                                                //ticket.TextoIzquierda("VENDEDOR: " + lstReporte2[0].DescVendedor);
-                                                //ticket.TextoIzquierda("FORMPAGO: " + lstReporte2[0].DescFormaPago);
-                                                //ticket.TextoIzquierda("EQUIPO  : " + WindowsIdentity.GetCurrent().Name.ToString());
-                                                //ticket.TextoIzquierda("USUARIO : " + Parametros.strUsuarioLogin);
-                                                //ticket.TextoIzquierda("");
-                                                //ticket.TextoIzquierda("DESPACHADOR:-----------------------------");
-
-                                                ////ticket.LineasGuion();
-                                                ////ticket.EncabezadoVenta();
-                                                //ticket.TextoIzquierda("CANT      ARTICULO");
-                                                //ticket.LineasGuion();
-                                                //foreach (var item in lstReporte2)
-                                                //{
-                                                //    ticket.AgregaArticuloCodigo(Convert.ToInt32(item.Cantidad), Convert.ToString(item.Abreviatura), Convert.ToString(item.CodigoProveedor));
-                                                //    //ticket.AgregaArticuloDetalle(item.NombreProducto.PadRight(, Convert.ToDouble(Math.Round(item.PrecioVenta, 2)), Convert.ToDouble(Math.Round(item.ValorVenta, 2)));
-                                                //    ticket.TextoIzquierda((item.UbicacionUcayali + "   " + item.NombreProducto).Trim());
-                                                //}
-                                                //ticket.LineasGuion();
-                                                //ticket.TextoIzquierda("OBS.:" + lstReporte2[0].Observacion);
-                                                //ticket.TextoIzquierda("");
-                                                //ticket.TextoIzquierda("");
-                                                //ticket.TextoIzquierda("");
-                                                //ticket.TextoCentro("-----------------------------");
-                                                //ticket.TextoCentro("RECIBI CONFORME");
-                                                //ticket.CortaTicket();
-                                                //    #endregion
-                                                //}
-                                                //#endregion
-                                                //--
+                                                Cursor = Cursors.Default;
+                                                MessageBox.Show("La impresora (PAN) Nombre para Pedido de Venta no ha sido encontrada.");
+                                                return;
                                             }
-                                            else if (Parametros.intTiendaId == Parametros.intTiendaAviacion2)
+                                            //Actualiza Impresión
+                                            objBL_Pedido.ActualizaImpresion(IdPedido, true);
+
+                                            //objReporteGuia.PrintToPrinter(1, false, 0, 0);
+                                            //MessageBox.Show("El pedido se imprimió correctamente");// se envió a  + prtName);
+                                            frmMensajeWindows frmMsg = new frmMensajeWindows();
+                                            frmMsg.ShowDialog();
+                                            #endregion
+                                        }
+                                        else if (Parametros.intTiendaId == Parametros.intTiendaPrescott)
+                                        {
+                                            rptPedidoContadoTicket objReporteGuia = new rptPedidoContadoTicket();
+
+                                            objReporteGuia.SetDataSource(lstReporte);
+                                            objReporteGuia.SetParameterValue("Equipo", WindowsIdentity.GetCurrent().Name.ToString());
+                                            objReporteGuia.SetParameterValue("Usuario", Parametros.strUsuarioLogin);
+                                            objReporteGuia.SetParameterValue("Modificado", "Modif. N°(" + lstReporte[0].NumeroModificacion + ")");
+
+                                            #region "Buscar Impresora ..."
+                                            bool found = false;
+                                            PrinterSettings prtSetting = new PrinterSettings();
+                                            foreach (string prtName in PrinterSettings.InstalledPrinters)
                                             {
-                                                rptPedidoContadoTicket objReporteGuia = new rptPedidoContadoTicket();
+                                                string printer = "";
 
-                                                objReporteGuia.SetDataSource(lstReporte);
-                                                objReporteGuia.SetParameterValue("Equipo", WindowsIdentity.GetCurrent().Name.ToString());
-                                                objReporteGuia.SetParameterValue("Usuario", Parametros.strUsuarioLogin);
-                                                objReporteGuia.SetParameterValue("Modificado", "Modif. N°(" + lstReporte[0].NumeroModificacion + ")");
-
-                                                #region "Buscar Impresora ..."
-                                                bool found = false;
-                                                PrinterSettings prtSetting = new PrinterSettings();
-                                                foreach (string prtName in PrinterSettings.InstalledPrinters)
+                                                if (prtName.StartsWith("\\\\"))
                                                 {
-                                                    string printer = "";
-
-                                                    if (prtName.StartsWith("\\\\"))
-                                                    {
-                                                        printer = prtName.Substring(3);
-                                                        printer = printer.Substring(printer.IndexOf("\\") + 1);
-                                                    }
-                                                    else
-                                                        printer = prtName;
-
-                                                    if (printer.ToUpper().StartsWith("(PNA)"))
-                                                    {
-                                                        found = true;
-                                                        PrintOptions bufPO = objReporteGuia.PrintOptions;
-                                                        prtSetting.PrinterName = prtName;
-                                                        objReporteGuia.PrintOptions.PrinterName = prtName;
-
-                                                        Impresion.Imprimir(objReporteGuia, prtSetting.PrinterName, 1, 0, 0, CrystalDecisions.Shared.PaperSize.DefaultPaperSize);///addd
-                                                        //MessageBox.Show("Impresora (PNA)");
-                                                        break;
-                                                    }
+                                                    printer = prtName.Substring(3);
+                                                    printer = printer.Substring(printer.IndexOf("\\") + 1);
                                                 }
+                                                else
+                                                    printer = prtName;
 
-                                                if (!found)
+                                                if (printer.ToUpper().StartsWith("(PPR)"))
                                                 {
-                                                    Cursor = Cursors.Default;
-                                                    MessageBox.Show("La impresora (PNA) Nombre para Pedido de Venta no ha sido encontrada.");
-                                                    return;
+                                                    found = true;
+                                                    PrintOptions bufPO = objReporteGuia.PrintOptions;
+                                                    prtSetting.PrinterName = prtName;
+                                                    objReporteGuia.PrintOptions.PrinterName = prtName;
+
+                                                    Impresion.Imprimir(objReporteGuia, prtSetting.PrinterName, 1, 0, 0, CrystalDecisions.Shared.PaperSize.DefaultPaperSize);///addd
+                                                    break;
                                                 }
-                                                //Actualiza Impresión
-                                                objBL_Pedido.ActualizaImpresion(IdPedido, true);
-
-                                                //objReporteGuia.PrintToPrinter(1, false, 0, 0);
-                                                //MessageBox.Show("El pedido se imprimió correctamente");// se envió a  + prtName);
-                                                frmMensajeWindows frmMsg = new frmMensajeWindows();
-                                                frmMsg.ShowDialog();
-                                                #endregion
-
-                                                #region "Impresion seleccionando impresora"
-                                                //frmListaPrinters frmPrinter = new frmListaPrinters();
-                                                //if (frmPrinter.ShowDialog() == DialogResult.OK)
-                                                //{
-                                                //    List<ReportePedidoContadoBE> lstReporte2 = null;
-                                                //    lstReporte2 = new ReportePedidoContadoBL().Listado(Periodo, IdPedido, Parametros.intTiendaId);
-
-                                                //    //#region "Codigo Barras"
-
-                                                //    //iTextSharp.text.pdf.Barcode128 bc = new Barcode128();
-                                                //    //bc.TextAlignment = Element.ALIGN_LEFT;
-                                                //    //bc.Code = lstReporte[0].Numero;
-                                                //    //bc.StartStopText = false;
-                                                //    //bc.CodeType = iTextSharp.text.pdf.Barcode128.EAN13;
-                                                //    //bc.Extended = true;
-                                                //    //bc.BarHeight = 27;
-                                                //    //lstReporte[0].CodigoBarraNumero = new FuncionBase().Image2Bytes(bc.CreateDrawingImage(System.Drawing.Color.Black, System.Drawing.Color.White));
-
-                                                //    #region "Impresión matricial"
-                                                //    CreaTicket ticket = new CreaTicket();
-                                                //    ticket.impresora = frmPrinter.strNamePrinter;
-                                                //    //ticket.TextoCentro(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString());
-                                                //    ticket.TextoCentro("***** " + lstReporte2[0].Numero + " *****");
-                                                //    ticket.TextoIzquierda("");
-                                                //    ticket.TextoIzquierda("TIENDA : " + lstReporte2[0].DescTienda);
-                                                //    ticket.TextoIzquierda("FECHA  : " + lstReporte2[0].Fecha.ToShortDateString() + "    " + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString());
-                                                //    ticket.TextoIzquierda("CLIENTE: " + lstReporte2[0].DescCliente);
-                                                //    ticket.TextoIzquierda("DOCMTO.: " + lstReporte2[0].NumeroDocumento);
-                                                //    ticket.TextoIzquierda("VENDEDOR: " + lstReporte2[0].DescVendedor);
-                                                //    ticket.TextoIzquierda("FORMPAGO: " + lstReporte2[0].DescFormaPago);
-                                                //    ticket.TextoIzquierda("EQUIPO  : " + WindowsIdentity.GetCurrent().Name.ToString());
-                                                //    ticket.TextoIzquierda("USUARIO : " + Parametros.strUsuarioLogin);
-                                                //    ticket.TextoIzquierda("");
-                                                //    ticket.TextoIzquierda("DESPACHADOR:-----------------------------");
-
-                                                //    //ticket.LineasGuion();
-                                                //    //ticket.EncabezadoVenta();
-                                                //    ticket.TextoIzquierda("CANT      ARTICULO");
-                                                //    ticket.LineasGuion();
-                                                //    foreach (var item in lstReporte2)
-                                                //    {
-                                                //        ticket.AgregaArticuloCodigo(Convert.ToInt32(item.Cantidad), Convert.ToString(item.Abreviatura), Convert.ToString(item.CodigoProveedor));
-                                                //        //ticket.AgregaArticuloDetalle(item.NombreProducto.PadRight(, Convert.ToDouble(Math.Round(item.PrecioVenta, 2)), Convert.ToDouble(Math.Round(item.ValorVenta, 2)));
-                                                //        ticket.TextoIzquierda((item.UbicacionUcayali + "   " + item.NombreProducto).Trim());
-                                                //    }
-                                                //    ticket.LineasGuion();
-                                                //    ticket.TextoIzquierda("OBS.:" + lstReporte2[0].Observacion);
-                                                //    ticket.TextoIzquierda("");
-                                                //    ticket.TextoIzquierda("");
-                                                //    ticket.TextoIzquierda("");
-                                                //    ticket.TextoCentro("-----------------------------");
-                                                //    ticket.TextoCentro("RECIBI CONFORME");
-                                                //    ticket.CortaTicket();
-                                                //    #endregion
-                                                //}
-                                                #endregion
-                                                //--
                                             }
-                                            else if (Parametros.intTiendaId == Parametros.intTiendaSanMiguel)
+
+                                            if (!found)
                                             {
-                                                rptPedidoContadoTicket objReporteGuia = new rptPedidoContadoTicket();
-
-                                                objReporteGuia.SetDataSource(lstReporte);
-                                                objReporteGuia.SetParameterValue("Equipo", WindowsIdentity.GetCurrent().Name.ToString());
-                                                objReporteGuia.SetParameterValue("Usuario", Parametros.strUsuarioLogin);
-                                                objReporteGuia.SetParameterValue("Modificado", "Modif. N°(" + lstReporte[0].NumeroModificacion + ")");
-
-                                                #region "Buscar Impresora ..."
-                                                bool found = false;
-                                                PrinterSettings prtSetting = new PrinterSettings();
-                                                foreach (string prtName in PrinterSettings.InstalledPrinters)
-                                                {
-                                                    string printer = "";
-
-                                                    if (prtName.StartsWith("\\\\"))
-                                                    {
-                                                        printer = prtName.Substring(3);
-                                                        printer = printer.Substring(printer.IndexOf("\\") + 1);
-                                                    }
-                                                    else
-                                                        printer = prtName;
-
-                                                    if (printer.ToUpper().StartsWith("(PSM)"))
-                                                    {
-                                                        found = true;
-                                                        PrintOptions bufPO = objReporteGuia.PrintOptions;
-                                                        prtSetting.PrinterName = prtName;
-                                                        objReporteGuia.PrintOptions.PrinterName = prtName;
-
-                                                        Impresion.Imprimir(objReporteGuia, prtSetting.PrinterName, 1, 0, 0, CrystalDecisions.Shared.PaperSize.DefaultPaperSize);///addd
-                                                        break;
-                                                    }
-                                                }
-
-                                                if (!found)
-                                                {
-                                                    Cursor = Cursors.Default;
-                                                    MessageBox.Show("La impresora (PSM) Nombre para Pedido de Venta no ha sido encontrada.");
-                                                    return;
-                                                }
-                                                //Actualiza Impresión
-                                                objBL_Pedido.ActualizaImpresion(IdPedido, true);
-
-                                                //objReporteGuia.PrintToPrinter(1, false, 0, 0);
-                                                //MessageBox.Show("El pedido se imprimió correctamente");// se envió a  + prtName);
-                                                frmMensajeWindows frmMsg = new frmMensajeWindows();
-                                                frmMsg.ShowDialog();
-                                                #endregion
-                                                //--
+                                                Cursor = Cursors.Default;
+                                                MessageBox.Show("La impresora (PPR) Nombre para Pedido de Venta no ha sido encontrada.");
+                                                return;
                                             }
+                                            //Actualiza Impresión
+                                            objBL_Pedido.ActualizaImpresion(IdPedido, true);
+
+                                            //objReporteGuia.PrintToPrinter(1, false, 0, 0);
+                                            //MessageBox.Show("El pedido se imprimió correctamente");// se envió a  + prtName);
+                                            frmMensajeWindows frmMsg = new frmMensajeWindows();
+                                            frmMsg.ShowDialog();
+                                            #endregion
+
+                                            //--
+                                            //#region "Impresion seleccionando impresora"
+                                            //frmListaPrinters frmPrinter = new frmListaPrinters();
+                                            //if (frmPrinter.ShowDialog() == DialogResult.OK)
+                                            //{
+                                            //    List<ReportePedidoContadoBE> lstReporte2 = null;
+                                            //    lstReporte2 = new ReportePedidoContadoBL().Listado(Periodo, IdPedido, Parametros.intTiendaId);
+
+                                            //    //#region "Codigo Barras"
+
+                                            //    //iTextSharp.text.pdf.Barcode128 bc = new Barcode128();
+                                            //    //bc.TextAlignment = Element.ALIGN_LEFT;
+                                            //    //bc.Code = lstReporte[0].Numero;
+                                            //    //bc.StartStopText = false;
+                                            //    //bc.CodeType = iTextSharp.text.pdf.Barcode128.EAN13;
+                                            //    //bc.Extended = true;
+                                            //    //bc.BarHeight = 27;
+                                            //    //lstReporte[0].CodigoBarraNumero = new FuncionBase().Image2Bytes(bc.CreateDrawingImage(System.Drawing.Color.Black, System.Drawing.Color.White));
+
+                                            //#region "Impresión matricial"
+                                            //CreaTicket ticket = new CreaTicket();
+                                            //ticket.impresora = frmPrinter.strNamePrinter;
+                                            ////ticket.TextoCentro(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString());
+                                            //ticket.TextoCentro("***** " + lstReporte2[0].Numero + " *****");
+                                            //ticket.TextoIzquierda("");
+                                            //ticket.TextoIzquierda("TIENDA : " + lstReporte2[0].DescTienda);
+                                            //ticket.TextoIzquierda("FECHA  : " + lstReporte2[0].Fecha.ToShortDateString() + "    " + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString());
+                                            //ticket.TextoIzquierda("CLIENTE: " + lstReporte2[0].DescCliente);
+                                            //ticket.TextoIzquierda("DOCMTO.: " + lstReporte2[0].NumeroDocumento);
+                                            //ticket.TextoIzquierda("VENDEDOR: " + lstReporte2[0].DescVendedor);
+                                            //ticket.TextoIzquierda("FORMPAGO: " + lstReporte2[0].DescFormaPago);
+                                            //ticket.TextoIzquierda("EQUIPO  : " + WindowsIdentity.GetCurrent().Name.ToString());
+                                            //ticket.TextoIzquierda("USUARIO : " + Parametros.strUsuarioLogin);
+                                            //ticket.TextoIzquierda("");
+                                            //ticket.TextoIzquierda("DESPACHADOR:-----------------------------");
+
+                                            ////ticket.LineasGuion();
+                                            ////ticket.EncabezadoVenta();
+                                            //ticket.TextoIzquierda("CANT      ARTICULO");
+                                            //ticket.LineasGuion();
+                                            //foreach (var item in lstReporte2)
+                                            //{
+                                            //    ticket.AgregaArticuloCodigo(Convert.ToInt32(item.Cantidad), Convert.ToString(item.Abreviatura), Convert.ToString(item.CodigoProveedor));
+                                            //    //ticket.AgregaArticuloDetalle(item.NombreProducto.PadRight(, Convert.ToDouble(Math.Round(item.PrecioVenta, 2)), Convert.ToDouble(Math.Round(item.ValorVenta, 2)));
+                                            //    ticket.TextoIzquierda((item.UbicacionUcayali + "   " + item.NombreProducto).Trim());
+                                            //}
+                                            //ticket.LineasGuion();
+                                            //ticket.TextoIzquierda("OBS.:" + lstReporte2[0].Observacion);
+                                            //ticket.TextoIzquierda("");
+                                            //ticket.TextoIzquierda("");
+                                            //ticket.TextoIzquierda("");
+                                            //ticket.TextoCentro("-----------------------------");
+                                            //ticket.TextoCentro("RECIBI CONFORME");
+                                            //ticket.CortaTicket();
+                                            //    #endregion
+                                            //}
+                                            //#endregion
+                                            //--
+                                        }
+                                        else if (Parametros.intTiendaId == Parametros.intTiendaAviacion2)
+                                        {
+                                            rptPedidoContadoTicket objReporteGuia = new rptPedidoContadoTicket();
+
+                                            objReporteGuia.SetDataSource(lstReporte);
+                                            objReporteGuia.SetParameterValue("Equipo", WindowsIdentity.GetCurrent().Name.ToString());
+                                            objReporteGuia.SetParameterValue("Usuario", Parametros.strUsuarioLogin);
+                                            objReporteGuia.SetParameterValue("Modificado", "Modif. N°(" + lstReporte[0].NumeroModificacion + ")");
+
+                                            #region "Buscar Impresora ..."
+                                            bool found = false;
+                                            PrinterSettings prtSetting = new PrinterSettings();
+                                            foreach (string prtName in PrinterSettings.InstalledPrinters)
+                                            {
+                                                string printer = "";
+
+                                                if (prtName.StartsWith("\\\\"))
+                                                {
+                                                    printer = prtName.Substring(3);
+                                                    printer = printer.Substring(printer.IndexOf("\\") + 1);
+                                                }
+                                                else
+                                                    printer = prtName;
+
+                                                if (printer.ToUpper().StartsWith("(PNA)"))
+                                                {
+                                                    found = true;
+                                                    PrintOptions bufPO = objReporteGuia.PrintOptions;
+                                                    prtSetting.PrinterName = prtName;
+                                                    objReporteGuia.PrintOptions.PrinterName = prtName;
+
+                                                    Impresion.Imprimir(objReporteGuia, prtSetting.PrinterName, 1, 0, 0, CrystalDecisions.Shared.PaperSize.DefaultPaperSize);///addd
+                                                    //MessageBox.Show("Impresora (PNA)");
+                                                    break;
+                                                }
+                                            }
+
+                                            if (!found)
+                                            {
+                                                Cursor = Cursors.Default;
+                                                MessageBox.Show("La impresora (PNA) Nombre para Pedido de Venta no ha sido encontrada.");
+                                                return;
+                                            }
+                                            //Actualiza Impresión
+                                            objBL_Pedido.ActualizaImpresion(IdPedido, true);
+
+                                            //objReporteGuia.PrintToPrinter(1, false, 0, 0);
+                                            //MessageBox.Show("El pedido se imprimió correctamente");// se envió a  + prtName);
+                                            frmMensajeWindows frmMsg = new frmMensajeWindows();
+                                            frmMsg.ShowDialog();
+                                            #endregion
+
+                                            #region "Impresion seleccionando impresora"
+                                            //frmListaPrinters frmPrinter = new frmListaPrinters();
+                                            //if (frmPrinter.ShowDialog() == DialogResult.OK)
+                                            //{
+                                            //    List<ReportePedidoContadoBE> lstReporte2 = null;
+                                            //    lstReporte2 = new ReportePedidoContadoBL().Listado(Periodo, IdPedido, Parametros.intTiendaId);
+
+                                            //    //#region "Codigo Barras"
+
+                                            //    //iTextSharp.text.pdf.Barcode128 bc = new Barcode128();
+                                            //    //bc.TextAlignment = Element.ALIGN_LEFT;
+                                            //    //bc.Code = lstReporte[0].Numero;
+                                            //    //bc.StartStopText = false;
+                                            //    //bc.CodeType = iTextSharp.text.pdf.Barcode128.EAN13;
+                                            //    //bc.Extended = true;
+                                            //    //bc.BarHeight = 27;
+                                            //    //lstReporte[0].CodigoBarraNumero = new FuncionBase().Image2Bytes(bc.CreateDrawingImage(System.Drawing.Color.Black, System.Drawing.Color.White));
+
+                                            //    #region "Impresión matricial"
+                                            //    CreaTicket ticket = new CreaTicket();
+                                            //    ticket.impresora = frmPrinter.strNamePrinter;
+                                            //    //ticket.TextoCentro(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString());
+                                            //    ticket.TextoCentro("***** " + lstReporte2[0].Numero + " *****");
+                                            //    ticket.TextoIzquierda("");
+                                            //    ticket.TextoIzquierda("TIENDA : " + lstReporte2[0].DescTienda);
+                                            //    ticket.TextoIzquierda("FECHA  : " + lstReporte2[0].Fecha.ToShortDateString() + "    " + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString());
+                                            //    ticket.TextoIzquierda("CLIENTE: " + lstReporte2[0].DescCliente);
+                                            //    ticket.TextoIzquierda("DOCMTO.: " + lstReporte2[0].NumeroDocumento);
+                                            //    ticket.TextoIzquierda("VENDEDOR: " + lstReporte2[0].DescVendedor);
+                                            //    ticket.TextoIzquierda("FORMPAGO: " + lstReporte2[0].DescFormaPago);
+                                            //    ticket.TextoIzquierda("EQUIPO  : " + WindowsIdentity.GetCurrent().Name.ToString());
+                                            //    ticket.TextoIzquierda("USUARIO : " + Parametros.strUsuarioLogin);
+                                            //    ticket.TextoIzquierda("");
+                                            //    ticket.TextoIzquierda("DESPACHADOR:-----------------------------");
+
+                                            //    //ticket.LineasGuion();
+                                            //    //ticket.EncabezadoVenta();
+                                            //    ticket.TextoIzquierda("CANT      ARTICULO");
+                                            //    ticket.LineasGuion();
+                                            //    foreach (var item in lstReporte2)
+                                            //    {
+                                            //        ticket.AgregaArticuloCodigo(Convert.ToInt32(item.Cantidad), Convert.ToString(item.Abreviatura), Convert.ToString(item.CodigoProveedor));
+                                            //        //ticket.AgregaArticuloDetalle(item.NombreProducto.PadRight(, Convert.ToDouble(Math.Round(item.PrecioVenta, 2)), Convert.ToDouble(Math.Round(item.ValorVenta, 2)));
+                                            //        ticket.TextoIzquierda((item.UbicacionUcayali + "   " + item.NombreProducto).Trim());
+                                            //    }
+                                            //    ticket.LineasGuion();
+                                            //    ticket.TextoIzquierda("OBS.:" + lstReporte2[0].Observacion);
+                                            //    ticket.TextoIzquierda("");
+                                            //    ticket.TextoIzquierda("");
+                                            //    ticket.TextoIzquierda("");
+                                            //    ticket.TextoCentro("-----------------------------");
+                                            //    ticket.TextoCentro("RECIBI CONFORME");
+                                            //    ticket.CortaTicket();
+                                            //    #endregion
+                                            //}
+                                            #endregion
+                                            //--
+                                        }
+                                        else if (Parametros.intTiendaId == Parametros.intTiendaSanMiguel)
+                                        {
+                                            rptPedidoContadoTicket objReporteGuia = new rptPedidoContadoTicket();
+
+                                            objReporteGuia.SetDataSource(lstReporte);
+                                            objReporteGuia.SetParameterValue("Equipo", WindowsIdentity.GetCurrent().Name.ToString());
+                                            objReporteGuia.SetParameterValue("Usuario", Parametros.strUsuarioLogin);
+                                            objReporteGuia.SetParameterValue("Modificado", "Modif. N°(" + lstReporte[0].NumeroModificacion + ")");
+
+                                            #region "Buscar Impresora ..."
+                                            bool found = false;
+                                            PrinterSettings prtSetting = new PrinterSettings();
+                                            foreach (string prtName in PrinterSettings.InstalledPrinters)
+                                            {
+                                                string printer = "";
+
+                                                if (prtName.StartsWith("\\\\"))
+                                                {
+                                                    printer = prtName.Substring(3);
+                                                    printer = printer.Substring(printer.IndexOf("\\") + 1);
+                                                }
+                                                else
+                                                    printer = prtName;
+
+                                                if (printer.ToUpper().StartsWith("(PSM)"))
+                                                {
+                                                    found = true;
+                                                    PrintOptions bufPO = objReporteGuia.PrintOptions;
+                                                    prtSetting.PrinterName = prtName;
+                                                    objReporteGuia.PrintOptions.PrinterName = prtName;
+
+                                                    Impresion.Imprimir(objReporteGuia, prtSetting.PrinterName, 1, 0, 0, CrystalDecisions.Shared.PaperSize.DefaultPaperSize);///addd
+                                                    break;
+                                                }
+                                            }
+
+                                            if (!found)
+                                            {
+                                                Cursor = Cursors.Default;
+                                                MessageBox.Show("La impresora (PSM) Nombre para Pedido de Venta no ha sido encontrada.");
+                                                return;
+                                            }
+                                            //Actualiza Impresión
+                                            objBL_Pedido.ActualizaImpresion(IdPedido, true);
+
+                                            //objReporteGuia.PrintToPrinter(1, false, 0, 0);
+                                            //MessageBox.Show("El pedido se imprimió correctamente");// se envió a  + prtName);
+                                            frmMensajeWindows frmMsg = new frmMensajeWindows();
+                                            frmMsg.ShowDialog();
+                                            #endregion
+                                            //--
                                         }
                                     }
+                                }
 
                                 #region 'Bloque original'
                                 //Carga Informe
@@ -7335,7 +7386,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                             txtObservaciones.Text = "MODIFICACIÓN DEL PEDIDO : " + objE_Pedido.Numero;
                             IdPedidoReferencia = objE_Pedido.IdPedido;
 
-                           
+
                             //Carga ClienteAsociado
                             CargarClienteAsociado();
                             cboClienteAsociado.EditValue = objE_Pedido.IdClienteAsociado;
@@ -7404,10 +7455,10 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                             gcPedidoDetalle.RefreshDataSource();
 
                             CalculaTotales();
-                    
+
                             #endregion
                         }
-                     }
+                    }
 
                     #endregion
                 }
@@ -8596,15 +8647,15 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                             }
                             else if (Convert.ToInt32(cboMoneda.EditValue) == 6)
                             {
-                                deICBPER_Afecto_Igv = deICBPER_Afecto_Igv + Math.Round( (Math.Round(item.ValorVenta * Convert.ToDecimal(txtTipoCambio.EditValue), 2) - (item.Cantidad * new decimal(0.50))) / Convert.ToDecimal(txtTipoCambio.EditValue), 2) ;                    ///(item.Cantidad * new decimal(0.10));
-                                deICBPER_Afecto_Igv2 = deICBPER_Afecto_Igv2 + Math.Round( ((item.ValorVenta * Convert.ToDecimal(txtTipoCambio.EditValue)) - (item.Cantidad * new decimal(0.50))) / Convert.ToDecimal(txtTipoCambio.EditValue), 2)    ;
+                                deICBPER_Afecto_Igv = deICBPER_Afecto_Igv + Math.Round((Math.Round(item.ValorVenta * Convert.ToDecimal(txtTipoCambio.EditValue), 2) - (item.Cantidad * new decimal(0.50))) / Convert.ToDecimal(txtTipoCambio.EditValue), 2);                    ///(item.Cantidad * new decimal(0.10));
+                                deICBPER_Afecto_Igv2 = deICBPER_Afecto_Igv2 + Math.Round(((item.ValorVenta * Convert.ToDecimal(txtTipoCambio.EditValue)) - (item.Cantidad * new decimal(0.50))) / Convert.ToDecimal(txtTipoCambio.EditValue), 2);
                                 deICBPER = deICBPER + (item.ValorVenta - deICBPER_Afecto_Igv2);
                                 deICBPERTotal = deICBPERTotal + item.ValorVenta;
                             }
                         }
                         else
                         {
-                            intTotalCantidad =  intTotalCantidad + item.Cantidad;
+                            intTotalCantidad = intTotalCantidad + item.Cantidad;
                             deValorVenta = item.ValorVenta;
                             deTotal = deTotal + deValorVenta;
                         }
@@ -8659,7 +8710,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                     txtSubTotal.EditValue = deSubTotal;
 
                     txtImpuesto.EditValue = deImpuesto;
-                    
+
                     txtTotalCantidad.EditValue = intTotalCantidad;
 
                     //if(Convert.ToInt32(cboMoneda.EditValue) == 6)
@@ -9151,12 +9202,17 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
             }
         }
 
-        private void CargaPedidoDetalle()
+        frmRegPedidoDetalleEdit movDetalle2 = new frmRegPedidoDetalleEdit();
+        
+
+        public void CargaPedidoDetalle()
         {
             mListaPedidoDetalleOrigen = new List<CPedidoDetalle>();
 
             List<PedidoDetalleBE> lstTmpPedidoDetalle = null;
             lstTmpPedidoDetalle = new PedidoDetalleBL().ListaTodosActivo(IdPedido);
+            //lstTmpPedidoDetalle = movDetalle2.IdPedido != null ? new PedidoDetalleBL().ListaTodosActivo(movDetalle2.IdPedido) : new List<PedidoDetalleBE>();
+
 
             foreach (PedidoDetalleBE item in lstTmpPedidoDetalle)
             {
@@ -11328,7 +11384,8 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                     //decimal ValorVenta2x1 = Math.Round(pVenta * iCant, 2);
 
                     mListaPedidoDetalleOrigen.Where(w => w.IdProducto == IdProducto && w.FlagMuestra == FlagMuestra).ToList().ForEach(
-                        s => {
+                        s =>
+                        {
                             s.PorcentajeDescuento = PorcentajeDescuento;
                             s.PrecioVenta = PrecioVenta2x1;
                             s.ValorVenta = ValorVenta2x1;
@@ -13176,12 +13233,38 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
 
         private void cboVendedor_TextChanged(object sender, EventArgs e)
         {
-    
+
         }
 
         private void cboVendedor_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
         {
- 
+
         }
+
+        private void gvPedidoDetalle_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
+        {
+            if (e.Column.FieldName == "PorcentajeDescuento")
+            {
+                // Verificar si el PorcentajeDescuento es mayor a 1
+                decimal porcentajeDescuento = Convert.ToDecimal(e.CellValue);
+                if (porcentajeDescuento > 1)
+                {
+                    //.Appearance.BackColor = Color.AliceBlue;
+                    e.Appearance.BackColor = Color.Beige;
+                }
+                else
+                {
+                    // Restaurar la apariencia por defecto para el color de fondo de otras celdas
+                    e.Appearance.BackColor = e.Appearance.BackColor2 = Color.Empty;
+                }
+            }
+            else
+            {
+                // Restaurar la apariencia por defecto para el color de fondo de otras celdas
+                e.Appearance.BackColor = e.Appearance.BackColor2 = Color.Empty;
+            }
+        }
+
+     
     }
 }

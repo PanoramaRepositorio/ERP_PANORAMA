@@ -1584,6 +1584,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
             this.gvPedidoDetalle.OptionsSelection.MultiSelect = true;
             this.gvPedidoDetalle.OptionsView.ColumnAutoWidth = false;
             this.gvPedidoDetalle.OptionsView.ShowGroupPanel = false;
+            this.gvPedidoDetalle.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gvPedidoDetalle_CustomDrawCell);
             this.gvPedidoDetalle.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gvPedidoDetalle_RowStyle);
             // 
             // gridColumn1
