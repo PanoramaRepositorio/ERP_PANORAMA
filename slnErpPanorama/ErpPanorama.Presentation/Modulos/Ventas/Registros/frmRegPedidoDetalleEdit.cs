@@ -1460,14 +1460,7 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                     Descuento = objE_PromocionVolumen.Descuento;
                     IdPromocion2 = objE_PromocionVolumen.IdPromocionVolumenDetalle;
 
-                }       
-                if (Descuento > 0) 
-                {
-                    txtValorVenta.EditValue = Convert.ToDecimal(txtPrecioVenta.Text) * Convert.ToDecimal(txtCantidad.Text);
-                    txtDescuento.Text = objE_PromocionVolumen.Descuento.ToString();
-                    Descuento = objE_PromocionVolumen.Descuento;
-                    IdPromocion2 = objE_PromocionVolumen.IdPromocionVolumenDetalle;
-                }
+                } 
                 else
                 {
                     Descuento = 0;

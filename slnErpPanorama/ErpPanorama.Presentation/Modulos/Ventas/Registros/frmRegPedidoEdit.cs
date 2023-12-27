@@ -2059,25 +2059,44 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                                 // Agrega el nuevo producto a mListaPedidoDetalleOrigen
                                 mListaPedidoDetalleOrigen.Add(new CPedidoDetalle
                                 {
+                                    Item = movDetalle.oBE.Item,
+                                    CodigoProveedor = movDetalle.oBE.CodigoProveedor,
+                                    NombreProducto =movDetalle.oBE.NombreProducto,
                                     IdProducto = movDetalle.oBE.IdProducto,
-                                    PorcentajeDescuento = objE_PromocionVolumen2.Descuento,
+                                    DescFamiliaProducto=movDetalle.oBE.DescFamiliaProducto,
+                                    PorcentajeDescuento = descuentopromo,
                                     Cantidad = movDetalle.oBE.Cantidad,
-                                    PrecioUnitario =  movDetalle.oBE.PrecioUnitario,
+                                    PrecioUnitario = movDetalle.oBE.PrecioUnitario,
                                     PrecioVenta = movDetalle.oBE.PrecioVenta,
                                     ValorVenta = movDetalle.oBE.ValorVenta
 
                                 });
 
-                                // Obtiene el último elemento de la lista
-                                CPedidoDetalle ultimaFila = mListaPedidoDetalleOrigen[mListaPedidoDetalleOrigen.Count - 1];
+                                int idProducto = 0;
+                                decimal porcentajeDescuento = 0; 
+                                int cantidad = 0; 
+                                decimal preciounitario = 0; 
+                                decimal precioVenta = 0; 
+                                decimal valorVenta = 0; 
 
-                                // Extrae los valores en variables individuales
-                                int idProducto = ultimaFila.IdProducto;
-                                decimal porcentajeDescuento = ultimaFila.PorcentajeDescuento;
-                                int cantidad = ultimaFila.Cantidad;
-                                decimal preciounitario = ultimaFila.PrecioUnitario;
-                                decimal precioVenta = ultimaFila.PrecioVenta;
-                                decimal valorVenta = ultimaFila.ValorVenta;
+
+                                // Obtiene el último elemento de la lista
+                                // Verifica si la lista no es nula y tiene al menos un elemento
+                                if (mListaPedidoDetalleOrigen != null && mListaPedidoDetalleOrigen.Count > 0)
+                                {
+                                    // Obtiene el último elemento de la lista
+                                    CPedidoDetalle ultimaFila = mListaPedidoDetalleOrigen[mListaPedidoDetalleOrigen.Count - 1];
+
+                                    // Extrae los valores en variables individuales
+                                    idProducto = ultimaFila.IdProducto;
+                                    porcentajeDescuento = ultimaFila.PorcentajeDescuento;
+                                    cantidad = ultimaFila.Cantidad;
+                                    preciounitario = ultimaFila.PrecioUnitario;
+                                    precioVenta = ultimaFila.PrecioVenta;
+                                    valorVenta = ultimaFila.ValorVenta;
+
+                                    // Ahora puedes usar las variables idProducto, porcentajeDescuento, cantidad, preciounitario, precioVenta, valorVenta según sea necesario
+                                }
 
                                 // Verifica si hay coincidencias entre las dos listas
                                 var coincidencias = mListaPedidoDetalleOrigen
@@ -2090,8 +2109,8 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                                     //verifica la cantidad acumulativa 
                                     decimal cantidadTotal = mListaPedidoDetalleOrigen.Sum(item => item.Cantidad);
                                     PromocionVolumenDetalleBE objE_PromoTempDet = listaPromociones[0];
-                                    if (coincidencias.Count == listaIdProductosPromocionales.Count && objE_PromoTempDet.MontoUniXamas <= cantidadTotal)
-                                    {
+                                     if (coincidencias.Count == listaIdProductosPromocionales.Count && objE_PromoTempDet.MontoUniXamas <= cantidadTotal && objE_PromoTempDet.MontoUniXamas != 0)
+                                        {
                                         // Actualiza el porcentaje de descuento en gvPedidoDetalle para las coincidencias
                                        
                                         // Obtén el último IdProducto
@@ -2135,20 +2154,48 @@ namespace ErpPanorama.Presentation.Modulos.Ventas.Registros
                                         XtraMessageBox.Show("Se aplico Descuento", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                     }
-                                    else if ( objE_PromoTempDet.MontoUniXamas <= cantidadTotal)
+                                    else if ( objE_PromoTempDet.MontoSoloXUni <= cantidadTotal && objE_PromoTempDet.MontoSoloXUni != 0)
                                     {
                                         // Actualiza el porcentaje de descuento en gvPedidoDetalle para las coincidencias
+
+                                        // Obtén el último IdProducto
+                                        int ultimoIdProducto = coincidencias.Last().IdProducto;
+                                        int rowIndex2 = gvPedidoDetalle.LocateByValue("IdProducto", ultimoIdProducto);
                                         foreach (var coincidencia in coincidencias)
                                         {
+                                            // Excluye el último IdProducto del ciclo
+                                            if (coincidencia.IdProducto == ultimoIdProducto)
+                                            {
+                                                if (rowIndex2 >= 0)
+                                                {
+                                                    gvPedidoDetalle.SetRowCellValue(rowIndex2, "PorcentajeDescuento", descuentopromo);
+                                                    precioVenta = decimal.Parse(gvPedidoDetalle.GetRowCellValue(rowIndex2, "PrecioUnitario").ToString()) * ((100 - descuentopromo) / 100);
+                                                    valorVenta = Math.Round(precioVenta, 2) * decimal.Parse(gvPedidoDetalle.GetRowCellValue(rowIndex2, "Cantidad").ToString());
+                                                    gvPedidoDetalle.SetRowCellValue(rowIndex2, "PrecioVenta", precioVenta);
+                                                    gvPedidoDetalle.SetRowCellValue(rowIndex2, "ValorVenta", valorVenta);
+                                                    gvPedidoDetalle.SetRowCellValue(rowIndex2, "FlagFijarDescuento", true);
+                                                    //CalculaTotales();
+                                                    continue;
+                                                }
+                                            }
+
                                             int rowIndex = gvPedidoDetalle.LocateByValue("IdProducto", coincidencia.IdProducto);
                                             if (rowIndex >= 0)
                                             {
                                                 gvPedidoDetalle.SetRowCellValue(rowIndex, "PorcentajeDescuento", descuentopromo);
-                                                CalculaTotales();
+                                                movDetalle.oBE.PrecioVenta = decimal.Parse(gvPedidoDetalle.GetRowCellValue(rowIndex, "PrecioUnitario").ToString()) * ((100 - descuentopromo) / 100);
+                                                movDetalle.oBE.ValorVenta = Math.Round(movDetalle.oBE.PrecioVenta, 2) * decimal.Parse(gvPedidoDetalle.GetRowCellValue(rowIndex, "Cantidad").ToString());
+                                                gvPedidoDetalle.SetRowCellValue(rowIndex, "PrecioVenta", movDetalle.oBE.PrecioVenta);
+                                                gvPedidoDetalle.SetRowCellValue(rowIndex, "ValorVenta", movDetalle.oBE.ValorVenta);
+                                                gvPedidoDetalle.SetRowCellValue(rowIndex, "FlagFijarDescuento", true);
+                                                //CalculaTotales();
                                             }
 
                                         }
                                         movDetalle.oBE.PorcentajeDescuento = descuentopromo;
+                                        movDetalle.oBE.PrecioVenta = precioVenta;
+                                        movDetalle.oBE.ValorVenta = valorVenta;
+
                                         XtraMessageBox.Show("Se aplico Descuento", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     }
                                 }
